@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <title>SORTIR.COM</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="Style.css" />
+</head>
+
+<body>
+    <header>
+        <div class="entete">
+            <h1>Bienvenue sur notre site évènementiel</h1>
+
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col1 col-lg-12">
+                <h5> <a id="lien_sinscrire" href="#sinscrire"> → S'inscrire</a></h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col2 col-lg-3">
+                    <p class="text_actions" on>Nos actions</p>
+                    <p id="descriptif_actions"></p>
+                    </br>
+                    <p class="text_salles" on>Nos salles</p>
+                    <p id="descriptif_salles"></p>
+                </div>
+
+                <div class="col3 col-lg-6">
+                    <h2 style="text-align:center;"><b><u>Qui sommes nous ?</u></b></h4>
+                        <ul>
+                            <li>
+                                <p id="lien_historique"> Historique.</p>
+                            </li>
+                            <li>
+                                <p id="lien_partenaires"> Nos partenaires.</p>
+                            </li>
+                            <li>
+                                <p id="lien_actions"> Nos actions.</p>
+                            </li>
+                            <li>
+                                <p id="lien_salles"> Les salles.</p>
+                            </li>
+                            <li> <a class="lien_planning" href="planning.html"> Consulter le planning.</a></li>
+                        </ul>
+                        
+                </div>
+
+                <div class="col4 col-lg-3">
+                    <p class="text_historique" on>historique</p>
+                    <p id="descriptif_historique"></p>
+
+                    </br>
+                    <p class="text_partenaires" on>Nos partenaires</p>
+                    <p id="descriptif_partenaires"></p>
+                </div>
+
+            </div>
+        </div>
+    </br>
+        <div class="container">
+            <div class="row">
+                <div class="col5 col-lg-4">
+                </div>
+                <div class="col6 col-lg-4">
+                    <form id="sinscrire" method="post" action="traitement.php">
+                        <legend>S'inscrire</legend>
+                        <label for="name">Nom</label><br>
+                        <input type="text" id="name" placeholder="ABC" name="nom" /><br>
+                        <label for="fname">Prenom</label><br>
+                        <input type="text" id="fname" placeholder="Abc" name="prenom" /><br>
+                        <label for="mail">Email</label><br>
+                        <input type="email" id="mail" placeholder="address@domain.com" name="address" /><br>
+                        <input type="submit" value="Send" id="send" /><br>
+                    </br>
+                    </form>
+
+                </div>
+                <div class="col7 col-lg-4">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    </br></br>
+</body>
+<footer>
+
+    <h5><img src="http://citeoffice.citedesmetiers.fr/images/events/images/Logos/AFPA.gif" height=3% width=3%>Afpa®
+        / © November MMXIX</h5>
+
+</footer>
+
+</html>
