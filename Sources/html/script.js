@@ -30,7 +30,7 @@ function VisibleSalles() {
  //  document.getElementById('descriptif_salles').innerHTML = "Nos salles";
 }
   
-function VisibleSincrire() {
+function VisibleConnection() {
     document.getElementById('sincrire').style.visibility = "visible";
     document.getElementsByClassName('text_partenaires')[0].style.visibility = "hidden";
   document.getElementsByClassName('text_actions')[0].style.visibility = "hidden";
@@ -43,6 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("lien_partenaires").addEventListener("click", VisiblePartenaires);
     document.getElementById("lien_actions").addEventListener("click", VisibleActions);
     document.getElementById("lien_salles").addEventListener("click", VisibleSalles);
-   // document.getElementById("lien_sincrire").addEventListener("click", VisibleSinscrire);
+   // document.getElementById("lien_sincrire").addEventListener("click", VisibleConnection);
   
 });
