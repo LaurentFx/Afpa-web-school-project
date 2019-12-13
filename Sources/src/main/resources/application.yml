@@ -1,18 +1,0 @@
-spring:
-  datasource:
-    password: sql59
-    url: jdbc:postgresql://localhost:5432/jpa-test
-    username: laurent
-  jpa:
-    hibernate:
-      ddl-auto: create
-  mvc:
-    view:
-      prefix: /WEB-INF/views/
-      suffix: .jsp
-      
-# A FAIRE org.hibernate.SQL p
-#    resources.static-locations=file:/var/www/static,classpath:static
-
-logging:  level:    root: info
-    org.hibernate.SQL: debug
