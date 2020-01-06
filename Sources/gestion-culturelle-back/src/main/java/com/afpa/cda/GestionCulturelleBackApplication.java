@@ -23,5 +23,4 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**").allowedMethods("GET", "PUT", "POST", "DELETE", "PATCH");
 	}
-	
 }
