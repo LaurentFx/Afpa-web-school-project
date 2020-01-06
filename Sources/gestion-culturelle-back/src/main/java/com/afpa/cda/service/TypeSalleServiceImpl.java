@@ -1,6 +1,7 @@
 package com.afpa.cda.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -37,6 +38,28 @@ public class TypeSalleServiceImpl implements ITypeSalleService {
 		typ.setId(typeSalle.getId());
 		return typ;
 
-
 	}
+	
+	@Override
+	public boolean updateTypeSalle (TypeSalleDto typ) {
+		Optional <TypeSalle> typeSalleOp = this.typeSalleRepository.findById(typ.getId());
+		if(typeSalleOp.isPresent()) {
+			TypeSalle typeSalle = typeSalleOp.get();
+			typeSalle.setLabel(typ.getLabel());
+			this.typeSalleRepository.save(typeSalle);
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public boolean deleteTypeSalle (TypeSalleDto typ) {
+		if(this.typeSalleRepository.existsById(typ.getId())) {
+			this.typeSalleRepository.deleteById(typ.getId());
+			return true;
+		}
+		return false;
+	}
+	
+	
+	
 }
