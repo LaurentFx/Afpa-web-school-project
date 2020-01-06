@@ -9,7 +9,13 @@ import { AppComponent } from './app.component';
 import { TypeSalleListComponent } from './TypeSalle-list/TypeSalle-list.component';
 import { TypeSalleDetailComponent } from './TypeSalle-detail/TypeSalle-detail.component';
 import { TypeSalleAddComponent } from './TypeSalle-add/TypeSalle-add.component';
+
+import { RoleListComponent } from './Role-list/Role-list.component';
+import { RoleDetailComponent } from './Role-detail/role-detail.component';
+import { RoleAddComponent } from './Role-add/role-add.component';
+
 import { NavebarComponent } from './navebar/navebar.component';
+
 
 @NgModule({
   declarations: [
@@ -17,6 +23,11 @@ import { NavebarComponent } from './navebar/navebar.component';
     TypeSalleListComponent,
     TypeSalleDetailComponent,
     TypeSalleAddComponent,
+
+    RoleListComponent,
+    RoleDetailComponent,
+    RoleAddComponent,
+
     NavebarComponent
   ],
   imports: [
