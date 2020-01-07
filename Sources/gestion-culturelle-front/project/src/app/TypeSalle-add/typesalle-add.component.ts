@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TypeSalleService } from '../service/TypeSalle.service';
-import { TypeSalle } from '@angular/compiler/src/i18n/i18n_ast';
+
 
 @Component({
   selector: 'app-typesalle-add',

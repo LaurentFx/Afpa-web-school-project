@@ -1,8 +1,8 @@
-export class TypeSalle {
+export class TypeSalleModel {
     id: number;
-    value: string;
+    label: string;
     constructor(id?: number, value?: string){
         this.id = id;
-        this.value = value;
+        this.label = value;
     }
 }
