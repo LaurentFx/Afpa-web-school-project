@@ -16,7 +16,6 @@ import lombok.Setter;
 @Setter
 @Builder
 public class RoleDto {
-	
 	@Id
 	private int id;
 	private String labelRole;

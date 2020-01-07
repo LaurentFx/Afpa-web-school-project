@@ -17,8 +17,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ManifestationDto {
-	
-	@Id
 	private String nom;
 	private Date dateManifestation;
 	private Salle salle;

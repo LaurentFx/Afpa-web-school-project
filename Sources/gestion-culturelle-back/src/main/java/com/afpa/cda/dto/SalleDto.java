@@ -15,8 +15,6 @@ import com.afpa.cda.entity.TypeSalle;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SalleDto {
-	
-	@Id
 	private int id;
 	private int nbrePlaces;
 	private int nbrePlacesVIP;
