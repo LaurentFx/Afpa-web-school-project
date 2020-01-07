@@ -3,43 +3,43 @@ package com.afpa.cda.dao;
 import java.util.List;
 import java.util.Optional;
 
-import com.afpa.cda.entity.TypeSalle;
+import com.afpa.cda.entity.Personne;
 
-public class TypeSalleDao implements TypeSalleRepository  {
+public class PersonneDao implements PersonneRepository  {
 
 	@Override
-	public <S extends TypeSalle> S save(S entity) {
+	public <S extends Personne> S save(S entity) {
 	
 		return null;
 	}
 
 	@Override
-	public <S extends TypeSalle> Iterable<S> saveAll(Iterable<S> entities) {
+	public <S extends Personne> Iterable<S> saveAll(Iterable<S> entities) {
 		
 		return null;
 	}
 
 	@Override
-	public Optional<TypeSalle> findById(Integer id) {
-	
+	public Optional<Personne> findById(Integer id) {
+		
 		return null;
 	}
 
 	@Override
 	public boolean existsById(Integer id) {
-		
+	
 		return false;
 	}
 
 	@Override
-	public Iterable<TypeSalle> findAllById(Iterable<Integer> ids) {
+	public Iterable<Personne> findAllById(Iterable<Integer> ids) {
 	
 		return null;
 	}
 
 	@Override
 	public long count() {
-		
+	
 		return 0;
 	}
 
@@ -50,23 +50,25 @@ public class TypeSalleDao implements TypeSalleRepository  {
 	}
 
 	@Override
-	public void delete(TypeSalle entity) {
-				
+	public void delete(Personne entity) {
+		
+		
 	}
 
 	@Override
-	public void deleteAll(Iterable<? extends TypeSalle> entities) {
-	
+	public void deleteAll(Iterable<? extends Personne> entities) {
+
 		
 	}
 
 	@Override
 	public void deleteAll() {
 		
+		
 	}
 
 	@Override
-	public List<TypeSalle> findAll() {
+	public List<Personne> findAll() {
 	
 		return null;
 	}

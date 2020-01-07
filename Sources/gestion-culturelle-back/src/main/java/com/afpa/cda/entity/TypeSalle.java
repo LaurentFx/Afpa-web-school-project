@@ -24,6 +24,6 @@ public class TypeSalle {
 	private int id;
 	private String label;
 	
-	@ManyToOne
-	private Salle salle;
+	//@ManyToOne
+	//private Salle salle;
 }

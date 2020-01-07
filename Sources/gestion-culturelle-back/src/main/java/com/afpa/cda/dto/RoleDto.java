@@ -1,7 +1,6 @@
-package com.afpa.cda.entity;
+package com.afpa.cda.dto;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
@@ -16,14 +15,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-
-
-public class Role {
+public class RoleDto {
 	
 	@Id
-	@GeneratedValue(generator = "ROLE_SEQ", strategy = GenerationType.SEQUENCE)
-	
 	private int id;
-	private String labelRole;	
+	private String labelRole;
 
 }
