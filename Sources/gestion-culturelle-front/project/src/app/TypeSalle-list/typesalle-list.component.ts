@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TypeSalle } from '../model/TypeSalle';
+import { TypeSalleModel } from '../model/TypeSalle';
 import { TypeSalleService } from '../service/TypeSalle.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { TypeSalleService } from '../service/TypeSalle.service';
 })
 export class TypeSalleListComponent implements OnInit {
 
-  typeSalles: TypeSalle[];
+  typeSalles: TypeSalleModel[];
   
   constructor(private typeSalleService: TypeSalleService) { }
 
@@ -26,8 +26,9 @@ export class TypeSalleListComponent implements OnInit {
     );
 
     this.typeSalleService.getAll().subscribe(
-      donnees =>{
-          this.typeSalles = donnees; 
+      resultat =>{
+          this.typeSalles = resultat; 
+          console.log('c est moi',this.typeSalles);
       }
     );
   }
