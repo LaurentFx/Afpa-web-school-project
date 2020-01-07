@@ -9,8 +9,14 @@ import { AppComponent } from './app.component';
 import { TypeSalleListComponent } from './TypeSalle-list/TypeSalle-list.component';
 import { TypeSalleDetailComponent } from './TypeSalle-detail/TypeSalle-detail.component';
 import { TypeSalleAddComponent } from './TypeSalle-add/TypeSalle-add.component';
+
+import { RoleListComponent } from './Role-list/Role-list.component';
+import { RoleDetailComponent } from './Role-detail/role-detail.component';
+import { RoleAddComponent } from './Role-add/role-add.component';
+
 import { NavebarComponent } from './navebar/navebar.component';
 import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [
@@ -18,6 +24,11 @@ import { RouterModule } from '@angular/router';
     TypeSalleListComponent,
     TypeSalleDetailComponent,
     TypeSalleAddComponent,
+
+    RoleListComponent,
+    RoleDetailComponent,
+    RoleAddComponent,
+
     NavebarComponent
   ],
   imports: [
