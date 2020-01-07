@@ -3,11 +3,9 @@ package com.afpa.cda.service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.afpa.cda.dao.TypeSalleRepository;
 import com.afpa.cda.dto.TypeSalleDto;
 import com.afpa.cda.entity.TypeSalle;
@@ -39,7 +37,7 @@ public class TypeSalleServiceImpl implements ITypeSalleService {
 		return typ;
 
 	}
-	
+
 	@Override
 	public boolean updateTypeSalle (TypeSalleDto typ, int id) {
 		Optional <TypeSalle> typeSalleOp = this.typeSalleRepository.findById(id);
@@ -58,8 +56,6 @@ public class TypeSalleServiceImpl implements ITypeSalleService {
 			return true;
 		}
 		return false;
-	}
-	
-	
-	
+	}	
+
 }

@@ -2,6 +2,8 @@ package com.afpa.cda.entity;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
@@ -16,8 +18,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
+
+
 public class Personne {	
+	
 	@Id
+	@GeneratedValue(generator = "PERSONNE_SEQ", strategy = GenerationType.SEQUENCE)
 	private int id;
 	private String nom;
 	private String prenom;
@@ -27,5 +33,6 @@ public class Personne {
 	private String typeAnimation;
 	private double salaire;
 	private int nbreSpectateurs;
+	//private Role role;
 
 }

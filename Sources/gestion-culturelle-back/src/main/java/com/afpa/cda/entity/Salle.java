@@ -24,6 +24,8 @@ public class Salle {
 	private int nbrePlaces;
 	private int nbrePlacesVIP;
 	private double fraisjournalier;
-	// private TypeSalle typesalle;
+
+	//private TypeSalle typesalle;
+
 
 }
