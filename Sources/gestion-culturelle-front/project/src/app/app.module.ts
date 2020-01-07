@@ -10,6 +10,7 @@ import { TypeSalleListComponent } from './TypeSalle-list/TypeSalle-list.componen
 import { TypeSalleDetailComponent } from './TypeSalle-detail/TypeSalle-detail.component';
 import { TypeSalleAddComponent } from './TypeSalle-add/TypeSalle-add.component';
 import { NavebarComponent } from './navebar/navebar.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,11 @@ import { NavebarComponent } from './navebar/navebar.component';
   ],
   imports: [
     BrowserModule,
+    RouterModule.forRoot ([
+    
+    {path: 'typesalle-list', component:TypeSalleListComponent },
+    {path: 'typesalle-add', component:TypeSalleAddComponent },
+    ]),
     AppRoutingModule,
     FormsModule,
     HttpClientModule

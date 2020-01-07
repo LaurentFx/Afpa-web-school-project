@@ -1,19 +1,13 @@
 <h1>Gestion culturelle</h1>
 
 <hr>
-
-
-
 <ul>
-<li><a routerLink='' routerLinkActive=active [routerLinkActiveOptions]="{exact:true }">Accueil</a></li>
+<li><a routerLink='' routerLinkActive=active [routerLinkActiveOptions]="{exact:true }">ACCUEIL</a></li>
 <li routerLinkActive=active><a routerLink='navebar'>Barre menu</a></li>
+
+
+<li routerLinkActive=active><a routerLink='typesalle-list'>Lister les types de salles</a></li>
+<li routerLinkActive=active><a routerLink='typesalle-add'>Ajouter type de salle</a></li>
 </ul>
 <router-outlet></router-outlet>
-
-<hr>
-<app-typesalle-list></app-typesalle-list>
-
-<hr>
-
-<app-typesalle-add></app-typesalle-add>
 <hr>
