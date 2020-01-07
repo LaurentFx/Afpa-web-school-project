@@ -41,8 +41,8 @@ public class TypeSalleServiceImpl implements ITypeSalleService {
 	}
 	
 	@Override
-	public boolean updateTypeSalle (TypeSalleDto typ) {
-		Optional <TypeSalle> typeSalleOp = this.typeSalleRepository.findById(typ.getId());
+	public boolean updateTypeSalle (TypeSalleDto typ, int id) {
+		Optional <TypeSalle> typeSalleOp = this.typeSalleRepository.findById(id);
 		if(typeSalleOp.isPresent()) {
 			TypeSalle typeSalle = typeSalleOp.get();
 			typeSalle.setLabel(typ.getLabel());
@@ -52,9 +52,9 @@ public class TypeSalleServiceImpl implements ITypeSalleService {
 		return false;
 	}
 	@Override
-	public boolean deleteTypeSalle (TypeSalleDto typ) {
-		if(this.typeSalleRepository.existsById(typ.getId())) {
-			this.typeSalleRepository.deleteById(typ.getId());
+	public boolean deleteTypeSalle (int id) {
+		if(this.typeSalleRepository.existsById(id)) {
+			this.typeSalleRepository.deleteById(id);
 			return true;
 		}
 		return false;

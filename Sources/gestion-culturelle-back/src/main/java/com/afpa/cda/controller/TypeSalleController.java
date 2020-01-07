@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,14 +30,21 @@ public class TypeSalleController {
 		return this.typeSalleService.add(typ);
 	}
 	
-	@PutMapping(path = "/typesalle")
-	public void update(@RequestBody TypeSalleDto typ) {
-		this.typeSalleService.updateTypeSalle(typ);
+//	@PutMapping(path = "/typesalle")
+//	public void update(@RequestBody TypeSalleDto typ) {
+//		this.typeSalleService.updateTypeSalle(typ);
+//	}
+	
+	@PutMapping(path = "/typesalle/{id}")
+	public void update(@RequestBody TypeSalleDto typ,@PathVariable int id) {
+		
+		this.typeSalleService.updateTypeSalle(typ, id);
+		
 	}
 	
-	@DeleteMapping(path = "/typesalle")
-	public void delete(@RequestBody TypeSalleDto typ) {
-		this.typeSalleService.deleteTypeSalle(typ);
+	@DeleteMapping(path = "/typesalle/{id}")
+	public void delete(@PathVariable int id) {
+		this.typeSalleService.deleteTypeSalle(id);
 	}
 	
 	

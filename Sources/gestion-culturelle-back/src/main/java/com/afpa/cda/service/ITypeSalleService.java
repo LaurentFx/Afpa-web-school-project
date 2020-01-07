@@ -11,8 +11,8 @@ public interface ITypeSalleService {
 
 	TypeSalleDto add(TypeSalleDto typ);
 
-	boolean updateTypeSalle(TypeSalleDto typ);
+	boolean updateTypeSalle(TypeSalleDto typ, int id);
 
-	boolean deleteTypeSalle(TypeSalleDto typ);
+	boolean deleteTypeSalle(int id);
 	
 }

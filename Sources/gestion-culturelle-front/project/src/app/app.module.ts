@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { TypeSalleListComponent } from './TypeSalle-list/TypeSalle-list.component';
 import { TypeSalleDetailComponent } from './TypeSalle-detail/TypeSalle-detail.component';
 import { TypeSalleAddComponent } from './TypeSalle-add/TypeSalle-add.component';
+import { NavebarComponent } from './navebar/navebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TypeSalleListComponent,
     TypeSalleDetailComponent,
-    TypeSalleAddComponent
+    TypeSalleAddComponent,
+    NavebarComponent
   ],
   imports: [
     BrowserModule,
