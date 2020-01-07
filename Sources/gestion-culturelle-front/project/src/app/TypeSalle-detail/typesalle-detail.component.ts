@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TypeSalle } from '../model/TypeSalle';
+import { TypeSalleModel } from '../model/TypeSalle';
 
 @Component({
   selector: 'app-typesalle-detail',
@@ -8,7 +8,7 @@ import { TypeSalle } from '../model/TypeSalle';
 })
 export class TypeSalleDetailComponent implements OnInit {
 
-  @Input() typesalle: TypeSalle;
+  @Input() typesalle: TypeSalleModel;
 
   constructor() { }
 

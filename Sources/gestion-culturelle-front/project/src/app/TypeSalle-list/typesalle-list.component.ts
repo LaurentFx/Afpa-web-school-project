@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TypeSalle } from '../model/TypeSalle';
+import { TypeSalleModel } from '../model/TypeSalle';
 import { TypeSalleService } from '../service/TypeSalle.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { TypeSalleService } from '../service/TypeSalle.service';
 })
 export class TypeSalleListComponent implements OnInit {
 
-  typeSalles: TypeSalle[];
+  typeSalles: TypeSalleModel[];
   
   constructor(private typeSalleService: TypeSalleService) { }
 
