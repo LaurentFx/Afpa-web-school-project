@@ -1,0 +1,3 @@
+<h3>Ajouter un type de salle</h3>
+<textarea [(ngModel)]="typeSalle"></textarea>
+<button (click)="add()" [disabled]="typeSalle.length==0" >Ajouter un type de salle</button>

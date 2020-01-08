@@ -3,9 +3,11 @@ package com.afpa.cda.service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.afpa.cda.dao.TypeSalleRepository;
 import com.afpa.cda.dto.TypeSalleDto;
 import com.afpa.cda.entity.TypeSalle;
@@ -29,6 +31,19 @@ public class TypeSalleServiceImpl implements ITypeSalleService {
 				.map(ts-> this.modelMapper.map(ts,TypeSalleDto.class))
 				.collect(Collectors.toList());
 	}
+
+	@Override
+	public TypeSalleDto findById(int id) {
+		Optional <TypeSalle> typeSalleOp = this.typeSalleRepository.findById(id);
+		TypeSalleDto tps =null; 
+		if(typeSalleOp.isPresent()) {
+			TypeSalle typeSalle = typeSalleOp.get();
+			
+			tps=this.modelMapper.map(typeSalle,TypeSalleDto.class);
+		}
+		return tps;
+	}
+
 
 	@Override
 	public TypeSalleDto add(TypeSalleDto typ) {

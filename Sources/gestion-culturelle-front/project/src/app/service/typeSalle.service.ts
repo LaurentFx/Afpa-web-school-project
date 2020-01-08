@@ -23,4 +23,13 @@ export class TypeSalleService {
   add(typeSalle: string): Observable<any> {
     return this.http.post(this.monUrl,new TypeSalleModel(0,typeSalle));
   }
+
+  update(id:number,typeSalle:string): Observable<Object> {
+    return this.http.put(`${this.monUrl}/${id}`, typeSalle);
+  }
+
+  delete(id: number): Observable<any> {
+    return this.http.delete(`${this.monUrl}/${id}`);
+  }
+  
 }

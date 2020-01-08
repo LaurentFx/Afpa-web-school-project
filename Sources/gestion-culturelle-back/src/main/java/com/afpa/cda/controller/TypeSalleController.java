@@ -24,6 +24,11 @@ public class TypeSalleController {
 		return this.typeSalleService.findAll();
 	}
 	
+	@GetMapping(path = "/typesalle/{id}")
+	public TypeSalleDto getOne(@PathVariable int id){
+		return this.typeSalleService.findById(id);
+	}
+	
 	@PostMapping(path = "/typesalle")
 	public TypeSalleDto add(@RequestBody TypeSalleDto typ) {
 		return this.typeSalleService.add(typ);

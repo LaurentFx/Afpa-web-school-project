@@ -24,7 +24,7 @@ public class Manifestation {
 	private String nom;
 	private Date dateManifestation;
 	private String typeManifestation;
-	private int Capacité;	
+	private int capacite;	
 	//private Salle salle;
 	private double prixBillet;
 

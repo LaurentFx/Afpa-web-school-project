@@ -13,5 +13,7 @@ public interface ITypeSalleService {
 	boolean updateTypeSalle(TypeSalleDto typ, int id);
 
 	boolean deleteTypeSalle(int id);
+
+	TypeSalleDto findById(int id);
 	
 }

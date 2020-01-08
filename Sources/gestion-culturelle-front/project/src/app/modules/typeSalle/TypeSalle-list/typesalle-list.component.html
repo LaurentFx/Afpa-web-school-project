@@ -1,0 +1,12 @@
+<h3>Liste des types de salle</h3>
+
+<button (click)="typesalle-ad" class="btn btn-info" style="margin-left: 10px">Ajouter un type</button>
+
+<a name="" id="" class="btn btn-primary" href="#" role="button"
+    [routerLink]="['typesalle-ad']" >    </a>
+
+<ul>
+    <cda-typesalle-detail *ngFor="let unTypeDeSalle of typeSalles" [typesalle]='unTypeDeSalle' >
+    </cda-typesalle-detail>
+</ul>
+
