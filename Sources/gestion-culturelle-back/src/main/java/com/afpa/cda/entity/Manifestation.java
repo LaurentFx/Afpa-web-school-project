@@ -23,6 +23,8 @@ public class Manifestation {
 	private int id;
 	private String nom;
 	private Date dateManifestation;
+	private String typeManifestation;
+	private int Capacité;	
 	//private Salle salle;
 	private double prixBillet;
 
