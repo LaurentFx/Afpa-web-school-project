@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { SalleModel } from '../model/Salle';
+import { TypeSalleModel } from '../model/TypeSalle';
 import { HttpClient } from '@angular/common/http'
 import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SalleService {
+export class TypeSalleService {
 
-  monUrl= 'http://localhost:8080/salle'; 
+  monUrl= 'http://localhost:8080/typesalle'; 
 
-  salles: SalleModel[]; 
+  typeSalles: TypeSalleModel[]; 
 
   subjectMiseAJour= new Subject<number>();
 
@@ -20,12 +20,7 @@ export class SalleService {
     return this.http.get(this.monUrl);
   }
   
-  add(salle: string): Observable<any> {
-    return this.http.post(this.monUrl,new SalleModel(0,salle));
+  add(typeSalle: string): Observable<any> {
+    return this.http.post(this.monUrl,new TypeSalleModel(0,typeSalle));
   }
-
-  suppSalle(id: number): Observable<any> {
-    return this.http.delete(this.monUrl +'/' + id);
-  }
-
 }

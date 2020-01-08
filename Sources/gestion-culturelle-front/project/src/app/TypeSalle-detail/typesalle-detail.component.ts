@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TypeSalleModel } from '../model/TypeSalle';
+import { TypeSalleModel } from '../model/typeSalle';
 
 @Component({
   selector: 'cda-typesalle-detail',
