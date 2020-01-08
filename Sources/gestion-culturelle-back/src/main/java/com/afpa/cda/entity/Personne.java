@@ -1,6 +1,5 @@
 package com.afpa.cda.entity;
-import java.util.Date;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,12 +26,16 @@ public class Personne {
 	private int id;
 	private String nom;
 	private String prenom;
+	
+	@Column(nullable = true)
 	private String organisation;
+	
+	@Column(nullable = true)
 	private String qualification;
-	private Date dateAnimation;
-	private String typeAnimation;
+	
+	@Column(nullable = true)
 	private double salaire;
-	private int nbreSpectateurs;
+	
 	//private Role role;
 
 }

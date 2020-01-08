@@ -34,8 +34,8 @@ public class RoleServiceImpl implements IRoleService {
 	}
 
 	@Override
-	public boolean updateRole(RoleDto rol) {
-		Optional <Role> roleOp = this.roleRepository.findById(rol.getId());
+	public boolean updateRole(RoleDto rol, int id) {
+		Optional <Role> roleOp = this.roleRepository.findById(id);
 		if(roleOp.isPresent()) {
 			Role role = roleOp.get();
 			role.setLabelRole(rol.getLabelRole());
@@ -47,10 +47,10 @@ public class RoleServiceImpl implements IRoleService {
 	}
 
 	@Override
-	public boolean deleteRole(RoleDto rol) {
+	public boolean deleteRole(int id) {
 
-		if(this.roleRepository.existsById(rol.getId())) {
-			this.roleRepository.deleteById(rol.getId());
+		if(this.roleRepository.existsById(id)) {
+			this.roleRepository.deleteById(id);
 			return true;
 		}
 

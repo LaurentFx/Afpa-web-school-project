@@ -34,6 +34,7 @@ public class TypeSalleServiceImpl implements ITypeSalleService {
 	public TypeSalleDto add(TypeSalleDto typ) {
 		TypeSalle typeSalle = this.typeSalleRepository.save(this.modelMapper.map(typ,TypeSalle.class));
 		typ.setId(typeSalle.getId());
+		System.err.println("typesalle ajoutee");
 		return typ;
 
 	}
@@ -45,6 +46,7 @@ public class TypeSalleServiceImpl implements ITypeSalleService {
 			TypeSalle typeSalle = typeSalleOp.get();
 			typeSalle.setLabel(typ.getLabel());
 			this.typeSalleRepository.save(typeSalle);
+			System.err.println("typesalle mise à jour");
 			return true;
 		}
 		return false;
@@ -53,6 +55,7 @@ public class TypeSalleServiceImpl implements ITypeSalleService {
 	public boolean deleteTypeSalle (int id) {
 		if(this.typeSalleRepository.existsById(id)) {
 			this.typeSalleRepository.deleteById(id);
+			System.err.println("typesalle supprimée");
 			return true;
 		}
 		return false;

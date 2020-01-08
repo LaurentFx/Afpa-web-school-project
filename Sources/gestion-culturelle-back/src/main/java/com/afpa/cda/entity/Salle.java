@@ -21,8 +21,8 @@ public class Salle {
 	@Id
 	@GeneratedValue(generator = "SALLE_SEQ", strategy = GenerationType.SEQUENCE)
 	private int id;
-	private int nbrePlaces;
-	private int nbrePlacesVIP;
+	private int placesReservees;
+	private int placesReserveesVIP;
 	private double fraisjournalier;
 
 	//private TypeSalle typesalle;

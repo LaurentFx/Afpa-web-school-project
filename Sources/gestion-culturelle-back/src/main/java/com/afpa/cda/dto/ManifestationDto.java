@@ -19,7 +19,7 @@ import lombok.Setter;
 public class ManifestationDto {
 	private String nom;
 	private Date dateManifestation;
-	private Salle salle;
+	//private Salle salle;
 	private double prixBillet;
 	
 	
