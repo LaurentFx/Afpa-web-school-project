@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RoleModel } from '../model/Role';
+import { Role } from '../model/role';
 import { HttpClient } from '@angular/common/http'
 import { Observable, Subject } from 'rxjs';
 
@@ -10,7 +10,7 @@ export class RoleService {
 
   monUrl= 'http://localhost:8080/role'; 
 
-  roles: RoleModel[]; 
+  roles: Role[]; 
 
   subjectMiseAJour= new Subject<number>();
 
@@ -21,7 +21,7 @@ export class RoleService {
   }
   
   add(role: string): Observable<any> {
-    return this.http.post(this.monUrl,new RoleModel(0,role));
+    return this.http.post(this.monUrl,new Role(0,role));
   }
 
   suppRole(id: number): Observable<any> {

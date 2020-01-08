@@ -1,4 +1,4 @@
-export class RoleModel {
+export class Role {
     id: number;
     labelRole: string;
     constructor(id?: number, value?: string){

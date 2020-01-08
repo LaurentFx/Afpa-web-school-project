@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RoleModel } from '../model/role';
+import { Role } from '../model/role';
 import { RoleService } from '../service/role.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { RoleService } from '../service/role.service';
 })
 export class RoleListComponent implements OnInit {
 
-  roles: RoleModel[];
+  roles: Role[];
   
   constructor(private roleService: RoleService) { }
 

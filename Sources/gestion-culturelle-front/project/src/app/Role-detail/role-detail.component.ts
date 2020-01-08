@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { RoleModel } from '../model/Role';
+import { Role  } from '../model/role';
 
 @Component({
   selector: 'cda-role-detail',
@@ -8,7 +8,7 @@ import { RoleModel } from '../model/Role';
 })
 export class RoleDetailComponent implements OnInit {
 
-  @Input() role: RoleModel;
+  @Input() role: Role ;
 
   constructor() { }
 

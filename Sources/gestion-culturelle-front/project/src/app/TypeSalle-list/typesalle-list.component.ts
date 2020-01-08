@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TypeSalleModel } from '../model/TypeSalle';
-import { TypeSalleService } from '../service/TypeSalle.service';
+import { TypeSalleService } from '../service/typeSalle.service';
 
 @Component({
   selector: 'app-typesalle-list',
