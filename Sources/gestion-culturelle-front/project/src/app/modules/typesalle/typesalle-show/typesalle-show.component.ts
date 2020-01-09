@@ -5,17 +5,16 @@ import { TypeSalleModel } from 'src/app/model/typeSalle';
 
 
 @Component({
-  selector: 'app-type-salle-update',
-  templateUrl: './type-salle-update.component.html',
-  styleUrls: ['./type-salle-update.component.css']
+  selector: 'app-typesalle-show',
+  templateUrl: './typesalle-show.component.html',
+  styleUrls: ['./typesalle-show.component.css']
 })
-export class TypeSalleUpdateComponent implements OnInit {
+export class TypeSalleShowComponent implements OnInit {
 
-  id: number;
   typeSalle: TypeSalleModel;
 
   constructor(private route: ActivatedRoute, private typeSalleService: TypeSalleService, private router: Router) { }
-
+  
   ngOnInit() {
     this.typeSalle = new TypeSalleModel();
 
@@ -24,26 +23,9 @@ export class TypeSalleUpdateComponent implements OnInit {
     this.typeSalleService.getOne(id).subscribe(
       res => {
         this.typeSalle = res;
+        console.log(res);
       }
     );
-  }
-
-  update(): void {
-    let id = this.route.snapshot.params['id'];
-    this.typeSalleService.update(id, this.typeSalle).subscribe(
-      res => {
-       console.log("Modification Ok");
-        this.goHome();
-      }
-    );
-  }
-
-  onSubmit() {
-this.update();
-  }
-  
-  goHome() {
-    this.router.navigate(['/typesalle-list']);
   }
 
 }

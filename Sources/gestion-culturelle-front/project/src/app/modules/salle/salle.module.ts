@@ -6,14 +6,11 @@ import { SalleRoutingModule } from './salle-routing.module';
 
 import { SalleAddComponent } from './salle-add/salle-add.component';
 import { SalleListComponent } from './salle-list/Salle-list.component';
-import { SalleDetailComponent } from './salle-detail/Salle-detail.component';
-
 
 @NgModule({
   declarations: [
     SalleAddComponent,
     SalleListComponent,
-    SalleDetailComponent
   ],
   imports: [
     CommonModule,

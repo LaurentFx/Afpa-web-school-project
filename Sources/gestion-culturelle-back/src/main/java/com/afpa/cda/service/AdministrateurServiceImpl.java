@@ -5,10 +5,13 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.afpa.cda.dao.PersonneRepository;
 import com.afpa.cda.dto.AdminDto;
 import com.afpa.cda.entity.Personne;
 
+@Service
 public class AdministrateurServiceImpl implements IAdminService {
 
 	@Autowired

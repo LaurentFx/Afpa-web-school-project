@@ -11,7 +11,7 @@ import { NavebarComponent } from './navebar/navebar.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
-import { TypeSalleModule } from './modules/type-salle/type-salle.module';
+import { TypeSalleModule } from './modules/typesalle/typesalle.module';
 import { RoleModule } from './modules/role/role.module';
 import { SalleModule } from './modules/salle/salle.module';
 
@@ -31,7 +31,7 @@ import { SalleModule } from './modules/salle/salle.module';
     HttpClientModule,
     TypeSalleModule,
     RoleModule,
-    SalleModule
+    SalleModule    
   ],
   providers: [],
   bootstrap: [AppComponent]
