@@ -2,6 +2,7 @@ package com.afpa.cda.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.afpa.cda.dto.SalleDto;
 import com.afpa.cda.service.ISalleService;
 
@@ -23,6 +23,11 @@ public class SalleController {
 	@GetMapping(path = "/salle")
 	public List<SalleDto> getAll(){
 		return this.salleService.findAll();
+	}
+	
+	@GetMapping(path = "/salle/{id}")
+	public SalleDto getOne(@PathVariable int id){
+		return this.salleService.findById(id);
 	}
 	
 	@PostMapping(path = "/salle")
@@ -40,7 +45,4 @@ public class SalleController {
 	public void delete(@PathVariable int id) {
 		this.salleService.deleteSalle(id);
 	}
-	
-	
-
 }

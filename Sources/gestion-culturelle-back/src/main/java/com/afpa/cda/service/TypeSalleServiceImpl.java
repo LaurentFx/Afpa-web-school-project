@@ -49,7 +49,7 @@ public class TypeSalleServiceImpl implements ITypeSalleService {
 	public TypeSalleDto add(TypeSalleDto typ) {
 		TypeSalle typeSalle = this.typeSalleRepository.save(this.modelMapper.map(typ,TypeSalle.class));
 		typ.setId(typeSalle.getId());
-		System.err.println("typesalle ajoutee");
+		System.err.println("typesalle ajoute");
 		return typ;
 
 	}
@@ -70,7 +70,7 @@ public class TypeSalleServiceImpl implements ITypeSalleService {
 	public boolean deleteTypeSalle (int id) {
 		if(this.typeSalleRepository.existsById(id)) {
 			this.typeSalleRepository.deleteById(id);
-			System.err.println("typesalle supprimée");
+			System.err.println("typesalle supprimé");
 			return true;
 		}
 		return false;

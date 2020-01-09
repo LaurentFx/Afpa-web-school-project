@@ -3,6 +3,7 @@
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
 			<item value="C:\Users\59013-57-02\Desktop\git-fil-rouge\cda-19027-pfr-gestion-culturelle\Sources\gestion-culturelle-back"/>
+			<item value="C:\Users\59013-57-02\Desktop\git-fil-rouge\cda-19027-pfr-gestion-culturelle\Sources\gestion-culturelle-back\src"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

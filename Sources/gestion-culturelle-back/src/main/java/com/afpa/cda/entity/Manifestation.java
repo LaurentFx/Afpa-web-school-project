@@ -2,6 +2,8 @@ package com.afpa.cda.entity;
 
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
@@ -20,11 +22,11 @@ import lombok.Setter;
 public class Manifestation {
 	
 	@Id
+	@GeneratedValue(generator = "MANIFESTATION_SEQ", strategy = GenerationType.SEQUENCE)
 	private int id;
 	private String nom;
 	private Date dateManifestation;
 	private String typeManifestation;
-	private int capacite;	
 	//private Salle salle;
 	private double prixBillet;
 
