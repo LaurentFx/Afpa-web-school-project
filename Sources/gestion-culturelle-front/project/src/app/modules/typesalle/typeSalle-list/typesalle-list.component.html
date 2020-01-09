@@ -1,20 +1,37 @@
 <h3>Liste des types de salle</h3>
 
-<a name="" id="" class="btn btn-success" href="#" role="button"
-    [routerLink]="['/typesalle-ad']" >Ajouter un type    </a>
-    <br>
-    <br>
+<br>
+
+<div class="panel-body">
+    <table class="table table-striped table-bordered ">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Label</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let typesalle of typeSalles">
 
 
-    
 
-<ul>
-    <cda-typesalle-detail *ngFor="let unTypeDeSalle of typeSalles" [typesalle]='unTypeDeSalle' >
-    </cda-typesalle-detail>
-</ul>
+                <td>{{typesalle.id}}</td>
+                <td>{{typesalle.label}}</td>
 
+                <td>
+                    <button (click)="redirectToShow(typesalle.id)" class="btn btn-sm btn-success">Show</button>
+                    <button (click)="redirectToUpdate(typesalle.id)" class="btn btn-sm btn-warning">Update</button>
+                    <button (click)="delete(typesalle.id)" class="btn btn-sm btn-danger">Delete</button>
+                </td>
 
-<a name="" id="" class="btn btn-dark" href="#" role="button"
-    [routerLink]="['/']" >Retour à l'accueil </a>
+            </tr>
 
+        </tbody>
+    </table>
 
+    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/typesalle-ad']">+ Ajouter un type
+    </a>
+
+    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/']">Retour à l'accueil </a>

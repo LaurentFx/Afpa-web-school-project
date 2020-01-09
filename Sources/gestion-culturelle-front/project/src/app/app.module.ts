@@ -14,6 +14,8 @@ import { HomeComponent } from './home/home.component';
 import { TypeSalleModule } from './modules/typesalle/typesalle.module';
 import { RoleModule } from './modules/role/role.module';
 import { SalleModule } from './modules/salle/salle.module';
+import { LoginModule } from './modules/login/login.module';
+import { ManifestationModule } from './modules/manifestation/manifestation.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { SalleModule } from './modules/salle/salle.module';
     HttpClientModule,
     TypeSalleModule,
     RoleModule,
-    SalleModule    
+    SalleModule,
+    LoginModule,
+    ManifestationModule    
   ],
   providers: [],
   bootstrap: [AppComponent]

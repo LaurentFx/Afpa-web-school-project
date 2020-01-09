@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TypeSalleModel } from '../../../model/typeSalle';
 import { TypeSalleService } from '../../../service/typeSalle.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-typesalle-list',
@@ -11,7 +12,7 @@ export class TypeSalleListComponent implements OnInit {
 
   typeSalles: TypeSalleModel[];
   
-  constructor(private typeSalleService: TypeSalleService) { }
+  constructor(private typeSalleService: TypeSalleService,private router: Router) { }
 
   ngOnInit() {
 
@@ -32,5 +33,25 @@ export class TypeSalleListComponent implements OnInit {
       }
     );
   }
+
+  delete(id:number) {
+    this.typeSalleService.delete(id).subscribe(
+      res=>{
+        this.typeSalleService.subjectMiseAJour.next(0);
+        console.log('delete Ok ');
+      }
+    )
+  }
+  
+  redirectToUpdate(id:number){
+    this.router.navigateByUrl('/typesalle-update/'+id)
+  }
+   
+
+  redirectToShow(id:number) {
+    this.router.navigateByUrl('/typesalle-show/'+id)
+  }
+
+
 
 }
