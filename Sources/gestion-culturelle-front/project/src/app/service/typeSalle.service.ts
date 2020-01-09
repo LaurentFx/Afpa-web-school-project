@@ -8,28 +8,32 @@ import { Observable, Subject } from 'rxjs';
 })
 export class TypeSalleService {
 
-  monUrl= 'http://localhost:8080/typesalle'; 
+  monUrl = 'http://localhost:8080/typesalle';
 
-  typeSalles: TypeSalleModel[]; 
+  typeSalles: TypeSalleModel[];
 
-  subjectMiseAJour= new Subject<number>();
+  subjectMiseAJour = new Subject<number>();
 
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<any> {
     return this.http.get(this.monUrl);
   }
-  
-  add(typeSalle: string): Observable<any> {
-    return this.http.post(this.monUrl,new TypeSalleModel(0,typeSalle));
+
+  getOne(id: number): Observable<any> {
+    return this.http.get(`${this.monUrl}/${id}`);
   }
 
-  update(id:number,typeSalle:string): Observable<Object> {
-    return this.http.put(`${this.monUrl}/${id}`, typeSalle);
+  add(typeSalle: string): Observable<any> {
+    return this.http.post(this.monUrl, new TypeSalleModel(0, typeSalle));
+  }
+
+  update(id: number, label: any): Observable<Object> {
+    return this.http.put(`${this.monUrl}/${id}`, label);
   }
 
   delete(id: number): Observable<any> {
     return this.http.delete(`${this.monUrl}/${id}`);
   }
-  
+
 }

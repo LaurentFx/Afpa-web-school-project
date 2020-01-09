@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TypeSalleService } from '../../../service/typeSalle.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-typesalle-add',
@@ -10,20 +11,26 @@ export class TypeSalleAddComponent implements OnInit {
 
   typeSalle: string;
 
-  constructor(private typeSalleService: TypeSalleService) { }
+  constructor(private typeSalleService: TypeSalleService, private router: Router) { }
 
   ngOnInit() {
-    this.typeSalle='';
+    this.typeSalle = '';
   }
 
-  add() : void {
+  add(): void {
     this.typeSalleService.add(this.typeSalle).subscribe(
-      res=>{
+      res => {
         this.typeSalleService.subjectMiseAJour.next(0);
-        console.log("ajout avec succes! ");
+        console.log("Ajout Ok ");
+        this.goHome();
       }
     );
-    this.typeSalle='';
+    this.typeSalle = '';
+  }
+
+  goHome() {
+    this.router.navigate(['/typesalle-list']);
+
   }
 
 }

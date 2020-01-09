@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TypeSalleModel } from '../../../model/typeSalle';
 import { TypeSalleService } from '../../../service/typeSalle.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'cda-typesalle-detail',
@@ -11,7 +12,7 @@ export class TypeSalleDetailComponent implements OnInit {
 
   @Input() typesalle: TypeSalleModel;
 
-  constructor(private typeSalleService: TypeSalleService) { }
+  constructor(private typeSalleService: TypeSalleService, private router: Router) { }
 
   ngOnInit() {
   
@@ -26,13 +27,13 @@ export class TypeSalleDetailComponent implements OnInit {
     )
   }
   
-  update(){
-    
+  redirectToUpdate(){
+    this.router.navigateByUrl('/typesalle-update/'+this.typesalle.id)
   }
    
 
-  show() {
-
+  redirectToShow() {
+    this.router.navigateByUrl('/typesalle-show/'+this.typesalle.id)
   }
 
 

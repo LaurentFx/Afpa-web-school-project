@@ -20,7 +20,7 @@ export class SalleAddComponent implements OnInit {
     this.salleService.add(this.salle).subscribe(
       res=>{
         this.salleService.subjectMiseAJour.next(0);
-        console.log("ajout salle avec succes! ");
+        console.log("ajout salle Ok ");
       }
     );
     this.salle='';

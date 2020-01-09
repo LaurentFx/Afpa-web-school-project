@@ -1,9 +1,9 @@
-<li>
     <p>
         {{typesalle.label}}
-    </p>
+    
     <button (click)="delete(typesalle.id)" class="btn btn-danger">Delete</button>
-    <button (click)="update(typesalle.id)" class="btn btn-info" style="margin-left: 10px">Update</button>
-    <button (click)="show(typesalle.id)" class="btn btn-info" style="margin-left: 10px">Show</button>
-</li>
+    <button (click)="redirectToUpdate(typesalle.id)" class="btn btn-warning" >Update</button>
+    <button (click)="redirectToShow(typesalle.id)" class="btn btn-info" >Show</button>
+</p>
+
 
