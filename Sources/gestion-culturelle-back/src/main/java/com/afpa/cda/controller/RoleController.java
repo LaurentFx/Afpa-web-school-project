@@ -1,6 +1,7 @@
 package com.afpa.cda.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,10 @@ public class RoleController {
 		return this.roleService.findAll();
 	}
 
+	@GetMapping(path = "/role/{id}")
+	public RoleDto getOne(@PathVariable int id){
+		return this.roleService.findById(id);
+	}
 	@PostMapping(path = "/role")
 	public RoleDto add(@RequestBody RoleDto rol) {
 		return this.roleService.add(rol);

@@ -1,13 +1,12 @@
 package com.afpa.cda.service;
 
 import java.util.List;
+
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.afpa.cda.dao.SalleRepository;
 import com.afpa.cda.dto.SalleDto;
 import com.afpa.cda.entity.Salle;
@@ -17,22 +16,22 @@ public class SalleServiceImpl implements ISalleService {
 
 	@Autowired
 	private SalleRepository salleRepository;
-	
+
 	@Autowired
 	private ModelMapper modelMapper;
-	
+
 	@Override
 	public List<SalleDto> findAll() {
 		return this.salleRepository.findAll()
 				.stream()
 				.map(ts-> this.modelMapper.map(ts,SalleDto.class))
 				.collect(Collectors.toList());
-		
+
 	}
 
 	@Override
 	public SalleDto add(SalleDto sal) {
-		
+
 		Salle salle = this.salleRepository.save(this.modelMapper.map(sal,Salle.class));
 		sal.setId(salle.getId());
 		System.err.println("salle ajoutee");
@@ -64,4 +63,14 @@ public class SalleServiceImpl implements ISalleService {
 		return false;
 	}
 
+	@Override
+	public SalleDto findById(int id) {
+		Optional<Salle> salleOp = this.salleRepository.findById(id);
+		SalleDto salle=null;
+		if(salleOp.isPresent()) {
+			Salle sal = salleOp.get();
+			salle = this.modelMapper.map(sal,SalleDto.class);
+		}
+		return salle;
+	}
 }
