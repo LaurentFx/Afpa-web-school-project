@@ -27,7 +27,8 @@ public class Manifestation {
 	private String nom;
 	private Date dateManifestation;
 	private String typeManifestation;
-	//private Salle salle;
 	private double prixBillet;
+		
+	//private Salle salle;
 
 }

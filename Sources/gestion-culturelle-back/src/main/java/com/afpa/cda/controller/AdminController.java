@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.afpa.cda.dto.AdminDto;
 import com.afpa.cda.service.IAdminService;
-;
+
 
 @RestController
 public class AdminController {

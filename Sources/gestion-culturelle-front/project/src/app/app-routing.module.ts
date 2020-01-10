@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TypeSalleListComponent } from './modules/type-salle/typeSalle-list/typeSalle-list.component';
-import { TypeSalleAddComponent } from './modules/type-salle/typeSalle-add/typeSalle-add.component';
+import { TypeSalleListComponent } from './modules/typesalle/typeSalle-list/typeSalle-list.component';
+import { TypeSalleAddComponent } from './modules/typesalle/typeSalle-add/typeSalle-add.component';
 import { HomeComponent} from './home/home.component';
-import { TypeSalleUpdateComponent } from './modules/type-salle/type-salle-update/type-salle-update.component';
-import { TypeSalleShowComponent } from './modules/type-salle/type-salle-show/type-salle-show.component';
+import { TypeSalleUpdateComponent } from './modules/typesalle/typesalle-update/typesalle-update.component';
+import { TypeSalleShowComponent } from './modules/typesalle/typesalle-show/typesalle-show.component';
 
 const routes: Routes = [
   {path:'', pathMatch:'full', component: HomeComponent}, 
@@ -14,7 +14,7 @@ const routes: Routes = [
  {path: 'typesalle-show/:id', component: TypeSalleShowComponent},
    
 ];
-
+ 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {enableTracing:true })],
   exports: [RouterModule]

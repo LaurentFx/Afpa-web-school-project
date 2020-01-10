@@ -1,5 +1,6 @@
 package com.afpa.cda.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import javax.persistence.GeneratedValue;
@@ -22,9 +23,9 @@ public class TypeSalle {
 	@Id
 	@GeneratedValue(generator = "TYPESALLE_SEQ", strategy = GenerationType.SEQUENCE)
 	private int id;
+	
+	@Column(unique=true)
 	private String label;
 	
-	//@ManyToOne
-	//private Salle salle;
 
 }

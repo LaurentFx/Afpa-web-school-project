@@ -6,15 +6,13 @@ import { FormsModule } from '@angular/forms';
 import { RoleRoutingModule } from './role-routing.module';
 
 import { RoleAddComponent } from './role-add/role-add.component';
-import { RoleDetailComponent } from './role-detail/role-detail.component';
 import { RoleListComponent } from './role-list/role-list.component';
 
 @NgModule({
   declarations: [
-  RoleAddComponent,
-  RoleDetailComponent,
-  RoleListComponent
-],
+    RoleAddComponent,
+    RoleListComponent
+  ],
   imports: [
     CommonModule,
     RoleRoutingModule,
@@ -22,7 +20,6 @@ import { RoleListComponent } from './role-list/role-list.component';
   ],
   exports: [
     RoleAddComponent,
-    RoleDetailComponent,
     RoleListComponent
   ]
 })
