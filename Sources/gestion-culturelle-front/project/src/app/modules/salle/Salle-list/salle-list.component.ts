@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SalleModel } from 'src/app/model/Salle';
+import { Router } from '@angular/router';
+import { SalleService } from 'src/app/service/Salle.service';
 
 @Component({
   selector: 'app-salle-list',
@@ -7,9 +10,45 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SalleListComponent implements OnInit {
 
-  constructor() { }
+  salles: SalleModel[];
+  
+  constructor(private salleService: SalleService,private router: Router) { }
 
   ngOnInit() {
+
+    this.salleService.subjectMiseAJour.subscribe(
+      res=> {
+        this.salleService.getAll().subscribe(
+          donnees =>{
+			  this.salles = donnees; 
+          }
+        );
+      }
+    );
+
+    this.salleService.getAll().subscribe(
+      resultat =>{
+          this.salles = resultat; 
+          console.log('c est moi',this.salles);
+      }
+    );
   }
 
+ delete(id:number) {
+    this.salleService.delete(id).subscribe(
+      res=>{
+        this.salleService.subjectMiseAJour.next(0);
+        console.log('delete Ok ');
+      }
+    )
+  }
+  
+  redirectToUpdate(id:number){
+    this.router.navigateByUrl('/salle-update/'+id)
+  }
+   
+
+  redirectToShow(id:number) {
+    this.router.navigateByUrl('/salle-show/'+id)
+  }
 }

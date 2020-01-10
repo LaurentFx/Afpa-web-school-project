@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TypeSalleModel } from '../model/TypeSalle';
+import { TypeDeSalleModel } from '../model/type-de-salle';
 import { HttpClient } from '@angular/common/http'
 import { Observable, Subject } from 'rxjs';
 
@@ -10,7 +10,7 @@ export class TypeSalleService {
 
   monUrl = 'http://localhost:8080/typesalle';
 
-  typeSalles: TypeSalleModel[];
+  typeSalles: TypeDeSalleModel[];
 
   subjectMiseAJour = new Subject<number>();
 
@@ -25,7 +25,7 @@ export class TypeSalleService {
   }
 
   add(typeSalle: string): Observable<any> {
-    return this.http.post(this.monUrl, new TypeSalleModel(0, typeSalle));
+    return this.http.post(this.monUrl, new TypeDeSalleModel(0, typeSalle));
   }
 
   update(id: number, label: any): Observable<Object> {

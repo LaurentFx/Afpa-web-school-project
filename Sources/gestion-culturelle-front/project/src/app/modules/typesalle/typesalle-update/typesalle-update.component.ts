@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TypeSalleService } from '../../../service/typeSalle.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { TypeSalleModel } from 'src/app/model/typeSalle';
+import { TypeDeSalleModel } from 'src/app/model/type-de-salle';
 
 
 @Component({
@@ -12,12 +12,12 @@ import { TypeSalleModel } from 'src/app/model/typeSalle';
 export class TypeSalleUpdateComponent implements OnInit {
 
   id: number;
-  typeSalle: TypeSalleModel;
+  typeSalle: TypeDeSalleModel;
 
   constructor(private route: ActivatedRoute, private typeSalleService: TypeSalleService, private router: Router) { }
 
   ngOnInit() {
-    this.typeSalle = new TypeSalleModel();
+    this.typeSalle = new TypeDeSalleModel();
 
     let id = this.route.snapshot.params['id'];
 

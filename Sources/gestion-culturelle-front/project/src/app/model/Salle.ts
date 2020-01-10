@@ -1,4 +1,4 @@
-import { TypeSalleModel } from "./typeSalle";
+import { TypeDeSalleModel } from "./type-de-salle";
 
 export class SalleModel {
     id: number;
@@ -6,14 +6,19 @@ export class SalleModel {
     placesReservees: number;
     placesReserveesVip: number;
     fraisJournalier: number;
-    typeSalle:TypeSalleModel;
+    typeSalle:TypeDeSalleModel;
 
-    constructor(id?: number, label?: string, param1?: number,param2? : number, param3? : number, typeSalle? : TypeSalleModel ){
+    constructor(id?: number, 
+        param1?: string, 
+        param2?: number,
+        param3? : number, 
+        param4? : number,
+        typeSalle? : TypeDeSalleModel ){
         this.id = id;
-        this.label=label;
-        this.placesReservees = param1;
-        this.placesReserveesVip = param2;
-        this.fraisJournalier = param3;
+        this.label=param1;
+        this.placesReservees = param2;
+        this.placesReserveesVip = param3;
+        this.fraisJournalier = param4;
         this.typeSalle = typeSalle;
     }
 }

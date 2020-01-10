@@ -1,1 +1,21 @@
-<p>salle-add works!</p>
+<h3>Ajouter une salle</h3>
+
+
+<div [hidden]="submitted" style="width: 400px;">
+    <form>
+
+        <div class="form-group">
+            <label>Nouvelle salle</label>           
+            <input type="text" name="label" class="form-control" id="label" placeholder="Entrer votre label" [(ngModel)]="salle.label" >            
+            <input type="text" class="form-control" id="placesReservees" placeholder="Entrer le nombre de placesReservees " [(ngModel)]="salle.placesReservees" name="placesReservees">
+            <input type="text" class="form-control" id="placesReserveesVip" placeholder="Entrer le nombre de placesReserveesVIP "   [(ngModel)]="salle.placesReserveesVip" name="placesReserveesVip">
+            <input type="text" class="form-control" id="fraisJournalier"  placeholder="Entrer les fraisjournalier" [(ngModel)]="salle.fraisJournalier" name="fraisJournalier">
+            <input type="text" class="form-control" id="typeSalle"  placeholder="Entrer le type de salle" [(ngModel)]="salle.typeSalle" name="typeSalle">
+        </div>
+
+        <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/salle-list']">Annuler</a>
+
+        <button (click)="add()" class="btn btn-secondary" [disabled]="salle.length==0">Ajouter</button>
+
+    </form>
+</div>

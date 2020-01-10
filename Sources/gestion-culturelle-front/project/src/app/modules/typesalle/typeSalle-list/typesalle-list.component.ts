@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TypeSalleModel } from '../../../model/typeSalle';
+import { TypeDeSalleModel } from '../../../model/type-de-salle';
 import { TypeSalleService } from '../../../service/typeSalle.service';
 import { Router } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class TypeSalleListComponent implements OnInit {
 
-  typeSalles: TypeSalleModel[];
+  typeSalles: TypeDeSalleModel[];
   
   constructor(private typeSalleService: TypeSalleService,private router: Router) { }
 
@@ -51,7 +51,4 @@ export class TypeSalleListComponent implements OnInit {
   redirectToShow(id:number) {
     this.router.navigateByUrl('/typesalle-show/'+id)
   }
-
-
-
 }

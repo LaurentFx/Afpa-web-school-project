@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.afpa.cda.dto.AdminDto;
 
+
 public interface IAdminService {
 	
 	List<AdminDto> findAll();

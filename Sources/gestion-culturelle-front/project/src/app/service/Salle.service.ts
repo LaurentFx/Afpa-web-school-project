@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SalleModel } from '../model/Salle';
+import { SalleModel } from '../model/salle';
 import { HttpClient } from '@angular/common/http'
 import { Observable, Subject } from 'rxjs';
 
@@ -7,10 +7,13 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class SalleService {
+ // delete(id: number) {
+    //throw new Error("Method not implemented.");
+  //}
 
   monUrl= 'http://localhost:8080/salle'; 
 
-  salles: SalleModel[]; 
+  salle: SalleModel[]; 
 
   subjectMiseAJour= new Subject<number>();
 
@@ -20,12 +23,20 @@ export class SalleService {
     return this.http.get(this.monUrl);
   }
   
-  add(salle: string): Observable<any> {
-    return this.http.post(this.monUrl,new SalleModel(0,salle));
+  add(salle: SalleModel): Observable<object> {
+    return this.http.post(this.monUrl,salle);
+  }
+  
+  getOne(id: number): Observable<any> {
+    return this.http.get(`${this.monUrl}/${id}`);
+  } 
+
+  update(id: number, label: any): Observable<Object> {
+    return this.http.put(`${this.monUrl}/${id}`, label);
   }
 
-  suppSalle(id: number): Observable<any> {
-    return this.http.delete(this.monUrl +'/' + id);
+ delete(id: number): Observable<any> {
+    return this.http.delete(`${this.monUrl}/${id}`);
   }
 
 }

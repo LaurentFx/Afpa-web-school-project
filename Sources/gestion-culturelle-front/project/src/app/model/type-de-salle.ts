@@ -1,4 +1,4 @@
-export class TypeSalleModel {
+export class TypeDeSalleModel {
     id: number;
     label: string;
     constructor(id?: number, value?: string){

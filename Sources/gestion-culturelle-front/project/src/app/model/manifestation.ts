@@ -1,4 +1,4 @@
-import { SalleModel } from "./Salle";
+import { SalleModel } from "./salle";
 
 export class Manifestation {
     id: number;
