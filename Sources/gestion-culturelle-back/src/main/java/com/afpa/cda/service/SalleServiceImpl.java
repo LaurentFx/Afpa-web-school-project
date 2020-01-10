@@ -31,8 +31,9 @@ public class SalleServiceImpl implements ISalleService {
 						.id(s.getId())
 						.label(s.getLabel())
 						.placesReservees(s.getPlacesReservees())
-						.placesReserveesVIP(s.getPlacesReserveesVIP())
-						.typeSalleDto(TypeSalleDto.builder()
+						.placesReserveesVip(s.getPlacesReserveesVIP())
+						.fraisJournalier(s.getFraisjournalier())
+						.typeSalle(TypeSalleDto.builder()
 								.id(s.getTypesalle().getId())
 								.label(s.getTypesalle().getLabel())
 								.build())
@@ -74,8 +75,8 @@ public class SalleServiceImpl implements ISalleService {
 			Salle salle = salleOp.get();
 			salle.setLabel(sal.getLabel());
 			salle.setPlacesReservees(sal.getPlacesReservees());
-			salle.setPlacesReserveesVIP(sal.getPlacesReserveesVIP());
-			salle.setFraisjournalier(sal.getFraisjournalier());
+			salle.setPlacesReserveesVIP(sal.getPlacesReserveesVip());
+			salle.setFraisjournalier(sal.getFraisJournalier());
 			salle.setTypesalle(TypeSalle.builder().label(salle.getLabel()).build());
 			salle.setTypesalle(TypeSalle.builder().id(salle.getId()).build());
 			this.salleRepository.save(salle);
