@@ -1,6 +1,5 @@
 package com.afpa.cda.dto;
 import lombok.AllArgsConstructor;
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,8 +13,10 @@ import lombok.Setter;
 
 public class SalleDto {
 	private int id;
+	private String label;
 	private int placesReservees;
 	private int placesReserveesVIP;
 	private double fraisjournalier;
-	//private TypeSalle typesalle;
+	private TypeSalleDto typeSalleDto;
+
 }
