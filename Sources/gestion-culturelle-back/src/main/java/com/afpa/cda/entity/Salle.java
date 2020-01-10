@@ -29,7 +29,7 @@ public class Salle {
 	private double fraisjournalier;
 
 	@ManyToOne
-	@JoinColumn(name = "typeSalle")
+	@JoinColumn(name = "typesalle")
 	private TypeSalle typesalle;
 
 
