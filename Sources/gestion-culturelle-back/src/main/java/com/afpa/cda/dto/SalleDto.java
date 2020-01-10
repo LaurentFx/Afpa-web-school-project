@@ -15,8 +15,8 @@ public class SalleDto {
 	private int id;
 	private String label;
 	private int placesReservees;
-	private int placesReserveesVIP;
-	private double fraisjournalier;
-	private TypeSalleDto typeSalleDto;
+	private int placesReserveesVip;
+	private double fraisJournalier;
+	private TypeSalleDto typeSalle;
 
 }

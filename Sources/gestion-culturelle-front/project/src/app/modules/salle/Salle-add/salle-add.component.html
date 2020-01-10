@@ -5,12 +5,23 @@
     <form>
 
         <div class="form-group">
-            <label>Nouvelle salle</label>           
-            <input type="text" name="label" class="form-control" id="label" placeholder="Entrer votre label" [(ngModel)]="salle.label" >            
-            <input type="text" class="form-control" id="placesReservees" placeholder="Entrer le nombre de placesReservees " [(ngModel)]="salle.placesReservees" name="placesReservees">
-            <input type="text" class="form-control" id="placesReserveesVip" placeholder="Entrer le nombre de placesReserveesVIP "   [(ngModel)]="salle.placesReserveesVip" name="placesReserveesVip">
-            <input type="text" class="form-control" id="fraisJournalier"  placeholder="Entrer les fraisjournalier" [(ngModel)]="salle.fraisJournalier" name="fraisJournalier">
-            <input type="text" class="form-control" id="typeSalle"  placeholder="Entrer le type de salle" [(ngModel)]="salle.typeSalle" name="typeSalle">
+            <label>Nouvelle salle</label>
+            <input type="text" name="label" class="form-control" id="label" placeholder="Entrer votre label"
+                [(ngModel)]="salle.label">
+            <input type="text" class="form-control" id="placesReservees"
+                placeholder="Entrer le nombre de placesReservees " [(ngModel)]="salle.placesReservees"
+                name="placesReservees">
+            <input type="text" class="form-control" id="placesReserveesVip"
+                placeholder="Entrer le nombre de placesReserveesVIP " [(ngModel)]="salle.placesReserveesVip"
+                name="placesReserveesVip">
+            <input type="text" class="form-control" id="fraisJournalier" placeholder="Entrer les fraisjournalier"
+                [(ngModel)]="salle.fraisJournalier" name="fraisJournalier">
+            
+            <select name="typesalle" id="typesalle" [(ngModel)]="salle.typeSalle.id" class="form-control">
+                <option *ngFor="let typesalle of typeSalles" [value]="typesalle.id">{{typesalle.label}}</option>
+            </select>
+
+
         </div>
 
         <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/salle-list']">Annuler</a>
