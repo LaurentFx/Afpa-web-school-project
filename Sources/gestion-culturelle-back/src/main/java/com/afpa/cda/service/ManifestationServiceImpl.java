@@ -1,5 +1,6 @@
 package com.afpa.cda.service;
 import java.util.List;
+
 import java.util.Optional;
 import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
@@ -7,11 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.afpa.cda.dao.ManifestationRepository;
 import com.afpa.cda.dto.ManifestationDto;
+import com.afpa.cda.dto.SalleDto;
 import com.afpa.cda.entity.Manifestation;
-
-
-
-
+import com.afpa.cda.entity.Salle;
 
 @Service
 public class ManifestationServiceImpl implements IManifestationService {
@@ -26,7 +25,19 @@ public class ManifestationServiceImpl implements IManifestationService {
 	public List<ManifestationDto> findAll() {
 		return this.manifestationRepository.findAll()
 				.stream()
-				.map(ts-> this.modelMapper.map(ts,ManifestationDto.class))
+				.map(m-> ManifestationDto.builder()
+						.id(m.getId())
+						.nom(m.getNom())
+						.dateManifestation(m.getDateManifestation())
+						.typeManifestation(m.getTypeManifestation())
+						.prixBillet(m.getPrixBillet())
+						.salleDto(SalleDto.builder()
+								.id(m.getSalle().getId())
+								.label(m.getSalle().getLabel())
+								.PlacesReservees(m.getSalle().getPlacesReservees())
+								.PlacesReserveesVIP(m.getSalle().getPlacesReserveesVIP())								
+								.build())
+						.build())
 				.collect(Collectors.toList());	
 	}
 
@@ -45,11 +56,15 @@ public class ManifestationServiceImpl implements IManifestationService {
 
 	@Override
 	public ManifestationDto add(ManifestationDto mani) {
-		Manifestation manif = this.manifestationRepository.save(this.modelMapper.map(mani,Manifestation.class));
-		mani.setNom(manif.getNom());
-		mani.setPrixBillet(manif.getPrixBillet());
-		mani.setDateManifestation(manif.getDateManifestation());
-		System.err.println("manifestation ajoutée");
+		try {
+			Manifestation manif = this.manifestationRepository.save(this.modelMapper.map(mani,Manifestation.class));
+			mani.setNom(manif.getNom());
+			mani.setPrixBillet(manif.getPrixBillet());
+			mani.setDateManifestation(manif.getDateManifestation());
+			System.err.println("manifestation ajoutée");
+		} catch (Exception e) {
+			System.err.println(e.getStackTrace());
+		}		
 		return mani;
 	}
 
@@ -62,6 +77,10 @@ public class ManifestationServiceImpl implements IManifestationService {
 			mani.setNom(manif.getNom());
 			mani.setDateManifestation(manif.getDateManifestation());
 			mani.setPrixBillet(manif.getPrixBillet());
+			mani.setSalle(Salle.builder().id(mani.getId()).build());
+			mani.setSalle(Salle.builder().label(mani.getNom()).build());
+		
+			this.manifestationRepository.save(manif);			
 			System.err.println("manifestation mise à jour");
 			return true;
 		}
