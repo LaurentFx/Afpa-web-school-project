@@ -11,4 +11,5 @@ import com.afpa.cda.entity.Manifestation;
 public interface ManifestationRepository extends CrudRepository<Manifestation, Integer> {
 
 	List<Manifestation> findAll();
+	
 }

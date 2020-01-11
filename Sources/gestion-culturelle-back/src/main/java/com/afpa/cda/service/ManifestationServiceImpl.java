@@ -31,16 +31,15 @@ public class ManifestationServiceImpl implements IManifestationService {
 						.dateManifestation(m.getDateManifestation())
 						.typeManifestation(m.getTypeManifestation())
 						.prixBillet(m.getPrixBillet())
-						.salleDto(SalleDto.builder()
-								.id(m.getSalle().getId())
-								.label(m.getSalle().getLabel())
-								.PlacesReservees(m.getSalle().getPlacesReservees())
-								.PlacesReserveesVIP(m.getSalle().getPlacesReserveesVIP())								
+						.salle(SalleDto.builder()
+								.id(m.getSalle().getId()
+										.label(m.getSalle().getLabel())
+										.placesReservees(m.getSalle().getPlacesReservees())
+										.placesReserveesVIP(m.getSalle().getPlacesReserveesVIP())								
+										.build())
 								.build())
-						.build())
-				.collect(Collectors.toList());	
+						.collect(Collectors.toList());	
 	}
-
 
 	@Override
 	public ManifestationDto findById(int id) {
@@ -58,6 +57,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 	public ManifestationDto add(ManifestationDto mani) {
 		try {
 			Manifestation manif = this.manifestationRepository.save(this.modelMapper.map(mani,Manifestation.class));
+			mani.setId(manif.getId());
 			mani.setNom(manif.getNom());
 			mani.setPrixBillet(manif.getPrixBillet());
 			mani.setDateManifestation(manif.getDateManifestation());
@@ -79,8 +79,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 			mani.setPrixBillet(manif.getPrixBillet());
 			mani.setSalle(Salle.builder().id(mani.getId()).build());
 			mani.setSalle(Salle.builder().label(mani.getNom()).build());
-		
-			this.manifestationRepository.save(manif);			
+			this.manifestationRepository.save(mani);			
 			System.err.println("manifestation mise à jour");
 			return true;
 		}
@@ -97,4 +96,5 @@ public class ManifestationServiceImpl implements IManifestationService {
 		}
 		return false;
 	}
+
 }

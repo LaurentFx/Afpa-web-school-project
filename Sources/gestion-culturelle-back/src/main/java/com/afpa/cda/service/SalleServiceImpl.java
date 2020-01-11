@@ -2,6 +2,7 @@ package com.afpa.cda.service;
 
 import java.util.List;
 
+
 import java.util.Optional;
 import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
@@ -33,7 +34,7 @@ public class SalleServiceImpl implements ISalleService {
 						.placesReservees(s.getPlacesReservees())
 						.placesReserveesVip(s.getPlacesReserveesVIP())
 						.fraisJournalier(s.getFraisjournalier())
-						.typeSalle(TypeSalleDto.builder()
+						.typeSalle(TypeSalleDto.builder()								
 								.id(s.getTypesalle().getId())
 								.label(s.getTypesalle().getLabel())
 								.build())
