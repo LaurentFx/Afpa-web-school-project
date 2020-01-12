@@ -23,7 +23,7 @@
                 placeholder="Entrer les frais journalier" [(ngModel)]="salle.fraisJournalier">
 
             <label for="typesalle">Type de salle :</label>
-            <select name="typesalle" id="typesalle" [(ngModel)]="salle.typeSalle.id" class="form-control">
+            <select name="typesalle" id="typesalle" [(ngModel)]="salle.typeSalle.id" class="form-control" size="3">
                 <option *ngFor="let typesalle of typeSalles" [value]="typesalle.id">{{typesalle.label}}</option>
             </select>
 
