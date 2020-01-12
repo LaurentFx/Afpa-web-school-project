@@ -12,6 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 
 public class SalleDto {
+
 	private int id;
 	private String label;
 	private int placesReservees;

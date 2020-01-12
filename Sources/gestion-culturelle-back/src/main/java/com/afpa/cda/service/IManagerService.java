@@ -9,7 +9,7 @@ public interface IManagerService {
 
 	ManagerDto add(ManagerDto manager);
 
-	boolean updateClient(ManagerDto manager, int id);
+	boolean updateManager(ManagerDto manager, int id);
 
 	boolean deleteManager(int id);
 

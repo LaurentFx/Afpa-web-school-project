@@ -17,7 +17,7 @@ public class ArtisteDto {
 	private String nom;
 	private String prenom;
 	private double salaire;
-	private int nbreSpectateurs;
+	//private int nbreSpectateurs;
 	
 
 }

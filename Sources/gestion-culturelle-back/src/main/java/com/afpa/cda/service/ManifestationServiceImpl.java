@@ -1,6 +1,5 @@
 package com.afpa.cda.service;
 import java.util.List;
-
 import java.util.Optional;
 import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
@@ -32,12 +31,12 @@ public class ManifestationServiceImpl implements IManifestationService {
 						.typeManifestation(m.getTypeManifestation())
 						.prixBillet(m.getPrixBillet())
 						.salle(SalleDto.builder()
-								.id(m.getSalle().getId()
+								.id(m.getSalle().getId())
 										.label(m.getSalle().getLabel())
 										.placesReservees(m.getSalle().getPlacesReservees())
 										.placesReserveesVIP(m.getSalle().getPlacesReserveesVIP())								
 										.build())
-								.build())
+								.build()
 						.collect(Collectors.toList());	
 	}
 
@@ -96,5 +95,6 @@ public class ManifestationServiceImpl implements IManifestationService {
 		}
 		return false;
 	}
+
 
 }
