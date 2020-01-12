@@ -24,12 +24,12 @@ export class TypeSalleService {
     return this.http.get(`${this.monUrl}/${id}`);
   }
 
-  add(typeSalle: string): Observable<any> {
-    return this.http.post(this.monUrl, new TypeDeSalleModel(0, typeSalle));
+  add(typeSalle: TypeDeSalleModel): Observable<object> {
+    return this.http.post(this.monUrl, typeSalle);
   }
 
-  update(id: number, label: any): Observable<Object> {
-    return this.http.put(`${this.monUrl}/${id}`, label);
+  update(id: number, typeSalle: Object): Observable<Object> {
+    return this.http.put(`${this.monUrl}/${id}`, typeSalle);
   }
 
   delete(id: number): Observable<any> {

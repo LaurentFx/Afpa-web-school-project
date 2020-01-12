@@ -2,9 +2,6 @@ package com.afpa.cda.dto;
 
 import java.util.Date;
 
-import javax.persistence.Id;
-
-import com.afpa.cda.entity.Salle;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,10 +14,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ManifestationDto {
+	private int id;
 	private String nom;
-	private Date dateManifestation;
-	//private Salle salle;
+	private Date dateManifestation;	
+	private String typeManifestation;
 	private double prixBillet;
+	private SalleDto salle;
 	
 	
 

@@ -15,27 +15,26 @@ export class SalleAddComponent implements OnInit {
   salle: SalleModel;
   typeSalles: TypeDeSalleModel[];
 
-  constructor(private typeSalleService: TypeSalleService,private salleService: SalleService, private router: Router) { }
+  constructor(private typeSalleService: TypeSalleService, private salleService: SalleService, private router: Router) { }
 
   ngOnInit() {
     this.typeSalles = [];
     this.salle = new SalleModel();
-    this.salle.typeSalle=new TypeDeSalleModel();
-   
+    this.salle.typeSalle = new TypeDeSalleModel();
+
     this.typeSalleService.subjectMiseAJour.subscribe(
-      res=> {
+      res => {
         this.typeSalleService.getAll().subscribe(
-          donnees =>{
-			  this.typeSalles = donnees; 
+          donnees => {
+            this.typeSalles = donnees;
           }
         );
       }
     );
 
     this.typeSalleService.getAll().subscribe(
-      resultat =>{
-          this.typeSalles = resultat; 
-          console.log('c est moi',this.typeSalles);
+      resultat => {
+        this.typeSalles = resultat;
       }
     );
 
@@ -43,11 +42,11 @@ export class SalleAddComponent implements OnInit {
 
   add(): void {
     this.salleService.add(this.salle).subscribe(
-      res => {       
-        console.log("Ajout Ok Laurent");
+      res => {
+        console.log("Ajout Ok");
         this.goHome();
-      },error =>console.log(error)
-      
+      }
+
     );
     this.salle = new SalleModel();
   }

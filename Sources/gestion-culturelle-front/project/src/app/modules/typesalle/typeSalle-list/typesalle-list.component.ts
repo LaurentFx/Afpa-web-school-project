@@ -29,8 +29,7 @@ export class TypeSalleListComponent implements OnInit {
     this.typeSalleService.getAll().subscribe(
       resultat =>{
           this.typeSalles = resultat; 
-          console.log('c est moi',this.typeSalles);
-      }
+               }
     );
   }
 

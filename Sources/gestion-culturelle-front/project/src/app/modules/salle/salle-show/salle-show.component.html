@@ -1,1 +1,33 @@
-<p>salle-show works!</p>
+<h3>Voir une salle</h3>
+
+<div class="panel-body">
+    <table class="table table-striped table-bordered ">
+        <thead class="thead-dark">    
+                <tr>
+                    <th>Id</th>
+                    <th>Label</th>
+                    <th>Capacite</th>
+                    <th>Places reservees VIP</th>
+                    <th>Frais journaliers</th>
+                    <th>Type de salle</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>{{salle.id}}</td>
+            <td>{{salle.label}}</td>
+            <td>{{salle.placesReservees}}</td>
+            <td>{{salle.placesReserveesVip}}</td>
+            <td>{{salle.fraisJournalier}}</td>
+            <td>{{salle.typeSalle.label}}</td>
+        </tr>
+
+    </tbody>
+
+</table>
+
+<br>
+<br>
+<a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/salle-list']">Retour à la
+    liste</a>

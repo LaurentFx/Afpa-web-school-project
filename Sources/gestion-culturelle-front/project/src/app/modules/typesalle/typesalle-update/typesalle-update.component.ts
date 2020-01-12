@@ -3,7 +3,6 @@ import { TypeSalleService } from '../../../service/typeSalle.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TypeDeSalleModel } from 'src/app/model/type-de-salle';
 
-
 @Component({
   selector: 'app-typesalle-update',
   templateUrl: './typesalle-update.component.html',

@@ -7,10 +7,7 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class SalleService {
- // delete(id: number) {
-    //throw new Error("Method not implemented.");
-  //}
-
+ 
   monUrl= 'http://localhost:8080/salle'; 
 
   salle: SalleModel[]; 
@@ -31,8 +28,8 @@ export class SalleService {
     return this.http.get(`${this.monUrl}/${id}`);
   } 
 
-  update(id: number, label: any): Observable<Object> {
-    return this.http.put(`${this.monUrl}/${id}`, label);
+  update(id: number, salle: Object): Observable<Object> {
+    return this.http.put(`${this.monUrl}/${id}`, salle);
   }
 
  delete(id: number): Observable<any> {

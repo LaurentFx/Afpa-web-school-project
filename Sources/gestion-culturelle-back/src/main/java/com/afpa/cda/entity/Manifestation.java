@@ -1,10 +1,13 @@
 package com.afpa.cda.entity;
 
 import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,8 +30,10 @@ public class Manifestation {
 	private String nom;
 	private Date dateManifestation;
 	private String typeManifestation;
-	private double prixBillet;
-		
-	//private Salle salle;
+	private double prixBillet;	
+	
+	@ManyToOne
+	@JoinColumn(name = "salle")
+	private Salle salle;
 
 }

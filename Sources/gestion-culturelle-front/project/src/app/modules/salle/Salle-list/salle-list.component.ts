@@ -29,7 +29,7 @@ export class SalleListComponent implements OnInit {
     this.salleService.getAll().subscribe(
       resultat =>{
           this.salles = resultat; 
-          console.log('c est moi',this.salles);
+        
       }
     );
   }
