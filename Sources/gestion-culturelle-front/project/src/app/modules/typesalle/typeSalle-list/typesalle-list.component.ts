@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TypeDeSalleModel } from '../../../model/type-de-salle';
+import { TypeSalleDto } from '../../../model/typeSalleDto';
 import { TypeSalleService } from '../../../service/typeSalle.service';
 import { Router } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class TypeSalleListComponent implements OnInit {
 
-  typeSalles: TypeDeSalleModel[];
+  typeSalles: TypeSalleDto[];
   
   constructor(private typeSalleService: TypeSalleService,private router: Router) { }
 

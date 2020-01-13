@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TypeSalleService } from '../../../service/typeSalle.service';
 import { Router } from '@angular/router';
-import { TypeDeSalleModel } from '../../../model/type-de-salle';
+import { TypeSalleDto } from '../../../model/typeSalleDto';
 
 @Component({
   selector: 'app-typesalle-add',
@@ -10,12 +10,12 @@ import { TypeDeSalleModel } from '../../../model/type-de-salle';
 })
 export class TypeSalleAddComponent implements OnInit {
 
-  typeSalle: TypeDeSalleModel;
+  typeSalle: TypeSalleDto;
 
   constructor(private typeSalleService: TypeSalleService, private router: Router) { }
 
   ngOnInit() {
-    this.typeSalle = new TypeDeSalleModel();
+    this.typeSalle = new TypeSalleDto();
   }
 
   add(): void {
@@ -26,7 +26,7 @@ export class TypeSalleAddComponent implements OnInit {
         this.goHome();
       }
     );
-    this.typeSalle = new TypeDeSalleModel();
+    this.typeSalle = new TypeSalleDto();
   }
 
   goHome() {

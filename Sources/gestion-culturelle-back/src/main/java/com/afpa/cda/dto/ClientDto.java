@@ -1,4 +1,6 @@
 package com.afpa.cda.dto;
+import javax.persistence.Id;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,8 +12,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-
 public class ClientDto {
+	@Id
 	private int id;
 	private String nom;
 	private String prenom;

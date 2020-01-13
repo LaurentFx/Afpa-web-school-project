@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SalleModel } from '../../../model/salle';
+import { SalleDto } from '../../../model/salleDto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SalleService } from '../../../service/Salle.service';
 
@@ -10,12 +10,12 @@ import { SalleService } from '../../../service/Salle.service';
 })
 export class SalleShowComponent implements OnInit {
 
-  salle: SalleModel;
+  salle: SalleDto;
 
   constructor(private route: ActivatedRoute, private salleService:SalleService, private router: Router) { }
 
   ngOnInit() {
-    this.salle = new SalleModel();
+    this.salle = new SalleDto();
 
     let id = this.route.snapshot.params['id'];
 

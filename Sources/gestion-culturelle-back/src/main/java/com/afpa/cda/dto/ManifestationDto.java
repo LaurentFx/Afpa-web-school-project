@@ -15,14 +15,16 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ManifestationDto {
 	private int id;
-	private String nom;
+	private String label;
+	private AnimationDto animation;
 	private Date dateManifestation;	
+	private double charges;
 	private String typeManifestation;
 	private double prixBillet;
-	private SalleDto salle_ManifestationDto;
 	private int reservations;
 	private int reservationsVip;
-	private double rentabilité;
-	
+	private double rentabilite;
+
+	private SalleDto salle;
 
 }

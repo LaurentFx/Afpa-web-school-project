@@ -2,9 +2,12 @@ package com.afpa.cda.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.afpa.cda.dto.ClientDto;
 import com.afpa.cda.dto.ClientVipDto;
 
+@Service
 public class ClientVipServiceImpl implements IClientVipService {
 
 	@Override

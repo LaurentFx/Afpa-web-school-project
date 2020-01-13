@@ -30,7 +30,7 @@ public class TypeSalle {
 	private int id;
 	
 	@Column(unique=true)
-	private String label_typeSalle;
+	private String label;
 	
 	@OneToMany
 	(cascade = { CascadeType.MERGE, CascadeType.PERSIST },

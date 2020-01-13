@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SalleService } from 'src/app/service/Salle.service';
 import { Router } from '@angular/router';
-import { SalleModel } from 'src/app/model/Salle';
-import { TypeDeSalleModel } from '../../../model/type-de-salle';
+import { SalleDto } from '../../../model/salleDto';
+import { TypeSalleDto } from '../../../model/typeSalleDto';
 import { TypeSalleService } from '../../../service/typeSalle.service';
 
 @Component({
@@ -12,15 +12,15 @@ import { TypeSalleService } from '../../../service/typeSalle.service';
 })
 export class SalleAddComponent implements OnInit {
 
-  salle: SalleModel;
-  typeSalles: TypeDeSalleModel[];
+  salle: SalleDto;
+  typeSalles: TypeSalleDto[];
 
   constructor(private typeSalleService: TypeSalleService, private salleService: SalleService, private router: Router) { }
 
   ngOnInit() {
     this.typeSalles = [];
-    this.salle = new SalleModel();
-    this.salle.typeSalle = new TypeDeSalleModel();
+    this.salle = new SalleDto();
+    this.salle.typeSalle = new TypeSalleDto();
 
     this.typeSalleService.subjectMiseAJour.subscribe(
       res => {
@@ -48,7 +48,7 @@ export class SalleAddComponent implements OnInit {
       }
 
     );
-    this.salle = new SalleModel();
+    this.salle = new SalleDto();
   }
 
   goHome() {

@@ -27,21 +27,26 @@ public class ManifestationServiceImpl implements IManifestationService {
 				.stream()
 				.map(m-> ManifestationDto.builder()
 						.id(m.getId())
-						.nom(m.getNom())
+						.label(m.getLabel())
+						// animation
 						.dateManifestation(m.getDateManifestation())
+						.charges(m.getCharges())
 						.typeManifestation(m.getTypeManifestation())
 						.prixBillet(m.getPrixBillet())
+						.reservations(m.getReservations())
+						.reservationsVip(m.getReservationsVip())
+						.rentabilite(m.getRentabilite())
 						.salle(SalleDto.builder()
 								.id(m.getSalle().getId())
-										.label(m.getSalle().getLabel())
-										.placesReservees(m.getSalle().getPlacesReservees())
-										.placesReserveesVip(m.getSalle().getPlacesReserveesVIP())								
-										.build())
+								.label(m.getSalle().getLabel())
+								.capacite(m.getSalle().getCapacite())
+								.placesVip(m.getSalle().getPlacesVip())								
 								.build())
-						.collect(Collectors.toList());	
+						.build())
+				.collect(Collectors.toList());	
 	}
 
-	
+
 	@Override
 	public ManifestationDto findById(int id) {
 		Optional <Manifestation> manifOp = this.manifestationRepository.findById(id);
@@ -59,9 +64,22 @@ public class ManifestationServiceImpl implements IManifestationService {
 		try {
 			Manifestation manif = this.manifestationRepository.save(this.modelMapper.map(mani,Manifestation.class));
 			mani.setId(manif.getId());
-			mani.setNom(manif.getNom());
-			mani.setPrixBillet(manif.getPrixBillet());
+			mani.setLabel(manif.getLabel());
+			
+			// mani.setAnimation(manif.getAnimation());
+			
 			mani.setDateManifestation(manif.getDateManifestation());
+			mani.setCharges(manif.getCharges());	
+			mani.setTypeManifestation(manif.getTypeManifestation());
+			mani.setPrixBillet(manif.getPrixBillet());
+			mani.setReservations(manif.getReservations());
+			mani.setReservationsVip(manif.getReservationsVip());
+			mani.setRentabilite(manif.getRentabilite());
+		
+			// A vérifier
+			mani.setSalle(SalleDto.builder().id(manif.getId()).build());
+			mani.setSalle(SalleDto.builder().label(manif.getLabel()).build());
+		
 			System.err.println("manifestation ajoutée");
 		} catch (Exception e) {
 			System.err.println(e.getStackTrace());
@@ -75,11 +93,19 @@ public class ManifestationServiceImpl implements IManifestationService {
 		Optional<Manifestation> manifOp = this.manifestationRepository.findById(id);
 		if(manifOp.isPresent()) {
 			Manifestation mani = manifOp.get();
-			mani.setNom(manif.getNom());
+			mani.setLabel(manif.getLabel());
+			// animation
 			mani.setDateManifestation(manif.getDateManifestation());
+			mani.setCharges(manif.getCharges());
+			mani.setTypeManifestation(manif.getTypeManifestation());
 			mani.setPrixBillet(manif.getPrixBillet());
+			mani.setReservations(manif.getReservations());
+			mani.setReservationsVip(manif.getReservationsVip());
+			mani.setRentabilite(manif.getReservationsVip());
+			
 			mani.setSalle(Salle.builder().id(mani.getId()).build());
-			mani.setSalle(Salle.builder().label(mani.getNom()).build());
+			mani.setSalle(Salle.builder().label(mani.getLabel()).build());
+			
 			this.manifestationRepository.save(mani);			
 			System.err.println("manifestation mise à jour");
 			return true;

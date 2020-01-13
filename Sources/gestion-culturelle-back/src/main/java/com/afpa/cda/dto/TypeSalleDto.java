@@ -14,5 +14,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class TypeSalleDto {
 	private int id;
-	private String label_Dto;
+	private String label;
 }
