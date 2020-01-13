@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.afpa.cda.dao.PersonneRepository;
 import com.afpa.cda.dto.AdminDto;
 import com.afpa.cda.entity.Personne;
@@ -32,29 +31,33 @@ public class AdministrateurServiceImpl implements IAdminService {
 	@Override
 	public AdminDto add(AdminDto admin) {
 		
-		Personne personne = this.personneRepository.save(this.modelMapper.map(admin,Personne.class));
-		admin.setNom(personne.getNom());
-		admin.setPrenom(personne.getPrenom());
-		admin.setQualification(personne.getQualification());
+		Personne administrateur = this.personneRepository.save(this.modelMapper.map(admin,Personne.class));
+		admin.setNom(administrateur.getNom());
+		admin.setPrenom(administrateur.getPrenom());
+		admin.setEmail(administrateur.getEmail());
+		admin.setLogin(administrateur.getLogin());
+		admin.setAdresse(administrateur.getAdresse());
+		//admin.setRoleDto(administrateur.getRoles().add());	
 		System.err.println("administrateur ajouté");
 		
 		return admin;
 	}
 
-	@Override
+	/*@Override
 	public boolean updateAdmin(AdminDto admin, int id) {
 	
 		Optional<Personne> adminOp = this.personneRepository.findById(id);
 		if(adminOp.isPresent()) {
 			Personne personne = adminOp.get();
 			personne.setNom(admin.getNom());
+			
 			personne.setQualification(admin.getQualification());
 			System.err.println("administrateur mise à jour");
 			return true;
 		}
 		
 		return false;
-	}
+	}*/
 
 	@Override
 	public boolean deleteAdmin(int id) {
@@ -78,6 +81,12 @@ public class AdministrateurServiceImpl implements IAdminService {
 			admin=this.modelMapper.map(personne,AdminDto.class);
 		}
 		return admin;
+	}
+
+	@Override
+	public boolean updateAdmin(AdminDto admin, int id) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

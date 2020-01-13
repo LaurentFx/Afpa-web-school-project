@@ -24,8 +24,8 @@ public class Salle {
 	@GeneratedValue(generator = "SALLE_SEQ", strategy = GenerationType.SEQUENCE)
 	private int id;
 	private String label;
-	private int placesReservees;
-	private int placesReserveesVIP;
+	private int capacite;
+	private int placesVip;
 	private double fraisjournalier;
 
 	@ManyToOne
