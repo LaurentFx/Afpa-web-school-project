@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TypeDeSalleModel } from '../model/type-de-salle';
+import { TypeSalleDto } from '../model/typeSalleDto';
 import { HttpClient } from '@angular/common/http'
 import { Observable, Subject } from 'rxjs';
 
@@ -10,7 +10,7 @@ export class TypeSalleService {
 
   monUrl = 'http://localhost:8080/typesalle';
 
-  typeSalles: TypeDeSalleModel[];
+  typeSalles: TypeSalleDto[];
 
   subjectMiseAJour = new Subject<number>();
 
@@ -24,7 +24,7 @@ export class TypeSalleService {
     return this.http.get(`${this.monUrl}/${id}`);
   }
 
-  add(typeSalle: TypeDeSalleModel): Observable<object> {
+  add(typeSalle: TypeSalleDto): Observable<object> {
     return this.http.post(this.monUrl, typeSalle);
   }
 

@@ -30,8 +30,8 @@ public class SalleServiceImpl implements ISalleService {
 				.map(s-> SalleDto.builder()
 						.id(s.getId())
 						.label(s.getLabel())
-						.placesReservees(s.getPlacesReservees())
-						.placesReserveesVip(s.getPlacesReserveesVIP())
+						.capacite(s.getCapacite())
+						.placesVip(s.getPlacesVip())
 						.fraisJournalier(s.getFraisjournalier())
 						.typeSalle(TypeSalleDto.builder()
 								.id(s.getTypesalle().getId())
@@ -74,8 +74,8 @@ public class SalleServiceImpl implements ISalleService {
 		if(salleOp.isPresent()) {
 			Salle salle = salleOp.get();
 			salle.setLabel(sal.getLabel());
-			salle.setPlacesReservees(sal.getPlacesReservees());
-			salle.setPlacesReserveesVIP(sal.getPlacesReserveesVip());
+			salle.setCapacite(sal.getCapacite());
+			salle.setPlacesVip(sal.getPlacesVip());
 			salle.setFraisjournalier(sal.getFraisJournalier());
 			salle.setTypesalle(TypeSalle.builder().label(salle.getLabel()).build());
 			salle.setTypesalle(TypeSalle.builder().id(salle.getId()).build());

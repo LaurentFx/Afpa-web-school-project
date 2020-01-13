@@ -14,8 +14,8 @@ import lombok.Setter;
 public class SalleDto {
 	private int id;
 	private String label;
-	private int placesReservees;
-	private int placesReserveesVip;
+	private int capacite;
+	private int placesVip;
 	private double fraisJournalier;
 	private TypeSalleDto typeSalle;
 

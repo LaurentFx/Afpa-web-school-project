@@ -1,4 +1,4 @@
-import { SalleModel } from "./salle";
+import { SalleDto } from "./salleDto";
 
 export class Manifestation {
     id: number;
@@ -6,9 +6,9 @@ export class Manifestation {
     dateManifestation: Date;
     typeManifestation: string;
     prixBillet: number;
-    salle:SalleModel;
+    salle:SalleDto;
 
-    constructor(id?: number, nom?: string, dateManifestation?: Date,typeManifestation? : string, prixBillet? : number, salle? : SalleModel ){
+    constructor(id?: number, nom?: string, dateManifestation?: Date,typeManifestation? : string, prixBillet? : number, salle? : SalleDto ){
         this.id = id;
         this.nom=nom;
         this.dateManifestation = dateManifestation;

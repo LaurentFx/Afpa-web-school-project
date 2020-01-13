@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SalleModel } from '../model/salle';
+import { SalleDto } from '../model/salleDto';
 import { HttpClient } from '@angular/common/http'
 import { Observable, Subject } from 'rxjs';
 
@@ -10,7 +10,7 @@ export class SalleService {
  
   monUrl= 'http://localhost:8080/salle'; 
 
-  salle: SalleModel[]; 
+  salle: SalleDto[]; 
 
   subjectMiseAJour= new Subject<number>();
 
@@ -20,7 +20,7 @@ export class SalleService {
     return this.http.get(this.monUrl);
   }
   
-  add(salle: SalleModel): Observable<object> {
+  add(salle: SalleDto): Observable<object> {
     return this.http.post(this.monUrl,salle);
   }
   

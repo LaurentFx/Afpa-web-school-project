@@ -34,8 +34,8 @@ public class ManifestationServiceImpl implements IManifestationService {
 						.salle(SalleDto.builder()
 								.id(m.getSalle().getId())
 										.label(m.getSalle().getLabel())
-										.placesReservees(m.getSalle().getPlacesReservees())
-										.placesReserveesVip(m.getSalle().getPlacesReserveesVIP())								
+										.capacite(m.getSalle().getCapacite())
+										.placesVip(m.getSalle().getPlacesVip())								
 										.build())
 								.build())
 						.collect(Collectors.toList());	

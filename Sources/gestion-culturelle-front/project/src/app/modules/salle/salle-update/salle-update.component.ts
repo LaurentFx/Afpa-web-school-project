@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SalleModel } from '../../../model/salle';
+import { SalleDto } from '../../../model/salleDto';
 import { SalleService } from '../../../service/Salle.service';
-import { TypeDeSalleModel } from '../../../model/type-de-salle';
+import { TypeSalleDto } from '../../../model/typeSalleDto';
 import { TypeSalleService } from '../../../service/typeSalle.service';
 
 @Component({
@@ -13,15 +13,15 @@ import { TypeSalleService } from '../../../service/typeSalle.service';
 export class SalleUpdateComponent implements OnInit {
 
   id: number;
-  salle: SalleModel;
-  typeSalles: TypeDeSalleModel[];
+  salle: SalleDto;
+  typeSalles: TypeSalleDto[];
 
   constructor(private route: ActivatedRoute, private typeSalleService: TypeSalleService,private salleService: SalleService, private router: Router) { }
 
   ngOnInit() {
     this.typeSalles = [];
-    this.salle = new SalleModel();
-    this.salle.typeSalle=new TypeDeSalleModel();
+    this.salle = new SalleDto();
+    this.salle.typeSalle=new TypeSalleDto();
 
     let id = this.route.snapshot.params['id'];
 

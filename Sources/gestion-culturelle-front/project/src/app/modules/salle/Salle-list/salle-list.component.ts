@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SalleModel } from 'src/app/model/Salle';
+import { SalleDto } from '../../../model/salleDto';
 import { Router } from '@angular/router';
-import { SalleService } from 'src/app/service/Salle.service';
+import { SalleService } from '../../../service/Salle.service';
 
 @Component({
   selector: 'app-salle-list',
@@ -10,7 +10,7 @@ import { SalleService } from 'src/app/service/Salle.service';
 })
 export class SalleListComponent implements OnInit {
 
-  salles: SalleModel[];
+  salles: SalleDto[];
   
   constructor(private salleService: SalleService,private router: Router) { }
 
