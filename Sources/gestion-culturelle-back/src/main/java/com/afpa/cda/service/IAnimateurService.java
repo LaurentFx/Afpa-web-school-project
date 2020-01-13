@@ -7,9 +7,9 @@ public interface IAnimateurService {
 	
 	List<AnimateurDto> findAll();
 
-	AnimateurDto add(AnimateurDto client);
+	AnimateurDto add(AnimateurDto anim);
 
-	boolean updateSportif(AnimateurDto sportif, int id);
+	boolean updateSportif(AnimateurDto anim, int id);
 
 	boolean deleteSportif(int id);
 
