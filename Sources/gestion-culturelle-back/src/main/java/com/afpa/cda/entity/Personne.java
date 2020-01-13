@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,10 +25,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-
-
 public class Personne {	
-	
+
 	@Id
 	@GeneratedValue(generator = "PERSONNE_SEQ", strategy = GenerationType.SEQUENCE)
 	private int id;
@@ -37,27 +37,27 @@ public class Personne {
 	private String password;
 	private String adresse;
 	private String nom_Entreprise;
-	
-	
-	@OneToMany
-	@Column(nullable = true)
-	private Panier panier_client;
-	
+
+
+//	@OneToOne
+//	@Column(nullable = true)
+//	private Panier panier_client;
+
 	@Column(nullable = true)
 	private int num_Client;
-	
-	@OneToMany
-	@Column(nullable = true)	
-	private Animation animation;	
-	
-	@ManyToMany
-	@JoinTable(name = "PERSONNE_ROLE",joinColumns = @JoinColumn(name = "PERSON_ID"),
-	inverseJoinColumns= @JoinColumn(name = "ROLE_ID"))
-	Set<Role> roles;
-	
-	@OneToMany
-	(mappedBy = "client_Panier")
-			private Set<Panier> paniers;
+
+	//	@OneToMany
+//	@Column(nullable = true)	
+//	private Animation animation;	
+
+//	@ManyToMany
+//	@JoinTable(name = "PERSONNE_ROLE",joinColumns = @JoinColumn(name = "PERSON_ID"),
+//	inverseJoinColumns= @JoinColumn(name = "ROLE_ID"))
+//	Set<Role> roles;
+
+	//	@OneToMany
+	//(mappedBy = "client_Panier")
+	//private Set<Panier> paniers;
 
 
 }

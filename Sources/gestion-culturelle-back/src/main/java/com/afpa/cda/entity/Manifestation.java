@@ -23,7 +23,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-
 public class Manifestation {
 
 	@Id
@@ -31,8 +30,8 @@ public class Manifestation {
 	private int id;
 	private String label;
 
-	@Column(nullable = true)
-	private Animation animation;	
+//	@Column(nullable = true)
+//	private Animation animation;	
 	private Date dateManifestation;
 	private double charges;
 	private String typeManifestation;
@@ -41,9 +40,9 @@ public class Manifestation {
 	private int reservationsVip;
 	private double rentabilite;
 
-	@ManyToOne
-	@JoinColumn(name = "salle")
-	private Salle salle;
+//	@ManyToOne
+//	@JoinColumn(name = "salle")
+//	private Salle salle;
 
 
 
