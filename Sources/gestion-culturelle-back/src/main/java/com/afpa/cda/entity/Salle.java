@@ -1,12 +1,10 @@
 package com.afpa.cda.entity;
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,17 +24,13 @@ public class Salle {
 	@GeneratedValue(generator = "SALLE_SEQ", strategy = GenerationType.SEQUENCE)
 	private int id;
 	private String label;
-	private int placesReservees;
-	private int placesReserveesVIP;
+	private int capacite;
+	private int placesVip;
 	private double fraisjournalier;
 
 	@ManyToOne
 	@JoinColumn(name = "typesalle")
 	private TypeSalle typesalle;
-	
-
-	
-	
 
 
 }

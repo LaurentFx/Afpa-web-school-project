@@ -19,8 +19,10 @@ public class ManifestationDto {
 	private Date dateManifestation;	
 	private String typeManifestation;
 	private double prixBillet;
-	private SalleDto salle;
-	
+	private SalleDto salle_ManifestationDto;
+	private int reservations;
+	private int reservationsVip;
+	private double rentabilité;
 	
 
 }

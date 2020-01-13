@@ -11,9 +11,18 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class SportifDto {
+public class SportifDto  {
+	
 	private int id;
 	private String nom;
 	private String prenom;
+	private String email;
+	private String login;
+	private String password;
+	private String adresse;
+	private RoleDto role;
+	private PanierDto panier;
+	private String nom_Entreprise_Sportif;
+	private AnimationDto animation_Sportif;
 
 }

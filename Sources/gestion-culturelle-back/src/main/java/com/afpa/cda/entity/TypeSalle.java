@@ -1,10 +1,16 @@
 package com.afpa.cda.entity;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,7 +30,12 @@ public class TypeSalle {
 	private int id;
 	
 	@Column(unique=true)
-	private String label;
+	private String label_typeSalle;
 	
+	@OneToMany
+	(cascade = { CascadeType.MERGE, CascadeType.PERSIST },
+	fetch = FetchType.LAZY, mappedBy = "typesalle")
+	private Set<Salle> salles;
 
+	
 }

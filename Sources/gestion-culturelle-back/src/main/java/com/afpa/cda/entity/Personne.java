@@ -1,5 +1,7 @@
 package com.afpa.cda.entity;
-import java.util.List;
+
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,22 +32,32 @@ public class Personne {
 	private int id;
 	private String nom;
 	private String prenom;
+	private String email;
+	private String login;
+	private String password;
+	private String adresse;
+	private String nom_Entreprise;
+	
+	
+	@OneToMany
+	@Column(nullable = true)
+	private Panier panier_client;
 	
 	@Column(nullable = true)
-	private String organisation;
+	private int num_Client;
 	
-	@Column(nullable = true)
-	private String qualification;
-	
-	@Column(nullable = true)
-	private double salaire;
+	@OneToMany
+	@Column(nullable = true)	
+	private Animation animation;	
 	
 	@ManyToMany
 	@JoinTable(name = "PERSONNE_ROLE",joinColumns = @JoinColumn(name = "PERSON_ID"),
 	inverseJoinColumns= @JoinColumn(name = "ROLE_ID"))
-
-	List<Role> roles;
+	Set<Role> roles;
 	
+	@OneToMany
+	(mappedBy = "client_Panier")
+			private Set<Panier> paniers;
 
 
 }

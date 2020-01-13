@@ -1,13 +1,10 @@
 package com.afpa.cda.entity;
-
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,8 +28,5 @@ public class Role {
 	
 	@Column(length = 150, nullable = false)
 	private String labelRole;
-	
-	@ManyToMany(mappedBy = "roles")
-private List<Personne> personnes;
 
 }

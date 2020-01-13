@@ -12,12 +12,10 @@ import lombok.Setter;
 @AllArgsConstructor
 
 public class SalleDto {
-
-	private int id;
-	private String label;
-	private int placesReservees;
-	private int placesReserveesVip;
-	private double fraisJournalier;
-	private TypeSalleDto typeSalle;
-
+		private int id;
+		private String label;
+		private int capacite;
+		private int placesVip;
+		private double fraisJournaliers;
+		private TypeSalleDto typeSalle;
 }

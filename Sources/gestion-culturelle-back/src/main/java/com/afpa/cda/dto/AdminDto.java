@@ -15,5 +15,11 @@ public class AdminDto {
 	private int id;
 	private String nom;
 	private String prenom;
-	private String qualification;	
+	private String email;
+	private String login;
+	private String password;
+	private String adresse;
+	private RoleDto roleDto;
+	
+	
 }

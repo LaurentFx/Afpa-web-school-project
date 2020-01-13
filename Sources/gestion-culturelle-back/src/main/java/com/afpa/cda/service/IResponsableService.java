@@ -1,18 +1,19 @@
 package com.afpa.cda.service;
 
 import java.util.List;
-import com.afpa.cda.dto.ManagerDto;
 
-public interface IManagerService {
+import com.afpa.cda.dto.ResponsableDto;
+
+public interface IResponsableService {
 	
-	List<ManagerDto> findAll();
+	List<ResponsableDto> findAll();
 
-	ManagerDto add(ManagerDto manager);
+	ResponsableDto add(ResponsableDto responsable);
 
-	boolean updateManager(ManagerDto manager, int id);
+	boolean updateManager(ResponsableDto responsable, int id);
 
 	boolean deleteManager(int id);
 
-	ManagerDto findById(int id);
+	ResponsableDto findById(int id);
 
 }
