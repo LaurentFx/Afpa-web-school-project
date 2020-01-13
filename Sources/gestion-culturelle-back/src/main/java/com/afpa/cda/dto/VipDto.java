@@ -1,18 +1,19 @@
 package com.afpa.cda.dto;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Builder
-
-public class ArtisteDto {
-	
+@ToString
+public class VipDto {
 	private int id;
 	private String nom;
 	private String prenom;
@@ -20,9 +21,7 @@ public class ArtisteDto {
 	private String login;
 	private String password;
 	private String adresse;
-	private RoleDto roleArtisteDto;
-	private PanierDto panierArtisteDto;
-	private String nom_Entreprise_Artiste;
-	private AnimationDto animation_ArtisteDto;
-
+	private RoleDto role;
+	
+	private String entreprise;
 }

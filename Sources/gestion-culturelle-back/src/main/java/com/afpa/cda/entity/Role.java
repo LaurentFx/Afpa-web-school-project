@@ -18,15 +18,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-
 public class Role {
 	
 	@Id
 	@GeneratedValue(generator = "ROLE_SEQ", strategy = GenerationType.SEQUENCE)
-	
 	private int id;
 	
-	@Column(length = 150, nullable = false)
-	private String labelRole;
+	private String label;
 
 }

@@ -1,16 +1,19 @@
 package com.afpa.cda.dto;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Builder
-public class ResponsableDto {
+@ToString
+public class ClientDto {
 	private int id;
 	private String nom;
 	private String prenom;
@@ -18,7 +21,10 @@ public class ResponsableDto {
 	private String login;
 	private String password;
 	private String adresse;
-	private RoleDto role_Responsable;
+	private RoleDto role;
+	
+	private PanierDto panier;
+	private int numClient;
 	
 	
 }

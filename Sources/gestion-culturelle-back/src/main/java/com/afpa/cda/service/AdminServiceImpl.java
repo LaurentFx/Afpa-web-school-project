@@ -11,7 +11,7 @@ import com.afpa.cda.dto.AdminDto;
 import com.afpa.cda.entity.Personne;
 
 @Service
-public class AdministrateurServiceImpl implements IAdminService {
+public class AdminServiceImpl implements IAdminService {
 
 	@Autowired
 	private PersonneRepository personneRepository;

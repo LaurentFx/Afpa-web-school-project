@@ -1,17 +1,22 @@
 package com.afpa.cda.dto;
+import java.util.List;
+
+import com.afpa.cda.entity.Animation;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
-public class SportifDto  {
+@ToString
+public class AnimateurDto  {
 	
 	private int id;
 	private String nom;
@@ -21,8 +26,8 @@ public class SportifDto  {
 	private String password;
 	private String adresse;
 	private RoleDto role;
-	private PanierDto panier;
-	private String nom_Entreprise_Sportif;
-	private AnimationDto animation_Sportif;
-
+	
+	private String entreprise;
+private List <Animation> animations;
+	
 }

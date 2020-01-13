@@ -24,28 +24,28 @@ public class ManifestationServiceImpl implements IManifestationService {
 	@Override
 	public List<ManifestationDto> findAll() {
 		return null;
-		
-//		return this.manifestationRepository.findAll()
-//				.stream()
-//				.map(m-> ManifestationDto.builder()
-//						.id(m.getId())
-//						.label(m.getLabel())
-//						// animation
-//						.dateManifestation(m.getDateManifestation())
-//						.charges(m.getCharges())
-//						.typeManifestation(m.getTypeManifestation())
-//						.prixBillet(m.getPrixBillet())
-//						.reservations(m.getReservations())
-//						.reservationsVip(m.getReservationsVip())
-//						.rentabilite(m.getRentabilite())
-//						.salle(SalleDto.builder()
-//								.id(m.getSalle().getId())
-//								.label(m.getSalle().getLabel())
-//								.capacite(m.getSalle().getCapacite())
-//								.placesVip(m.getSalle().getPlacesVip())								
-//								.build())
-//						.build())
-//				.collect(Collectors.toList());	
+
+		//		return this.manifestationRepository.findAll()
+		//				.stream()
+		//				.map(m-> ManifestationDto.builder()
+		//						.id(m.getId())
+		//						.label(m.getLabel())
+		//						// animation
+		//						.dateManifestation(m.getDateManifestation())
+		//						.charges(m.getCharges())
+		//						.typeManifestation(m.getTypeManifestation())
+		//						.prixBillet(m.getPrixBillet())
+		//						.reservations(m.getReservations())
+		//						.reservationsVip(m.getReservationsVip())
+		//						.rentabilite(m.getRentabilite())
+		//						.salle(SalleDto.builder()
+		//								.id(m.getSalle().getId())
+		//								.label(m.getSalle().getLabel())
+		//								.capacite(m.getSalle().getCapacite())
+		//								.placesVip(m.getSalle().getPlacesVip())								
+		//								.build())
+		//						.build())
+		//				.collect(Collectors.toList());	
 	}
 
 
@@ -63,56 +63,58 @@ public class ManifestationServiceImpl implements IManifestationService {
 
 	@Override
 	public ManifestationDto add(ManifestationDto mani) {
-		try {
-			Manifestation manif = this.manifestationRepository.save(this.modelMapper.map(mani,Manifestation.class));
-			mani.setId(manif.getId());
-			mani.setLabel(manif.getLabel());
-			
-			// mani.setAnimation(manif.getAnimation());
-			
-			mani.setDateManifestation(manif.getDateManifestation());
-			mani.setCharges(manif.getCharges());	
-			mani.setTypeManifestation(manif.getTypeManifestation());
-			mani.setPrixBillet(manif.getPrixBillet());
-			mani.setReservations(manif.getReservations());
-			mani.setReservationsVip(manif.getReservationsVip());
-			mani.setRentabilite(manif.getRentabilite());
-		
-			// A vérifier
-			mani.setSalle(SalleDto.builder().id(manif.getId()).build());
-			mani.setSalle(SalleDto.builder().label(manif.getLabel()).build());
-		
-			System.err.println("manifestation ajoutée");
-		} catch (Exception e) {
-			System.err.println(e.getStackTrace());
-		}		
-		return mani;
+		return null;
+		//		try {
+		//			Manifestation manif = this.manifestationRepository.save(this.modelMapper.map(mani,Manifestation.class));
+		//			mani.setId(manif.getId());
+		//			mani.setLabel(manif.getLabel());
+		//			
+		//			// mani.setAnimation(manif.getAnimation());
+		//			
+		//			mani.setDateManifestation(manif.getDateManifestation());
+		//			mani.setCharges(manif.getCharges());	
+		//			mani.setTypeManifestation(manif.getTypeManifestation());
+		//			mani.setPrixBillet(manif.getPrixBillet());
+		//			mani.setReservations(manif.getReservations());
+		//			mani.setReservationsVip(manif.getReservationsVip());
+		//			mani.setRentabilite(manif.getRentabilite());
+		//		
+		//			// A vérifier
+		//			mani.setSalle(SalleDto.builder().id(manif.getId()).build());
+		//			mani.setSalle(SalleDto.builder().label(manif.getLabel()).build());
+		//		
+		//			System.err.println("manifestation ajoutée");
+		//		} catch (Exception e) {
+		//			System.err.println(e.getStackTrace());
+		//		}		
+		//		return mani;
 	}
 
 	@Override
 	public boolean updateManifestation(ManifestationDto manif, int id) {
-
-		Optional<Manifestation> manifOp = this.manifestationRepository.findById(id);
-		if(manifOp.isPresent()) {
-			Manifestation mani = manifOp.get();
-			mani.setLabel(manif.getLabel());
-			// animation
-			mani.setDateManifestation(manif.getDateManifestation());
-			mani.setCharges(manif.getCharges());
-			mani.setTypeManifestation(manif.getTypeManifestation());
-			mani.setPrixBillet(manif.getPrixBillet());
-			mani.setReservations(manif.getReservations());
-			mani.setReservationsVip(manif.getReservationsVip());
-			mani.setRentabilite(manif.getReservationsVip());
-			
-//			mani.setSalle(Salle.builder().id(mani.getId()).build());
-//			mani.setSalle(Salle.builder().label(mani.getLabel()).build());
-			
-			this.manifestationRepository.save(mani);			
-			System.err.println("manifestation mise à jour");
-			return true;
-		}
 		return false;
+
+		//		Optional<Manifestation> manifOp = this.manifestationRepository.findById(id);
+		//		if(manifOp.isPresent()) {
+		//			Manifestation mani = manifOp.get();
+		//			mani.setLabel(manif.getLabel());
+		//			// animation
+		//			mani.setDateManifestation(manif.getDateManifestation());
+		//			mani.setCharges(manif.getCharges());
+		//			mani.setTypeManifestation(manif.getTypeManifestation());
+		//			mani.setPrixBillet(manif.getPrixBillet());
+		//			mani.setReservations(manif.getReservations());
+		//			mani.setReservationsVip(manif.getReservationsVip());
+		//			mani.setRentabilite(manif.getReservationsVip());
+		//			
+		////			mani.setSalle(Salle.builder().id(mani.getId()).build());
+		////			mani.setSalle(Salle.builder().label(mani.getLabel()).build());
+		//			
+		//			this.manifestationRepository.save(mani);			
+		//			System.err.println("manifestation mise à jour");
+		//			return true;
+		//		}
+		//		return false;
 	}
 
 	@Override

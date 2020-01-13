@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @NoArgsConstructor
@@ -15,9 +16,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
+@ToString
 public class RoleDto {
 	@Id
 	private int id;
-	private String labelRole;
+	private String label;
 
 }

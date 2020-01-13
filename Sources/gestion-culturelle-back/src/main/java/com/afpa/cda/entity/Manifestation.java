@@ -1,15 +1,17 @@
 package com.afpa.cda.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,22 +30,25 @@ public class Manifestation {
 	@Id
 	@GeneratedValue(generator = "MANIFESTATION_SEQ", strategy = GenerationType.SEQUENCE)
 	private int id;
+	
 	private String label;
 
-//	@Column(nullable = true)
-//	private Animation animation;	
-	private Date dateManifestation;
-	private double charges;
-	private String typeManifestation;
+	@OneToOne
+	private Animation animation;	
+	
+	private Date date;
+	private double cout;
+	
+	@ManyToOne
+	private Salle salle;
+
 	private double prixBillet;	
 	private int reservations;
 	private int reservationsVip;
 	private double rentabilite;
-
-//	@ManyToOne
-//	@JoinColumn(name = "salle")
-//	private Salle salle;
-
-
+	
+	@ManyToMany
+	private List <Panier> paniers;
+		
 
 }

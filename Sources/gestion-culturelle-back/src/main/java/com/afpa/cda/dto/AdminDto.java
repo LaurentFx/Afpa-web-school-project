@@ -5,12 +5,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Builder
+@ToString
 public class AdminDto {
 	private int id;
 	private String nom;
@@ -19,7 +21,7 @@ public class AdminDto {
 	private String login;
 	private String password;
 	private String adresse;
-	private RoleDto roleDto;
+	private RoleDto role;
 	
 	
 }

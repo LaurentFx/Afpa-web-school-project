@@ -1,5 +1,6 @@
 package com.afpa.cda.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,17 +24,12 @@ public class Animation {
 	@GeneratedValue(generator = "ANIMATION_SEQ", strategy = GenerationType.SEQUENCE)
 	private int id;
 	
-//	@OneToMany
-//	@Column(nullable = true)
 	private String label;
-//	
-//	@Column(nullable = true)	
-//	private String type_animation;
-//	
-//	@Column(nullable = true)
-//	private double cout;
-//	
-//	@Column(nullable = true)	
-//	private int prevision_Spectateurs;
+	
+	private String type;
+	
+	private double prix;
+	
+	private int nbreSpectateursPrevus;
 
 }

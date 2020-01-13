@@ -1,9 +1,22 @@
 package com.afpa.cda.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class AnimationDto {
-	
-	private String label_animation;
-	private String type_animation;
-	private double cout;
-	private int prevision_Spectateurs;
+	private int id;
+	private String label;
+	private String type;
+	private double prix;
+	private int nbreSpectateursPrevus;
 }

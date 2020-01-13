@@ -45,7 +45,7 @@ public class RoleServiceImpl implements IRoleService {
 	@Override
 	public RoleDto add(RoleDto rol) {
 		Role role = this.roleRepository.save(this.modelMapper.map(rol,Role.class));
-		rol.setLabelRole(role.getLabelRole());
+		rol.setLabel(role.getLabel());
 		System.err.println("role ajouté");
 		return rol;
 	}
@@ -55,7 +55,7 @@ public class RoleServiceImpl implements IRoleService {
 		Optional <Role> roleOp = this.roleRepository.findById(id);
 		if(roleOp.isPresent()) {
 			Role role = roleOp.get();
-			role.setLabelRole(rol.getLabelRole());
+			role.setLabel(rol.getLabel());
 			this.roleRepository.save(role);
 			System.err.println("role mise à jour");
 			return true;
