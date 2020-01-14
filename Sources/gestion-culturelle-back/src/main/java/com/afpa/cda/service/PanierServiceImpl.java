@@ -31,7 +31,7 @@ public class PanierServiceImpl implements IPanierService {
 	@Override
 	public PanierDto add(PanierDto panier) {
 		Panier panE = this.modelMapper.map(panier,Panier.class);
-		Manifestation manifE = this.manifestationRepository.findAll(panier.getManifestations().);
+//		Manifestation manifE = this.manifestationRepository.findAll(panier.getManifestations().);
 		Panier entityPan = this.panierRepository.save(panE);
 		panier.setId(entityPan.getId());
 		return panier;
