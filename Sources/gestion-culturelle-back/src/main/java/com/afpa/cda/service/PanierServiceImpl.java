@@ -30,20 +30,23 @@ public class PanierServiceImpl implements IPanierService {
 	}
 	@Override
 	public PanierDto add(PanierDto panier) {
-		Panier panE = this.modelMapper.map(panier,Panier.class);
+		Panier panE = this.panierRepository.save(this.modelMapper.map(panier, Panier.class));
+//		Panier panE = this.modelMapper.map(panier,Panier.class);
 //		Manifestation manifE = this.manifestationRepository.findAll(panier.getManifestations().);
-		Panier entityPan = this.panierRepository.save(panE);
-		panier.setId(entityPan.getId());
+//		Panier entityPan = this.panierRepository.save(panE);
+		panier.setId(panE.getId());
 		return panier;
 	}
 	@Override
 	public boolean updatePanier(PanierDto panier, int id) {
 		Optional<Panier> panUp = this.panierRepository.findById(id);
 		if (panUp.isPresent()) {
-			Panier pr= panUp.get();
-			pr.setNbreBillets(panier.getNbreBillets());
-			pr.setNumClient(panier.getNumClient());
-			this.panierRepository.save(pr);
+			this.panierRepository.save(this.modelMapper.map(panier, Panier.class));
+			
+//			Panier pr= panUp.get();
+//			pr.setNbreBillets(panier.getNbreBillets());
+//			pr.setNumClient(panier.getNumClient());
+//			this.panierRepository.save(pr);
 			return true;
 		}
 		return false;
