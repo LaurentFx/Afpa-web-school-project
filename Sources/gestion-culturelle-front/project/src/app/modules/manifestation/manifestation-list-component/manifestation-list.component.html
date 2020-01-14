@@ -8,12 +8,11 @@
                 <th>Label</th>
                 <th>Animation</th>
                 <th>Date</th>
-                <th>Frais</th>
+                <th>Coût</th>
                 <th>Salle</th>
-                <th>Prix de billet</th>
+                <th>Prix du billet</th>
                 <th>Reservations</th>
-                <th>ReservationsVip</th>
-                <th>Rentabilite</th>
+                <th>Reservations Vip</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -25,15 +24,12 @@
                 <td>{{manifestation.label}}</td>
                 <td>{{manifestation.animation.label}}</td>
                 <td>{{manifestation.date}}</td>
-                <td>{{manifestation.frais}}</td>
+                <td>{{manifestation.cout}}</td>
                 <td>{{manifestation.salle.label}}</td>
                 <td>{{manifestation.prixBillet}}</td>
                 <td>{{manifestation.reservations}}</td>
                 <td>{{manifestation.reservationsVip}}</td>
-                <td>{{manifestation.rentabilite}}</td>
-
-
-
+             
                 <td>
                     <button (click)="redirectToShow(manifestation.id)" class="btn btn-sm btn-success">Show</button>
                     <button (click)="redirectToUpdate(manifestation.id)" class="btn btn-sm btn-warning">Update</button>

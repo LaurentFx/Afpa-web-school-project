@@ -9,54 +9,56 @@
             <label for="label">Nouveau label :</label>
             <input type="text" name="label" class="form-control" id="label" placeholder="Entrer votre label"
                 [(ngModel)]="manifestation.label">
+        </div>
 
-            <label for="type">Type d'animation :</label>
-            <input type= "text" name="type" class="form-control" id="type" 
-            placeholder="Entrer le type d'animation" [(ngModel)]="manifestation.animation.type">
 
+        <label for="animation">Type d'animation :</label>
+        <select name="animation" id="animation" [(ngModel)]="manifestation.animation.id" class="form-control" size="3">
+            <option *ngFor="let animation of animations" [value]="animation.id">{{animation.label}}</option>
+        </select>
+
+
+        <div class="form-group">
             <label for="date">Date de la manifestation :</label>
             <input type="date" name="date" class="form-control" id="date"
                 placeholder="Entrer la date de la manifestation " [(ngModel)]="manifestation.date">
-
-            <label for=" previsionSpectateurs">Prevision Spectateurs :</label>
-            <input type="text" name="previsionSpectateurs" class="form-control" id="previsionSpectateurs"
-                placeholder="Entrer la prevision de Spectateurs" [(ngModel)]="manifestation.previsionSpectateurs">
-
-            <label for=" frais">Frais :</label>
-            <input type="text" name="frais" class="form-control" id="frais"
-            placeholder="Entrer les frais" [(ngModel)]="manifestation.frais">
-
-            <label for=" prixBillet">Prix du billet :</label>
-            <input type="text" name="prixBillet" class="form-control" id="prixBillet"
-            placeholder="Entrer le prix du billet" [(ngModel)]="manifestation.prixBillet">
-
-            <label for="animation">Type d'animation :</label>
-            <select name="animation" id="animation" [(ngModel)]="manifestation.animation.id" class="form-control" size="3">
-                <option *ngFor="let animation of animations" [value]="animation.id">{{animation.label}}</option>
-            </select>
-
-            <label for="salle">Choix de salle :</label>
-            <select name="salle" id="salle" [(ngModel)]="manifestation.salle.id" class="form-control" size="3">
-                <option *ngFor="let salle of salles" [value]="salle.id">{{salle.label}}</option>
-            </select>
-
-            <label for=" reservations">Nombre de reservations :</label>
-            <input type="text" name="reservations" class="form-control" id="reservations"
-            placeholder="Entrer le nombre de reservations" [(ngModel)]="manifestation.reservations">
-
-            <label for=" reservationsVip">Nombre de reservationsVip :</label>
-            <input type="text" name="reservationsVip" class="form-control" id="reservationsVip"
-            placeholder="Entrer le nombre de reservationsVip" [(ngModel)]="manifestation.reservationsVip">
-
-            <label for=" rentabilite">Rentabilite de la manifestation :</label>
-            <input type="text" name="rentabilite" class="form-control" id="rentabilite"
-            placeholder="Entrer la valeur de rentabilite" [(ngModel)]="manifestation.rentabilite">
-
         </div>
 
-        <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/manifestation-list']">Annuler</a>
+        <div class="form-group">
+            <label for=" cout">Coût :</label>
+            <input type="text" name="cout" class="form-control" id="cout" placeholder="Entrer le coût"
+                [(ngModel)]="manifestation.cout">
+        </div>
 
-        <button (click)="add()" class="btn btn-secondary" [disabled]="manifestation.length==0">Ajouter</button>
 
-    </form>
+        <label for="salle">Choix de salle :</label>
+        <select name="salle" id="salle" [(ngModel)]="manifestation.salle.id" class="form-control" size="3">
+            <option *ngFor="let salle of salles" [value]="salle.id">{{salle.label}}</option>
+        </select>
+
+
+        <div class="form-group">
+            <label for=" prixBillet">Prix du billet :</label>
+            <input type="text" name="prixBillet" class="form-control" id="prixBillet"
+                placeholder="Entrer le prix du billet" [(ngModel)]="manifestation.prixBillet">
+        </div>
+
+        <div class="form-group">
+            <label for=" reservations">Nombre de reservations :</label>
+            <input type="text" name="reservations" class="form-control" id="reservations"
+                placeholder="Entrer le nombre de reservations" [(ngModel)]="manifestation.reservations">
+        </div>
+
+        <div class="form-group">
+            <label for=" reservationsVip">Nombre de reservationsVip :</label>
+            <input type="text" name="reservationsVip" class="form-control" id="reservationsVip"
+                placeholder="Entrer le nombre de reservationsVip" [(ngModel)]="manifestation.reservationsVip">
+        </div>
+     
+
+<a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/manifestation-list']">Annuler</a>
+
+<button (click)="add()" class="btn btn-secondary" [disabled]="manifestation.length==0">Ajouter</button>
+
+</form>
 </div>

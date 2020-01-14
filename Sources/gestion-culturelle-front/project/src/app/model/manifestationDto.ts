@@ -6,18 +6,18 @@ export class ManifestationDto {
     label: string;
     animation:AnimationDto;
     date: Date;
-    frais: number;
+    cout: number;
+    salle:SalleDto;
     prixBillet: number;
     reservations:number;
     reservationsVip:number;
     rentabilte:number;
-    salle:SalleDto;
 
     constructor(id?: number,
          label?: string,
           animation?: AnimationDto,
           date?: Date,
-        frais?: number,
+          cout?: number,
         reservations? : number,
         reservationsVip? : number,
          rentabilte? : number,
@@ -28,7 +28,7 @@ export class ManifestationDto {
         this.label=label;
         this.animation=animation;
         this.date = date;
-        this.frais=frais;
+        this.cout=cout;
         this.prixBillet=prixBillet;
         this.reservations=reservations;
         this.reservationsVip=reservationsVip;

@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ManifestationDto } from 'src/app/model/manifestationDto';
+import { ManifestationDto } from '../../../model/manifestationDto';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ManifestationService } from 'src/app/service/manifestation.service';
+import { ManifestationService } from '../../../service/manifestation.service';
+import { AnimationDto } from '../../../model/animationDto';
+import { SalleDto } from '../../../model/salleDto';
+import { SalleService } from '../../../service/Salle.service';
+import { AnimationService } from '../../../service/animation.service';
 
 @Component({
   selector: 'app-manifestation-update',
@@ -12,14 +16,18 @@ export class ManifestationUpdateComponent implements OnInit {
 
   id: number;
   manifestation: ManifestationDto;
- 
+  animations: AnimationDto[];
+  salles: SalleDto[];
 
-  constructor(private route: ActivatedRoute, private manifestationService: ManifestationService, private router: Router) { }
+  constructor(private salleService : SalleService, private animationService : AnimationService,private route: ActivatedRoute, private manifestationService: ManifestationService, private router: Router) { }
 
   ngOnInit() {
-    
     this.manifestation = new ManifestationDto();
-    
+    this.salles =[];
+    this.animations = [];
+    this.manifestation.salle = new SalleDto();
+    this.manifestation.animation = new AnimationDto();
+
 
     let id = this.route.snapshot.params['id'];
 
@@ -27,28 +35,62 @@ export class ManifestationUpdateComponent implements OnInit {
       res => {
         this.manifestation = res;
       }
-    );   
-   
+    );
+
+    this.animationService.subjectMiseAJour.subscribe(
+      res => {
+        this.animationService.getAll().subscribe(
+          donnees => {
+            this.animations = donnees;
+          }
+        );
+      }
+    );
+
+    this.animationService.getAll().subscribe(
+      resultat => {
+        this.animations = resultat;
+      }
+    );
+
+    this.salleService.subjectMiseAJour.subscribe(
+      res => {
+        this.salleService.getAll().subscribe(
+          donnees => {
+            this.salles = donnees;
+          }
+        );
+      }
+    );
+
+    this.salleService.getAll().subscribe(
+      resultat => {
+        this.salles = resultat;
+      }
+    );
+
+
+
   }
 
   update(): void {
     let id = this.route.snapshot.params['id'];
     this.manifestationService.update(id, this.manifestation).subscribe(
       res => {
-       console.log("Modification Ok");
+        console.log("Modification Ok");
         this.goHome();
       }
     );
   }
 
   onSubmit() {
-this.update();
+    this.update();
   }
-  
+
   goHome() {
     this.router.navigate(['/manifestation-list']);
   }
 
-  }
+}
 
 
