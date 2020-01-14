@@ -1,0 +1,31 @@
+<h3>Voir une animation</h3>
+
+<div class="panel-body">
+    <table class="table table-striped table-bordered ">
+        <thead class="thead-dark">    
+                <tr>
+            <th>id</th>
+            <th>label</th>
+            <th>type</th>
+            <th>cout</th>
+            <th>previsionSpectateurs</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>{{animation.id}}</td>
+            <td>{{animation.label}}</td>
+            <td>{{animation.type}}</td>
+            <td>{{animation.cout}}</td>
+            <td>{{animation.previsionSpectateurs}}</td>
+        </tr>
+
+    </tbody>
+
+</table>
+
+<br>
+<br>
+<a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/animation-list']">Retour à la
+    liste</a>

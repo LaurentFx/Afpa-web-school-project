@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Role } from '../../../model/role';
-import { RoleService } from '../../../service/role.service';
+import { RoleDto } from 'src/app/model/roleDto';
+import { RoleService } from 'src/app/service/role.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-role-list',
@@ -8,10 +9,9 @@ import { RoleService } from '../../../service/role.service';
   styleUrls: ['./role-list.component.css']
 })
 export class RoleListComponent implements OnInit {
-
-  roles: Role[];
+  roles: RoleDto[];
   
-  constructor(private roleService: RoleService) { }
+  constructor(private roleService: RoleService,private router: Router) { }
 
   ngOnInit() {
 
@@ -28,9 +28,26 @@ export class RoleListComponent implements OnInit {
     this.roleService.getAll().subscribe(
       resultat =>{
           this.roles = resultat; 
-          console.log('c est moi',this.roles);
-      }
+               }
     );
+  }
+
+  delete(id:number) {
+    this.roleService.delete(id).subscribe(
+      res=>{
+        this.roleService.subjectMiseAJour.next(0);
+        console.log('delete Ok ');
+      }
+    )
+  }
+  
+  redirectToUpdate(id:number){
+    this.router.navigateByUrl('/role-update/'+id)
+  }
+   
+
+  redirectToShow(id:number) {
+    this.router.navigateByUrl('/role-show/'+id)
   }
 
 }

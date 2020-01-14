@@ -1,0 +1,29 @@
+<h3>Voir un panier</h3>
+
+<div class="panel-body">
+    <table class="table table-striped table-bordered ">
+        <thead class="thead-dark">    
+                <tr>
+            <th>id</th>
+            <th>numClient</th>
+            <th>Manifestation</th>
+            <th>nbreBillets</th>            
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>{{panier.id}}</td>
+            <td>{{panier.numClient}}</td>
+            <td>{{panier.manifestation.label}}</td>
+            <td>{{panier.nbreBillets}}</td>           
+        </tr>
+
+    </tbody>
+
+</table>
+
+<br>
+<br>
+<a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/panier-list']">Retour à la
+    liste</a>

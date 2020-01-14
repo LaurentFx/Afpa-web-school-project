@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SalleDto } from '../../../model/salleDto';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SalleService } from '../../../service/Salle.service';
+import { SalleService } from '../../../service/salle.service';
 
 @Component({
   selector: 'app-salle-show',

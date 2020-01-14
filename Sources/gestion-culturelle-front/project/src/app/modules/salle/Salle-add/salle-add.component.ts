@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SalleService } from 'src/app/service/Salle.service';
+import { SalleService } from 'src/app/service/salle.service';
 import { Router } from '@angular/router';
 import { SalleDto } from '../../../model/salleDto';
 import { TypeSalleDto } from '../../../model/typeSalleDto';
@@ -40,7 +40,7 @@ export class SalleAddComponent implements OnInit {
 
   }
 
-  add(): void {
+  ajout(): void {
     this.salleService.add(this.salle).subscribe(
       res => {
         console.log("Ajout Ok");

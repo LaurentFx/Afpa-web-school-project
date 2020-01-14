@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SalleDto } from '../../../model/salleDto';
-import { SalleService } from '../../../service/Salle.service';
+import { SalleService } from '../../../service/salle.service';
 import { TypeSalleDto } from '../../../model/typeSalleDto';
 import { TypeSalleService } from '../../../service/typeSalle.service';
 

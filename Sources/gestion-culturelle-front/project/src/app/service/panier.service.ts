@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
-import { RoleDto } from '../model/roleDto';
+import { PanierDto } from '../model/panierDto';
 import { HttpClient } from '@angular/common/http'
 import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RoleService {
-  add(role: string) {
-    throw new Error("Method not implemented.");
-  }
+export class PanierService {
+ 
+  monUrl= 'http://localhost:8080/panier'; 
 
-  monUrl= 'http://localhost:8080/role'; 
-
-  role: RoleDto[]; 
+  panier: PanierDto[]; 
 
   subjectMiseAJour= new Subject<number>();
 
@@ -23,27 +20,21 @@ export class RoleService {
     return this.http.get(this.monUrl);
   }
   
-  ajoutRole(role: RoleDto): Observable<object> {
-    return this.http.post(this.monUrl,role);
+  add(panier: PanierDto): Observable<object> {
+    return this.http.post(this.monUrl,panier);
   }
   
   getOne(id: number): Observable<any> {
     return this.http.get(`${this.monUrl}/${id}`);
   } 
 
-  update(id: number, role: Object): Observable<Object> {
-    return this.http.put(`${this.monUrl}/${id}`, role);
+  update(id: number, panier: Object): Observable<Object> {
+    return this.http.put(`${this.monUrl}/${id}`, panier);
   }
 
  delete(id: number): Observable<any> {
     return this.http.delete(`${this.monUrl}/${id}`);
   }
 
-
-
-
-
-
-
-
 }
+

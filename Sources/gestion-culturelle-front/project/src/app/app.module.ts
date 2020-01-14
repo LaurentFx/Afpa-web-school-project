@@ -16,11 +16,12 @@ import { RoleModule } from './modules/role/role.module';
 import { SalleModule } from './modules/salle/salle.module';
 import { LoginModule } from './modules/login/login.module';
 import { ManifestationModule } from './modules/manifestation/manifestation.module';
+import { AnimationModule } from './modules/animation/animation.module';
+import { PanierModule } from './modules/panier/panier.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-
     NavebarComponent,
     HeaderComponent,
     FooterComponent,
@@ -35,7 +36,8 @@ import { ManifestationModule } from './modules/manifestation/manifestation.modul
     RoleModule,
     SalleModule,
     LoginModule,
-    ManifestationModule    
+    ManifestationModule, 
+    AnimationModule, PanierModule,   
   ],
   providers: [],
   bootstrap: [AppComponent]

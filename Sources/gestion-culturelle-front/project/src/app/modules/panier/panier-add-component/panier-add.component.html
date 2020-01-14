@@ -1,0 +1,33 @@
+<h2>Ajouter un panier</h2>
+<br>
+
+<div [hidden]="submitted" style="width: 400px;">
+    <form>
+
+        <div class="form-group">
+
+            <label for="label">Nouveau label :</label>
+            <input type="text" name="label" class="form-control" id="label" placeholder="Entrer votre label"
+                [(ngModel)]="panier.label">
+
+            <label for="numClient">Numero de client :</label>
+            <input type="number" name="type" class="form-control" id="numClient" 
+            placeholder="Entrer le numero de client" [(ngModel)]="panier.numClient">
+
+            <label for="nbreBillets">Nombre de billets:</label>
+            <input type="number" name="nbreBillets" class="form-control" id="nbreBillets"
+                placeholder="Entrer le nombre de billets " [(ngModel)]="panier.nbreBillets">
+
+                <label for="manifestation">Type de manifestation :</label>
+                <select name="manifestation" id="manifestation" [(ngModel)]="panier.manifestation.id" class="form-control" size="3">
+                    <option *ngFor="let manifestation of manifestations" [value]="manifestation.id">{{manifestation.label}}</option>
+                </select>
+
+        </div>
+
+        <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/panier-list']">Annuler</a>
+
+        <button (click)="add()" class="btn btn-secondary" [disabled]="panier.length==0">Ajouter</button>
+
+    </form>
+</div>

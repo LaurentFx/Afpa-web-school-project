@@ -1,0 +1,51 @@
+<h3>Liste des manifestations</h3>
+<br>
+<div class="panel-body">
+    <table class="table table-striped table-bordered ">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Label</th>
+                <th>Animation</th>
+                <th>Date</th>
+                <th>Frais</th>
+                <th>Salle</th>
+                <th>Prix de billet</th>
+                <th>Reservations</th>
+                <th>ReservationsVip</th>
+                <th>Rentabilite</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let manifestation of manifestations">
+
+                <td>{{manifestation.id}}</td>
+                <td>{{manifestation.label}}</td>
+                <td>{{manifestation.animation.label}}</td>
+                <td>{{manifestation.date}}</td>
+                <td>{{manifestation.frais}}</td>
+                <td>{{manifestation.salle.label}}</td>
+                <td>{{manifestation.prixBillet}}</td>
+                <td>{{manifestation.reservations}}</td>
+                <td>{{manifestation.reservationsVip}}</td>
+                <td>{{manifestation.rentabilite}}</td>
+
+
+
+                <td>
+                    <button (click)="redirectToShow(manifestation.id)" class="btn btn-sm btn-success">Show</button>
+                    <button (click)="redirectToUpdate(manifestation.id)" class="btn btn-sm btn-warning">Update</button>
+                    <button (click)="delete(manifestation.id)" class="btn btn-sm btn-danger">Delete</button>
+                </td>
+
+            </tr>
+
+        </tbody>
+    </table>
+
+    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/manifestation-ad']">+ Ajouter une salle
+    </a>
+
+    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/']">Retour à l'accueil </a>

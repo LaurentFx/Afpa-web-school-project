@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
-import { RoleDto } from '../model/roleDto';
+import { AnimationDto } from '../model/animationDto';
 import { HttpClient } from '@angular/common/http'
 import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RoleService {
-  add(role: string) {
-    throw new Error("Method not implemented.");
-  }
+export class AnimationService {
+ 
+  monUrl= 'http://localhost:8080/animation'; 
 
-  monUrl= 'http://localhost:8080/role'; 
-
-  role: RoleDto[]; 
+  animation: AnimationDto[]; 
 
   subjectMiseAJour= new Subject<number>();
 
@@ -23,27 +20,20 @@ export class RoleService {
     return this.http.get(this.monUrl);
   }
   
-  ajoutRole(role: RoleDto): Observable<object> {
-    return this.http.post(this.monUrl,role);
+  add(animation: AnimationDto): Observable<object> {
+    return this.http.post(this.monUrl,animation);
   }
   
   getOne(id: number): Observable<any> {
     return this.http.get(`${this.monUrl}/${id}`);
   } 
 
-  update(id: number, role: Object): Observable<Object> {
-    return this.http.put(`${this.monUrl}/${id}`, role);
+  update(id: number, animation: Object): Observable<Object> {
+    return this.http.put(`${this.monUrl}/${id}`, animation);
   }
 
  delete(id: number): Observable<any> {
     return this.http.delete(`${this.monUrl}/${id}`);
   }
-
-
-
-
-
-
-
 
 }
