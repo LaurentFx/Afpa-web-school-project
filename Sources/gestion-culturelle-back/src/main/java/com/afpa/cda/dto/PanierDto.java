@@ -17,7 +17,7 @@ import lombok.ToString;
 @ToString
 public class PanierDto {
 	private int id;
-	private String numClient;		
+	private int numClient;		
 	private List<ManifestationDto> manifestations;
 	private int nbreBillets;	
 
