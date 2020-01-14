@@ -19,57 +19,48 @@ public class AnimationServiceImpl implements IAnimationService {
 
 	@Override
 	public AnimationDto findById(int id) {
-		Optional<Animation> animationOp=this.animationRepository.findById(id);
-		AnimationDto animat = null;
-		if(animationOp.isPresent()) {
-			Animation anim = animationOp.get();
-			animat = this.modelMapper.map(anim,AnimationDto.class);
+
+		Optional<Animation> animOp = this.animationRepository.findById(id);
+		AnimationDto animDto = null;
+		if (animOp.isPresent()) {
+			Animation an = animOp.get();
+			animDto = this.modelMapper.map(an,AnimationDto.class);
 		}
-		return animat;
+		return animDto;
 	}
 
 
 	@Override
 	public List<AnimationDto> findAll() {
+		
 		return this.animationRepository.findAll()
 				.stream()
-				.map(a->AnimationDto.builder()
-						.id(a.getId())
-						.label(a.getLabel())
-						.type(a.getType())
-						.prix(a.getPrix())
-						.nbreSpectateursPrevus(a.getNbreSpectateursPrevus())
-						.build())
+				.map(a-> this.modelMapper.map(a,AnimationDto.class))
 				.collect(Collectors.toList());
+				
 	}   
 
 
 	@Override
 	public AnimationDto add(AnimationDto anim) {
-		try {
-			Animation animat = this.animationRepository.save(this.modelMapper.map(anim,Animation.class));
-			anim.setId(animat.getId());
-			System.err.println("Animation ajoutee");
-		} catch (Exception e) {
-			System.err.println(e.getStackTrace());
-		}
+		Animation animE = this.modelMapper.map(anim,Animation.class);
+		Animation animationEntity = this.animationRepository.save(animE);
+		anim.setId(animationEntity .getId());
 		return anim;
 	}
 
 
 	@Override
 	public boolean update(AnimationDto anim, int id) {
-		Optional <Animation> animOp = this.animationRepository.findById(id);
-		if (animOp.isPresent()) {
-			Animation animat = animOp.get();
-			animat.setLabel(anim.getLabel());
-			animat.setType(anim.getType());
-			animat.setPrix(anim.getPrix());
-			animat.setNbreSpectateursPrevus(anim.getNbreSpectateursPrevus());
-			this.animationRepository.save(animat);
-			System.err.println("Animation mise à jour");
+		Optional<Animation> animEU = this.animationRepository.findById(id);
+		if (animEU.isPresent()) {
+			Animation an = animEU.get();
+			an.setLabel(anim.getLabel());
+			an.setType(anim.getType());
+			an.setPrix(anim.getPrix());
+			an.setNbreSpectateursPrevus(anim.getNbreSpectateursPrevus());
+			this.animationRepository.save(an);
 			return true;
-
 		}
 		return false;
 	}
@@ -77,9 +68,8 @@ public class AnimationServiceImpl implements IAnimationService {
 
 	@Override
 	public boolean delete(int id) {
-		if (this.animationRepository.existsById(id)) {
+		if(this.animationRepository.existsById(id)) {
 			this.animationRepository.deleteById(id);
-			System.err.println("Animation supprimée");
 			return true;
 		}
 		return false;
