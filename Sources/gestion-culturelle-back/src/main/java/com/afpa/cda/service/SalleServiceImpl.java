@@ -1,3 +1,4 @@
+
 package com.afpa.cda.service;
 
 import java.util.List;
@@ -47,7 +48,7 @@ public class SalleServiceImpl implements ISalleService {
 		try {
 		Salle salle = this.salleRepository.save(this.modelMapper.map(sal,Salle.class));
 		sal.setId(salle.getId());
-		System.err.println("salle ajoutee");
+		System.err.println("Salle ajoutee");
 		} catch (Exception e) {
 			System.err.println(e.getStackTrace());
 		}
@@ -67,7 +68,7 @@ public class SalleServiceImpl implements ISalleService {
 			salle.setTypesalle(TypeSalle.builder().label(salle.getLabel()).build());
 			salle.setTypesalle(TypeSalle.builder().id(salle.getId()).build());
 			this.salleRepository.save(salle);
-			System.err.println("salle mise à jour");
+			System.err.println("Salle mise à jour");
 			return true;
 		}
 		return false;
@@ -77,7 +78,7 @@ public class SalleServiceImpl implements ISalleService {
 	public boolean deleteSalle(int id) {
 		if(this.salleRepository.existsById(id)) {
 			this.salleRepository.deleteById(id);
-			System.err.println("salle supprimee");
+			System.err.println("Salle supprimee");
 			return true;
 		}
 		return false;
