@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PanierService } from '../../../service/panier.service';
 import { Router } from '@angular/router';
 import { PanierDto } from '../../../model/panierDto';
+import { ManifestationDto } from '../../../model/manifestationDto';
+import { ManifestationService } from '../../../service/manifestation.service';
 
 @Component({
   selector: 'app-panier-add',
@@ -9,14 +11,36 @@ import { PanierDto } from '../../../model/panierDto';
   styleUrls: ['./panier-add.component.css']
 })
 export class PanierAddComponent implements OnInit {
-  [x: string]: any;
 
   panier: PanierDto;
+  manifestations: ManifestationDto[];
 
-  constructor(private typeSalleService: PanierService, private router: Router) { }
+  constructor(private manifestationService: ManifestationService,
+     private panierService: PanierService,
+      private router: Router) { }
 
   ngOnInit() {
     this.panier = new PanierDto();
+    this.manifestations = [];
+    this.panier.manifestation = new ManifestationDto();
+
+    this.manifestationService.subjectMiseAJour.subscribe(
+      res => {
+        this.manifestationService.getAll().subscribe(
+          donnees => {
+            this.manifestations = donnees;
+          }
+        );
+      }
+    );
+
+    this.manifestationService.getAll().subscribe(
+      resultat => {
+        this.manifestations = resultat;
+      }
+    );
+
+
   }
 
   add(): void {
