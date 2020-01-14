@@ -24,11 +24,11 @@ public class ManifestationServiceImpl implements IManifestationService {
 	@Autowired
 	private ManifestationRepository manifestationRepository;
 	
-	@Autowired
-	private SalleRepository salleRepository;
-	
-	@Autowired
-	private AnimationRepository animationRepository;
+//	@Autowired
+//	private SalleRepository salleRepository;
+//	
+//	@Autowired
+//	private AnimationRepository animationRepository;
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -56,18 +56,22 @@ public class ManifestationServiceImpl implements IManifestationService {
 	@Override
 	public ManifestationDto add(ManifestationDto mani) {
 		
-		Manifestation maniE = this.modelMapper.map(mani,Manifestation.class);
-		Salle salE = this.salleRepository.findById(mani.getSalle().getId()).get();
-		Animation animE = this.animationRepository.findById(mani.getAnimation().getId()).get();
-//		Panier panE = 
-		maniE.setSalle(salE);
-		maniE.setAnimation(animE);
-		Manifestation manifEntity = this.manifestationRepository.save(maniE);
-		mani.setId(manifEntity.getId());
-		mani.setSalle(new SalleDto());
-		mani.getSalle().setId(salE.getId());
-		mani.setAnimation(new AnimationDto());
-		mani.getAnimation().setId(animE.getId());
+		Manifestation maniE = this.manifestationRepository.save(this.modelMapper.map(mani,Manifestation.class)); 
+		mani.setId(maniE.getId());
+		
+//		Manifestation maniE = this.modelMapper.map(mani,Manifestation.class);
+//		Salle salE = this.salleRepository.findById(mani.getSalle().getId()).get();
+//		Animation animE = this.animationRepository.findById(mani.getAnimation().getId()).get();
+////		Panier panE = 
+//		maniE.setSalle(salE);
+//		maniE.setAnimation(animE);
+//		Manifestation manifEntity = this.manifestationRepository.save(maniE);
+//		mani.setId(manifEntity.getId());
+//		mani.setSalle(new SalleDto());
+//		mani.getSalle().setId(salE.getId());
+//		mani.setAnimation(new AnimationDto());
+//		mani.getAnimation().setId(animE.getId());
+
 		return mani;
 
 	}
