@@ -2,20 +2,20 @@ export class AnimationDto {
     id: number;
     label: string;
     type: string;
-    cout: number;
-    previsionSpectateurs: number;
+    prix: number;
+    nbreSpectateursPrevus: number;
     
 
     constructor(id?: number,
         label?: string,
         type?: string,
-        cout? : number,
-        previsionSpectateurs?: number ){
+        prix? : number,
+        nbreSpectateursPrevus?: number ){
         this.id = id;
         this.label=label;
         this.type = type;
-        this.cout = cout;
-        this.previsionSpectateurs = previsionSpectateurs;
+        this.prix = prix;
+        this.nbreSpectateursPrevus = nbreSpectateursPrevus;
        
     }
 }

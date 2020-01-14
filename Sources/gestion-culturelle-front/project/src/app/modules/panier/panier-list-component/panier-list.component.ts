@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PanierService } from '../../../service/panier.service';
 import { Router } from '@angular/router';
-import { PanierDto } from 'src/app/model/panierDto';
+import { PanierDto } from '../../../model/panierDto';
 
 @Component({
   selector: 'app-panier-list',

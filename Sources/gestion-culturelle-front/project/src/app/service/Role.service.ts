@@ -7,10 +7,7 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class RoleService {
-  add(role: string) {
-    throw new Error("Method not implemented.");
-  }
-
+  
   monUrl= 'http://localhost:8080/role'; 
 
   role: RoleDto[]; 
@@ -23,7 +20,7 @@ export class RoleService {
     return this.http.get(this.monUrl);
   }
   
-  ajoutRole(role: RoleDto): Observable<object> {
+  add(role: RoleDto): Observable<object> {
     return this.http.post(this.monUrl,role);
   }
   

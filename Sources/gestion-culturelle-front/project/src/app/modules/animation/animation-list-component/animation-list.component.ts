@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AnimationService } from '../../../service/animation.service';
 import { Router } from '@angular/router';
-import { AnimationDto } from 'src/app/model/animationDto';
+import { AnimationDto } from '../../../model/animationDto';
 
 @Component({
   selector: 'app-animation-list',

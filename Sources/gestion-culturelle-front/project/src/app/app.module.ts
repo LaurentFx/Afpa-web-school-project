@@ -37,7 +37,8 @@ import { PanierModule } from './modules/panier/panier.module';
     SalleModule,
     LoginModule,
     ManifestationModule, 
-    AnimationModule, PanierModule,   
+    AnimationModule, 
+    PanierModule,   
   ],
   providers: [],
   bootstrap: [AppComponent]

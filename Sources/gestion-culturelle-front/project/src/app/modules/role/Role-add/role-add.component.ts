@@ -18,8 +18,8 @@ _
       this.role = new RoleDto();  
     }
   
-    ajoutRole(): void {
-      this.roleService.ajoutRole(this.role).subscribe(
+    add(): void {
+      this.roleService.add(this.role).subscribe(
         res => {
           this.roleService.subjectMiseAJour.next(0);
           console.log("Ajout Ok");

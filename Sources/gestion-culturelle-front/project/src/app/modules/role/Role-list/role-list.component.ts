@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RoleDto } from 'src/app/model/roleDto';
-import { RoleService } from 'src/app/service/role.service';
+import { RoleDto } from '../../../model/roleDto';
+import { RoleService } from '../../../service/role.service';
 import { Router } from '@angular/router';
 
 @Component({
