@@ -11,7 +11,7 @@
             placeholder="Entrer le numero de client" [(ngModel)]="panier.numClient">
 
             <label for="manifestation">Type de manifestation :</label>
-            <select name="manifestation" id="manifestation" [(ngModel)]="panier.manifestation.id" class="form-control" size="3">
+            <select name="manifestation" id="manifestation" [(ngModel)]="panier.manifestation.id" class="form-control" >
                 <option *ngFor="let manifestation of manifestations" [value]="manifestation.id">{{manifestation.label}}</option>
             </select>
 

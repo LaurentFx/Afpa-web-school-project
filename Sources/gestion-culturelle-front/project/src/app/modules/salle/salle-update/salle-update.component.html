@@ -30,7 +30,7 @@
         </div>
 
         <label for="typesalle">Type de salle :</label>
-        <select name="typesalle" id="typesalle" [(ngModel)]="salle.typeSalle.id" class="form-control" size="3">
+        <select name="typesalle" id="typesalle" [(ngModel)]="salle.typeSalle.id" class="form-control" >
             <option *ngFor="let typesalle of typeSalles" [value]="typesalle.id">{{typesalle.label}}</option>
         </select>
 
