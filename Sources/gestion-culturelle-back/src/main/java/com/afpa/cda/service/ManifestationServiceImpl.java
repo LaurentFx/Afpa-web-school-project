@@ -23,22 +23,48 @@ public class ManifestationServiceImpl implements IManifestationService {
 
 	@Autowired
 	private ManifestationRepository manifestationRepository;
-	
-//	@Autowired
-//	private SalleRepository salleRepository;
-//	
-//	@Autowired
-//	private AnimationRepository animationRepository;
+
+	//	@Autowired
+	//	private SalleRepository salleRepository;
+	//	
+	//	@Autowired
+	//	private AnimationRepository animationRepository;
 
 	@Autowired
 	private ModelMapper modelMapper;
 
 	@Override
 	public List<ManifestationDto> findAll() {
-		 return this.manifestationRepository.findAll()
-				 .stream()
-				 .map(m-> this.modelMapper.map(m,ManifestationDto.class))
-				 .collect(Collectors.toList());
+		return this.manifestationRepository.findAll()
+				.stream()
+				.peek(m->{
+					System.out.println("m.getId : "+m.getId());
+					System.out.println("m.getSalle : "+m.getSalle());
+				})
+				.map(m-> {
+					ManifestationDto manifestationDto = new ManifestationDto();
+					manifestationDto.setId(m.getId());
+					manifestationDto.setLabel(m.getLabel());
+
+					AnimationDto animationDto = new AnimationDto();
+					animationDto.setLabel(m.getAnimation().getLabel());
+					manifestationDto.setAnimation(animationDto);
+
+					manifestationDto.setDate(m.getDate());
+					manifestationDto.setCout(m.getCout());
+					
+					SalleDto salleDto = new SalleDto();
+//					salleDto.setId(m.getSalle().getId());
+					salleDto.setLabel(m.getSalle().getLabel());
+					manifestationDto.setSalle(salleDto);
+
+					manifestationDto.setPrixBillet(m.getPrixBillet());
+					manifestationDto.setReservations(m.getReservations());
+					manifestationDto.setReservationsVip(m.getReservationsVip());
+										
+					return manifestationDto;
+				})
+				.collect(Collectors.toList());
 	}
 
 	@Override
@@ -55,22 +81,22 @@ public class ManifestationServiceImpl implements IManifestationService {
 
 	@Override
 	public ManifestationDto add(ManifestationDto mani) {
-		
+
 		Manifestation maniE = this.manifestationRepository.save(this.modelMapper.map(mani,Manifestation.class)); 
 		mani.setId(maniE.getId());
-		
-//		Manifestation maniE = this.modelMapper.map(mani,Manifestation.class);
-//		Salle salE = this.salleRepository.findById(mani.getSalle().getId()).get();
-//		Animation animE = this.animationRepository.findById(mani.getAnimation().getId()).get();
-////		Panier panE = 
-//		maniE.setSalle(salE);
-//		maniE.setAnimation(animE);
-//		Manifestation manifEntity = this.manifestationRepository.save(maniE);
-//		mani.setId(manifEntity.getId());
-//		mani.setSalle(new SalleDto());
-//		mani.getSalle().setId(salE.getId());
-//		mani.setAnimation(new AnimationDto());
-//		mani.getAnimation().setId(animE.getId());
+
+		//		Manifestation maniE = this.modelMapper.map(mani,Manifestation.class);
+		//		Salle salE = this.salleRepository.findById(mani.getSalle().getId()).get();
+		//		Animation animE = this.animationRepository.findById(mani.getAnimation().getId()).get();
+		////		Panier panE = 
+		//		maniE.setSalle(salE);
+		//		maniE.setAnimation(animE);
+		//		Manifestation manifEntity = this.manifestationRepository.save(maniE);
+		//		mani.setId(manifEntity.getId());
+		//		mani.setSalle(new SalleDto());
+		//		mani.getSalle().setId(salE.getId());
+		//		mani.setAnimation(new AnimationDto());
+		//		mani.getAnimation().setId(animE.getId());
 
 		return mani;
 
@@ -81,21 +107,21 @@ public class ManifestationServiceImpl implements IManifestationService {
 		Optional<Manifestation> manifE = this.manifestationRepository.findById(id);
 		if (manifE.isPresent()) {
 			this.manifestationRepository.save(this.modelMapper.map(manif,Manifestation.class));
-			
-//			Manifestation mn = manifE.get();
-//			mn.setLabel(manif.getLabel());
-//			mn.setDate(manif.getDate());
-//			mn.setCout(manif.getCout());
-//			mn.setPrixBillet(manif.getPrixBillet());
-//			mn.setReservations(manif.getReservations());
-//			mn.setReservationsVip(manif.getReservationsVip());
-//			mn.setRentabilite(manif.getRentabilite());
-//			this.manifestationRepository.save(mn);
+
+			//			Manifestation mn = manifE.get();
+			//			mn.setLabel(manif.getLabel());
+			//			mn.setDate(manif.getDate());
+			//			mn.setCout(manif.getCout());
+			//			mn.setPrixBillet(manif.getPrixBillet());
+			//			mn.setReservations(manif.getReservations());
+			//			mn.setReservationsVip(manif.getReservationsVip());
+			//			mn.setRentabilite(manif.getRentabilite());
+			//			this.manifestationRepository.save(mn);
 			return true;
 		}
 		return false;
 	}
-	
+
 
 	@Override
 	public boolean deleteManifestation(int id) {
@@ -108,4 +134,17 @@ public class ManifestationServiceImpl implements IManifestationService {
 		return false;
 	}
 
+	
+	public double calculCout (double prixAnim,double fraisJournalier, int nbreJours) {
+		int cout = 0;
+		
+		return cout;
+	}
+	
+	public double calculPrixBillet (double cout, int capacite) {
+		int prixBillet = 0;
+		
+		return prixBillet;
+	}
+	
 }

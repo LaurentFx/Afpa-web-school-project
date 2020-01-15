@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SalleDto } from '../../../model/salleDto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SalleService } from '../../../service/salle.service';
+import { TypeSalleDto } from '../../../model/typeSalleDto';
 
 @Component({
   selector: 'app-salle-show',
@@ -16,6 +17,7 @@ export class SalleShowComponent implements OnInit {
 
   ngOnInit() {
     this.salle = new SalleDto();
+    this.salle.typeSalle=new TypeSalleDto();
 
     let id = this.route.snapshot.params['id'];
 

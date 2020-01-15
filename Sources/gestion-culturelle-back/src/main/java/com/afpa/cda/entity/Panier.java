@@ -1,5 +1,6 @@
 package com.afpa.cda.entity;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -27,6 +28,7 @@ public class Panier {
 	@GeneratedValue(generator = "PANIER_SEQ", strategy = GenerationType.SEQUENCE)
 	private int id;
 	
+	private Date dateValidation;
 	private int numClient;
 		
 	@ManyToMany
@@ -36,5 +38,6 @@ public class Panier {
 	private List <Manifestation> manifestations;
 	
 	private int nbreBillets;
+	private double total;
 
 }

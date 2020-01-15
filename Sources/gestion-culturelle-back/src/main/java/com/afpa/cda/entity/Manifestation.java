@@ -40,7 +40,7 @@ public class Manifestation {
 	private double cout;
 
 	@ManyToOne
-	@JoinColumn(name = "salle")
+	@JoinColumn(name = "salle", nullable = false)
 	private Salle salle;
 	
 

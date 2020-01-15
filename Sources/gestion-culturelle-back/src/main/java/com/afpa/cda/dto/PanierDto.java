@@ -1,5 +1,6 @@
 package com.afpa.cda.dto;
 
+import java.util.Date;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -17,8 +18,9 @@ import lombok.ToString;
 @ToString
 public class PanierDto {
 	private int id;
+	private Date dateValidation;
 	private int numClient;		
 	private List<ManifestationDto> manifestations;
 	private int nbreBillets;	
-
+	private double total;
 }

@@ -7,9 +7,11 @@
         <thead class="thead-dark">
             <tr>
                 <th>Id</th>
+                <th>Date validation</th>
                 <th>numClient</th>
                 <th>Manifestation</th>
                 <th>Nombre de billets</th>
+                <th>Prix total</th>                
                 <th>Actions</th>
             </tr>
         </thead>
@@ -18,9 +20,11 @@
             <tr *ngFor="let panier of paniers">
 
                 <td>{{panier.id}}</td>
+                <td>{{panier.dateValidation}}</td>
                 <td>{{panier.numClient}}</td>
                 <td>{{panier.manifestation}}</td>
                 <td>{{panier.nbreBillets}}</td>
+                <td>{{panier.total}}</td>
 
                 <td>
                     <button (click)="redirectToShow(panier.id)" class="btn btn-sm btn-success">Show</button>
