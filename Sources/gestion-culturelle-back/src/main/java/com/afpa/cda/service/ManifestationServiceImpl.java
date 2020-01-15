@@ -8,15 +8,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.afpa.cda.dao.AnimationRepository;
 import com.afpa.cda.dao.ManifestationRepository;
-import com.afpa.cda.dao.SalleRepository;
+import com.afpa.cda.dto.AdminDto;
 import com.afpa.cda.dto.AnimationDto;
 import com.afpa.cda.dto.ManifestationDto;
 import com.afpa.cda.dto.SalleDto;
-import com.afpa.cda.entity.Animation;
 import com.afpa.cda.entity.Manifestation;
-import com.afpa.cda.entity.Salle;
 
 @Service
 public class ManifestationServiceImpl implements IManifestationService {
@@ -37,24 +34,24 @@ public class ManifestationServiceImpl implements IManifestationService {
 	public List<ManifestationDto> findAll() {
 		return this.manifestationRepository.findAll()
 				.stream()
-				.peek(m->{
-					System.out.println("m.getId : "+m.getId());
-					System.out.println("m.getSalle : "+m.getSalle());
-				})
 				.map(m-> {
 					ManifestationDto manifestationDto = new ManifestationDto();
 					manifestationDto.setId(m.getId());
 					manifestationDto.setLabel(m.getLabel());
-
+					manifestationDto.setDateValidation(m.getDateValidation());
+					
+					AdminDto adminDto = new AdminDto ();
+					adminDto.setNom(m.getValidateur().getNom());
+					
 					AnimationDto animationDto = new AnimationDto();
 					animationDto.setLabel(m.getAnimation().getLabel());
 					manifestationDto.setAnimation(animationDto);
 
-					manifestationDto.setDate(m.getDate());
+					manifestationDto.setDateDebut(m.getDateDebut());
+					manifestationDto.setDateFin(m.getDateFin());
 					manifestationDto.setCout(m.getCout());
 					
 					SalleDto salleDto = new SalleDto();
-//					salleDto.setId(m.getSalle().getId());
 					salleDto.setLabel(m.getSalle().getLabel());
 					manifestationDto.setSalle(salleDto);
 
@@ -62,6 +59,10 @@ public class ManifestationServiceImpl implements IManifestationService {
 					manifestationDto.setReservations(m.getReservations());
 					manifestationDto.setReservationsVip(m.getReservationsVip());
 										
+					adminDto.setNom(m.getAnnulateur().getNom());
+					
+					manifestationDto.setDateAnnulation(m.getDateAnulation());
+					
 					return manifestationDto;
 				})
 				.collect(Collectors.toList());
@@ -147,4 +148,8 @@ public class ManifestationServiceImpl implements IManifestationService {
 		return prixBillet;
 	}
 	
+	public void annulation (AdminDto annulateur) {
+				
+		
+	}
 }

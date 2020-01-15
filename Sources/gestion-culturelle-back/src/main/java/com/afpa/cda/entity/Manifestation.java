@@ -32,17 +32,21 @@ public class Manifestation {
 	private int id;
 
 	private String label;
+	private Date dateValidation;
+	@OneToOne
+	private Personne validateur;
 
 	@OneToOne
 	private Animation animation;	
 
-	private Date date;
+	private Date dateDebut;
+	private Date dateFin;
 	private double cout;
 
 	@ManyToOne
 	@JoinColumn(name = "salle", nullable = false)
 	private Salle salle;
-	
+
 
 	private double prixBillet;	
 	private int reservations;
@@ -51,9 +55,14 @@ public class Manifestation {
 
 	@ManyToMany
 	@JoinTable(name = "Manifestation_Panier",
-			joinColumns = { @JoinColumn(name = "id_manifestation") },
-			inverseJoinColumns = { @JoinColumn(name = "id_panier") })
+	joinColumns = { @JoinColumn(name = "id_manifestation") },
+	inverseJoinColumns = { @JoinColumn(name = "id_panier") })
 	private List <Panier> paniers;
+
+	@OneToOne
+	private Personne annulateur;
+	
+	private Date dateAnulation;
 
 
 }
