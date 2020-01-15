@@ -20,11 +20,14 @@ export class ManifestationAddComponent implements OnInit {
 
   constructor(private salleService : SalleService, private animationService : AnimationService, private manifestationService: ManifestationService, private router: Router) { }
 
-  ngOnInit() {
+   ngOnInit() {
     this.manifestation = new ManifestationDto();
+
     this.salles =[];
     this.animations = [];
+
     this.manifestation.salle = new SalleDto();
+    
     this.manifestation.animation = new AnimationDto();
 
     this.animationService.subjectMiseAJour.subscribe(

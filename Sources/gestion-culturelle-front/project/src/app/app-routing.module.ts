@@ -25,6 +25,10 @@ import { RoleAddComponent } from './modules/role/role-add/role-add.component';
 import { RoleUpdateComponent } from './modules/role/role-update/role-update.component';
 import { RoleShowComponent } from './modules/role/role-show/role-show.component';
 import { RoleListComponent } from './modules/role/role-list/role-list.component';
+import { AdminListComponent } from './modules/admin/admin-list/admin-list.component';
+import { AdminAddComponent } from './modules/admin/admin-add/admin-add.component';
+import { AdminUpdateComponent } from './modules/admin/admin-update/admin-update.component';
+import { AdminShowComponent } from './modules/admin/admin-show/admin-show.component';
 
 
 const routes: Routes = [
@@ -58,6 +62,11 @@ const routes: Routes = [
  {path: 'role-ad', component: RoleAddComponent},
  {path: 'role-update/:id', component: RoleUpdateComponent},
  {path: 'role-show/:id', component: RoleShowComponent},
+  
+ {path: 'admin-list', component: AdminListComponent},
+ {path: 'admin-ad', component: AdminAddComponent},
+ {path: 'admin-update/:id', component: AdminUpdateComponent},
+ {path: 'admin-show/:id', component: AdminShowComponent},
    
 ];
  
