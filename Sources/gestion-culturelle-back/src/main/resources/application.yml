@@ -12,6 +12,14 @@ spring:
   hibernate:
    ddl-auto: update
       
+  properties:
+      javax:
+        persistence:
+          schema-generation:
+            create-source: metadata
+            scripts:
+              action: create
+              create-target: create.sql
 
 
 #spring:
@@ -22,12 +30,3 @@ spring:
 # jpa:
 #    hibernate:
 #      ddl-auto: update
-
-#    properties:
-#      javax:
-#        persistence:
-#          schema-generation:
-#            create-source: metadata
-#            scripts:
-#              action: create
-#              create-target: create.sql

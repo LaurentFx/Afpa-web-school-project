@@ -6,6 +6,7 @@ import { AnimationDto } from '../../../model/animationDto';
 import { SalleDto } from '../../../model/salleDto';
 import { SalleService } from '../../../service/Salle.service';
 import { AnimationService } from '../../../service/animation.service';
+import { AdminService } from '../../../service/admin.service';
 
 @Component({
   selector: 'app-manifestation-update',
@@ -18,8 +19,9 @@ export class ManifestationUpdateComponent implements OnInit {
   manifestation: ManifestationDto;
   animations: AnimationDto[];
   salles: SalleDto[];
+  admins: AdminDto[];
 
-  constructor(private salleService : SalleService, private animationService : AnimationService,private route: ActivatedRoute, private manifestationService: ManifestationService, private router: Router) { }
+  constructor(private adminService: AdminService, private salleService : SalleService, private animationService : AnimationService,private route: ActivatedRoute, private manifestationService: ManifestationService, private router: Router) { }
 
   ngOnInit() {
     this.manifestation = new ManifestationDto();
@@ -27,7 +29,7 @@ export class ManifestationUpdateComponent implements OnInit {
     this.animations = [];
     this.manifestation.salle = new SalleDto();
     this.manifestation.animation = new AnimationDto();
-
+    this.manifestation.validateur = new AdminDto();
 
     let id = this.route.snapshot.params['id'];
 
@@ -70,6 +72,21 @@ export class ManifestationUpdateComponent implements OnInit {
     );
 
 
+    this.adminService.subjectMiseAJour.subscribe(
+      res => {
+        this.adminService.getAll().subscribe(
+          donnees => {
+            this.admins = donnees;
+          }
+        );
+      }
+    );
+
+    this.adminService.getAll().subscribe(
+      resultat => {
+        this.admins = resultat;
+      }
+    );
 
   }
 

@@ -6,13 +6,18 @@
             <tr>
                 <th>Id</th>
                 <th>Label</th>
+                <th>dateValidation</th>
+                <th>validateur</th>
                 <th>Animation</th>
-                <th>Date</th>
+                <th>dateDebut</th>
+                <th>dateFin</th>
                 <th>Coût</th>
                 <th>Salle</th>
                 <th>Prix du billet</th>
                 <th>Reservations</th>
                 <th>Reservations Vip</th>
+                <th>annulateur</th>
+                <th>dateAnnulation</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -22,14 +27,19 @@
 
                 <td>{{manifestation.id}}</td>
                 <td>{{manifestation.label}}</td>
+                <td>{{manifestation.dateValidation}}</td>
+                <td>{{manifestation.validateur}}</td>
                 <td>{{manifestation.animation.label}}</td>
-                <td>{{manifestation.date}}</td>
+                <td>{{manifestation.dateDebut}}</td>
+                <td>{{manifestation.dateFin}}</td>
                 <td>{{manifestation.cout}}</td>
                 <td>{{manifestation.salle.label}}</td>
                 <td>{{manifestation.prixBillet}}</td>
                 <td>{{manifestation.reservations}}</td>
                 <td>{{manifestation.reservationsVip}}</td>
-             
+                <td>{{manifestation.annulateur}}</td>
+                <td>{{manifestation.dateAnnulation}}</td>
+
                 <td>
                     <button (click)="redirectToShow(manifestation.id)" class="btn btn-sm btn-success">Show</button>
                     <button (click)="redirectToUpdate(manifestation.id)" class="btn btn-sm btn-warning">Update</button>
@@ -41,6 +51,7 @@
         </tbody>
     </table>
 
-    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/manifestation-ad']">+ Ajouter une manifestation </a>
+    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/manifestation-ad']">+ Ajouter une
+        manifestation </a>
 
     <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/']">Retour à l'accueil </a>
