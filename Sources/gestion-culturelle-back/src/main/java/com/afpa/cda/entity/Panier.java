@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import lombok.AllArgsConstructor;
@@ -28,9 +30,11 @@ public class Panier {
 	private int numClient;
 		
 	@ManyToMany
+	@JoinTable(name = "Manifestation_Panier",
+	joinColumns = { @JoinColumn(name = "id_panier") },
+	inverseJoinColumns = { @JoinColumn(name = "id_manifestation") })
 	private List <Manifestation> manifestations;
 	
 	private int nbreBillets;
-	
 
 }

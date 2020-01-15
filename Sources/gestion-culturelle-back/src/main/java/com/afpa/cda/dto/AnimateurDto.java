@@ -1,8 +1,6 @@
 package com.afpa.cda.dto;
 import java.util.List;
 
-import com.afpa.cda.entity.Animation;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,6 +26,6 @@ public class AnimateurDto  {
 	private RoleDto role;
 	
 	private String entreprise;
-private List <Animation> animations;
+private List <AnimationDto> animations;
 	
 }

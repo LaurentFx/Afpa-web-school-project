@@ -1,8 +1,5 @@
 package com.afpa.cda.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -18,7 +14,6 @@ import lombok.ToString;
 @Builder
 @ToString
 public class RoleDto {
-	@Id
 	private int id;
 	private String label;
 

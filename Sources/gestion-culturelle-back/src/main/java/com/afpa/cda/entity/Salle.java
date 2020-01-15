@@ -34,7 +34,8 @@ public class Salle {
 	@ManyToOne
 	private TypeSalle typesalle;
 	
-	@OneToMany
+	
+	@OneToMany (mappedBy = "salle")
 	private List <Manifestation> manifestations;
 
 
