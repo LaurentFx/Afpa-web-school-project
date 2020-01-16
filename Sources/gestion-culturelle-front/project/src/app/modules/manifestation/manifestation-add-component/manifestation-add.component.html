@@ -22,7 +22,7 @@
             <option *ngFor="let validateur of admins" [value]="validateur.id">{{manifestation.validateur}}</option>
         </select>
 
-        <label for="animation">Type d'animation :</label>
+        <label for="animation">Nom de l'animation :</label>
         <select name="animation" id="animation" [(ngModel)]="manifestation.animation.id" class="form-control">
             <option *ngFor="let animation of animations" [value]="animation.id">{{animation.label}}</option>
         </select>
@@ -35,8 +35,8 @@
 
         <div class="form-group">
             <label for="dateFin">Date de fin :</label>
-            <input type="date" name="dateFin" class="form-control" id="dateFin"
-                placeholder="Entrer la date de fin " [(ngModel)]="manifestation.dateFin">
+            <input type="date" name="dateFin" class="form-control" id="dateFin" placeholder="Entrer la date de fin "
+                [(ngModel)]="manifestation.dateFin">
         </div>
 
         <div class="form-group">
@@ -69,7 +69,7 @@
             <input type="text" name="reservationsVip" class="form-control" id="reservationsVip"
                 placeholder="Entrer le nombre de reservationsVip" [(ngModel)]="manifestation.reservationsVip">
         </div>
-             
+
         <label for="salle">Nom de l'annulateur :</label>
         <select name="annulateur" id="annulateur" [(ngModel)]="manifestation.annulateur.id" class="form-control">
             <option *ngFor="let annulateur of admins" [value]="annulateur.id">{{manifestation.annulateur}}</option>
@@ -81,9 +81,10 @@
                 placeholder="Entrer la date d'annulation " [(ngModel)]="manifestation.dateAnnulation">
         </div>
 
-<a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/manifestation-list']">Annuler</a>
+        <a name="" id="" class="btn btn-secondary" href="#" role="button"
+            [routerLink]="['/manifestation-list']">Annuler</a>
 
-<button (click)="add()" class="btn btn-secondary" [disabled]="manifestation.length==0">Ajouter</button>
+        <button (click)="add()" class="btn btn-secondary" [disabled]="manifestation.length==0">Ajouter</button>
 
-</form>
+    </form>
 </div>

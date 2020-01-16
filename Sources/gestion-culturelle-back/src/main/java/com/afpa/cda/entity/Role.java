@@ -23,10 +23,11 @@ public class Role {
 	
 	@Id
 	@GeneratedValue(generator = "ROLE_SEQ", strategy = GenerationType.SEQUENCE)
-	private int id;
-	
+	private int id;	
 	private String label;
 	
+
 	@OneToMany(mappedBy = "role")
 	private List<Personne> personnes;
+
 }

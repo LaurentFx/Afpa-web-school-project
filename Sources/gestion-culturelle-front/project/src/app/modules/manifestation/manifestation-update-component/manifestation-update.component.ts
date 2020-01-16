@@ -28,6 +28,7 @@ export class ManifestationUpdateComponent implements OnInit {
     this.manifestation = new ManifestationDto();
     this.salles =[];
     this.animations = [];
+    
     this.manifestation.salle = new SalleDto();
     this.manifestation.animation = new AnimationDto();
     this.manifestation.validateur = new AdminDto();
