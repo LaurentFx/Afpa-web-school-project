@@ -37,7 +37,7 @@ public class AdminServiceImpl implements IAdminService {
 		admin.setEmail(administrateur.getEmail());
 		admin.setLogin(administrateur.getLogin());
 		admin.setAdresse(administrateur.getAdresse());
-		//admin.setRoleDto(administrateur.getRoles().add());	
+		//admin.setRoleDto(administrateur.getRoles());	
 		System.err.println("administrateur ajouté");
 		
 		return admin;

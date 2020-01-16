@@ -1,1 +1,55 @@
-<p>admin-update works!</p>
+<h2>Mettre à jour un administrateur</h2>
+<br>
+
+<div [hidden]="submitted" style="width: 400px;">
+    <form (ngSubmit)="onSubmit()">
+   
+        <div class="form-group">
+            
+            <label for="label">Nouveau nom :</label>
+            <input type="text" class="form-control" id="nom" placeholder="Entrer votre nom" required [(ngModel)]="admin.nom"
+                name="nom">
+        </div>
+
+        <div class="form-group">
+            
+            <label for="label">Nouveau prenom :</label>
+            <input type="text" class="form-control" id="prenom" placeholder="Entrer votre prenom" required [(ngModel)]="admin.prenom"
+                name="prenom">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Nouvel Email :</label>
+            <input type="text" class="form-control" id="email" placeholder="Entrer votre email" required [(ngModel)]="admin.email"
+                name="email">
+        </div>
+
+        <div class="form-group">
+            <label for="login">Nouveau login :</label>
+            <input type="text" class="form-control" id="login" placeholder="Entrer votre login" required [(ngModel)]="admin.login"
+                name="login">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Nouveau password :</label>
+            <input type="text" class="form-control" id="password" placeholder="Entrer votre password" required [(ngModel)]="admin.password"
+                name="password">
+        </div>
+
+        <div class="form-group">
+            <label for="adresse">Nouvelle adresse :</label>
+            <input type="text" class="form-control" id="adresse" placeholder="Entrer votre adresse" required [(ngModel)]="admin.adresse"
+                name="adresse">
+        </div>
+
+
+        <label for="role">Nouveau role :</label>
+        <select name="role" id="role" [(ngModel)]="admin.role.id" class="form-control" >
+            <option *ngFor="let role of roles" [value]="role.id">{{role.label}}</option>
+        </select>
+
+        <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/admin-list']">Annuler</a>
+
+        <button type="submit" class="btn btn-secondary">Valider</button>
+    </form>
+</div>
