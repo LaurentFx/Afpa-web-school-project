@@ -1,8 +1,11 @@
 package com.afpa.cda.entity;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,8 +23,10 @@ public class Role {
 	
 	@Id
 	@GeneratedValue(generator = "ROLE_SEQ", strategy = GenerationType.SEQUENCE)
-	private int id;
-	
+	private int id;	
 	private String label;
+	
+	@OneToMany (mappedBy = "personne_role")
+	private List <Personne> personnes;
 
 }

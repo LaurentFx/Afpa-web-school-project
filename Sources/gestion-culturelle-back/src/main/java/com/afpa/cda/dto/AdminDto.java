@@ -25,7 +25,7 @@ public class AdminDto {
 	private String login;
 	private String password;
 	private String adresse;
-	private List <RoleDto> roles;
+	private RoleDto role;
 	
 	
 }
