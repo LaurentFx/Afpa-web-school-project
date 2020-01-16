@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { SalleDto } from '../../../model/salleDto';
 import { AnimationDto } from '../../../model/animationDto';
 import { AnimationService } from '../../../service/animation.service';
-import { SalleService } from '../../../service/Salle.service';
+import { SalleService } from '../../../service/salle.service';
 import { AdminDto } from '../../../model/adminDto';
 import { AdminService } from '../../../service/admin.service';
 
