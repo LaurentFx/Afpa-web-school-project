@@ -18,7 +18,7 @@
 
         <label for="role">Role :</label>
         <select name="role" id="role" [(ngModel)]="admin.role.id" class="form-control">
-            <option *ngFor="let role of roles" [value]="role.id">{{role.label}}</option>
+            <option *ngFor="let role of roles" [value]="role.id">{{role.nom}}</option>
         </select>
 
 

@@ -41,7 +41,8 @@ public class ManifestationServiceImpl implements IManifestationService {
 					manifestationDto.setDateValidation(m.getDateValidation());
 					
 					AdminDto adminDto = new AdminDto ();
-					adminDto.setNom(m.getValidateur().getNom());
+					adminDto.setId(m.getValidateur().getId());
+					manifestationDto.setValidateur(adminDto);
 					
 					AnimationDto animationDto = new AnimationDto();
 					animationDto.setLabel(m.getAnimation().getLabel());
@@ -60,6 +61,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 					manifestationDto.setReservationsVip(m.getReservationsVip());
 										
 					adminDto.setNom(m.getAnnulateur().getNom());
+					manifestationDto.setAnnulateur(adminDto);
 					
 					manifestationDto.setDateAnnulation(m.getDateAnulation());
 					

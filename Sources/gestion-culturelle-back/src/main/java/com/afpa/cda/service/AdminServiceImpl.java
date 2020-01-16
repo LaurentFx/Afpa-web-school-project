@@ -23,20 +23,9 @@ public class AdminServiceImpl implements IAdminService {
 	public List<AdminDto> findAll() {
 		
 		return this.personneRepository.findAll()
-				.stream()
-				.map(m-> {
-					AdminDto adminDto = new AdminDto();
-					adminDto.setId(m.getId());
-					adminDto.setNom(m.getNom());
-					adminDto.setPrenom(m.getPrenom());
-					adminDto.setEmail(m.getEmail());
-					adminDto.setLogin(m.getLogin());
-					adminDto.setPassword(m.getPassword());
-					adminDto.setAdresse(m.getAdresse());					
-							//manque roleDto
-					return adminDto;
-				})
-				.collect(Collectors.toList());
+		.stream()
+		.map(ts-> this.modelMapper.map(ts,AdminDto.class ))
+		.collect(Collectors.toList());
 	}
 
 	@Override
@@ -48,7 +37,7 @@ public class AdminServiceImpl implements IAdminService {
 		admin.setEmail(administrateur.getEmail());
 		admin.setLogin(administrateur.getLogin());
 		admin.setAdresse(administrateur.getAdresse());
-		//admin.setRoleDto(administrateur.getRoles());	
+		//admin.setRoleDto(administrateur.getRoles().add());	
 		System.err.println("administrateur ajouté");
 		
 		return admin;
