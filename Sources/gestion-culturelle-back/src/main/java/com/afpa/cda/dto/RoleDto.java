@@ -17,8 +17,7 @@ import lombok.ToString;
 @ToString
 public class RoleDto {
 	private int id;
-	private String label;
-	
-	private List<AdminDto> adminsDto;
+	private String label;	
+	private List<AdminDto> admin;
 
 }

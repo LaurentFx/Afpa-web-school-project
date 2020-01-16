@@ -7,7 +7,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.afpa.cda.dao.RoleRepository;
+import com.afpa.cda.dto.AdminDto;
+import com.afpa.cda.dto.ManifestationDto;
 import com.afpa.cda.dto.RoleDto;
+import com.afpa.cda.dto.SalleDto;
+import com.afpa.cda.dto.TypeSalleDto;
 import com.afpa.cda.entity.Role;
 
 
@@ -23,10 +27,29 @@ public class RoleServiceImpl implements IRoleService {
 	@Override
 	public List<RoleDto> findAll() {
 		return this.roleRepository.findAll()
+				
 				.stream()
-				.map(ts-> this.modelMapper.map(ts,RoleDto.class))
-				.collect(Collectors.toList());	
+				.map(r-> {
+				
+				RoleDto roleDto = new RoleDto();
+				roleDto.setId(r.getId());
+				roleDto.setLabel(r.getLabel());	
+				roleDto.setAdmin(r.getPersonnes());
+						
+						List<AdminDto> adminDto; 
+						.stream()
+						.map(p-> {
+							adminDto.
+											
+				}	
+				
+								
+								return roleDto;
+				})
+				.collect(Collectors.toList());							
+							
 	}
+	
 	
 	@Override
 	public RoleDto findById(int id) {

@@ -48,6 +48,8 @@ public class Personne {
 
 	@OneToMany
 	private List <Animation> animations;
+	
+	
 
 
 }

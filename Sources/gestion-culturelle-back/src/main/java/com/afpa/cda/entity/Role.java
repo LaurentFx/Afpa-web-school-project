@@ -26,7 +26,7 @@ public class Role {
 	private int id;	
 	private String label;
 	
-	@OneToMany (mappedBy = "personne_role")
+	@OneToMany (mappedBy = "role")
 	private List <Personne> personnes;
 
 }
