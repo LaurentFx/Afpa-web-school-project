@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PanierService } from '../../../service/panier.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PanierDto } from '../../../model/panierDto';
+import { ManifestationDto } from '../../../model/manifestationDto';
+import { ManifestationService } from '../../../service/manifestation.service';
 
 @Component({
   selector: 'app-panier-update',
@@ -12,11 +14,16 @@ export class PanierUpdateComponent implements OnInit {
 
   id: number;
   panier: PanierDto;
+  manifestations: ManifestationDto[];
 
-  constructor(private route: ActivatedRoute, private panierService: PanierService, private router: Router) { }
+  constructor(private manifestationService: ManifestationService,
+    private route: ActivatedRoute, private panierService: PanierService,
+     private router: Router) { }
 
   ngOnInit() {
     this.panier = new PanierDto();
+    this.manifestations = [];
+    this.panier.manifestation = new ManifestationDto ();
 
     let id = this.route.snapshot.params['id'];
 
@@ -25,6 +32,24 @@ export class PanierUpdateComponent implements OnInit {
         this.panier = res;
       }
     );
+
+    this.manifestationService.subjectMiseAJour.subscribe(
+      res => {
+        this.manifestationService.getAll().subscribe(
+          donnees => {
+            this.manifestations = donnees;
+          }
+        );
+      }
+    );
+
+    this.manifestationService.getAll().subscribe(
+      resultat => {
+        this.manifestations = resultat;
+      }
+    );
+
+
   }
 
   update(): void {

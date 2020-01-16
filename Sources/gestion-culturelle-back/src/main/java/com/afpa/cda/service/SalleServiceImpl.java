@@ -89,11 +89,22 @@ public class SalleServiceImpl implements ISalleService {
 	@Override
 	public SalleDto findById(int id) {
 		Optional<Salle> salleOp = this.salleRepository.findById(id);
-		SalleDto salle=null;
+		SalleDto salleDto = new SalleDto();
 		if(salleOp.isPresent()) {
-			Salle sal = salleOp.get();
-			salle = this.modelMapper.map(sal,SalleDto.class);
+			Salle salle = salleOp.get();
+		
+			salleDto.setId(salle.getId());
+			salleDto.setLabel(salle.getLabel());
+			salleDto.setCapacite(salle.getCapacite());
+			salleDto.setPlacesVip(salle.getPlacesVip());
+			salleDto.setFraisJournalier(salle.getFraisjournalier());
+		
+			TypeSalleDto typeSalleDto = new TypeSalleDto();
+			typeSalleDto.setId(salle.getTypesalle().getId());
+			typeSalleDto.setLabel(salle.getTypesalle().getLabel());
+			salleDto.setTypeSalle(typeSalleDto);
+			
 		}
-		return salle;
+		return salleDto;
 	}
 }

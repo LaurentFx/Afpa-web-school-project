@@ -12,6 +12,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,6 +36,7 @@ public class Manifestation {
 	private int id;
 
 	private String label;
+	@Temporal(TemporalType.DATE)
 	private Date dateValidation;
 	@OneToOne
 	private Personne validateur;
@@ -39,7 +44,9 @@ public class Manifestation {
 	@OneToOne
 	private Animation animation;	
 
+	@Temporal(TemporalType.DATE)
 	private Date dateDebut;
+	@Temporal(TemporalType.DATE)
 	private Date dateFin;
 	private double cout;
 
@@ -62,6 +69,7 @@ public class Manifestation {
 	@OneToOne
 	private Personne annulateur;
 	
+	@Temporal(TemporalType.DATE)
 	private Date dateAnulation;
 
 
