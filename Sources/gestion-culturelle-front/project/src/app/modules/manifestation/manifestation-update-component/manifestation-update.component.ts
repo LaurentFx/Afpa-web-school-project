@@ -7,6 +7,7 @@ import { SalleDto } from '../../../model/salleDto';
 import { SalleService } from '../../../service/Salle.service';
 import { AnimationService } from '../../../service/animation.service';
 import { AdminService } from '../../../service/admin.service';
+import { AdminDto } from '../../../model/adminDto';
 
 @Component({
   selector: 'app-manifestation-update',
