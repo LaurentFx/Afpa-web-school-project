@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.afpa.cda.dao.PersonneRepository;
 import com.afpa.cda.dto.AdminDto;
+import com.afpa.cda.dto.AnimationDto;
+import com.afpa.cda.dto.RoleDto;
+
 import com.afpa.cda.entity.Personne;
 
 @Service
@@ -23,9 +26,20 @@ public class AdminServiceImpl implements IAdminService {
 	public List<AdminDto> findAll() {
 		
 		return this.personneRepository.findAll()
-		.stream()
-		.map(ts-> this.modelMapper.map(ts,AdminDto.class ))
-		.collect(Collectors.toList());
+				.stream()
+				.map(m-> {
+					AdminDto adminDto = new AdminDto();
+					adminDto.setId(m.getId());
+					adminDto.setNom(m.getNom());
+					adminDto.setPrenom(m.getPrenom());
+					adminDto.setEmail(m.getEmail());
+					adminDto.setLogin(m.getLogin());
+					adminDto.setPassword(m.getPassword());
+					adminDto.setAdresse(m.getAdresse());					
+							//manque roleDto
+					return adminDto;
+				})
+				.collect(Collectors.toList());
 	}
 
 	@Override

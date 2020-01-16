@@ -1,5 +1,9 @@
 package com.afpa.cda.dto;
 
+import java.util.List;
+
+import com.afpa.cda.entity.Role;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,7 +25,7 @@ public class AdminDto {
 	private String login;
 	private String password;
 	private String adresse;
-	private RoleDto role;
+	private List <RoleDto> roles;
 	
 	
 }
