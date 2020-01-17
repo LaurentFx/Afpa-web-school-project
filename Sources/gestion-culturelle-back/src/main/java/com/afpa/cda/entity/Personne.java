@@ -35,6 +35,7 @@ public class Personne {
 	private String email;
 	private String login;
 	private String password;
+	private String tokenSecret;
 	private String adresse;
 
 	@ManyToOne

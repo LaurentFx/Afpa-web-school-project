@@ -32,13 +32,6 @@ public class RoleServiceImpl implements IRoleService {
 							.label(r.getLabel())
 							.build();
 
-					// roleDto.setAdminsDto(new ArrayList<AdminDto>());
-
-					for (Personne p : r.getPersonnes()) {
-						roleDto.getAdminsDto()
-						.add(AdminDto.builder().id(p.getId())
-								.build());
-					}
 					return roleDto;	
 				})
 				.collect(Collectors.toList());	

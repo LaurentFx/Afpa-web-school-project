@@ -20,6 +20,7 @@ import { AnimationModule } from './modules/animation/animation.module';
 import { PanierModule } from './modules/panier/panier.module';
 import { AdminModule } from './modules/admin/admin.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,7 @@ import { AdminModule } from './modules/admin/admin.module';
     ManifestationModule, 
     AnimationModule, 
     PanierModule, 
-    AdminModule  
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]

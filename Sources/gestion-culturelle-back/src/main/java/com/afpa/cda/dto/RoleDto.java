@@ -19,6 +19,6 @@ public class RoleDto {
 	private int id;
 	private String label;
 	
-	private List<AdminDto> adminsDto;
+
 
 }
