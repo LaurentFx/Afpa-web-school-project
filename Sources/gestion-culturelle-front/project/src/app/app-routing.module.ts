@@ -29,7 +29,7 @@ import { AdminListComponent } from './modules/admin/admin-list/admin-list.compon
 import { AdminAddComponent } from './modules/admin/admin-add/admin-add.component';
 import { AdminUpdateComponent } from './modules/admin/admin-update/admin-update.component';
 import { AdminShowComponent } from './modules/admin/admin-show/admin-show.component';
-
+import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
  {path:'', pathMatch:'full', component: HomeComponent}, 

@@ -13,3 +13,5 @@ public interface PersonneRepository extends CrudRepository<Personne, Integer> {
 	
 	Optional<Personne> findByNom(String nom);
 }
+
+

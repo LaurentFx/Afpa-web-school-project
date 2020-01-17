@@ -39,11 +39,11 @@ public class Personne {
 	private String adresse;
 
 	@ManyToOne
-	@JoinColumn(name = "role", nullable = false)
 	private Role role;
 
 	@OneToOne
 	private Panier panier;
+	
 	private int numClient;
 	
 	private String entreprise;

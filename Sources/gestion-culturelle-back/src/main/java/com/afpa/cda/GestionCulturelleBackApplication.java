@@ -13,11 +13,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.afpa.cda.constant.AdminUserDefaultConf;
 import com.afpa.cda.dao.PersonneRepository;
 import com.afpa.cda.dao.RoleRepository;
-import com.afpa.cda.dao.SalleRepository;
-import com.afpa.cda.dao.TypeSalleRepository;
 import com.afpa.cda.entity.Personne;
 import com.afpa.cda.entity.Role;
-import com.afpa.cda.entity.TypeSalle;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
@@ -67,7 +64,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			}
 		};
 	}
-    
+
 	private void initRole(RoleRepository roleRepository, Role role) {
 		Optional<Role> roleBddOpt = roleRepository.findById(role.getId());
 		if( roleBddOpt.isPresent() ) {
@@ -83,6 +80,10 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 					.build());
 		}
 	}
-    
-    
+
+	
 }
+
+	
+	
+
