@@ -19,6 +19,7 @@ import { ManifestationModule } from './modules/manifestation/manifestation.modul
 import { AnimationModule } from './modules/animation/animation.module';
 import { PanierModule } from './modules/panier/panier.module';
 import { AdminModule } from './modules/admin/admin.module';
+import { VipModule } from './modules/vip/vip.module';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { AdminModule } from './modules/admin/admin.module';
     ManifestationModule, 
     AnimationModule, 
     PanierModule, 
-    AdminModule  
+    AdminModule, VipModule  
   ],
   providers: [],
   bootstrap: [AppComponent]

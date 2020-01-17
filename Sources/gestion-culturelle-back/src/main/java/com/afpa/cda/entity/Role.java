@@ -1,11 +1,8 @@
 package com.afpa.cda.entity;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,8 +23,5 @@ public class Role {
 	private int id;	
 	private String label;
 	
-
-	@OneToMany(mappedBy = "role")
-	private List<Personne> personnes;
 
 }

@@ -29,6 +29,8 @@ import { AdminListComponent } from './modules/admin/admin-list/admin-list.compon
 import { AdminAddComponent } from './modules/admin/admin-add/admin-add.component';
 import { AdminUpdateComponent } from './modules/admin/admin-update/admin-update.component';
 import { AdminShowComponent } from './modules/admin/admin-show/admin-show.component';
+import { VipListComponent } from './modules/vip/vip-list/vip-list.component';
+import { VipAddComponent } from './modules/vip/vip-add/vip-add.component';
 
 
 const routes: Routes = [
@@ -67,6 +69,9 @@ const routes: Routes = [
  {path: 'admin-ad', component: AdminAddComponent},
  {path: 'admin-update/:id', component: AdminUpdateComponent},
  {path: 'admin-show/:id', component: AdminShowComponent},
+
+ {path: 'vip-list', component: VipListComponent},
+ {path: 'vip-add', component: VipAddComponent}
    
 ];
  
