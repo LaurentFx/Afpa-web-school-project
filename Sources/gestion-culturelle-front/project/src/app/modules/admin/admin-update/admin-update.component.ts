@@ -20,7 +20,13 @@ export class AdminUpdateComponent implements OnInit {
 
   ngOnInit() {
     this.admin = new AdminDto();
-    this.roles =[];
+    this.roleService.getAll().subscribe(
+      resultat => {
+        this.roles = resultat;
+      }
+    );
+  
+
    
     
     this.admin.role = new RoleDto();  

@@ -62,14 +62,6 @@ public class SalleServiceImpl implements ISalleService {
 		if(salleOp.isPresent()) {
 			// Salle salle = salleOp.get();
 			this.salleRepository.save(this.modelMapper.map(sal,Salle.class));
-			
-//			salle.setLabel(sal.getLabel());
-//			salle.setCapacite(sal.getCapacite());
-//			salle.setPlacesVip(sal.getPlacesVip());
-//			salle.setFraisjournalier(sal.getFraisJournalier());
-//			salle.setTypesalle(TypeSalle.builder().label(salle.getLabel()).build());
-//			salle.setTypesalle(TypeSalle.builder().id(salle.getId()).build());
-//			this.salleRepository.save(salle);
 			System.err.println("Salle mise à jour");
 			return true;
 		}
