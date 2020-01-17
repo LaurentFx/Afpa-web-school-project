@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.afpa.cda.dao.PersonneRepository;
 import com.afpa.cda.dto.AdminDto;
-import com.afpa.cda.dto.ManifestationDto;
+import com.afpa.cda.dto.AnimationDto;
 import com.afpa.cda.dto.RoleDto;
-import com.afpa.cda.dto.SalleDto;
+import com.afpa.cda.entity.Animation;
 import com.afpa.cda.entity.Personne;
 
 @Service
@@ -24,36 +24,31 @@ public class AdminServiceImpl implements IAdminService {
 	
 	@Override
 	public List<AdminDto> findAll() {
+		
 		return this.personneRepository.findAll()
 		.stream()
-		.map(a-> {
-			AdminDto adminDto = new AdminDto();
-			adminDto.setId(a.getId());
-			adminDto.setNom(a.getNom());
-			adminDto.setPrenom(a.getPrenom());
-			adminDto.setEmail(a.getEmail());
-			adminDto.setLogin(a.getLogin());
-			adminDto.setPassword(a.getPassword());
-			adminDto.setAdresse(a.getAdresse());		
-			RoleDto roleDto = new RoleDto();
-			roleDto.setLabel(a.getRole().getLabel());
-			adminDto.setRole(roleDto);
-			return adminDto;
-		})
+		.map(ts-> this.modelMapper.map(ts,AdminDto.class ))
 		.collect(Collectors.toList());
-			
 	}
 
+	
+	
 	@Override
 	public AdminDto add(AdminDto admin) {
 		
-		Personne administrateur = this.personneRepository.save(this.modelMapper.map(admin,Personne.class));
+		/*Personne administrateur = this.personneRepository.save(this.modelMapper.map(admin,Personne.class));
+		admin.setId(administrateur.getId());
 		admin.setNom(administrateur.getNom());
 		admin.setPrenom(administrateur.getPrenom());
 		admin.setEmail(administrateur.getEmail());
 		admin.setLogin(administrateur.getLogin());
 		admin.setAdresse(administrateur.getAdresse());
-		//admin.setRoleDto(administrateur.getRoles().add());	
+		admin.setRole(administrateur.getRole().getLabel());*/
+	
+			Personne adminE = this.modelMapper.map(admin,Personne.class);
+			Personne admniEntity = this.personneRepository.save(adminE);
+			admin.setId(admniEntity .getId());			
+			
 		System.err.println("administrateur ajouté");
 		
 		return admin;

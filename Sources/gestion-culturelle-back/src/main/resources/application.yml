@@ -6,14 +6,14 @@ spring:
  jpa:
   hibernate:
    ddl-auto: update
-  properties:
-      javax:
-        persistence:
-          schema-generation:
-            create-source: metadata
-            scripts:
-              action: create
-              create-target: create.sql
+#  properties:
+#      javax:
+#        persistence:
+#          schema-generation:
+#            create-source: metadata
+#            scripts:
+#              action: create
+#              create-target: create.sql
 
 # sgbd H2    
 #  datasource:

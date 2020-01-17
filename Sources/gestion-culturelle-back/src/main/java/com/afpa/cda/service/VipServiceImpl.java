@@ -1,43 +1,93 @@
 package com.afpa.cda.service;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.afpa.cda.dao.PersonneRepository;
-import com.afpa.cda.dto.TypeSalleDto;
+import com.afpa.cda.dto.RoleDto;
 import com.afpa.cda.dto.VipDto;
+import com.afpa.cda.entity.Personne;
 @Service
 public class VipServiceImpl implements IVipService {
+	
     @Autowired
     private PersonneRepository vipRepository;
+    
     @Autowired
     private ModelMapper modelMapper;
-	@Override
+	
+    
+    
+    @Override
 	public List<VipDto> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.vipRepository.findAll()
+				.stream()
+				.map(v-> { 
+					VipDto vipDto = new VipDto();
+					vipDto.setId(v.getId());
+					vipDto.setNom(v.getNom());
+					vipDto.setPrenom(v.getPrenom());
+					vipDto.setEmail(v.getEmail());
+					vipDto.setLogin(v.getLogin());
+					vipDto.setPassword(v.getPassword());
+					vipDto.setAdresse(v.getAdresse());
+					
+					RoleDto rolDto = new RoleDto();
+					rolDto.setId(v.getRole().getId());
+					rolDto.setLabel(v.getRole().getLabel());
+					vipDto.setRole(rolDto);
+					
+					vipDto.setEntreprise(v.getEntreprise());
+					return vipDto;
+				})
+				.collect(Collectors.toList());
 	}
-	@Override
-	public TypeSalleDto add(VipDto vip) {
-		// TODO Auto-generated method stub
-		return null;
+	
+    
+    @Override
+	public VipDto add(VipDto vip) {
+		Personne perE = this.vipRepository.save
+				(this.modelMapper.map(vip, Personne.class));
+		vip.setId(perE.getId());
+		return vip;
 	}
-	@Override
-	public boolean updateTypeSalle(VipDto vip, int id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public boolean deleteTypeSalle(int id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
+	
+	
+    @Override
 	public VipDto findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Personne> perE = this.vipRepository.findById(id);
+		VipDto vipDto = null;
+		if (perE.isPresent()) {
+			Personne pr = perE.get();
+			vipDto = this.modelMapper.map(pr, VipDto.class);
+		}
+		return vipDto;
+	}
+	
+    
+    @Override
+	public boolean updateVip(VipDto vip, int id) {
+    	Optional<Personne> perE = this.vipRepository.findById(id);
+    	if (perE.isPresent()) {
+			this.vipRepository.save(this.modelMapper.map(vip,Personne.class));
+		return true;
+    	}
+		return false;
+	}
+	
+    
+    @Override
+	public boolean deleteVop(int id) {
+		if (this.vipRepository.existsById(id)) {
+			this.vipRepository.deleteById(id);
+			System.err.println("vip supprimée");
+			return true;
+		}
+		return false;
 	}
 
     

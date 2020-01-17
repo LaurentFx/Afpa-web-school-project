@@ -1,17 +1,14 @@
 package com.afpa.cda.service;
 import java.util.List;
-
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.afpa.cda.dao.RoleRepository;
-import com.afpa.cda.dto.AdminDto;
-import com.afpa.cda.dto.ManifestationDto;
 import com.afpa.cda.dto.RoleDto;
-import com.afpa.cda.dto.SalleDto;
-import com.afpa.cda.dto.TypeSalleDto;
 import com.afpa.cda.entity.Role;
 
 
@@ -27,43 +24,24 @@ public class RoleServiceImpl implements IRoleService {
 	@Override
 	public List<RoleDto> findAll() {
 		return this.roleRepository.findAll()
-				
 				.stream()
-				.map(r-> {
-				
-				RoleDto roleDto = new RoleDto();
-				roleDto.setId(r.getId());
-				roleDto.setLabel(r.getLabel());	
-				roleDto.setAdmin(r.getPersonnes());
-						
-						List<AdminDto> adminDto; 
-						.stream()
-						.map(p-> {
-							adminDto.
-											
-				}	
-				
-								
-								return roleDto;
-				})
-				.collect(Collectors.toList());							
-							
+				.map(r-> this.modelMapper.map(r,RoleDto.class))
+				.collect(Collectors.toList());						
 	}
-	
-	
+
 	@Override
 	public RoleDto findById(int id) {
 		Optional <Role> roleOp = this.roleRepository.findById(id);
 		RoleDto rol =null; 
 		if(roleOp.isPresent()) {
 			Role role= roleOp.get();
-			
+
 			rol=this.modelMapper.map(role,RoleDto.class);
 		}
 		return rol;
 	}
-	
-	
+
+
 
 	@Override
 	public RoleDto add(RoleDto rol) {

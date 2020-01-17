@@ -23,5 +23,4 @@ public class AdminDto {
 	private String adresse;
 	private RoleDto role;
 	
-	
 }

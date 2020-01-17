@@ -27,6 +27,7 @@ alter table personne_animations add constraint FK5dcxk4qg38i6qppnlewvyyeda forei
 alter table personne_roles add constraint FKfigc9srwxr01jvvielt46h2l9 foreign key (roles_id) references role
 alter table personne_roles add constraint FKav1xthpdmdhsw6eoou8pihnp9 foreign key (personne_id) references personne
 alter table salle add constraint FKsu62eulbou2sqg08y2j5oe7bs foreign key (typesalle_id) references type_salle
+<<<<<<< HEAD
 create sequence animation_seq start 1 increment 50
 create sequence manifestation_seq start 1 increment 50
 create sequence panier_seq start 1 increment 50
@@ -2039,3 +2040,5 @@ alter table if exists personne add constraint FKn8dsrqe6t72xqm0sw1xycdjtx foreig
 alter table if exists personne_animations add constraint FKs0fmawwirnth8u8xqjd71jlb5 foreign key (animations_id) references animation
 alter table if exists personne_animations add constraint FK5dcxk4qg38i6qppnlewvyyeda foreign key (personne_id) references personne
 alter table if exists salle add constraint FKsu62eulbou2sqg08y2j5oe7bs foreign key (typesalle_id) references type_salle
+=======
+>>>>>>> dev

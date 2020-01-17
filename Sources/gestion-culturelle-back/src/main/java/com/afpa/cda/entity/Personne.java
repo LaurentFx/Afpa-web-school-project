@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -37,19 +38,17 @@ public class Personne {
 	private String adresse;
 
 	@ManyToOne
-	@JoinColumn(name = "role", nullable = false)
 	private Role role;
 
 	@OneToOne
 	private Panier panier;
+	
 	private int numClient;
 	
 	private String entreprise;
 
 	@OneToMany
 	private List <Animation> animations;
-	
-	
 
 
 }
