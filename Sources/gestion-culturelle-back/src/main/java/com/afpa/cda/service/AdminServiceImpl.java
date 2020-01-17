@@ -3,15 +3,16 @@ package com.afpa.cda.service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.afpa.cda.dao.PersonneRepository;
 import com.afpa.cda.dto.AdminDto;
-import com.afpa.cda.dto.AnimationDto;
-import com.afpa.cda.dto.RoleDto;
-import com.afpa.cda.entity.Animation;
 import com.afpa.cda.entity.Personne;
+import com.afpa.cda.entity.Role;
+import com.afpa.cda.entity.Salle;
 
 @Service
 public class AdminServiceImpl implements IAdminService {
@@ -34,16 +35,8 @@ public class AdminServiceImpl implements IAdminService {
 	
 	
 	@Override
-	public AdminDto add(AdminDto admin) {
-		
-		/*Personne administrateur = this.personneRepository.save(this.modelMapper.map(admin,Personne.class));
-		admin.setId(administrateur.getId());
-		admin.setNom(administrateur.getNom());
-		admin.setPrenom(administrateur.getPrenom());
-		admin.setEmail(administrateur.getEmail());
-		admin.setLogin(administrateur.getLogin());
-		admin.setAdresse(administrateur.getAdresse());
-		admin.setRole(administrateur.getRole().getLabel());*/
+	public AdminDto add(AdminDto admin) {		
+	
 	
 			Personne adminE = this.modelMapper.map(admin,Personne.class);
 			Personne admniEntity = this.personneRepository.save(adminE);
@@ -54,21 +47,18 @@ public class AdminServiceImpl implements IAdminService {
 		return admin;
 	}
 
-	/*@Override
+@Override
 	public boolean updateAdmin(AdminDto admin, int id) {
 	
 		Optional<Personne> adminOp = this.personneRepository.findById(id);
 		if(adminOp.isPresent()) {
-			Personne personne = adminOp.get();
-			personne.setNom(admin.getNom());
-			
-			personne.setQualification(admin.getQualification());
+			this.personneRepository.save(this.modelMapper.map(admin,Personne.class));			
 			System.err.println("administrateur mise à jour");
 			return true;
 		}
 		
 		return false;
-	}*/
+	}
 
 	@Override
 	public boolean deleteAdmin(int id) {
@@ -94,10 +84,6 @@ public class AdminServiceImpl implements IAdminService {
 		return admin;
 	}
 
-	@Override
-	public boolean updateAdmin(AdminDto admin, int id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 
 }
