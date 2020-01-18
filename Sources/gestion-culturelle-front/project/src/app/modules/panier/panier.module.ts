@@ -19,6 +19,12 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     PanierRoutingModule,
     FormsModule
+  ],
+  exports: [
+    PanierListComponent,
+    PanierAddComponent,
+    PanierUpdateComponent,
+    PanierShowComponent
   ]
 })
 export class PanierModule { }

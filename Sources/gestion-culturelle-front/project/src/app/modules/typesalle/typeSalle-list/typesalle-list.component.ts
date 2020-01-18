@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TypeSalleDto } from '../../../model/typeSalleDto';
 import { TypeSalleService } from '../../../service/typeSalle.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../service/auth.service';
 
 @Component({
   selector: 'app-typesalle-list',
@@ -12,10 +13,10 @@ export class TypeSalleListComponent implements OnInit {
 
   typeSalles: TypeSalleDto[];
   
+  
   constructor(private typeSalleService: TypeSalleService,private router: Router) { }
 
   ngOnInit() {
-
     this.typeSalleService.subjectMiseAJour.subscribe(
       res=> {
         this.typeSalleService.getAll().subscribe(

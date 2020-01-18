@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ManifestationService } from '../../../service/manifestation.service';
 import { AnimationDto } from '../../../model/animationDto';
 import { SalleDto } from '../../../model/salleDto';
-import { SalleService } from '../../../service/Salle.service';
+import { SalleService } from '../../../service/salle.service';
 import { AnimationService } from '../../../service/animation.service';
 import { AdminService } from '../../../service/admin.service';
 import { AdminDto } from '../../../model/adminDto';

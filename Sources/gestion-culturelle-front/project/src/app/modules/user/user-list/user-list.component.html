@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <a name="" id="" class="btn btn-primary" href="#" role="button" [routerLink]="['/users/add']">
+        +
+      </a>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>nom</th>
+            <th>prenom</th>
+            <th>role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{user.id}}</td>
+            <td>{{user.nom}}</td>
+            <td>{{user.prenom}}</td>
+            <td>{{user.role.label}}</td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>

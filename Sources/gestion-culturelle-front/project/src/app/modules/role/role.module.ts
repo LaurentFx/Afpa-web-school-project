@@ -19,6 +19,12 @@ import { RoleRoutingModule } from './role-routing.module';
     FormsModule,
     RoleRoutingModule,
     CommonModule
+  ],
+  exports: [
+    RoleAddComponent,
+    RoleListComponent,
+    RoleUpdateComponent,
+    RoleShowComponent
   ]
 })
 export class RoleModule { }
