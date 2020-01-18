@@ -1,9 +1,18 @@
+#spring:
+#  datasource:
+#    url: jdbc:h2:file:~/afpa-gestion-culturelle
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+
 spring:
-  datasource:
-    url: jdbc:h2:file:~/afpa-gestion-culturelle
-  jpa:
-    hibernate:
-      ddl-auto: update
+ datasource:
+  url: jdbc:postgresql://localhost/postgres
+  password: 1234
+  username: user1
+ jpa:
+  hibernate:
+   ddl-auto: update
 
 server:
   error:
@@ -12,7 +21,8 @@ server:
 cda:
   admin:
     nom: user1
-    prenom: user1
+    prenom: puser1
+    login: luser1
     password: 1234
   security:
     token:
@@ -23,20 +33,15 @@ logging:
     org:
       springframework:
         web: ERROR
-token:
-  secret: bF7449XF5lc5iz5sW5Y5suX4d7ok4P7j
+        
+        
+        
+        
+        
+#token:
+#  secret: bF7449XF5lc5iz5sW5Y5suX4d7ok4P7j
 
 
-
-
-#spring:
-# datasource:
-#  url: jdbc:postgresql://localhost/postgres
-#  password: 1234
-#  username: user1
-# jpa:
-#  hibernate:
-#   ddl-auto: update
 
 #  properties:
 #      javax:
@@ -47,6 +52,3 @@ token:
 #              action: create
 #              create-target: create.sql
 
-# sgbd H2    
-#  datasource:
-#    url: jdbc:h2:file:~/afpa-gestion-culturelle

@@ -15,6 +15,11 @@
     "type": "java.lang.String",
     "description": "A description for 'cda.admin.prenom'"
   },
+   {
+    "name": "cda.admin.login",
+    "type": "java.lang.String",
+    "description": "A description for 'cda.admin.login'"
+  },
   {
     "name": "cda.security.token.secret",
     "type": "java.lang.String",

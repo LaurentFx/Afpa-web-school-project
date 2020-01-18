@@ -11,10 +11,17 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.afpa.cda.constant.AdminUserDefaultConf;
+import com.afpa.cda.dao.PanierRepository;
 import com.afpa.cda.dao.PersonneRepository;
 import com.afpa.cda.dao.RoleRepository;
+import com.afpa.cda.dao.SalleRepository;
+import com.afpa.cda.dao.TypeSalleRepository;
+import com.afpa.cda.entity.Manifestation;
+import com.afpa.cda.entity.Panier;
 import com.afpa.cda.entity.Personne;
 import com.afpa.cda.entity.Role;
+import com.afpa.cda.entity.Salle;
+import com.afpa.cda.entity.TypeSalle;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
@@ -37,7 +44,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 	}
 	
 	@Bean
-	public CommandLineRunner init(RoleRepository roleRepository, PersonneRepository userRepository,AdminUserDefaultConf adminUserConf) {
+	public CommandLineRunner init(RoleRepository roleRepository, PersonneRepository userRepository,AdminUserDefaultConf adminUserConf, TypeSalleRepository typeSalleRepository, PanierRepository panierRepository) {
 		return (String... args)->{
 			
 			Role resp = new Role (1,"RESP");
@@ -52,25 +59,45 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			initRole(roleRepository,client);
 			initRole(roleRepository,vip);
 			
+			TypeSalle concert = new TypeSalle (1,"Concert");
+			TypeSalle stade = new TypeSalle (2,"Stade");
+			TypeSalle theatre = new TypeSalle (3,"Theatre");
+			
+			initTypeSalle(typeSalleRepository,concert);
+			initTypeSalle(typeSalleRepository,stade);
+			initTypeSalle(typeSalleRepository,theatre);
+			
+			panierRepository.save(new Panier());
+			String adresse = "Lille";
+			String mail = "cda@afpa.com";
+			String entreprise="Afpa";
+			
 			// ne pas oublier de bloquer la création d utilisateur avec le nom ou prenom admin
 			Optional<Personne> adminE = userRepository.findByNom(adminUserConf.getNom());
 			if(! adminE.isPresent()) {
 				userRepository.save(Personne.builder()
 				.nom(adminUserConf.getNom())
 				.prenom(adminUserConf.getPrenom())
+				.login(adminUserConf.getLogin())
 				.password(adminUserConf.getPassword())
+				.adresse(adresse)
+				.email(mail)
+				.entreprise(entreprise)
+				.panier(panierRepository.findById(1).get())
 				.role(roleRepository.findById(resp.getId()).get())
 				.build());
 			}
 		};
+		
 	}
 
+	
 	private void initRole(RoleRepository roleRepository, Role role) {
 		Optional<Role> roleBddOpt = roleRepository.findById(role.getId());
 		if( roleBddOpt.isPresent() ) {
 			Role roleBdd = roleBddOpt.get();
 			if(! roleBdd.getLabel().equals(role.getLabel())) {
-				throw new RuntimeException("\n--- > > >  un autre role "+roleBdd.getLabel()+" a le code "+role.getId()+" résérvé pour "+role.getLabel());
+				throw new RuntimeException("\n--- > > >  un autre role "+roleBdd.getLabel()+" a l'id "+role.getId()+" résérvé pour "+role.getLabel());
 			}
 		} else {
 			roleRepository.save(
@@ -81,6 +108,21 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 		}
 	}
 
+	private void initTypeSalle(TypeSalleRepository typeSalleRepository, TypeSalle typeSalle) {
+		Optional<TypeSalle> typeSalleBddOpt = typeSalleRepository.findById(typeSalle.getId());
+		if( typeSalleBddOpt.isPresent() ) {
+			TypeSalle typeSalleBdd = typeSalleBddOpt.get();
+			if(! typeSalleBdd.getLabel().equals(typeSalle.getLabel())) {
+				throw new RuntimeException("\n--- > > >  un autre type de salle "+typeSalleBdd.getLabel()+" a l'id "+typeSalle.getId()+" résérvé pour "+typeSalle.getLabel());
+			}
+		} else {
+			typeSalleRepository.save(
+					TypeSalle.builder()
+					.id(typeSalle.getId())
+					.label(typeSalle.getLabel())
+					.build());
+		}
+	}
 	
 }
 

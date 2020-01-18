@@ -48,6 +48,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
+		String[] swaggerUrls = {
+                "/v2/api-docs",
+                "/swagger-resources", "/swagger-resources/**", "/configuration/ui",
+                "/configuration/security", "/swagger-ui.html", "/webjars/**", "/error"
+        };
+		
+		String[] RespUrls = { "/admin/**","/role/**" };
+		
+		String[] AdminUrls = { "/salle/**","/typesalle/**","/vip/**","/animateur/**","/client/**" };
+		
+		String[] ClientUrls = {"/panier/**"};
+		
+		String[] AnimUrls = {};
+		
+		String [] VipUrls = {} ;
+		
+		String[] AllUrls = { "/login/**","/animations/**","/manifestation/**" };
+		
 		http.csrf().disable();
 
 		http.headers().frameOptions().disable();
@@ -55,12 +73,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
 				.antMatchers(HttpMethod.OPTIONS).permitAll()
-				.antMatchers("/login/**","/animations/**","/manifestation/**").permitAll()
-				.antMatchers("/admin/**","/role/**").hasAnyAuthority(new String[]{"RESP"})
-				.antMatchers("/salle/**","/typesalle/**","/vip/**","/animateur/**","/client/**").hasAnyAuthority(new String[]{"ADMIN"})
-				.antMatchers("/panier/**").hasAnyAuthority(new String[]{"CLIENT"})
+				.antMatchers(AllUrls).permitAll()
+				.antMatchers(RespUrls).hasAnyAuthority(new String[]{"RESP"})
+				.antMatchers(AdminUrls).hasAnyAuthority(new String[]{"ADMIN","RESP"})
+				.antMatchers(ClientUrls).hasAnyAuthority(new String[]{"CLIENT","ADMIN","RESP"})
 				.antMatchers().permitAll()
-				.antMatchers("/h2-console/**").permitAll().anyRequest().authenticated();
+				.antMatchers(swaggerUrls).permitAll()
+				.antMatchers("/h2-console/**").permitAll()
+				.anyRequest().authenticated();
 
 		http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
 

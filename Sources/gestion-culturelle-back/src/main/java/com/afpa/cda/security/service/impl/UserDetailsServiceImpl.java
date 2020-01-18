@@ -41,7 +41,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 				authorities,
 				true, 
 				LocalDate.now(), 
-				"doubleVerification");
+				userE.getTokenSecret());
 	}
 
 }

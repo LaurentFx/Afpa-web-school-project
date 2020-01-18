@@ -26,7 +26,7 @@ public class JwtTokenServiceImpl implements JwtTokenService {
 
     private static final String USER_SECRET = "userSecret";
 
-    @Value("${token.secret}")
+    @Value("${cda.security.token.secret}")
     private String secret;
 
     @Autowired
