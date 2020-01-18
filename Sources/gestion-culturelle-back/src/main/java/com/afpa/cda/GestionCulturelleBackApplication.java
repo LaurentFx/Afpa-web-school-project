@@ -12,16 +12,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.afpa.cda.constant.AdminUserDefaultConf;
 import com.afpa.cda.dao.PanierRepository;
-import com.afpa.cda.dao.PersonneRepository;
 import com.afpa.cda.dao.RoleRepository;
-import com.afpa.cda.dao.SalleRepository;
 import com.afpa.cda.dao.TypeSalleRepository;
-import com.afpa.cda.entity.Manifestation;
+import com.afpa.cda.dao.UserRepository;
 import com.afpa.cda.entity.Panier;
-import com.afpa.cda.entity.Personne;
 import com.afpa.cda.entity.Role;
-import com.afpa.cda.entity.Salle;
 import com.afpa.cda.entity.TypeSalle;
+import com.afpa.cda.entity.User;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
@@ -44,7 +41,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 	}
 	
 	@Bean
-	public CommandLineRunner init(RoleRepository roleRepository, PersonneRepository userRepository,AdminUserDefaultConf adminUserConf, TypeSalleRepository typeSalleRepository, PanierRepository panierRepository) {
+	public CommandLineRunner init(RoleRepository roleRepository, UserRepository userRepository,AdminUserDefaultConf adminUserConf, TypeSalleRepository typeSalleRepository, PanierRepository panierRepository) {
 		return (String... args)->{
 			
 			Role resp = new Role (1,"RESP");
@@ -73,17 +70,17 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			String entreprise="Afpa";
 			
 			// ne pas oublier de bloquer la création d utilisateur avec le nom ou prenom admin
-			Optional<Personne> adminE = userRepository.findByNom(adminUserConf.getNom());
+			Optional<User> adminE = userRepository.findByNom(adminUserConf.getNom());
 			if(! adminE.isPresent()) {
-				userRepository.save(Personne.builder()
+				userRepository.save(User.builder()
 				.nom(adminUserConf.getNom())
 				.prenom(adminUserConf.getPrenom())
-				.login(adminUserConf.getLogin())
+			//	.login(adminUserConf.getLogin())
 				.password(adminUserConf.getPassword())
-				.adresse(adresse)
+//				.adresse(adresse)
 				.email(mail)
-				.entreprise(entreprise)
-				.panier(panierRepository.findById(1).get())
+//				.entreprise(entreprise)
+//				.panier(panierRepository.findById(1).get())
 				.role(roleRepository.findById(resp.getId()).get())
 				.build());
 			}

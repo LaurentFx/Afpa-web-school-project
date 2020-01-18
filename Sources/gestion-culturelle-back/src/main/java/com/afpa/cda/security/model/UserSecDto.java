@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.User;
 import java.time.LocalDate;
 import java.util.Collection;
 
-public class UserDto extends User {
+public class UserSecDto extends User {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -15,7 +15,7 @@ public class UserDto extends User {
     private final LocalDate lastPasswordResetDate;
     private final String tokenSecret;
 
-    public UserDto(int id, String username, String password, Collection<? extends GrantedAuthority> authorities, boolean enabled, LocalDate lastPasswordResetDate, String userSecret) {
+    public UserSecDto(int id, String username, String password, Collection<? extends GrantedAuthority> authorities, boolean enabled, LocalDate lastPasswordResetDate, String userSecret) {
         super(username, password, enabled, true, true, true, authorities);
         this.id = id;
         this.lastPasswordResetDate = lastPasswordResetDate;

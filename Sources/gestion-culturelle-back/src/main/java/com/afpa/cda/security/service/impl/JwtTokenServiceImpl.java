@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import com.afpa.cda.security.model.JwtTokens;
-import com.afpa.cda.security.model.UserDto;
+import com.afpa.cda.security.model.UserSecDto;
 import com.afpa.cda.security.service.JwtTokenService;
 
 import io.jsonwebtoken.Claims;
@@ -38,7 +38,7 @@ public class JwtTokenServiceImpl implements JwtTokenService {
         String token;
         String refreshToken;
 
-        UserDto user = (UserDto) authentication.getPrincipal();
+        UserSecDto user = (UserSecDto) authentication.getPrincipal();
 
         token = createToken(user);
         refreshToken = createRefreshToken(user);
@@ -47,7 +47,7 @@ public class JwtTokenServiceImpl implements JwtTokenService {
     }
 
     @Override
-    public String createToken(UserDto user) {
+    public String createToken(UserSecDto user) {
 
         return Jwts.builder()
                 .signWith(SignatureAlgorithm.HS512, secret)
@@ -58,7 +58,7 @@ public class JwtTokenServiceImpl implements JwtTokenService {
     }
 
     @Override
-    public String createRefreshToken(UserDto user) {
+    public String createRefreshToken(UserSecDto user) {
 
         return Jwts.builder()
                 .signWith(SignatureAlgorithm.HS512, secret)
@@ -94,7 +94,7 @@ public class JwtTokenServiceImpl implements JwtTokenService {
         JwtParser parser = Jwts.parser().setSigningKey(secret);
         Jws<Claims> claims = parser.parseClaimsJws(token);
 
-        UserDto user = (UserDto) userService.loadUserByUsername(claims.getBody().getSubject());
+        UserSecDto user = (UserSecDto) userService.loadUserByUsername(claims.getBody().getSubject());
 
 //        return parser.require(USER_SECRET, user.getUserSecret()).parseClaimsJws(token);
         return parser.require(USER_SECRET, user.getTokenSecret()).parseClaimsJws(token);
@@ -112,7 +112,7 @@ public class JwtTokenServiceImpl implements JwtTokenService {
         return calendar.getTime();
     }
 
-    private Claims buildUserClaims(UserDto user) {
+    private Claims buildUserClaims(UserSecDto user) {
         Claims claims = new DefaultClaims();
 
         claims.setSubject(String.valueOf(user.getId()));

@@ -15,7 +15,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class AnimateurDto  {
-	
+
 	private int id;
 	private String nom;
 	private String prenom;
@@ -25,8 +25,8 @@ public class AnimateurDto  {
 	private String tokenSecret;
 	private String adresse;
 	private RoleDto role;
-	
+
 	private String entreprise;
-private List <AnimationDto> animations;
-	
+	private List <AnimationDto> animations;
+
 }

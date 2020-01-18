@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,28 +12,27 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-
-import com.afpa.cda.dao.PersonneRepository;
-import com.afpa.cda.entity.Personne;
-import com.afpa.cda.security.model.UserDto;
+import com.afpa.cda.dao.UserRepository;
+import com.afpa.cda.entity.User;
+import com.afpa.cda.security.model.UserSecDto;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
-	private PersonneRepository userRepository;
+	private UserRepository userRepository;
 	
 	@Override
-	public UserDto loadUserByUsername(String username) {
+	public UserSecDto loadUserByUsername(String username) {
 
 		Objects.requireNonNull(username);
-		Personne userE = userRepository.findByNom(username)
+		User userE = userRepository.findByNom(username)
 				.orElseThrow(() -> new UsernameNotFoundException("User not found"));
 		
         Collection<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(userE.getRole().getLabel()));
 
-		return new UserDto(
+		return new UserSecDto(
 				userE.getId(), 
 				userE.getNom(), 
 				userE.getPassword(), 
