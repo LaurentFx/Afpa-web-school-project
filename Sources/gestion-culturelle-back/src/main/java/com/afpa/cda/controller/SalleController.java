@@ -21,7 +21,6 @@ public class SalleController {
 	@Autowired
 	private ISalleService salleService;
 	
-	 @PreAuthorize("hasAuthority('VIP')")
 	@GetMapping(path = "/salle")
 	public List<SalleDto> getAll(){
 		return this.salleService.findAll();

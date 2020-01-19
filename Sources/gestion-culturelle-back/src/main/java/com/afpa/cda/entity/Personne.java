@@ -41,15 +41,18 @@ public class Personne {
 	@ManyToOne
 	private Role role;
 
+	// Pour un client
 	@OneToOne
 	private Panier panier;
-	
 	private int numClient;
-	
-	private String entreprise;
 
+	// Pour un animateur
 	@OneToMany
 	private List <Animation> animations;
+	
+	// Pour un animateur et un VIP
+	private String entreprise;
+
 
 
 }

@@ -9,12 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.afpa.cda.constant.AdminUserDefaultConf;
+import com.afpa.cda.dto.SalleDto;
 import com.afpa.cda.dto.UserDto;
 import com.afpa.cda.service.IUserService;
 
@@ -30,6 +34,11 @@ public class UserController {
 	@GetMapping(path = "/users")
 	public List<UserDto> getAll(){
 		return this.userService.findAll();
+	}
+	
+	@GetMapping(path = "/users/{id}")
+	public UserDto getOne(@PathVariable int id){
+		return this.userService.findOne(id);
 	}
 	
 	@PostMapping(path = "/users")
@@ -50,6 +59,18 @@ public class UserController {
 	public UserDto getCurrentUser(Principal currentUser) {
 		Integer userId = Integer.valueOf((String)((UsernamePasswordAuthenticationToken)currentUser).getPrincipal());
 		return this.userService.findById(userId).get();
+		
+	}
+	
+
+	@PutMapping(path = "/users/{id}")
+	public void update(@RequestBody UserDto user,@PathVariable int id ) {
+		this.userService.update(user, id);
+	}
+	
+	@DeleteMapping(path = "/users/{id}")
+	public void delete(@PathVariable int id) {
+		this.userService.delete(id);
 	}
 	
 }

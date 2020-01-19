@@ -13,4 +13,10 @@ public interface IUserService {
 
 	Optional<UserDto> findById(Integer userId);
 
+	UserDto findOne(Integer userId);
+
+	boolean update(UserDto user, int id);
+
+	boolean delete(int id);
+
 }
