@@ -74,8 +74,8 @@ const routes: Routes = [
 
  {path: 'vip-list', component: VipListComponent},
  {path: 'vip-add', component: VipAddComponent},
- {path: 'vip-show', component: VipShowComponent},
- {path: 'vip-update', component: VipUpdateComponent}
+ {path: 'vip-show/:id', component: VipShowComponent},
+ {path: 'vip-update/:id', component: VipUpdateComponent}
    
 ];
  

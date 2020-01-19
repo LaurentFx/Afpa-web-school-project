@@ -13,6 +13,7 @@
                 <th>Adresse</th>
                 <th>Role</th>
                 <th>Entreprise</th>
+                <th>Action</th>
                 
             </tr>
         </thead>
@@ -28,6 +29,7 @@
                 <td>{{vip.password}}</td>
                 <td>{{vip.adresse}}</td>
                 <td>{{vip.role.label}}</td>
+                <td>{{vip.entreprise}}</td>
 
                 <td>
                     <button (click)="redirectToShow(vip.id)" class="btn btn-sm btn-success">Show</button>

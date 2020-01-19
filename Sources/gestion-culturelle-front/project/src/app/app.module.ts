@@ -41,7 +41,8 @@ import { VipModule } from './modules/vip/vip.module';
     ManifestationModule, 
     AnimationModule, 
     PanierModule, 
-    AdminModule, VipModule  
+    AdminModule, 
+    VipModule  
   ],
   providers: [],
   bootstrap: [AppComponent]

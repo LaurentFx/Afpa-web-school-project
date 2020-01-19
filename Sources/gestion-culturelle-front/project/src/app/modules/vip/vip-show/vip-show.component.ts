@@ -12,9 +12,11 @@ import { RoleDto } from 'src/app/model/roleDto';
 export class VipShowComponent implements OnInit {
 
   vip: VipDto;
+
   constructor(private route: ActivatedRoute, private router: Router, private vipService:VipService) { }
 
   ngOnInit() {
+    
     this.vip = new VipDto();
     this.vip.role= new RoleDto();
 
@@ -22,7 +24,8 @@ export class VipShowComponent implements OnInit {
 
     this.vipService.getOne(id).subscribe(
       res=>{
-        this.vip= res
+        this.vip= res;
+        console.log(res);
       }
     )
   }

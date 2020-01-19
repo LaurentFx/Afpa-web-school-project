@@ -43,11 +43,11 @@ export class VipListComponent implements OnInit {
   }
 
   redirectToUpdate(id:number){
-    this.router.navigateByUrl('/vip-update'+id)
+    this.router.navigateByUrl('/vip-update/'+id)
   }
 
   redirectToShow(id:number){
-    this.router.navigateByUrl('/vip-show'+id)
+    this.router.navigateByUrl('/vip-show/'+id)
   }
 
 }
