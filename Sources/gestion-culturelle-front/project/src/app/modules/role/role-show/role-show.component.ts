@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { RoleDto } from 'src/app/model/roleDto';
+
 import { ActivatedRoute, Router } from '@angular/router';
-import { RoleService } from 'src/app/service/role.service';
+import { RoleService } from '../../../service/Role.service';
+import { RoleDto } from '../../../model/roleDto';
+
 @Component({
   selector: 'app-role-show',
   templateUrl: './role-show.component.html',
