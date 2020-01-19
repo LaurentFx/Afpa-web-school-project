@@ -31,6 +31,8 @@ import { AdminUpdateComponent } from './modules/admin/admin-update/admin-update.
 import { AdminShowComponent } from './modules/admin/admin-show/admin-show.component';
 import { VipListComponent } from './modules/vip/vip-list/vip-list.component';
 import { VipAddComponent } from './modules/vip/vip-add/vip-add.component';
+import { VipUpdateComponent } from './modules/vip/vip-update/vip-update.component';
+import { VipShowComponent } from './modules/vip/vip-show/vip-show.component';
 
 
 const routes: Routes = [
@@ -71,7 +73,9 @@ const routes: Routes = [
  {path: 'admin-show/:id', component: AdminShowComponent},
 
  {path: 'vip-list', component: VipListComponent},
- {path: 'vip-add', component: VipAddComponent}
+ {path: 'vip-add', component: VipAddComponent},
+ {path: 'vip-show', component: VipShowComponent},
+ {path: 'vip-update', component: VipUpdateComponent}
    
 ];
  

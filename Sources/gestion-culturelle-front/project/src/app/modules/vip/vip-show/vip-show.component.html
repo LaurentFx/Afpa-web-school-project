@@ -1,0 +1,35 @@
+
+<h3>Liste des manifestations</h3>
+<br>
+<div class="panel-body">
+    <table class="table table-striped table-bordered ">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Email</th>
+                <th>Login</th>
+                <th>Password</th>
+                <th>Adresse</th>
+                <th>Role</th>
+                <th>Entreprise</th>
+                
+            </tr>
+        </thead>
+
+        <tbody>
+
+                <td>{{vip.id}}</td>
+                <td>{{vip.nom}}</td>
+                <td>{{vip.prenom}}</td>
+                <td>{{vip.email}}</td>
+                <td>{{vip.login}}</td>
+                <td>{{vip.password}}</td>
+                <td>{{vip.adresse}}</td>
+                <td>{{vip.role.label}}</td>
+
+        </tbody>
+    </table>
+
+    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/']">Retour à l'accueil </a>
