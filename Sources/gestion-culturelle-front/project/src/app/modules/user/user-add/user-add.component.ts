@@ -33,7 +33,7 @@ export class UserAddComponent implements OnInit {
   add() : void {
     this.userService.add(this.user).subscribe(
       res=>{
-        this.router.navigateByUrl('/users');
+        this.router.navigateByUrl('/user-list');
       }
     );
   }

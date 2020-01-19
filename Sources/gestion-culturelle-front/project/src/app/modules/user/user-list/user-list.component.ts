@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../model/user';
 import { UserService } from '../../../service/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -11,7 +12,7 @@ export class UserListComponent implements OnInit {
 
   users: User[];
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,private router: Router) { }
 
   ngOnInit() {
     this.users=[];
@@ -31,5 +32,24 @@ export class UserListComponent implements OnInit {
       }
     );
   }
+
+  delete(id:number) {
+    this.userService.delete(id).subscribe(
+      res=>{
+        this.userService.subjectMiseAJour.next(0);
+        console.log('delete Ok ');
+      }
+    )
+  }
+  
+  redirectToUpdate(id:number){
+    this.router.navigateByUrl('/user-update/'+id)
+  }
+   
+
+  redirectToShow(id:number) {
+    this.router.navigateByUrl('/user-show/'+id)
+  }
+
 
 }

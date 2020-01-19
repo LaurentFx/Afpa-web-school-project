@@ -46,7 +46,8 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
     AnimationModule, 
     PanierModule, 
     AdminModule,
-    UserModule,JwtModule.forRoot({
+    UserModule,
+    JwtModule.forRoot({
       config: {
         // pour injecter le token dans toutes les requetes
         tokenGetter: function  tokenGetter() {

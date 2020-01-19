@@ -1,7 +1,14 @@
+<h2>Ajouter un user</h2>
+<br>
+
+<div [hidden]="submitted" style="width: 400px;">
+  <form>
+
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-6">
       <div class="form-group">
+
         <label for="nom">nom</label>
         <input type="text" [(ngModel)]="user.nom" name="nom" id="nom" class="form-control">
       </div>
@@ -19,11 +26,14 @@
       </div>
       <div class="form-group">
         <label for="role">role</label>
-        <select name="role" id="role" [(ngModel)]="user.role.code" class="form-control">
-          <option *ngFor="let role of roles" [value]="role.code">{{role.label}}</option>
+        <select name="role" id="role" [(ngModel)]="user.role.id" class="form-control">
+          <option *ngFor="let role of roles" [value]="role.id">{{role.label}}</option>
         </select>
       </div>
-      <input class="btn btn-primary" type="button" value="ajouter" (click)="add()">
+
+      <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/user-list']">Annuler</a>
+
+      <input class="btn btn-primary" type="button" value="ajouter" [disabled]="nom.length==0" (click)="add()">
     </div>
   </div>
 </div>
