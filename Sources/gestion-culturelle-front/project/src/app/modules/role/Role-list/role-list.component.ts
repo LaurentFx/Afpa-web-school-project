@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { RoleDto } from '../../../model/roleDto';
-import { RoleService } from '../../../service/role.service';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { RoleDto } from "../../../model/roleDto";
+import { Router } from "@angular/router";
+import { RoleService } from "../../../service/Role.service";
+
 
 @Component({
   selector: 'app-role-list',

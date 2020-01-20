@@ -29,14 +29,24 @@ public class PanierServiceImpl implements IPanierService {
 	@Override
 	public List<PanierDto> findAll() {
 
-		return this.panierRepository.findAll().stream()
+		return this.panierRepository.findAll()
+				.stream()
 				.map(p -> {
-			PanierDto panierDto = PanierDto.builder()
-					.id(p.getId())
-					.numClient(p.getNumClient())
-					.build();
+					PanierDto panierDto = new PanierDto();
+					panierDto.setId(p.getId());
+					panierDto.setDateValidation(p.getDateValidation());
+					panierDto.setNumClient(p.getNumClient());
+					panierDto.setNbreBillets(p.getNbreBillets());
+					panierDto.setTotal(p.getTotal());
+					
+//					ManifestationDto manifestationDto = new ManifestationDto();
+//					manifestationDto.setLabel(p.getManifestations().getLabel());
+//			PanierDto panierDto = PanierDto.builder()
+//					.id(p.getId())
+//					.numClient(p.getNumClient())
+//					.build();
 
-			 // panierDto.setManifestations(new ArrayList<ManifestationDto>());
+			  panierDto.setManifestations(new ArrayList<ManifestationDto>());
 			
 			for (Manifestation m : p.getManifestations()) {
 				panierDto.getManifestations()

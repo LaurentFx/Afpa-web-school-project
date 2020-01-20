@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminDto } from 'src/app/model/adminDto';
-import { AdminService } from 'src/app/service/admin.service';
+import { AdminDto } from '../../../model/adminDto';
+import { AdminService } from '../../../service/admin.service';
 import { Router } from '@angular/router';
 
 @Component({

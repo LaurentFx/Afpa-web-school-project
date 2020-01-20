@@ -68,7 +68,7 @@ public class Manifestation {
 	@JoinTable(name = "t_manifestation_panier",
 	joinColumns = { @JoinColumn(name = "id_manifestation") },
 	inverseJoinColumns = { @JoinColumn(name = "id_panier") })
-	private List <Panier> paniers;
+	private List<Panier> paniers;
 
 	@OneToOne
 	private User annulateur;

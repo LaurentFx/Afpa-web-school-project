@@ -35,12 +35,4 @@ export class RoleService {
  delete(id: number): Observable<any> {
     return this.http.delete(`${this.monUrl}/${id}`);
   }
-
-
-
-
-
-
-
-
 }
