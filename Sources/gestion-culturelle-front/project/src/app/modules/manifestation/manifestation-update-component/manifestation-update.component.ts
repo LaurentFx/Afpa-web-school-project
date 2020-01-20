@@ -28,10 +28,12 @@ export class ManifestationUpdateComponent implements OnInit {
     this.manifestation = new ManifestationDto();
     this.salles =[];
     this.animations = [];
+    this.admins = [];
     
     this.manifestation.salle = new SalleDto();
     this.manifestation.animation = new AnimationDto();
     this.manifestation.validateur = new AdminDto();
+    this.manifestation.annulateur = new AdminDto();
 
     let id = this.route.snapshot.params['id'];
 
