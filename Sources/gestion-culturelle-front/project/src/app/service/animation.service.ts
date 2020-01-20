@@ -8,7 +8,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class AnimationService {
  
-  monUrl= 'http://localhost:8080/animations'; 
+  monUrl= 'http://localhost:8080/animation'; 
 
   animation: AnimationDto[]; 
 

@@ -9,17 +9,22 @@ import { ManifestationListComponent } from './manifestation-list-component/manif
 
 
 @NgModule({
-  declarations: [ 
-     ManifestationShowComponent,
-      ManifestationAddComponent,
-       ManifestationListComponent,
-        ManifestationUpdateComponent],
+  declarations: [
+    ManifestationShowComponent,
+    ManifestationAddComponent,
+    ManifestationListComponent,
+    ManifestationUpdateComponent],
 
   imports: [
     CommonModule,
     ManifestationRoutingModule,
     FormsModule
-
+  ],
+  exports: [
+    ManifestationShowComponent,
+    ManifestationAddComponent,
+    ManifestationListComponent,
+    ManifestationUpdateComponent
   ]
 })
 export class ManifestationModule { }

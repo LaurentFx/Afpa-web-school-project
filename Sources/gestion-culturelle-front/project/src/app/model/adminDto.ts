@@ -8,7 +8,7 @@ export class AdminDto {
     login: string;
     password: string;
     adresse: string;
-    role : RoleDto;
+    role: RoleDto;
 
     constructor(
         id?: number,
@@ -18,19 +18,19 @@ export class AdminDto {
         login?: string,
         password?: string,
         adresse?: string,
-        role? : RoleDto,
-                         ){
+        role?: RoleDto,
+    ) {
         this.id = id;
-        this.nom=nom;
-        this.prenom=prenom;
+        this.nom = nom;
+        this.prenom = prenom;
         this.email = email;
-        this.login=login;
-        this.prenom=prenom;
+        this.login = login;
+        this.prenom = prenom;
         this.password = password;
-        this.adresse=adresse;
-        this.role=role;
-       
-       
+        this.adresse = adresse;
+        this.role = role;
+
+
     }
 }
 

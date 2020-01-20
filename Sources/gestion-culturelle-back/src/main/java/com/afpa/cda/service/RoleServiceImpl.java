@@ -24,9 +24,15 @@ public class RoleServiceImpl implements IRoleService {
 	@Override
 	public List<RoleDto> findAll() {
 		return this.roleRepository.findAll()
-				.stream()
-				.map(r-> this.modelMapper.map(r,RoleDto.class))
-				.collect(Collectors.toList());						
+				.stream().map(r-> {
+					RoleDto roleDto = RoleDto.builder()
+							.id(r.getId())
+							.label(r.getLabel())
+							.build();
+
+					return roleDto;	
+				})
+				.collect(Collectors.toList());	
 	}
 
 	@Override

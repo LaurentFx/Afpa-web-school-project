@@ -11,15 +11,21 @@ import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    SalleAddComponent, 
-    SalleListComponent, 
-    SalleShowComponent, 
+    SalleAddComponent,
+    SalleListComponent,
+    SalleShowComponent,
     SalleUpdateComponent
   ],
   imports: [
     CommonModule,
     SalleRoutingModule,
     FormsModule
+  ],
+  exports: [
+    SalleAddComponent,
+    SalleListComponent,
+    SalleShowComponent,
+    SalleUpdateComponent
   ]
 })
 export class SalleModule { }

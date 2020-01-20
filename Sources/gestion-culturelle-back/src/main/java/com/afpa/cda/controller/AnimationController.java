@@ -21,27 +21,27 @@ public class AnimationController {
 	@Autowired
 	private IAnimationService animationService;
 	
-	@GetMapping(path = "/animations")
+	@GetMapping(path = "/animation")
 	public List<AnimationDto> getAll(){
 		return this.animationService.findAll();
 	}
 	
-	@PostMapping(path = "/animations")
+	@PostMapping(path = "/animation")
 	public AnimationDto add(@RequestBody AnimationDto anim) {
 		return this.animationService.add(anim);
 	}
 	
-	@GetMapping(path = "/animations/{id}")
+	@GetMapping(path = "/animation/{id}")
 	public AnimationDto getOne(@PathVariable int id) {
 		return this.animationService.findById(id);
 	}
 	
-	@PutMapping(path="/animations/{id}")
+	@PutMapping(path="/animation/{id}")
 	public void update(@RequestBody AnimationDto anim, @PathVariable int id) {
 		this.animationService.update(anim,id);
 	}
 	
-	@DeleteMapping(path="/animations/{id}")
+	@DeleteMapping(path="/animation/{id}")
 	public void delete(@PathVariable int id) {
 		this.animationService.delete(id);
 	}

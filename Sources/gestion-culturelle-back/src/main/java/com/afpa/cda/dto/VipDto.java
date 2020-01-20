@@ -20,6 +20,7 @@ public class VipDto {
 	private String email;
 	private String login;
 	private String password;
+	private String tokenSecret;
 	private String adresse;
 	private RoleDto role;
 	

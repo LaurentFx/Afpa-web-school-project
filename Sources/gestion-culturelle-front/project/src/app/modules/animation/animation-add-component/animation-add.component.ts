@@ -9,8 +9,7 @@ import { AnimationDto } from '../../../model/animationDto';
   styleUrls: ['./animation-add.component.css']
 })
 export class AnimationAddComponent implements OnInit {
-  [x: string]: any;
-
+ 
   animation: AnimationDto;
 
   constructor(private animationService: AnimationService, private router: Router) { }

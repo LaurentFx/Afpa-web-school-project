@@ -21,6 +21,8 @@ public class Role {
 	@Id
 	@GeneratedValue(generator = "ROLE_SEQ", strategy = GenerationType.SEQUENCE)	
 	private int id;	
-	private String label;	
+	private String label;
+	
+
 
 }

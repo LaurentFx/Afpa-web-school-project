@@ -20,6 +20,12 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     AnimationRoutingModule,
     FormsModule
+  ],
+  exports: [
+    AnimationListComponent,
+    AnimationAddComponent,
+    AnimationUpdateComponent,
+    AnimationShowComponent
   ]
 })
 export class AnimationModule { }

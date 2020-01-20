@@ -5,6 +5,10 @@
             <a routerLink='' class="nav-link" routerLinkActive=active>Home</a>
         </li>
 
+        <li  class="nav-item">
+            <a routerLink='user-list' class="nav-link" routerLinkActive=active>User</a>
+        </li>
+
         <li class="nav-item">
             <a routerLink='typesalle-list' class="nav-link" routerLinkActive=active>Types de salle</a>
         </li>
@@ -24,22 +28,23 @@
         <li class="nav-item">
             <a routerLink='panier-list' class="nav-link" routerLinkActive=active>Panier</a>
         </li>
-               
-        <li class="nav-item">
-            <a routerLink='admin-list' class="nav-link" routerLinkActive=active>Personnel</a>
-        </li>
-
+           
         <li class="nav-item">
             <a routerLink='role-list' class="nav-link" routerLinkActive=active>Role</a>
         </li>
               
-
         <li class="nav-item">
-            <a routerLink='logout' class="nav-link" routerLinkActive=active>Logout</a>
+            <a routerLink='login' class="nav-link" routerLinkActive=active>Login</a>
         </li>
 
-      
-
+        <li class="nav-item">
+            <a (click)="logout()" class="nav-link" routerLinkActive=active>Logout</a>
+        </li>
+     
+        <li class="nav-item">
+            <p class="nav-link">User : {{user}}</p>      
+        </li>
+ 
     </ul>
 
 
