@@ -63,7 +63,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 					adminDto.setNom(m.getAnnulateur().getNom());
 					manifestationDto.setAnnulateur(adminDto);
 
-					manifestationDto.setDateAnnulation(m.getDateAnulation());
+					manifestationDto.setDateAnnulation(m.getDateAnnulation());
 
 					return manifestationDto;
 				})
@@ -107,7 +107,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 			adminDto.setNom(manif.getAnnulateur().getNom());
 			manifDto.setAnnulateur(adminDto);
 
-			manifDto.setDateAnnulation(manif.getDateAnulation());
+			manifDto.setDateAnnulation(manif.getDateAnnulation());
 
 
 //			manif = this.modelMapper.map(man, ManifestationDto.class);

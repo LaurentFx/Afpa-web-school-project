@@ -36,15 +36,11 @@ public class PanierServiceImpl implements IPanierService {
 					panierDto.setId(p.getId());
 					panierDto.setDateValidation(p.getDateValidation());
 					panierDto.setNumClient(p.getNumClient());
+					
+					
+					
 					panierDto.setNbreBillets(p.getNbreBillets());
 					panierDto.setTotal(p.getTotal());
-					
-//					ManifestationDto manifestationDto = new ManifestationDto();
-//					manifestationDto.setLabel(p.getManifestations().getLabel());
-//			PanierDto panierDto = PanierDto.builder()
-//					.id(p.getId())
-//					.numClient(p.getNumClient())
-//					.build();
 
 			  panierDto.setManifestations(new ArrayList<ManifestationDto>());
 			
@@ -102,11 +98,33 @@ public class PanierServiceImpl implements IPanierService {
 	@Override
 	public PanierDto findById(int id) {
 		Optional<Panier> panE = this.panierRepository.findById(id);
-		PanierDto panDto = null;
+		PanierDto panDto = new PanierDto();
+		
 		if (panE.isPresent()) {
-			Panier pn = panE.get();
-			panDto = this.modelMapper.map(pn, PanierDto.class);
+			
+			Panier pan= panE.get();
+			panDto.setId(pan.getId());
+			panDto.setDateValidation(pan.getDateValidation());
+			panDto.setNumClient(pan.getNumClient());
+			panDto.setNbreBillets(pan.getNbreBillets());
+			panDto.setTotal(pan.getTotal());
+			
+			panDto.setManifestations(new ArrayList<ManifestationDto>());
+			
+			for (Manifestation m : pan.getManifestations()) {
+				panDto.getManifestations()
+						.add(ManifestationDto
+								.builder().id(m.getId())
+								.label(m.getLabel())
+								.animation(AnimationDto.builder()
+										.id(m.getAnimation().getId())
+										.label(m.getAnimation().getLabel())
+										.build())
+								.build());
+			
 		}
+		
+	}
 		return panDto;
 	}
 
