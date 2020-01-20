@@ -64,10 +64,9 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			initTypeSalle(typeSalleRepository,stade);
 			initTypeSalle(typeSalleRepository,theatre);
 			
-//			panierRepository.save(new Panier());
-//			String adresse = "Lille";
+			String adresse = "Lille";
 			String mail = "cda@afpa.com";
-//			String entreprise="Afpa";
+			String entreprise="Afpa";
 			
 			// ne pas oublier de bloquer la création d utilisateur avec le nom ou prenom admin
 			Optional<User> adminE = userRepository.findByNom(adminUserConf.getNom());
@@ -75,12 +74,10 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 				userRepository.save(User.builder()
 				.nom(adminUserConf.getNom())
 				.prenom(adminUserConf.getPrenom())
-			//	.login(adminUserConf.getLogin())
 				.password(adminUserConf.getPassword())
-//				.adresse(adresse)
+				.adresse(adresse)
 				.email(mail)
-//				.entreprise(entreprise)
-//				.panier(panierRepository.findById(1).get())
+				.entreprise(entreprise)
 				.role(resp)
 				.build());
 			}

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.afpa.cda.dao.UserRepository;
 import com.afpa.cda.dto.RoleDto;
 import com.afpa.cda.dto.UserDto;
-import com.afpa.cda.entity.Personne;
 import com.afpa.cda.entity.User;
 
 @Service
