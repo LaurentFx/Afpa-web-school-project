@@ -15,7 +15,7 @@ import lombok.ToString;
 @ToString
 public class RoleDto {
 	private int id;
-	private String label;
+	private String label;	
 	
 
 }

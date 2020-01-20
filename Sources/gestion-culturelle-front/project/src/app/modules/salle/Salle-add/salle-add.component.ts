@@ -15,7 +15,9 @@ export class SalleAddComponent implements OnInit {
   salle: SalleDto;
   typeSalles: TypeSalleDto[];
 
-  constructor(private typeSalleService: TypeSalleService, private salleService: SalleService, private router: Router) { }
+  constructor(private typeSalleService: TypeSalleService,
+     private salleService: SalleService,
+      private router: Router) { }
 
   ngOnInit() {
     this.salle = new SalleDto();

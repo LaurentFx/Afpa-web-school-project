@@ -33,19 +33,24 @@ public class Personne {
 	private String email;
 	private String login;
 	private String password;
+	private String tokenSecret;
 	private String adresse;
 
 	@ManyToOne
 	private Role role;
 
+	// Pour un client
 	@OneToOne
 	private Panier panier;
 	private int numClient;
-	
-	private String entreprise;
 
+	// Pour un animateur
 	@OneToMany
 	private List <Animation> animations;
+	
+	// Pour un animateur et un VIP
+	private String entreprise;
+
 
 
 }

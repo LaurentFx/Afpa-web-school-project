@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtModule } from '@auth0/angular-jwt';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +21,10 @@ import { AnimationModule } from './modules/animation/animation.module';
 import { PanierModule } from './modules/panier/panier.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { VipModule } from './modules/vip/vip.module';
+
+import { UserModule } from './modules/user/user.module';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -42,9 +47,24 @@ import { VipModule } from './modules/vip/vip.module';
     AnimationModule, 
     PanierModule, 
     AdminModule, 
-    VipModule  
+    VipModule,
+    UserModule,
+    JwtModule.forRoot({
+      config: {
+        // pour injecter le token dans toutes les requetes
+        tokenGetter: function  tokenGetter() {
+          return localStorage.getItem('access_token');
+        },
+        // inject le token pour tous ces chemin
+        whitelistedDomains: ['localhost:8080'],
+        // n'injecte pas le token pour ce chemin
+        blacklistedRoutes: ['http://localhost:8080/login']
+      }
+    })
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

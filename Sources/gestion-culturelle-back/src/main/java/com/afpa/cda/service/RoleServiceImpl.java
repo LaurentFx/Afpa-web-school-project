@@ -1,11 +1,12 @@
 package com.afpa.cda.service;
 import java.util.List;
-
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.afpa.cda.dao.RoleRepository;
 import com.afpa.cda.dto.RoleDto;
 import com.afpa.cda.entity.Role;
@@ -23,24 +24,30 @@ public class RoleServiceImpl implements IRoleService {
 	@Override
 	public List<RoleDto> findAll() {
 		return this.roleRepository.findAll()
-				.stream()
-				.map(ts-> this.modelMapper.map(ts,RoleDto.class))
+				.stream().map(r-> {
+					RoleDto roleDto = RoleDto.builder()
+							.id(r.getId())
+							.label(r.getLabel())
+							.build();
+
+					return roleDto;	
+				})
 				.collect(Collectors.toList());	
 	}
-	
+
 	@Override
 	public RoleDto findById(int id) {
 		Optional <Role> roleOp = this.roleRepository.findById(id);
 		RoleDto rol =null; 
 		if(roleOp.isPresent()) {
 			Role role= roleOp.get();
-			
+
 			rol=this.modelMapper.map(role,RoleDto.class);
 		}
 		return rol;
 	}
-	
-	
+
+
 
 	@Override
 	public RoleDto add(RoleDto rol) {
