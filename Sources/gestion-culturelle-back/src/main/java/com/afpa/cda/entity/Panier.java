@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,6 +34,7 @@ public class Panier {
 	@GeneratedValue(generator = "PANIER_SEQ", strategy = GenerationType.SEQUENCE)
 	private int id;
 	
+	@Temporal(TemporalType.DATE)
 	private Date dateValidation;
 	private int numClient;
 		
