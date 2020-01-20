@@ -39,7 +39,7 @@ public class Panier {
 	@JoinTable(name = "Manifestation_Panier",
 	joinColumns = { @JoinColumn(name = "id_panier") },
 	inverseJoinColumns = { @JoinColumn(name = "id_manifestation") })
-	private List <Manifestation> manifestations;
+	private List<Manifestation> manifestations;
 	
 	private int nbreBillets;
 	private double total;
