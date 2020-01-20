@@ -19,7 +19,7 @@
 
         <label for="salle">Nom du validateur :</label>
         <select name="validateur" id="validateur" [(ngModel)]="manifestation.validateur.id" class="form-control">
-            <option *ngFor="let validateur of admins" [value]="validateur.id">{{manifestation.validateur}}</option>
+            <option *ngFor="let validateur of admins" [value]="validateur.id">{{validateur.nom}}</option>
         </select>
 
         <label for="animation">Type d'animation :</label>
@@ -72,7 +72,7 @@
              
         <label for="salle">Nom de l'annulateur :</label>
         <select name="annulateur" id="annulateur" [(ngModel)]="manifestation.annulateur.id" class="form-control">
-            <option *ngFor="let annulateur of admins" [value]="annulateur.id">{{manifestation.annulateur}}</option>
+            <option *ngFor="let annulateur of admins" [value]="annulateur.id">{{annulateur.nom}}</option>
         </select>
 
         <div class="form-group">

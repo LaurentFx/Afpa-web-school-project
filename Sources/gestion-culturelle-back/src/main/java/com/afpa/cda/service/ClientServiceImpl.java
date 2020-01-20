@@ -5,14 +5,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.afpa.cda.dao.PersonneRepository;
-import com.afpa.cda.dto.AnimateurDto;
+import com.afpa.cda.dao.UserRepository;
 import com.afpa.cda.dto.AnimationDto;
 import com.afpa.cda.dto.ClientDto;
 @Service
 public class ClientServiceImpl implements IClientService {
     @Autowired
-    private PersonneRepository clientRepository;
+    private UserRepository clientRepository;
     @Autowired
     private ModelMapper modelMapper;
 	@Override

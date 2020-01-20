@@ -36,7 +36,7 @@ public class Panier {
 	private int numClient;
 		
 	@ManyToMany
-	@JoinTable(name = "Manifestation_Panier",
+	@JoinTable(name = "t_manifestation_panier",
 	joinColumns = { @JoinColumn(name = "id_panier") },
 	inverseJoinColumns = { @JoinColumn(name = "id_manifestation") })
 	private List <Manifestation> manifestations;
