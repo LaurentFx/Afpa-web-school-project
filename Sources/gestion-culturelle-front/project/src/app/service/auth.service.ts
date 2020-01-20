@@ -14,6 +14,8 @@ export class AuthService {
   url: string;
   subjectConnexion: Subject<number>;
   currentUser: User;
+  subjectMiseAJour= new Subject<number>();  
+
 
   constructor(private router: Router, private http: HttpClient) {
     this.url = 'http://localhost:8080/login';
@@ -29,6 +31,7 @@ export class AuthService {
     return JSON.parse(userStr);
   }
 
+
   login(user: UserAuth): Observable<boolean> {
     return new Observable(observer => {
       this.http.post(this.url, user).subscribe(res => {
@@ -42,7 +45,7 @@ export class AuthService {
         currentUser.nom = decodedToken.username;
         currentUser.role = decodedToken.roles;
         localStorage.setItem('current_user', JSON.stringify(currentUser));
-
+      
         this.subjectConnexion.next(3);
         observer.next(true);
       },
