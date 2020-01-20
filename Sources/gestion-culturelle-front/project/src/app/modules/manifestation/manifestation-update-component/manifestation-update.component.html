@@ -14,23 +14,23 @@
         <div class="form-group">
             <label for="dateValidation">Date de validation :</label>
             <input type="date" name="dateValidation" class="form-control" id="dateValidation"
-                placeholder="Entrer la date de validation" [(ngModel)]="manifestation.dateValidation">
+                placeholder="Entrer la date de validation" required [(ngModel)]="manifestation.dateValidation">
         </div>
 
-        <label for="salle">Nom du validateur :</label>
+        <label for="validateur">Nom du validateur :</label>
         <select name="validateur" id="validateur" [(ngModel)]="manifestation.validateur.id" class="form-control">
             <option *ngFor="let validateur of admins" [value]="validateur.id">{{validateur.nom}}</option>
         </select>
 
         <label for="animation">Type d'animation :</label>
         <select name="animation" id="animation" [(ngModel)]="manifestation.animation.id" class="form-control">
-            <option *ngFor="let animation of animations" [value]="animation.id">{{animation.label}}</option>
+            <option *ngFor="let animation of animations" required [value]="animation.id">{{animation.label}}</option>
         </select>
 
         <div class="form-group">
             <label for="dateDebut">Date de debut :</label>
             <input type="date" name="dateDebut" class="form-control" id="dateDebut"
-                placeholder="Entrer la date de debut " [(ngModel)]="manifestation.dateDebut">
+                placeholder="Entrer la date de debut " required [(ngModel)]="manifestation.dateDebut">
         </div>
 
         <div class="form-group">

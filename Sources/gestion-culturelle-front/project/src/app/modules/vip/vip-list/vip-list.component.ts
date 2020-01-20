@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { VipService } from 'src/app/service/vip.service';
+import { VipService } from '../../../service/vip.service';
 import { Router } from '@angular/router';
-import { VipDto } from 'src/app/model/vip-dto';
+import { VipDto } from '../../../model/vip-dto';
 
 @Component({
   selector: 'app-vip-list',
@@ -10,44 +10,45 @@ import { VipDto } from 'src/app/model/vip-dto';
 })
 export class VipListComponent implements OnInit {
 
-  vip: VipDto[];
+  vips: VipDto[];
+  isVip: boolean;
 
-  constructor(private vipSrvice: VipService,private router: Router) { }
+  constructor(private vipService: VipService, private router: Router) { }
 
   ngOnInit() {
 
-    this.vipSrvice.subjectMiseAJour.subscribe(
-      res=> {
-        this.vipSrvice.getAll().subscribe(
-          donnees=>{
-            this.vip = donnees
+    this.vipService.subjectMiseAJour.subscribe(
+      res => {
+        this.vipService.getAll().subscribe(
+          donnees => {
+            this.vips = donnees;
           }
-        )
+        );
       }
-    )
+    );
 
-    this.vipSrvice.getAll().subscribe(
+    this.vipService.getAll().subscribe(
       resultat => {
-        this.vip = resultat
+        this.vips = resultat;
+      }
+    );
+  }
+
+  delete(id: number) {
+    this.vipService.delete(id).subscribe(
+      res => {
+        this.vipService.subjectMiseAJour.next(0)
+        console.log('delete ok');
       }
     )
   }
 
-  delete(id:number){
-    this.vipSrvice.delete(id).subscribe(
-      res=>{
-        this.vipSrvice.subjectMiseAJour.next(0)
-        console.log('delete ok')
-      }
-    )
+  redirectToUpdate(id: number) {
+    this.router.navigateByUrl('/vip-update/' + id)
   }
 
-  redirectToUpdate(id:number){
-    this.router.navigateByUrl('/vip-update/'+id)
-  }
-
-  redirectToShow(id:number){
-    this.router.navigateByUrl('/vip-show/'+id)
+  redirectToShow(id: number) {
+    this.router.navigateByUrl('/vip-show/' + id)
   }
 
 }

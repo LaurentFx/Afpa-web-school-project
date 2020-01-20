@@ -40,7 +40,7 @@ export class SalleListComponent implements OnInit {
         this.salleService.subjectMiseAJour.next(0);
         console.log('delete Ok ');
       }
-    )
+    );
   }
   
   redirectToUpdate(id:number){

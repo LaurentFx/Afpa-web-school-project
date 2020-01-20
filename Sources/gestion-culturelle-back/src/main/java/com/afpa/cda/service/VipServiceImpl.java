@@ -19,9 +19,7 @@ public class VipServiceImpl implements IVipService {
     
     @Autowired
     private ModelMapper modelMapper;
-	
-    
-    
+
     @Override
 	public List<VipDto> findAll() {
 		return this.vipRepository.findAll()

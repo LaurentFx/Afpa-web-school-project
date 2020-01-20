@@ -5,7 +5,7 @@
             <a routerLink='' class="nav-link" routerLinkActive=active>Home</a>
         </li>
 
-        <li  class="nav-item">
+        <li *ngIf="isConnected"  class="nav-item">
             <a routerLink='user-list' class="nav-link" routerLinkActive=active>User</a>
         </li>
 
@@ -25,15 +25,15 @@
             <a routerLink='manifestation-list' class="nav-link" routerLinkActive=active>Manifestation</a>
         </li>
         
-        <li class="nav-item">
+        <li  *ngIf="isConnected"  class="nav-item">
             <a routerLink='panier-list' class="nav-link" routerLinkActive=active>Panier</a>
         </li>
            
-        <li class="nav-item">
+        <li  *ngIf="isConnected"  class="nav-item">
             <a routerLink='role-list' class="nav-link" routerLinkActive=active>Role</a>
         </li>
 
-        <li class="nav-item">
+        <li  *ngIf="isConnected"  class="nav-item">
             <a routerLink='vip-list' class="nav-link" routerLinkActive=active>Vip</a>
         </li>
               
@@ -46,6 +46,6 @@
         </li>
              
     </ul>
-        <p class="nav-link">User : {{user}} / Role : {{role}} </p>  
+        <p class="nav-link">User : {{user}} | Role : {{role}} </p>  
        
 </nav>

@@ -19,8 +19,7 @@ export class ManifestationAddComponent implements OnInit {
   manifestation: ManifestationDto;
   salles: SalleDto[];
   animations: AnimationDto[];
-  admins1: AdminDto[];
-  admins2: AdminDto[];
+  admins: AdminDto[];
   
   constructor(private adminService: AdminService, private salleService: SalleService, private animationService: AnimationService, private manifestationService: ManifestationService, private router: Router) { }
 
@@ -29,8 +28,8 @@ export class ManifestationAddComponent implements OnInit {
 
     this.salles = [];
     this.animations = [];
-    this.admins1 = [];
-    this.admins1 = [];
+    this.admins = [];
+   
     
     this.manifestation.salle = new SalleDto();
     this.manifestation.animation = new AnimationDto();
@@ -73,7 +72,7 @@ export class ManifestationAddComponent implements OnInit {
       res => {
         this.adminService.getAll().subscribe(
           donnees => {
-            this.admins1 = donnees;
+            this.admins = donnees;
           }
         );
       }
@@ -81,29 +80,11 @@ export class ManifestationAddComponent implements OnInit {
 
     this.adminService.getAll().subscribe(
       resultat => {
-        this.admins2 = resultat;
-      }
-    );
-
-    this.adminService.subjectMiseAJour.subscribe(
-      res => {
-        this.adminService.getAll().subscribe(
-          donnees => {
-            this.admins2 = donnees;
-          }
-        );
-      }
-    );
-
-    this.adminService.getAll().subscribe(
-      resultat => {
-        this.admins1 = resultat;
+        this.admins = resultat;
       }
     );
 
   }
-
-
   
   add(): void {
     this.manifestationService.add(this.manifestation).subscribe(

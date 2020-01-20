@@ -14,6 +14,7 @@ export class AuthService {
   url: string;
   subjectConnexion: Subject<number>;
   currentUser: User;
+  subjectMiseAJour: Subject<number>;
 
 
 

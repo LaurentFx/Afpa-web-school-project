@@ -3,13 +3,13 @@ import { ManifestationDto } from './manifestationDto';
 export class PanierDto {
     id: number;
     dateValidation : Date;
-    numClient: number;
+    numClient: String;
     manifestation: ManifestationDto;
     nbreBillets: number;
     total : number;
 
     constructor(id?: number,
-        numClient?: number,
+        numClient?: String,
         manifestation?: ManifestationDto,
         nbreBillets? : number, ){
         this.id = id;

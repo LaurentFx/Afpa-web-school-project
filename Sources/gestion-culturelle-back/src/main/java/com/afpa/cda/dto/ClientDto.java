@@ -25,7 +25,7 @@ public class ClientDto {
 	private RoleDto role;
 	
 	private PanierDto panier;
-	private int numClient;
+	private String numClient;
 	
 	
 }

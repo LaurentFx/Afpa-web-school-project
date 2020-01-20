@@ -46,7 +46,7 @@ public class User {
 	// Pour un client
 	@OneToOne
 	private Panier panier;
-	private int numClient;
+	private String numClient;
 
 	// Pour un animateur
 	@OneToMany

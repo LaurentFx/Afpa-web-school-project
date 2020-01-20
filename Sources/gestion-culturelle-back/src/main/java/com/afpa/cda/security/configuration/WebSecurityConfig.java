@@ -56,7 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		String[] RespUrls = { "/admin/**","/role/**" };
 		
-		String[] AdminUrls = { "/salle/**","/vip/**","/animateur/**","/client/**","/users/**","/animation/**","/manifestation/**","/typesalle/**" };
+		String[] AdminUrls = { "/salle/**","/vip/**","/animateur/**","/client/**","/users/**","/manifestation/**","/typesalle/**" };
 		
 		String[] ClientUrls = {"/panier/**"};
 		
@@ -76,6 +76,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(AllUrls).permitAll()
 				.antMatchers(RespUrls).hasAnyAuthority(new String[]{"RESP"})
 				.antMatchers(AdminUrls).hasAnyAuthority(new String[]{"ADMIN","RESP"})
+				.antMatchers(AnimUrls).hasAnyAuthority(new String[]{"ANIM"})
 				.antMatchers(ClientUrls).hasAnyAuthority(new String[]{"CLIENT","ADMIN","RESP"})
 				.antMatchers().permitAll()
 				.antMatchers(swaggerUrls).permitAll()
