@@ -37,11 +37,11 @@
             <a routerLink='vip-list' class="nav-link" routerLinkActive=active>Vip</a>
         </li>
               
-        <li class="nav-item">
+        <li *ngIf="!isConnected" class="nav-item">
             <a routerLink='login' class="nav-link" routerLinkActive=active>Login</a>
         </li>
 
-        <li class="nav-item">
+        <li *ngIf="isConnected" class="nav-item">
             <a (click)="logout()" class="nav-link" routerLinkActive=active>Logout</a>
         </li>
              

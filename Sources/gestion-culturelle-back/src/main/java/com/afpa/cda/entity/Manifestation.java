@@ -74,7 +74,7 @@ public class Manifestation {
 	private User annulateur;
 	
 	@Temporal(TemporalType.DATE)
-	private Date dateAnulation;
+	private Date dateAnnulation;
 
 
 }

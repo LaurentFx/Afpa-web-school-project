@@ -51,6 +51,7 @@ export class SalleAddComponent implements OnInit {
 
     );
     this.salle = new SalleDto();
+    this.salle.typeSalle = new TypeSalleDto();
   }
 
   goHome() {

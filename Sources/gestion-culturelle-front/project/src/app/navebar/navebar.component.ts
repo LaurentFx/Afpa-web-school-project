@@ -21,16 +21,16 @@ export class NavebarComponent implements OnInit {
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
-    
+
     this.isConnected = this.authService.isConnected();
     this.user = this.authService.getCurrentUser().nom;
     this.role = this.authService.getCurrentUser().role;
-    
-    /* Erreur
-    if(this.authService.getCurrentUser()){
-      this.isAdmin = this.authService.getCurrentUser().role === 'ADMIN';
+
+
+    if (this.authService.getCurrentUser()) {
+      this.isAdmin = this.authService.getCurrentUser().role.label === 'ADMIN';
     }
-      */
+
     /* Test pour afficher le user 
     this.authService.subjectMiseAJour.subscribe(
       res => {
@@ -40,11 +40,13 @@ export class NavebarComponent implements OnInit {
       }
     );*/
 
-    this
-
     this.authService.subjectConnexion.subscribe(
       res => {
+        console.log('bonjour');
         this.isConnected = this.authService.isConnected();
+        this.user = this.authService.getCurrentUser().nom;
+        this.role = this.authService.getCurrentUser().role;
+
 
         /* Erreur
         if(this.authService.getCurrentUser()){
