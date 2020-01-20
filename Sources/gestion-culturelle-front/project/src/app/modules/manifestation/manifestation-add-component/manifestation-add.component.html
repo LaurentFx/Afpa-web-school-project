@@ -17,9 +17,9 @@
                 placeholder="Entrer la date de validation" [(ngModel)]="manifestation.dateValidation">
         </div>
 
-        <label for="salle">Nom du validateur :</label>
+        <label for="validateur">Nom du validateur :</label>
         <select name="validateur" id="validateur" [(ngModel)]="manifestation.validateur.id" class="form-control">
-            <option *ngFor="let validateur of admins" [value]="validateur.id">{{manifestation.validateur}}</option>
+            <option *ngFor="let validateur of admins" [value]="validateur.id">{{manifestation.validateur.nom}}</option>
         </select>
 
         <label for="animation">Nom de l'animation :</label>
