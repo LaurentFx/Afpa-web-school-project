@@ -22,6 +22,6 @@ public class SalleDto {
 	private int placesVip;
 	private double fraisJournalier;
 	private TypeSalleDto typeSalle;
-	private List <ManifestationDto> manifestations;
+	private List<ManifestationDto> manifestations;
 
 }
