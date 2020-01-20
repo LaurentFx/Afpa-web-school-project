@@ -42,16 +42,11 @@ export class NavebarComponent implements OnInit {
 
     this.authService.subjectConnexion.subscribe(
       res => {
-        console.log('bonjour');
         this.isConnected = this.authService.isConnected();
-        this.user = this.authService.getCurrentUser().nom;
-        this.role = this.authService.getCurrentUser().role;
-
-
-        /* Erreur
-        if(this.authService.getCurrentUser()){
-           this.isAdmin = this.authService.getCurrentUser().role === 'ADMIN';
-         }*/
+       
+        if (this.authService.getCurrentUser()) {
+          this.isAdmin = this.authService.getCurrentUser().role.label === 'ADMIN';
+        }
       }
     );
   }

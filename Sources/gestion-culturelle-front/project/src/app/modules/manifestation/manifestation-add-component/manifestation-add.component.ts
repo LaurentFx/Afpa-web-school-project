@@ -114,7 +114,11 @@ export class ManifestationAddComponent implements OnInit {
       }
     );
     this.manifestation = new ManifestationDto();
-    
+    this.manifestation.validateur = new AdminDto();
+    this.manifestation.animation = new AnimationDto();
+    this.manifestation.annulateur = new AdminDto();
+    this.manifestation.salle = new SalleDto();
+
   }
 
   goHome() {

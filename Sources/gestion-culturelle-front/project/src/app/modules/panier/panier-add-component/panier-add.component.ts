@@ -52,6 +52,7 @@ export class PanierAddComponent implements OnInit {
       }
     );
     this.panier = new PanierDto();
+    this.panier.manifestation = new ManifestationDto();
   }
 
   goHome() {

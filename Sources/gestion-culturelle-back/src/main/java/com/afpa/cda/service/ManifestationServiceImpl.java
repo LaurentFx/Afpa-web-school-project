@@ -21,12 +21,6 @@ public class ManifestationServiceImpl implements IManifestationService {
 	@Autowired
 	private ManifestationRepository manifestationRepository;
 
-	//	@Autowired
-	//	private SalleRepository salleRepository;
-	//	
-	//	@Autowired
-	//	private AnimationRepository animationRepository;
-
 	@Autowired
 	private ModelMapper modelMapper;
 
