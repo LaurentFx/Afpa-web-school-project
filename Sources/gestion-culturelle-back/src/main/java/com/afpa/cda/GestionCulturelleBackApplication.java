@@ -81,7 +81,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 				.email(mail)
 //				.entreprise(entreprise)
 //				.panier(panierRepository.findById(1).get())
-				.role(roleRepository.findById(resp.getId()).get())
+				.role(resp)
 				.build());
 			}
 		};
@@ -90,30 +90,21 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 
 	
 	private void initRole(RoleRepository roleRepository, Role role) {
-		Optional<Role> roleBddOpt = roleRepository.findById(role.getId());
-		if( roleBddOpt.isPresent() ) {
-			Role roleBdd = roleBddOpt.get();
-			if(! roleBdd.getLabel().equals(role.getLabel())) {
-				throw new RuntimeException("\n--- > > >  un autre role "+roleBdd.getLabel()+" a l'id "+role.getId()+" résérvé pour "+role.getLabel());
-			}
-		} else {
-			roleRepository.save(
+		Optional<Role> roleBddOpt = roleRepository.findByLabel(role.getLabel());
+		if( ! roleBddOpt.isPresent() ) {
+			
+			role = roleRepository.save(
 					Role.builder()
 					.id(role.getId())
 					.label(role.getLabel())
 					.build());
-		}
+		} 
 	}
 
 	private void initTypeSalle(TypeSalleRepository typeSalleRepository, TypeSalle typeSalle) {
 		Optional<TypeSalle> typeSalleBddOpt = typeSalleRepository.findById(typeSalle.getId());
-		if( typeSalleBddOpt.isPresent() ) {
-			TypeSalle typeSalleBdd = typeSalleBddOpt.get();
-			if(! typeSalleBdd.getLabel().equals(typeSalle.getLabel())) {
-				throw new RuntimeException("\n--- > > >  un autre type de salle "+typeSalleBdd.getLabel()+" a l'id "+typeSalle.getId()+" résérvé pour "+typeSalle.getLabel());
-			}
-		} else {
-			typeSalleRepository.save(
+		if( ! typeSalleBddOpt.isPresent() ) {
+			typeSalle = typeSalleRepository.save(
 					TypeSalle.builder()
 					.id(typeSalle.getId())
 					.label(typeSalle.getLabel())

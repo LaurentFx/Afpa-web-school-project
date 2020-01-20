@@ -32,6 +32,10 @@
         <li class="nav-item">
             <a routerLink='role-list' class="nav-link" routerLinkActive=active>Role</a>
         </li>
+
+        <li class="nav-item">
+            <a routerLink='vip-list' class="nav-link" routerLinkActive=active>Vip</a>
+        </li>
               
         <li class="nav-item">
             <a routerLink='login' class="nav-link" routerLinkActive=active>Login</a>
@@ -40,12 +44,8 @@
         <li class="nav-item">
             <a (click)="logout()" class="nav-link" routerLinkActive=active>Logout</a>
         </li>
-     
-        <li class="nav-item">
-            <p class="nav-link">User : {{user}}</p>      
-        </li>
- 
+             
     </ul>
-
-
+        <p class="nav-link">User : {{user}} / Role : {{role}} </p>  
+       
 </nav>

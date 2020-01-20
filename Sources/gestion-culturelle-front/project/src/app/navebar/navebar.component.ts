@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
+import { RoleDto } from '../model/roleDto';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-navebar',
@@ -12,13 +14,17 @@ export class NavebarComponent implements OnInit {
   isConnected: boolean;
   isAdmin: boolean;
   user: String;
-  role: String;
+  role: RoleDto;
+
+
 
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
+    
     this.isConnected = this.authService.isConnected();
     this.user = this.authService.getCurrentUser().nom;
+    this.role = this.authService.getCurrentUser().role;
     
     /* Erreur
     if(this.authService.getCurrentUser()){
@@ -34,6 +40,7 @@ export class NavebarComponent implements OnInit {
       }
     );*/
 
+    this
 
     this.authService.subjectConnexion.subscribe(
       res => {

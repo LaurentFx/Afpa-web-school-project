@@ -33,10 +33,15 @@ import { AdminListComponent } from './modules/admin/admin-list/admin-list.compon
 import { AdminAddComponent } from './modules/admin/admin-add/admin-add.component';
 import { AdminUpdateComponent } from './modules/admin/admin-update/admin-update.component';
 import { AdminShowComponent } from './modules/admin/admin-show/admin-show.component';
+import { VipListComponent } from './modules/vip/vip-list/vip-list.component';
+import { VipAddComponent } from './modules/vip/vip-add/vip-add.component';
+import { VipUpdateComponent } from './modules/vip/vip-update/vip-update.component';
+import { VipShowComponent } from './modules/vip/vip-show/vip-show.component';
 import { UserListComponent } from './modules/user/user-list/user-list.component';
 import { UserAddComponent } from './modules/user/user-add/user-add.component';
 import { UserUpdateComponent } from './modules/user/user-update/user-update.component';
 import { UserShowComponent } from './modules/user/user-show/user-show.component';
+
 
 
 const routes: Routes = [
@@ -82,6 +87,27 @@ const routes: Routes = [
   { path: 'user-ad', component: UserAddComponent, canActivate: [AuthGuard] },
   { path: 'user-update/:id', component: UserUpdateComponent, canActivate: [AuthGuard] },
   { path: 'user-show/:id', component: UserShowComponent, canActivate: [AuthGuard] },
+
+  {path: 'panier-list', component: PanierListComponent},
+  {path: 'panier-ad', component: PanierAddComponent},
+  {path: 'panier-update/:id', component: PanierUpdateComponent},
+  {path: 'panier-show/:id', component: PanierShowComponent},
+ 
+  {path: 'role-list', component: RoleListComponent},
+  {path: 'role-ad', component: RoleAddComponent},
+  {path: 'role-update/:id', component: RoleUpdateComponent},
+  {path: 'role-show/:id', component: RoleShowComponent},
+  
+  {path: 'admin-list', component: AdminListComponent},
+  {path: 'admin-ad', component: AdminAddComponent},
+  {path: 'admin-update/:id', component: AdminUpdateComponent},
+  {path: 'admin-show/:id', component: AdminShowComponent},
+
+  {path: 'vip-list', component: VipListComponent},
+  {path: 'vip-add', component: VipAddComponent},
+  {path: 'vip-show/:id', component: VipShowComponent},
+  {path: 'vip-update/:id', component: VipUpdateComponent}
+   
 
 
 ];

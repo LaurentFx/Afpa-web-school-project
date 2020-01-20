@@ -17,9 +17,11 @@
       </div>
 
       <div class="row mt-1">
-        <button [disabled]='user.password.length==0 || user.username.length==0' (click)="login()" type="button" class="btn btn-secondary">
+        <button  (click)="login()" type="button" class="btn btn-secondary">
           login
         </button>
+       <!-- [disabled]='user.password.length==0 || user.username.length==0' -->
+
         <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/']">Annuler</a>
 
       </div>

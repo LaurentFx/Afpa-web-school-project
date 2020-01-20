@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,6 +20,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
+@Table(
+		name="t_animation"
+)
 public class Animation {
 	
 	@Id
