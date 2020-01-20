@@ -20,7 +20,6 @@ import lombok.Setter;
 @Builder
 public class TypeSalle {
 	@Id
-	@GeneratedValue(generator = "TYPESALLE_SEQ", strategy = GenerationType.SEQUENCE)
 	private int id;
 	
 	private String label;

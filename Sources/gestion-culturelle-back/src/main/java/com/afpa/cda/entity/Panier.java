@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,6 +24,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
+@Table(
+		name="t_panier"
+)
 public class Panier {
 	@Id
 	@GeneratedValue(generator = "PANIER_SEQ", strategy = GenerationType.SEQUENCE)
