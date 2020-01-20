@@ -14,6 +14,7 @@ export class AuthService {
   url: string;
   subjectConnexion: Subject<number>;
   currentUser: User;
+  subjectMiseAJour= new Subject<number>(); 
 
   constructor(private router: Router, private http: HttpClient) {
     this.url = 'http://localhost:8080/login';
