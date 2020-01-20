@@ -1,10 +1,14 @@
 package com.afpa.cda.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -23,7 +27,7 @@ import lombok.Setter;
 @Table(
 		name="t_user",
 		uniqueConstraints={@UniqueConstraint(columnNames={"nom","prenom"})}
-)
+		)
 public class User {
 	@Id
 	@GeneratedValue(generator = "USER_SEQ", strategy = GenerationType.SEQUENCE)
@@ -33,6 +37,23 @@ public class User {
 	private String password;
 	private String email;
 	private String tokenSecret;
+
 	@ManyToOne
 	private Role role;
+
+	private String adresse;
+
+	// Pour un client
+	@OneToOne
+	private Panier panier;
+	private int numClient;
+
+	// Pour un animateur
+	@OneToMany
+	private List <Animation> animations;
+
+	// Pour un animateur et un VIP
+	private String entreprise;
+
+
 }

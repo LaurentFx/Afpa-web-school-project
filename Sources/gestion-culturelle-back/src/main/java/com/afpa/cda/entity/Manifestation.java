@@ -43,7 +43,7 @@ public class Manifestation {
 	@Temporal(TemporalType.DATE)
 	private Date dateValidation;
 	@OneToOne
-	private Personne validateur;
+	private User validateur;
 
 	@OneToOne
 	private Animation animation;	
@@ -65,13 +65,13 @@ public class Manifestation {
 	private double rentabilite;
 
 	@ManyToMany
-	@JoinTable(name = "Manifestation_Panier",
+	@JoinTable(name = "t_manifestation_panier",
 	joinColumns = { @JoinColumn(name = "id_manifestation") },
 	inverseJoinColumns = { @JoinColumn(name = "id_panier") })
-	private List <Panier> paniers;
+	private List<Panier> paniers;
 
 	@OneToOne
-	private Personne annulateur;
+	private User annulateur;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dateAnulation;

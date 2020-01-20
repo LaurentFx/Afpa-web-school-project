@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,6 +22,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
+@Table(
+		name="t_salle"
+)
 public class Salle {
 	
 	@Id

@@ -109,17 +109,17 @@ public class ManifestationServiceImpl implements IManifestationService {
 	public boolean updateManifestation(ManifestationDto manif,int id) {
 		Optional<Manifestation> manifE = this.manifestationRepository.findById(id);
 		if (manifE.isPresent()) {
-			this.manifestationRepository.save(this.modelMapper.map(manif,Manifestation.class));
+//			this.manifestationRepository.save(this.modelMapper.map(manif,Manifestation.class));
 
-			//			Manifestation mn = manifE.get();
-			//			mn.setLabel(manif.getLabel());
-			//			mn.setDate(manif.getDate());
-			//			mn.setCout(manif.getCout());
-			//			mn.setPrixBillet(manif.getPrixBillet());
-			//			mn.setReservations(manif.getReservations());
-			//			mn.setReservationsVip(manif.getReservationsVip());
-			//			mn.setRentabilite(manif.getRentabilite());
-			//			this.manifestationRepository.save(mn);
+						Manifestation mn = manifE.get();
+						mn.setLabel(manif.getLabel());
+//						mn.setDate(manif.getDateC());
+						mn.setCout(manif.getCout());
+						mn.setPrixBillet(manif.getPrixBillet());
+						mn.setReservations(manif.getReservations());
+						mn.setReservationsVip(manif.getReservationsVip());
+						mn.setRentabilite(manif.getRentabilite());
+						this.manifestationRepository.save(mn);
 			return true;
 		}
 		return false;

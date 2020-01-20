@@ -8,17 +8,15 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.afpa.cda.dao.PersonneRepository;
+import com.afpa.cda.dao.UserRepository;
 import com.afpa.cda.dto.AdminDto;
-import com.afpa.cda.entity.Personne;
-import com.afpa.cda.entity.Role;
-import com.afpa.cda.entity.Salle;
+import com.afpa.cda.entity.User;
 
 @Service
 public class AdminServiceImpl implements IAdminService {
 
 	@Autowired
-	private PersonneRepository personneRepository;
+	private UserRepository adminRepository;
 	
 	@Autowired
 	private ModelMapper modelMapper;
@@ -26,7 +24,7 @@ public class AdminServiceImpl implements IAdminService {
 	@Override
 	public List<AdminDto> findAll() {
 		
-		return this.personneRepository.findAll()
+		return this.adminRepository.findAll()
 		.stream()
 		.map(ts-> this.modelMapper.map(ts,AdminDto.class ))
 		.collect(Collectors.toList());
@@ -38,8 +36,8 @@ public class AdminServiceImpl implements IAdminService {
 	public AdminDto add(AdminDto admin) {		
 	
 	
-			Personne adminE = this.modelMapper.map(admin,Personne.class);
-			Personne admniEntity = this.personneRepository.save(adminE);
+			User adminE = this.modelMapper.map(admin,User.class);
+			User admniEntity = this.adminRepository.save(adminE);
 			admin.setId(admniEntity .getId());			
 			
 		System.err.println("administrateur ajouté");
@@ -50,9 +48,9 @@ public class AdminServiceImpl implements IAdminService {
 @Override
 	public boolean updateAdmin(AdminDto admin, int id) {
 	
-		Optional<Personne> adminOp = this.personneRepository.findById(id);
+		Optional<User> adminOp = this.adminRepository.findById(id);
 		if(adminOp.isPresent()) {
-			this.personneRepository.save(this.modelMapper.map(admin,Personne.class));			
+			this.adminRepository.save(this.modelMapper.map(admin,User.class));			
 			System.err.println("administrateur mise à jour");
 			return true;
 		}
@@ -63,8 +61,8 @@ public class AdminServiceImpl implements IAdminService {
 	@Override
 	public boolean deleteAdmin(int id) {
 	
-		if(this.personneRepository.existsById(id)) {
-			this.personneRepository.deleteById(id);
+		if(this.adminRepository.existsById(id)) {
+			this.adminRepository.deleteById(id);
 			System.err.println("administrateur supprimé");
 			return true;
 		}
@@ -74,10 +72,10 @@ public class AdminServiceImpl implements IAdminService {
 
 	@Override
 	public AdminDto findById(int id) {
-		Optional <Personne> manifOp = this.personneRepository.findById(id);
+		Optional <User> manifOp = this.adminRepository.findById(id);
 		AdminDto admin =null; 
 		if(manifOp.isPresent()) {
-			Personne personne= manifOp.get();
+			User personne= manifOp.get();
 
 			admin=this.modelMapper.map(personne,AdminDto.class);
 		}

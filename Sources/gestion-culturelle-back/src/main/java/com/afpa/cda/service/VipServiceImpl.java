@@ -7,15 +7,15 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.afpa.cda.dao.PersonneRepository;
+import com.afpa.cda.dao.UserRepository;
 import com.afpa.cda.dto.RoleDto;
 import com.afpa.cda.dto.VipDto;
-import com.afpa.cda.entity.Personne;
+import com.afpa.cda.entity.User;
 @Service
 public class VipServiceImpl implements IVipService {
 	
     @Autowired
-    private PersonneRepository vipRepository;
+    private UserRepository vipRepository;
     
     @Autowired
     private ModelMapper modelMapper;
@@ -32,7 +32,6 @@ public class VipServiceImpl implements IVipService {
 					vipDto.setNom(v.getNom());
 					vipDto.setPrenom(v.getPrenom());
 					vipDto.setEmail(v.getEmail());
-					vipDto.setLogin(v.getLogin());
 					vipDto.setPassword(v.getPassword());
 					vipDto.setAdresse(v.getAdresse());
 					
@@ -50,8 +49,8 @@ public class VipServiceImpl implements IVipService {
     
     @Override
 	public VipDto add(VipDto vip) {
-		Personne perE = this.vipRepository.save
-				(this.modelMapper.map(vip, Personne.class));
+		User perE = this.vipRepository.save
+				(this.modelMapper.map(vip, User.class));
 		vip.setId(perE.getId());
 		return vip;
 	}
@@ -59,10 +58,10 @@ public class VipServiceImpl implements IVipService {
 	
     @Override
 	public VipDto findById(int id) {
-		Optional<Personne> perE = this.vipRepository.findById(id);
+		Optional<User> perE = this.vipRepository.findById(id);
 		VipDto vipDto = null;
 		if (perE.isPresent()) {
-			Personne pr = perE.get();
+			User pr = perE.get();
 			vipDto = this.modelMapper.map(pr, VipDto.class);
 		}
 		return vipDto;
@@ -71,9 +70,9 @@ public class VipServiceImpl implements IVipService {
     
     @Override
 	public boolean updateVip(VipDto vip, int id) {
-    	Optional<Personne> perE = this.vipRepository.findById(id);
+    	Optional<User> perE = this.vipRepository.findById(id);
     	if (perE.isPresent()) {
-			this.vipRepository.save(this.modelMapper.map(vip,Personne.class));
+			this.vipRepository.save(this.modelMapper.map(vip,User.class));
 		return true;
     	}
 		return false;
