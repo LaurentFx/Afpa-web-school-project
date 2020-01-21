@@ -26,6 +26,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 
 	@Override
 	public List<ManifestationDto> findAll() {
+		
 		return this.manifestationRepository.findAll()
 				.stream()
 				.map(manif-> {
