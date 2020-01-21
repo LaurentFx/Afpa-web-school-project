@@ -83,7 +83,7 @@ public class VipServiceImpl implements IVipService {
 	public boolean deleteVop(int id) {
 		if (this.vipRepository.existsById(id)) {
 			this.vipRepository.deleteById(id);
-			System.err.println("vip supprimée");
+			System.err.println("vip supprimé");
 			return true;
 		}
 		return false;
