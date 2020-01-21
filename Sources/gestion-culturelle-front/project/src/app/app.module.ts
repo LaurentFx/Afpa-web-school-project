@@ -55,10 +55,10 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
         tokenGetter: function  tokenGetter() {
           return localStorage.getItem('access_token');
         },
-        // inject le token pour tous ces chemin
+        // injecte le token pour tous ces chemins
         whitelistedDomains: ['localhost:8080'],
         // n'injecte pas le token pour ce chemin
-        blacklistedRoutes: ['http://localhost:8080/login']
+        blacklistedRoutes: ['http://localhost:8080/public/login']
       }
     })
   ],

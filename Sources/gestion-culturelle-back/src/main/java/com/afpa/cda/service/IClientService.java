@@ -9,11 +9,11 @@ public interface IClientService {
 	
 	List<ClientDto> findAll();
 
-	AnimationDto add(ClientDto client);
+	ClientDto add(ClientDto client);
 
-	boolean update(ClientDto client, int id);
+	boolean updateClient(ClientDto client, int id);
 
-	boolean delete(int id);
+	boolean deleteClient(int id);
 
 	ClientDto findById(int id);
 

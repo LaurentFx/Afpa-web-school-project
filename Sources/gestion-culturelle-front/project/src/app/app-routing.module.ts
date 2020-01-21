@@ -45,25 +45,25 @@ import { UserShowComponent } from './modules/user/user-show/user-show.component'
 
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'public', pathMatch: 'full', component: HomeComponent },
+  { path: 'public/login', component: LoginComponent },
 
   { path: 'typesalle-list', component: TypeSalleListComponent },
   { path: 'typesalle-ad', component: TypeSalleAddComponent },
   { path: 'typesalle-update/:id', component: TypeSalleUpdateComponent },
   { path: 'typesalle-show/:id', component: TypeSalleShowComponent },
 
-  { path: 'salle-list', component: SalleListComponent },
+  { path: 'public/salle-list', component: SalleListComponent },
   { path: 'salle-ad', component: SalleAddComponent },
   { path: 'salle-update/:id', component: SalleUpdateComponent},
   { path: 'salle-show/:id', component: SalleShowComponent },
 
-  { path: 'manifestation-list', component: ManifestationListComponent },
+  { path: 'public/manifestation-list', component: ManifestationListComponent },
   { path: 'manifestation-ad', component: ManifestationAddComponent},
   { path: 'manifestation-update/:id', component: ManifestationUpdateComponent },
   { path: 'manifestation-show/:id', component: ManifestationShowComponent },
 
-  { path: 'animation-list', component: AnimationListComponent },
+  { path: 'public/animation-list', component: AnimationListComponent },
   { path: 'animation-ad', component: AnimationAddComponent },
   { path: 'animation-update/:id', component: AnimationUpdateComponent },
   { path: 'animation-show/:id', component: AnimationShowComponent },
@@ -111,7 +111,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

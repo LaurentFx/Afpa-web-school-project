@@ -22,13 +22,13 @@ public class AnimationController {
 	@Autowired
 	private IAnimationService animationService;
 	
-	@GetMapping(path = "/animation")
+	@GetMapping(path = "/public/animation")
 	public List<AnimationDto> getAll(){
 		return this.animationService.findAll();
 	}
 	
 	@PreAuthorize("hasAnyAuthority('ANIM')")
-	@PostMapping(path = "/animation")
+	@PostMapping(path = "public/animation")
 	public AnimationDto add(@RequestBody AnimationDto anim) {
 		return this.animationService.add(anim);
 	}

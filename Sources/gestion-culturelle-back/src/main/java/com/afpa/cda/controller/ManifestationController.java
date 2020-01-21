@@ -21,7 +21,7 @@ public class ManifestationController {
 	@Autowired
 	private IManifestationService manifesationService;
 
-	@GetMapping(path = "/manifestation")
+	@GetMapping(path = "/public/manifestation")
 	public List<ManifestationDto> getAll(){
 		return this.manifesationService.findAll();
 	}
