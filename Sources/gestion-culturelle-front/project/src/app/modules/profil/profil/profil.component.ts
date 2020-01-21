@@ -44,7 +44,7 @@ export class ProfilComponent implements OnInit {
 this.update();
   }
   goHome() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/public']);
   }
 
 
