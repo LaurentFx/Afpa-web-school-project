@@ -98,6 +98,7 @@ public class UserServiceImpl implements IUserService {
 			User userE = userOp.get();
 
 			userE.setEmail(user.getEmail());
+			userE.setAdresse(user.getAdresse());
 
 			this.UserRepository.save(userE);
 

@@ -27,7 +27,7 @@ public class AnimationController {
 		return this.animationService.findAll();
 	}
 	
-	@PreAuthorize("hasAnyAuthority('ANIM')")
+	//@PreAuthorize("hasAnyAuthority('ANIM')")
 	@PostMapping(path = "public/animation")
 	public AnimationDto add(@RequestBody AnimationDto anim) {
 		return this.animationService.add(anim);

@@ -54,17 +54,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/configuration/security", "/swagger-ui.html", "/webjars/**", "/error"
         };
 		
-		String[] RespUrls = { "/admin/**","/role/**" };
+		String[] RespUrls = { "/admin","/role" , "/typesalle"};
 		
-		String[] AdminUrls = { "/typesalle/**","/public/salle/**","/vip/**","/animateur/**","/client/**","/users/**","/public/manifestation/**","/typesalle/**" };
+		String[] AdminUrls = { "/salle","/vip","/animateur","/client","/users","/manifestation","/invitation"};
 		
-		String[] ClientUrls = {"/panier/**"};
+		String[] ClientUrls = {"/panier"};
 		
-		String[] AnimUrls = {"/public/animation/**"};
+		String[] AnimUrls = {"/animation"};
 		
-		String [] VipUrls = {} ;
+		String [] VipUrls = {"/invitation"} ;
 		
-		String[] AllUrls = { "/public/login","/public/animation","/public/manifestation","/public/salle","/public" };
+		String[] AllUrls = { "/public/inscription", "/public/login","public/profil","/public/animation","/public/manifestation","/public/salle","/public" };
 		
 		http.csrf().disable();
 
@@ -73,6 +73,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
 				.antMatchers(HttpMethod.OPTIONS).permitAll()
+//				.antMatchers("/public/login","public/profil").permitAll()
 				.antMatchers(AllUrls).permitAll()
 				.antMatchers(RespUrls).hasAnyAuthority(new String[]{"RESP"})
 				.antMatchers(AdminUrls).hasAnyAuthority(new String[]{"ADMIN","RESP"})

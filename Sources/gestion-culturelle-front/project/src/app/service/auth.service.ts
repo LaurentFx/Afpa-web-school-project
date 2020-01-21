@@ -33,7 +33,6 @@ export class AuthService {
 
 
   login(user: UserAuth): Observable<boolean> {
-    console.log("coucou");
     return new Observable(observer => {
       this.http.post(this.url, user).subscribe(res => {
         localStorage.setItem('isConnected', 'true');

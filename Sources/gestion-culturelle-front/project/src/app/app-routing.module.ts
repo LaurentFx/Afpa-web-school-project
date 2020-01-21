@@ -42,7 +42,7 @@ import { UserAddComponent } from './modules/user/user-add/user-add.component';
 import { UserUpdateComponent } from './modules/user/user-update/user-update.component';
 import { UserShowComponent } from './modules/user/user-show/user-show.component';
 import { ProfilComponent } from './modules/profil/profil/profil.component';
-
+import { InscriptionComponent } from './modules/inscription/inscription/inscription.component';
 
 const routes: Routes = [
   { path: 'public', pathMatch: 'full', component: HomeComponent },
@@ -108,7 +108,9 @@ const routes: Routes = [
   {path: 'vip-show/:id', component: VipShowComponent },
   {path: 'vip-update/:id', component: VipUpdateComponent},
    
-  {path: 'profil', component: ProfilComponent },
+  {path: 'public/profil', component: ProfilComponent },
+
+  {path: 'public/inscription', component : InscriptionComponent}
 ];
 
 @NgModule({

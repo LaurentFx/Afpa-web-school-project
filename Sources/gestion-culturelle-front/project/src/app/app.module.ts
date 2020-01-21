@@ -25,6 +25,7 @@ import { VipModule } from './modules/vip/vip.module';
 import { UserModule } from './modules/user/user.module';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { ProfilModule } from './modules/profil/profil.module';
+import { InscriptionModule } from './modules/inscription/inscription.module';
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { ProfilModule } from './modules/profil/profil.module';
         blacklistedRoutes: ['http://localhost:8080/public/login']
       }
     }),
+    InscriptionModule,
    
   ],
   providers: [
