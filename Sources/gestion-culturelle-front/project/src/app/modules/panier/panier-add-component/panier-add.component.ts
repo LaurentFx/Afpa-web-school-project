@@ -47,7 +47,6 @@ export class PanierAddComponent implements OnInit {
     this.panierService.add(this.panier).subscribe(
       res => {
         this.panierService.subjectMiseAJour.next(0);
-        console.log("Ajout Ok ");
         this.goHome();
       }
     );

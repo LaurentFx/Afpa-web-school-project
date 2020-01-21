@@ -24,6 +24,7 @@ import { VipModule } from './modules/vip/vip.module';
 
 import { UserModule } from './modules/user/user.module';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { ProfilModule } from './modules/profil/profil.module';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
     NavebarComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,7 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
     AdminModule, 
     VipModule,
     UserModule,
+    ProfilModule,
     JwtModule.forRoot({
       config: {
         // pour injecter le token dans toutes les requetes
@@ -60,7 +63,8 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
         // n'injecte pas le token pour ce chemin
         blacklistedRoutes: ['http://localhost:8080/login']
       }
-    })
+    }),
+   
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}

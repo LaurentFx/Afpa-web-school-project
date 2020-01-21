@@ -23,7 +23,6 @@ export class AnimationShowComponent implements OnInit {
     this.animationService.getOne(id).subscribe(
       res => {
         this.animation = res;
-        console.log(res);
       }
     );
   }

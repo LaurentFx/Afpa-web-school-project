@@ -51,7 +51,7 @@
         </tbody>
     </table>
 
-    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/manifestation-ad']">+ Ajouter une
+    <a *ngIf="isConnected" name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/manifestation-ad']">+ Ajouter une
         manifestation </a>
 
     <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/']">Retour à l'accueil </a>

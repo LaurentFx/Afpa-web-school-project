@@ -56,7 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		String[] RespUrls = { "/admin/**","/role/**" };
 		
-		String[] AdminUrls = { "/salle/**","/vip/**","/animateur/**","/client/**","/users/**","/manifestation/**","/typesalle/**" };
+		String[] AdminUrls = { "/typesalle","/salle/**","/vip/**","/animateur/**","/client/**","/users/**","/manifestation/**","/typesalle/**" };
 		
 		String[] ClientUrls = {"/panier/**"};
 		
@@ -64,7 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		String [] VipUrls = {} ;
 		
-		String[] AllUrls = { "/login","/animation","/manifestation","/typesalle","/salle" };
+		String[] AllUrls = { "/login","/animation","/manifestation","/salle" ,"/profil"};
 		
 		http.csrf().disable();
 
@@ -78,7 +78,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(AdminUrls).hasAnyAuthority(new String[]{"ADMIN","RESP"})
 				.antMatchers(AnimUrls).hasAnyAuthority(new String[]{"ANIM"})
 				.antMatchers(ClientUrls).hasAnyAuthority(new String[]{"CLIENT","ADMIN","RESP"})
-				.antMatchers().permitAll()
+	//			.antMatchers().permitAll()
 				.antMatchers(swaggerUrls).permitAll()
 				.antMatchers("/h2-console/**").permitAll()
 				.anyRequest().authenticated();

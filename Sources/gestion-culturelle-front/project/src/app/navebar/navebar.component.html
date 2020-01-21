@@ -34,7 +34,8 @@
         </li>
 
         <li  *ngIf="isConnected"  class="nav-item">
-            <a routerLink='vip-list' class="nav-link" routerLinkActive=active>Vip</a>
+            <a (click)="redirectToProfil()" class="nav-link" routerLinkActive=active>Profil</a>
+           <!-- <a routerLink='user-list' class="nav-link" routerLinkActive=active>Profil</a> -->
         </li>
               
         <li *ngIf="!isConnected" class="nav-item">
@@ -46,6 +47,6 @@
         </li>
              
     </ul>
-        <p class="nav-link">User : {{user}} | Role : {{role}} </p>  
+    <p class="nav-link" *ngIf="isConnected" >User : {{user}} | Role : {{role.label}} </p>  
        
 </nav>

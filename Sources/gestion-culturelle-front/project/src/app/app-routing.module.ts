@@ -41,7 +41,7 @@ import { UserListComponent } from './modules/user/user-list/user-list.component'
 import { UserAddComponent } from './modules/user/user-add/user-add.component';
 import { UserUpdateComponent } from './modules/user/user-update/user-update.component';
 import { UserShowComponent } from './modules/user/user-show/user-show.component';
-
+import { ProfilComponent } from './modules/profil/profil/profil.component';
 
 
 const routes: Routes = [
@@ -83,7 +83,7 @@ const routes: Routes = [
   { path: 'admin-update/:id', component: AdminUpdateComponent},
   { path: 'admin-show/:id', component: AdminShowComponent },
 
-  { path: 'user-list', component: UserListComponent, canActivate: [AuthGuard] },
+  { path: 'user-list', component: UserListComponent },
   { path: 'user-ad', component: UserAddComponent, canActivate: [AuthGuard] },
   { path: 'user-update/:id', component: UserUpdateComponent, canActivate: [AuthGuard] },
   { path: 'user-show/:id', component: UserShowComponent, canActivate: [AuthGuard] },
@@ -106,8 +106,9 @@ const routes: Routes = [
   {path: 'vip-list', component: VipListComponent },
   {path: 'vip-add', component: VipAddComponent },
   {path: 'vip-show/:id', component: VipShowComponent },
-  {path: 'vip-update/:id', component: VipUpdateComponent}
+  {path: 'vip-update/:id', component: VipUpdateComponent},
    
+  {path: 'profil', component: ProfilComponent },
 ];
 
 @NgModule({

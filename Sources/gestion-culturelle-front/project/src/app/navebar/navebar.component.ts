@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import { RoleDto } from '../model/roleDto';
-import { Subject } from 'rxjs';
+
 
 @Component({
   selector: 'app-navebar',
@@ -28,32 +28,36 @@ export class NavebarComponent implements OnInit {
       this.isAdmin = this.authService.getCurrentUser().role.label === 'ADMIN';
     }
 
-    /*  Test pour afficher le user */
-    this.authService.subjectMiseAJour.subscribe(
-      res => {
-        this.authService.subjectMiseAJour.next(1);
-        this.user = this.authService.getCurrentUser().nom;
-        this.role = this.authService.getCurrentUser().role;
-
-      }
-    );
-
     this.authService.subjectConnexion.subscribe(
       res => {
         this.isConnected = this.authService.isConnected();
-
-        if (this.authService.getCurrentUser()) {
-          this.isAdmin = this.authService.getCurrentUser().role.label === 'ADMIN';
+        if(res == 0){
+          this.isAdmin = false;
+          this.user = '';
+          this.role = null;
+        } else {
+          const userCourrant = this.authService.getCurrentUser();
+          this.isAdmin = userCourrant.role.label === 'ADMIN';
+          this.user = userCourrant.nom;
+          this.role = userCourrant.role;
         }
       }
     );
   }
-
+ 
 
   logout(): void {
     this.authService.logout();
     this.router.navigateByUrl('/login');
     this.isConnected = false;
   }
+
+  redirectToProfil():void {
+this.router.navigateByUrl('/profil')
+
+  }
+
+  
+
 
 }

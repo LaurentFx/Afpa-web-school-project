@@ -15,10 +15,10 @@ import com.afpa.cda.entity.User;
 
 @Service
 public class UserServiceImpl implements IUserService {
-	
+
 	@Autowired
 	private UserRepository UserRepository;
-	
+
 	@Autowired
 	private ModelMapper modelMapper;
 
@@ -51,24 +51,24 @@ public class UserServiceImpl implements IUserService {
 		UserDto userDto = new UserDto ();
 		if(userEnOpt.isPresent()) {
 			User me = userEnOpt.get();
-			 userDto = this.modelMapper.map(me,UserDto.class);
+			userDto = this.modelMapper.map(me,UserDto.class);
 			// solution temporaire
 			// ne pas remonter les mots de passe pour le service get
 			userDto.setPassword(null);
 			userDto.setTokenSecret(null);
 			userDto.setRole(this.modelMapper.map(me.getRole(),RoleDto.class));
-		 return Optional.of(userDto);
+			return Optional.of(userDto);
 		}
 		return Optional.empty();
 	}
 
 	@Override
-		public UserDto findOne(Integer userId) {
+	public UserDto findOne(Integer userId) {
 		Optional<User> userEnOpt = this.UserRepository.findById(userId);
 		UserDto userDto = new UserDto ();
 		if(userEnOpt.isPresent()) {
 			User me = userEnOpt.get();
-			 userDto = this.modelMapper.map(me,UserDto.class);
+			userDto = this.modelMapper.map(me,UserDto.class);
 			// solution temporaire
 			// ne pas remonter les mots de passe pour le service get
 			userDto.setPassword(null);
@@ -77,31 +77,50 @@ public class UserServiceImpl implements IUserService {
 		}
 		return userDto;
 	}
-	
+
+	//	@Override
+	//	public boolean update (UserDto user, int id) {
+	//		Optional<User> userOp = this.UserRepository.findById(id);
+	//		if(userOp.isPresent()) {
+	//			this.UserRepository.save(this.modelMapper.map(user,User.class));			
+	//			System.err.println("user mis à jour");
+	//			return true;
+	//		}
+	//		
+	//		return false;
+	//	}
+
+
 	@Override
 	public boolean update (UserDto user, int id) {
 		Optional<User> userOp = this.UserRepository.findById(id);
 		if(userOp.isPresent()) {
-			this.UserRepository.save(this.modelMapper.map(user,User.class));			
+			User userE = userOp.get();
+
+			userE.setEmail(user.getEmail());
+
+			this.UserRepository.save(userE);
+
+			//			this.UserRepository.save(this.modelMapper.map(user,User.class));			
 			System.err.println("user mis à jour");
 			return true;
 		}
-		
+
 		return false;
 	}
-	
+
 	@Override
 	public boolean delete (int id) {
-		
+
 		if(this.UserRepository.existsById(id)) {
 			this.UserRepository.deleteById(id);
 			System.err.println("user supprimé");
 			return true;
 		}
 		return false;
-	
-		
+
+
 	}
-	
+
 }
 
