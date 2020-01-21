@@ -42,8 +42,8 @@
 
                 <td>
                     <button (click)="redirectToShow(manifestation.id)" class="btn btn-sm btn-success">Show</button>
-                    <button (click)="redirectToUpdate(manifestation.id)" class="btn btn-sm btn-warning">Update</button>
-                    <button (click)="delete(manifestation.id)" class="btn btn-sm btn-danger">Delete</button>
+                    <button *ngIf="isConnected" (click)="redirectToUpdate(manifestation.id)" class="btn btn-sm btn-warning">Update</button>
+                    <button *ngIf="isConnected" (click)="delete(manifestation.id)" class="btn btn-sm btn-danger">Delete</button>
                 </td>
 
             </tr>
