@@ -17,10 +17,8 @@ export class AuthService {
   currentUser: User;
   subjectMiseAJour: Subject<number>;
 
-
-
   constructor(private router: Router, private http: HttpClient) {
-    this.url = 'http://localhost:8080/login';
+    this.url = 'http://localhost:8080/public/login';
     this.subjectConnexion = new Subject<number>();
   }
 
@@ -35,6 +33,7 @@ export class AuthService {
 
 
   login(user: UserAuth): Observable<boolean> {
+    console.log("coucou");
     return new Observable(observer => {
       this.http.post(this.url, user).subscribe(res => {
         localStorage.setItem('isConnected', 'true');
@@ -68,8 +67,7 @@ export class AuthService {
     localStorage.removeItem('isConnected');
     localStorage.removeItem('access_token');
     localStorage.removeItem('current_user');
-    this.subjectConnexion.next(0);
-    this.router.navigateByUrl('/login');
+    this.subjectConnexion.next(3);
+    this.router.navigateByUrl('/public/login');
   }
 }
-

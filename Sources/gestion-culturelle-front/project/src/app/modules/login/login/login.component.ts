@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
         console.log('test');
         // window.location.reload();
         // login ok
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/public');      
       }
     });
   }

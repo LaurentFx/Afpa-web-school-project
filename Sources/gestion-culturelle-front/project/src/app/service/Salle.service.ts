@@ -8,7 +8,8 @@ import { Observable, Subject } from 'rxjs';
 })
 export class SalleService {
  
-  monUrl= 'http://localhost:8080/salle'; 
+  monUrl1= 'http://localhost:8080/public/salle'; 
+  monUrl2 = 'http://localhost:8080/salle'; 
 
   salle: SalleDto[]; 
 
@@ -17,23 +18,23 @@ export class SalleService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<any> {
-    return this.http.get(this.monUrl);
+    return this.http.get(this.monUrl1);
   }
   
   add(salle: SalleDto): Observable<object> {
-    return this.http.post(this.monUrl,salle);
+    return this.http.post(this.monUrl2,salle);
   }
   
   getOne(id: number): Observable<any> {
-    return this.http.get(`${this.monUrl}/${id}`);
+    return this.http.get(`${this.monUrl2}/${id}`);
   } 
 
   update(id: number, salle: Object): Observable<Object> {
-    return this.http.put(`${this.monUrl}/${id}`, salle);
+    return this.http.put(`${this.monUrl2}/${id}`, salle);
   }
 
  delete(id: number): Observable<any> {
-    return this.http.delete(`${this.monUrl}/${id}`);
+    return this.http.delete(`${this.monUrl2}/${id}`);
   }
 
 }

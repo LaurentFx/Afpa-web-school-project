@@ -8,7 +8,8 @@ import { Observable, Subject } from 'rxjs';
 })
 export class AnimationService {
  
-  monUrl= 'http://localhost:8080/animation'; 
+  monUrl1= 'http://localhost:8080/public/animation'; 
+  monUrl2 = 'http://localhost:8080/animation'; 
 
   animation: AnimationDto[]; 
 
@@ -17,23 +18,23 @@ export class AnimationService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<any> {
-    return this.http.get(this.monUrl);
+    return this.http.get(this.monUrl1);
   }
   
   add(animation: AnimationDto): Observable<object> {
-    return this.http.post(this.monUrl,animation);
+    return this.http.post(this.monUrl2,animation);
   }
   
   getOne(id: number): Observable<any> {
-    return this.http.get(`${this.monUrl}/${id}`);
+    return this.http.get(`${this.monUrl2}/${id}`);
   } 
 
   update(id: number, animation: Object): Observable<Object> {
-    return this.http.put(`${this.monUrl}/${id}`, animation);
+    return this.http.put(`${this.monUrl2}/${id}`, animation);
   }
 
  delete(id: number): Observable<any> {
-    return this.http.delete(`${this.monUrl}/${id}`);
+    return this.http.delete(`${this.monUrl2}/${id}`);
   }
 
 }

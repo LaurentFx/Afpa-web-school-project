@@ -56,15 +56,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		String[] RespUrls = { "/admin/**","/role/**" };
 		
-		String[] AdminUrls = { "/typesalle","/salle/**","/vip/**","/animateur/**","/client/**","/users/**","/manifestation/**","/typesalle/**" };
+		String[] AdminUrls = { "/typesalle/**","/public/salle/**","/vip/**","/animateur/**","/client/**","/users/**","/public/manifestation/**","/typesalle/**" };
 		
 		String[] ClientUrls = {"/panier/**"};
 		
-		String[] AnimUrls = {"/animation/**"};
+		String[] AnimUrls = {"/public/animation/**"};
 		
 		String [] VipUrls = {} ;
 		
-		String[] AllUrls = { "/login","/animation","/manifestation","/salle" ,"/profil"};
+		String[] AllUrls = { "/public/login","/public/animation","/public/manifestation","/public/salle","/public" };
 		
 		http.csrf().disable();
 

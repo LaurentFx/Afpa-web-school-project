@@ -14,15 +14,15 @@
         </li>
         
         <li class="nav-item">
-            <a routerLink='salle-list' class="nav-link" routerLinkActive=active>Salle</a>
+            <a routerLink='public/salle-list' class="nav-link" routerLinkActive=active>Salle</a>
         </li>
 
         <li class="nav-item">
-            <a routerLink='animation-list' class="nav-link" routerLinkActive=active>Animation</a>
+            <a routerLink='public/animation-list' class="nav-link" routerLinkActive=active>Animation</a>
         </li>
 
         <li class="nav-item">
-            <a routerLink='manifestation-list' class="nav-link" routerLinkActive=active>Manifestation</a>
+            <a routerLink='public/manifestation-list' class="nav-link" routerLinkActive=active>Manifestation</a>
         </li>
         
         <li  *ngIf="isConnected"  class="nav-item">
@@ -39,7 +39,7 @@
         </li>
               
         <li *ngIf="!isConnected" class="nav-item">
-            <a routerLink='login' class="nav-link" routerLinkActive=active>Login</a>
+            <a routerLink='public/login' class="nav-link" routerLinkActive=active>Login</a>
         </li>
 
         <li *ngIf="isConnected" class="nav-item">

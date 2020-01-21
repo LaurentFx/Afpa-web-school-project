@@ -4,18 +4,17 @@ export class VipDto {
     id: number;
     nom: string;
     prenom: string;
-    email: string;
-    login: string;
+    email: string;  
     password: string;
     adresse: string;
     role: RoleDto;
     entreprise: string;
 
-    constructor(id?: number,
+    constructor(
+        id?: number,
         nom?: string,
         prenom?: string,
-        email?: string,
-        login?: string,
+        email?: string,    
         password?: string,
         adresse?: string,
         role?: RoleDto,
@@ -24,8 +23,7 @@ export class VipDto {
         this.id = id;
         this.nom= nom;
         this.prenom = prenom;
-        this.email = email;
-        this.login=login;
+        this.email = email;    
         this.password = password;
         this.adresse = adresse;
         this.role = role;
