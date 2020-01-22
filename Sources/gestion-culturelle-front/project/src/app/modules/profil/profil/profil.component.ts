@@ -19,6 +19,7 @@ export class ProfilComponent implements OnInit {
 
   ngOnInit() {
     this.user = new User ();
+    
     /* this.user = this.authService.getCurrentUser().nom; */
     let id = this.authService.getCurrentUser().id;
 
