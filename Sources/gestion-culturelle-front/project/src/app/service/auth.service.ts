@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserAuth } from '../model/user-auth';
 import { User } from '../model/user';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { RoleDto } from '../model/roleDto';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,6 @@ export class AuthService {
 
 
   login(user: UserAuth): Observable<boolean> {
-    console.log("coucou");
     return new Observable(observer => {
       this.http.post(this.url, user).subscribe(res => {
         localStorage.setItem('isConnected', 'true');
@@ -43,10 +43,13 @@ export class AuthService {
         const decodedToken = helper.decodeToken(res['token']);
         currentUser.id = decodedToken.sub;
         currentUser.nom = decodedToken.username;
-        currentUser.role = decodedToken.roles;
+        currentUser.role = new RoleDto();
+        currentUser.role.label = decodedToken.roles;
         localStorage.setItem('current_user', JSON.stringify(currentUser));
-      
-        this.subjectConnexion.next(3);
+
+        this.subjectConnexion.next(1);
+
+        console.log("this.subjectConnexion.next(5);");
         observer.next(true);
       },
         err => {

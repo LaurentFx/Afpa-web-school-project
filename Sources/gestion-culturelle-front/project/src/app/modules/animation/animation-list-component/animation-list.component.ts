@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AnimationService } from '../../../service/animation.service';
 import { Router } from '@angular/router';
 import { AnimationDto } from '../../../model/animationDto';
+import { AuthService } from '../../../service/auth.service';
 
 @Component({
   selector: 'app-animation-list',
@@ -10,11 +11,14 @@ import { AnimationDto } from '../../../model/animationDto';
 })
 export class AnimationListComponent implements OnInit {
 
+  isConnected: boolean;
   animations: AnimationDto[];
   
-  constructor(private animationService: AnimationService,private router: Router) { }
+  constructor(private animationService: AnimationService,private router: Router,
+    private authService: AuthService) { }
 
   ngOnInit() {
+    this.isConnected = this.authService.isConnected();
 
     this.animationService.subjectMiseAJour.subscribe(
       res=> {
@@ -30,6 +34,12 @@ export class AnimationListComponent implements OnInit {
       resultat =>{
           this.animations = resultat; 
                }
+    );
+    this.authService.subjectConnexion.subscribe(
+      res => {
+        this.isConnected = this.authService.isConnected();
+      
+      }
     );
   }
 

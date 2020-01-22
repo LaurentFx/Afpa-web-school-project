@@ -59,7 +59,6 @@ export class AdminUpdateComponent implements OnInit {
     let id = this.route.snapshot.params['id'];
     this.adminService.update(id, this.admin).subscribe(
       res => {
-        console.log("Modification Ok");
         this.goHome();
       }
     );

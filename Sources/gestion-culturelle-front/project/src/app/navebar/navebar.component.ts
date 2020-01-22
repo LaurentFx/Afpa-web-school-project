@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import { RoleDto } from '../model/roleDto';
-import { Subject } from 'rxjs';
+
 
 @Component({
   selector: 'app-navebar',
@@ -12,48 +12,47 @@ import { Subject } from 'rxjs';
 export class NavebarComponent implements OnInit {
 
   isConnected: boolean;
-  isAdmin: boolean;
+  isResp: boolean;
   user: String;
   role: RoleDto;
 
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
-
+    this.isResp = this.authService.getCurrentUser().role.label === 'RESP';
     this.isConnected = this.authService.isConnected();
-   // this.user = this.authService.getCurrentUser().nom;
-    //this.role = this.authService.getCurrentUser().role;
-
-    if (this.authService.getCurrentUser()) {
-      this.isAdmin = this.authService.getCurrentUser().role.label === 'ADMIN';
-    }
-
-    /*  Test pour afficher le user 
-    this.authService.subjectMiseAJour.subscribe(
-      res => {
-        this.authService.subjectMiseAJour.next(1);
-        this.user = this.authService.getCurrentUser().nom;
-        this.role = this.authService.getCurrentUser().role;
-
-      }
-    );*/
+    this.user = this.authService.getCurrentUser().nom;
+    this.role = this.authService.getCurrentUser().role;
 
     this.authService.subjectConnexion.subscribe(
       res => {
         this.isConnected = this.authService.isConnected();
-
-        if (this.authService.getCurrentUser()) {
-          this.isAdmin = this.authService.getCurrentUser().role.label === 'ADMIN';
+        if (res == 0) {
+          this.isResp = false;
+          this.user = '';
+          this.role = null;
+        } else {
+          const userCourant = this.authService.getCurrentUser();
+          this.isResp = userCourant.role.label === 'RESP';
+          this.user = userCourant.nom;
+          this.role = userCourant.role;
         }
       }
     );
   }
-
 
   logout(): void {
     this.authService.logout();
     this.router.navigateByUrl('/public/login');
     this.isConnected = false;
   }
+
+  redirectToProfil(): void {
+    this.router.navigateByUrl('/public/profil')
+
+  }
+
+
+
 
 }

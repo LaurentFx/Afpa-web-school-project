@@ -24,7 +24,7 @@
 
         <label for="animation">Type d'animation :</label>
         <select name="animation" id="animation" [(ngModel)]="manifestation.animation.id" class="form-control">
-            <option *ngFor="let animation of animations" required [value]="animation.id">{{animation.label}}</option>
+            <option *ngFor="let animation of animations"  [value]="animation.id">{{animation.label}}</option>
         </select>
 
         <div class="form-group">
@@ -85,7 +85,7 @@
 
         
         <a name="" id="" class="btn btn-secondary" href="#" role="button"
-            [routerLink]="['public/manifestation-list']">Annuler</a>
+            [routerLink]="['/public/manifestation-list']">Annuler</a>
 
         <button type="submit" class="btn btn-secondary">Valider</button>
     </form>

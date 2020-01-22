@@ -106,7 +106,7 @@ public class JwtTokenServiceImpl implements JwtTokenService {
         if(refreshToken) {
             calendar.add(Calendar.MONTH, 1);
         } else {
-            calendar.add(Calendar.MINUTE, 10);
+            calendar.add(Calendar.MINUTE, 60);
         }
 
         return calendar.getTime();

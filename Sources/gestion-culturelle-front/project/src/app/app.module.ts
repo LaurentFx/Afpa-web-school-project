@@ -23,7 +23,12 @@ import { AdminModule } from './modules/admin/admin.module';
 import { VipModule } from './modules/vip/vip.module';
 import { UserModule } from './modules/user/user.module';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+<<<<<<< HEAD
 import { AnimateurModule } from './modules/animateur/animateur.module';
+=======
+import { ProfilModule } from './modules/profil/profil.module';
+import { InscriptionModule } from './modules/inscription/inscription.module';
+>>>>>>> dev
 
 
 @NgModule({
@@ -32,7 +37,8 @@ import { AnimateurModule } from './modules/animateur/animateur.module';
     NavebarComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -50,6 +56,7 @@ import { AnimateurModule } from './modules/animateur/animateur.module';
     AnimateurModule, 
     VipModule,
     UserModule,
+    ProfilModule,
     JwtModule.forRoot({
       config: {
         // pour injecter le token dans toutes les requetes
@@ -61,7 +68,9 @@ import { AnimateurModule } from './modules/animateur/animateur.module';
         // n'injecte pas le token pour ce chemin
         blacklistedRoutes: ['http://localhost:8080/public/login']
       }
-    })
+    }),
+    InscriptionModule,
+   
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}

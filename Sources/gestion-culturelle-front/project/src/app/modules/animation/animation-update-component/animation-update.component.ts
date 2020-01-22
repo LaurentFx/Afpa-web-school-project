@@ -31,7 +31,6 @@ export class AnimationUpdateComponent implements OnInit {
     let id = this.route.snapshot.params['id'];
     this.animationService.update(id, this.animation).subscribe(
       res => {
-       console.log("Modification Ok");
         this.goHome();
       }
     );

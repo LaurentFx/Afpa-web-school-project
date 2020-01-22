@@ -41,12 +41,13 @@ import { UserListComponent } from './modules/user/user-list/user-list.component'
 import { UserAddComponent } from './modules/user/user-add/user-add.component';
 import { UserUpdateComponent } from './modules/user/user-update/user-update.component';
 import { UserShowComponent } from './modules/user/user-show/user-show.component';
+
 import { AnimateurListComponent } from './modules/animateur/animateur-list/animateur-list.component';
 import { AnimateurAddComponent } from './modules/animateur/animateur-add/animateur-add.component';
 import { AnimateurUpdateComponent } from './modules/animateur/animateur-update/animateur-update.component';
 import { AnimateurShowComponent } from './modules/animateur/animateur-show/animateur-show.component';
-
-
+import { ProfilComponent } from './modules/profil/profil/profil.component';
+import { InscriptionComponent } from './modules/inscription/inscription/inscription.component';
 
 
 const routes: Routes = [
@@ -88,7 +89,7 @@ const routes: Routes = [
   { path: 'admin-update/:id', component: AdminUpdateComponent},
   { path: 'admin-show/:id', component: AdminShowComponent },
 
-  { path: 'user-list', component: UserListComponent, canActivate: [AuthGuard] },
+  { path: 'user-list', component: UserListComponent },
   { path: 'user-ad', component: UserAddComponent, canActivate: [AuthGuard] },
   { path: 'user-update/:id', component: UserUpdateComponent, canActivate: [AuthGuard] },
   { path: 'user-show/:id', component: UserShowComponent, canActivate: [AuthGuard] },
@@ -116,8 +117,11 @@ const routes: Routes = [
   {path: 'vip-list', component: VipListComponent },
   {path: 'vip-add', component: VipAddComponent },
   {path: 'vip-show/:id', component: VipShowComponent },
-  {path: 'vip-update/:id', component: VipUpdateComponent}
+  {path: 'vip-update/:id', component: VipUpdateComponent},
    
+  {path: 'public/profil', component: ProfilComponent },
+
+  {path: 'public/inscription', component : InscriptionComponent}
 ];
 
 @NgModule({

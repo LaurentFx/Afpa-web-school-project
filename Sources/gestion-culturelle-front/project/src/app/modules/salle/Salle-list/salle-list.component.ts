@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SalleDto } from '../../../model/salleDto';
 import { Router } from '@angular/router';
 import { SalleService } from '../../../service/salle.service';
+import { AuthService } from '../../../service/auth.service';
 
 @Component({
   selector: 'app-salle-list',
@@ -10,11 +11,14 @@ import { SalleService } from '../../../service/salle.service';
 })
 export class SalleListComponent implements OnInit {
 
+  isConnected: boolean;
   salles: SalleDto[];
   
-  constructor(private salleService: SalleService,private router: Router) { }
+  constructor(private salleService: SalleService, private router: Router,
+    private authService: AuthService) { }
 
   ngOnInit() {
+    this.isConnected = this.authService.isConnected();
 
     this.salleService.subjectMiseAJour.subscribe(
       res=> {
@@ -32,6 +36,14 @@ export class SalleListComponent implements OnInit {
         
       }
     );
+
+    this.authService.subjectConnexion.subscribe(
+      res => {
+        this.isConnected = this.authService.isConnected();
+      
+      }
+    );
+
   }
 
  delete(id:number) {

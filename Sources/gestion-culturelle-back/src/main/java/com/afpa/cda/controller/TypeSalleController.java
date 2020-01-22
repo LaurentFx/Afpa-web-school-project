@@ -31,7 +31,7 @@ public class TypeSalleController {
 		return this.typeSalleService.findById(id);
 	}
 	
-	@PreAuthorize("hasAnyAuthority('RESP','ADMIN')")
+	//@PreAuthorize("hasAnyAuthority('RESP','ADMIN')")
 	@PostMapping(path = "/typesalle")
 	public TypeSalleDto add(@RequestBody TypeSalleDto typ) {
 		return this.typeSalleService.add(typ);

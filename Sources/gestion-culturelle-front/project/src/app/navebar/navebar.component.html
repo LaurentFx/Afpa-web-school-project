@@ -2,19 +2,15 @@
 
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a routerLink='' class="nav-link" routerLinkActive=active>Home</a>
+            <a routerLink='/public' class="nav-link" routerLinkActive=active>Home</a>
         </li>
 
-        <li *ngIf="isConnected"  class="nav-item">
-            <a routerLink='user-list' class="nav-link" routerLinkActive=active>User</a>
-        </li>
-
-        <li class="nav-item">
+        <li *ngIf="isResp" class="nav-item">
             <a routerLink='typesalle-list' class="nav-link" routerLinkActive=active>Types de salle</a>
         </li>
-        
+
         <li class="nav-item">
-            <a routerLink='public/salle-list' class="nav-link" routerLinkActive=active>Salle</a>
+            <a routerLink='public/salle-list' class="nav-link" routerLinkActive=active>Salles</a>
         </li>
 
         <li class="nav-item">
@@ -24,28 +20,36 @@
         <li class="nav-item">
             <a routerLink='public/manifestation-list' class="nav-link" routerLinkActive=active>Manifestation</a>
         </li>
-        
-        <li  *ngIf="isConnected"  class="nav-item">
+
+        <li *ngIf="isConnected" class="nav-item">
             <a routerLink='panier-list' class="nav-link" routerLinkActive=active>Panier</a>
         </li>
-           
-        <li  *ngIf="isConnected"  class="nav-item">
+
+        <li *ngIf="isResp" class="nav-item">
+            <a routerLink='user-list' class="nav-link" routerLinkActive=active>User</a>
+        </li>
+
+        <li *ngIf="isResp" class="nav-item">
             <a routerLink='role-list' class="nav-link" routerLinkActive=active>Role</a>
         </li>
 
-        <li  *ngIf="isConnected"  class="nav-item">
-            <a routerLink='vip-list' class="nav-link" routerLinkActive=active>Vip</a>
+        <li *ngIf="isConnected" class="nav-item">
+            <a (click)="redirectToProfil()" class="nav-link" routerLinkActive=active>Profil</a>
         </li>
-              
+
         <li *ngIf="!isConnected" class="nav-item">
             <a routerLink='public/login' class="nav-link" routerLinkActive=active>Login</a>
+        </li>
+
+        <li *ngIf="!isConnected" class="nav-item">
+            <a routerLink='public/inscription' class="nav-link" routerLinkActive=active>Inscription</a>
         </li>
 
         <li *ngIf="isConnected" class="nav-item">
             <a (click)="logout()" class="nav-link" routerLinkActive=active>Logout</a>
         </li>
-             
+
     </ul>
-        <p class="nav-link">User : {{user}} | Role : {{role}} </p>  
-       
+    <p class="nav-link" *ngIf="isConnected">User : {{user}} - Role : {{role.label}} </p>
+
 </nav>
