@@ -27,8 +27,8 @@
 
                 <td>
                     <button (click)="redirectToShow(animation.id)" class="btn btn-sm btn-success">Show</button>
-                    <button (click)="redirectToUpdate(animation.id)" class="btn btn-sm btn-warning">Update</button>
-                    <button (click)="delete(animation.id)" class="btn btn-sm btn-danger">Delete</button>
+                    <button *ngIf="isConnected" (click)="redirectToUpdate(animation.id)" class="btn btn-sm btn-warning">Update</button>
+                    <button *ngIf="isConnected" (click)="delete(animation.id)" class="btn btn-sm btn-danger">Delete</button>
                 </td>
 
             </tr>
@@ -36,6 +36,7 @@
         </tbody>
     </table>
 
-    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/animation-ad']">+ Ajouter une animation </a>
+    <a  name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/animation-ad']">+ Ajouter une animation </a>
+<!--*ngIf="isConnected"-->
 
-    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/']">Retour à l'accueil </a>
+    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']">Retour à l'accueil </a>

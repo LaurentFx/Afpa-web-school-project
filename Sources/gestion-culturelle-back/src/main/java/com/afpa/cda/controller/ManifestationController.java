@@ -21,7 +21,7 @@ public class ManifestationController {
 	@Autowired
 	private IManifestationService manifesationService;
 
-	@GetMapping(path = "/manifestation")
+	@GetMapping(path = "/public/manifestation")
 	public List<ManifestationDto> getAll(){
 		return this.manifesationService.findAll();
 	}
@@ -31,7 +31,7 @@ public class ManifestationController {
 		return this.manifesationService.findById(id);
 	}
 	
-	@PreAuthorize("hasAnyAuthority('RESP','ADMIN')")
+	//@PreAuthorize("hasAnyAuthority('RESP','ADMIN')")
 	@PostMapping(path = "/manifestation")
 	public ManifestationDto add(@RequestBody ManifestationDto manif) {
 		return this.manifesationService.add(manif);

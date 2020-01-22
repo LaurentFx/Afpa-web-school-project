@@ -3,15 +3,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.afpa.cda.dao.AnimationRepository;
 import com.afpa.cda.dao.UserRepository;
 import com.afpa.cda.dto.AnimateurDto;
 import com.afpa.cda.dto.AnimationDto;
 import com.afpa.cda.dto.RoleDto;
-import com.afpa.cda.dto.SalleDto;
-import com.afpa.cda.dto.VipDto;
 import com.afpa.cda.entity.Animation;
 import com.afpa.cda.entity.User;
 @Service
@@ -19,6 +20,9 @@ public class AnimateurServiceImpl implements IAnimateurService {
 
 	@Autowired
 	private UserRepository animateurRepository;
+	
+	@Autowired
+	private AnimationRepository animationRepository;
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -27,39 +31,74 @@ public class AnimateurServiceImpl implements IAnimateurService {
 	public List<AnimateurDto> findAll() {
 
 		return this.animateurRepository.findAll()
+				
 				.stream()
 				.map(an-> {
 					AnimateurDto animateurDto = new AnimateurDto();
 					animateurDto.setId(an.getId());
 					animateurDto.setNom(an.getNom());
-					animateurDto.setPrenom(an.getPrenom());
-					animateurDto.setTokenSecret(an.getTokenSecret());
-					animateurDto.setEmail(an.getEmail());					
-					animateurDto.setPassword(an.getPassword());
+					animateurDto.setPrenom(an.getPrenom());					
+					animateurDto.setEmail(an.getEmail());
+					animateurDto.setAdresse(an.getAdresse());				
 					animateurDto.setEntreprise(an.getEntreprise());
-					animateurDto.setAdresse(an.getAdresse());
+				
 
 					animateurDto.setAnimations(new ArrayList<AnimationDto>());
 
-					/*for (Animation anim : an.getAnimations()) {	
-						animateurDto.getAnimations().add(AnimationDto
-											.builder().id(anim.getId()))
-											.label(anim.getLabel())
-											.type(anim.getType())
-											.prix(anim.getPrix())
-											.nbreSpectateursPrevus(anim.getNbreSpectateursPrevus())
-
-								 .build();
-					}*/
+					for (Animation anim : an.getAnimations()) {	
+						animateurDto.getAnimations()
+								.add(AnimationDto
+										.builder().id(anim.getId())
+										.id(anim.getId())
+										.label(anim.getLabel())
+										.type(anim.getType())
+										.prix(anim.getPrix())
+										.nbreSpectateursPrevus(anim.getNbreSpectateursPrevus())
+										.build());
+								
+											
+					}
+					
 					RoleDto roleDto = new RoleDto();
 					roleDto.setLabel(an.getRole().getLabel());
 					animateurDto.setRole(roleDto);
+				
+				return animateurDto;
 
-					return animateurDto;
-
+					
 				})
 
-			.collect(Collectors.toList());
+				.collect(Collectors.toList());
+				
+				/* List<User> liste_Animateurs= this.animateurRepository.findByRole("ANIM");
+				 
+			 	
+				 for(User user: liste_Animateurs ) {			 
+					 
+					 	AnimateurDto animDto = new AnimateurDto();	
+					 	
+						animDto.setId(user.getId());
+						animDto.setNom(user.getNom());
+						animDto.setEmail(user.getEmail());			
+						animDto.setAdresse(user.getAdresse());
+
+									
+					ArrayList<AnimationDto> list_Animations = new ArrayList<AnimationDto>();
+					
+					animDto.setAnimations(new ArrayList<AnimationDto>());			
+						for (AnimationDto animation: list_Animations) {
+							         animDto.getAnimations()
+									.add(AnimationDto
+											.builder().id(animation.getId())
+											.label(animation.getLabel())								
+											.build());
+						}
+						
+						
+				 }
+				return null;
+			
+			}*/
 
 	}
 	@Override
@@ -69,6 +108,7 @@ public class AnimateurServiceImpl implements IAnimateurService {
 		anim.setId(perE.getId());
 		return anim;
 	}
+	
 	@Override
 	public boolean updateAnimateur(AnimateurDto anim, int id) {
 		Optional<User> perE = this.animateurRepository.findById(id);
@@ -97,7 +137,8 @@ public class AnimateurServiceImpl implements IAnimateurService {
 			User pr = perE.get();
 			animateurDto = this.modelMapper.map(pr, AnimateurDto.class);
 		}
-		return animateurDto;	}
+		return animateurDto;
+	}
 
 
 }

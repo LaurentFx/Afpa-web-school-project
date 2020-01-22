@@ -30,7 +30,7 @@ export class AnimationAddComponent implements OnInit {
   }
 
   goHome() {
-    this.router.navigate(['/animation-list']);
+    this.router.navigate(['/public/animation-list']);
 
   }
 

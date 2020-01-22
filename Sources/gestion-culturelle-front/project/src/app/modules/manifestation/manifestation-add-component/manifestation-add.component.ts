@@ -103,7 +103,7 @@ export class ManifestationAddComponent implements OnInit {
   }
 
   goHome() {
-    this.router.navigate(['/manifestation-list']);
+    this.router.navigate(['/public/manifestation-list']);
 
   }
 

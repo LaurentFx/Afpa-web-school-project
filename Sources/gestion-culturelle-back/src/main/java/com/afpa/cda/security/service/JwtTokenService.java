@@ -1,7 +1,6 @@
 package com.afpa.cda.security.service;
 
 import org.springframework.security.core.Authentication;
-
 import com.afpa.cda.security.model.JwtTokens;
 import com.afpa.cda.security.model.UserSecDto;
 

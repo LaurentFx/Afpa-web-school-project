@@ -1,20 +1,23 @@
 package com.afpa.cda.service;
 
 import java.util.List;
+import java.util.Optional;
 
-import com.afpa.cda.dto.AnimationDto;
 import com.afpa.cda.dto.ClientDto;
+import com.afpa.cda.dto.UserDto;
 
 public interface IClientService {
 	
 	List<ClientDto> findAll();
 
-	AnimationDto add(ClientDto client);
+	ClientDto add(ClientDto client);
 
-	boolean update(ClientDto client, int id);
+	Optional<ClientDto> findById(Integer clientId);
+
+	ClientDto findOne(Integer clientId);
 
 	boolean delete(int id);
 
-	ClientDto findById(int id);
+	boolean updateClient(ClientDto client, int id);
 
 }

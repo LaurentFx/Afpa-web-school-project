@@ -45,7 +45,6 @@ export class AdminAddComponent implements OnInit {
   add(): void {
     this.adminService.add(this.admin).subscribe(
       res => {    
-        console.log("Ajout Ok ");
         this.goHome();
       }
     );

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ManifestationDto } from '../../../model/manifestationDto';
 import { Router } from '@angular/router';
 import { ManifestationService } from '../../../service/manifestation.service';
+import { AuthService } from '../../../service/auth.service';
 
 @Component({
   selector: 'app-manifestation-list',
@@ -10,11 +11,15 @@ import { ManifestationService } from '../../../service/manifestation.service';
 })
 export class ManifestationListComponent implements OnInit {
 
-  manifestations: ManifestationDto[];
-  
-  constructor(private manifestationService: ManifestationService,private router: Router) { }
+  isConnected: boolean;
+  manifestations: ManifestationDto[];  
+
+  constructor(private manifestationService: ManifestationService,private router: Router,
+     private authService: AuthService) { }
+
 
   ngOnInit() {
+    this.isConnected = this.authService.isConnected();
 
     this.manifestationService.subjectMiseAJour.subscribe(
       res=> {
@@ -32,6 +37,14 @@ export class ManifestationListComponent implements OnInit {
         
       }
     );
+
+    this.authService.subjectConnexion.subscribe(
+      res => {
+        this.isConnected = this.authService.isConnected();
+      
+      }
+    );
+
   }
 
  delete(id:number) {

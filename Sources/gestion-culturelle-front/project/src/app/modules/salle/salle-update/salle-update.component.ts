@@ -65,7 +65,7 @@ this.update();
   }
   
   goHome() {
-    this.router.navigate(['/salle-list']);
+    this.router.navigate(['/public/salle-list']);
   }
 
 }

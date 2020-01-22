@@ -22,14 +22,15 @@
                 <td>{{panier.dateValidation}}</td>
                 <td>{{panier.numClient}}</td>
 
-                <table >
-                    <tbody>
-                        <tr *ngFor="let manifestation of manifestations">
-                            <td>{{manifestation.label}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                
+                <td>
+                    <select size="3">
+                        <option *ngFor="let manifestation of manifestations" class="list-group" >
+
+                            {{manifestation.label}}
+                        </option>
+                    </select>
+                </td>
+
                 <td>{{panier.nbreBillets}}</td>
                 <td>{{panier.total}}</td>
 
@@ -47,4 +48,4 @@
     <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/panier-ad']">+ Ajouter un panier
     </a>
 
-    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/']">Retour à l'accueil </a>
+    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']">Retour à l'accueil </a>

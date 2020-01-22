@@ -42,28 +42,34 @@ import { UserAddComponent } from './modules/user/user-add/user-add.component';
 import { UserUpdateComponent } from './modules/user/user-update/user-update.component';
 import { UserShowComponent } from './modules/user/user-show/user-show.component';
 
+import { AnimateurListComponent } from './modules/animateur/animateur-list/animateur-list.component';
+import { AnimateurAddComponent } from './modules/animateur/animateur-add/animateur-add.component';
+import { AnimateurUpdateComponent } from './modules/animateur/animateur-update/animateur-update.component';
+import { AnimateurShowComponent } from './modules/animateur/animateur-show/animateur-show.component';
+import { ProfilComponent } from './modules/profil/profil/profil.component';
+import { InscriptionComponent } from './modules/inscription/inscription/inscription.component';
 
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'public', pathMatch: 'full', component: HomeComponent },
+  { path: 'public/login', component: LoginComponent },
 
   { path: 'typesalle-list', component: TypeSalleListComponent },
   { path: 'typesalle-ad', component: TypeSalleAddComponent },
   { path: 'typesalle-update/:id', component: TypeSalleUpdateComponent },
   { path: 'typesalle-show/:id', component: TypeSalleShowComponent },
 
-  { path: 'salle-list', component: SalleListComponent },
+  { path: 'public/salle-list', component: SalleListComponent },
   { path: 'salle-ad', component: SalleAddComponent },
   { path: 'salle-update/:id', component: SalleUpdateComponent},
   { path: 'salle-show/:id', component: SalleShowComponent },
 
-  { path: 'manifestation-list', component: ManifestationListComponent },
+  { path: 'public/manifestation-list', component: ManifestationListComponent },
   { path: 'manifestation-ad', component: ManifestationAddComponent},
   { path: 'manifestation-update/:id', component: ManifestationUpdateComponent },
   { path: 'manifestation-show/:id', component: ManifestationShowComponent },
 
-  { path: 'animation-list', component: AnimationListComponent },
+  { path: 'public/animation-list', component: AnimationListComponent },
   { path: 'animation-ad', component: AnimationAddComponent },
   { path: 'animation-update/:id', component: AnimationUpdateComponent },
   { path: 'animation-show/:id', component: AnimationShowComponent },
@@ -83,10 +89,15 @@ const routes: Routes = [
   { path: 'admin-update/:id', component: AdminUpdateComponent},
   { path: 'admin-show/:id', component: AdminShowComponent },
 
-  { path: 'user-list', component: UserListComponent, canActivate: [AuthGuard] },
+  { path: 'user-list', component: UserListComponent },
   { path: 'user-ad', component: UserAddComponent, canActivate: [AuthGuard] },
   { path: 'user-update/:id', component: UserUpdateComponent, canActivate: [AuthGuard] },
   { path: 'user-show/:id', component: UserShowComponent, canActivate: [AuthGuard] },
+
+  { path: 'animateur-list', component: AnimateurListComponent},
+  { path: 'animateur-ad', component: AnimateurAddComponent },
+  { path: 'animateur-update/:id', component: AnimateurUpdateComponent },
+  { path: 'animateur-show/:id', component: AnimateurShowComponent},
 
   {path: 'panier-list', component: PanierListComponent },
   {path: 'panier-ad', component: PanierAddComponent },
@@ -106,12 +117,15 @@ const routes: Routes = [
   {path: 'vip-list', component: VipListComponent },
   {path: 'vip-add', component: VipAddComponent },
   {path: 'vip-show/:id', component: VipShowComponent },
-  {path: 'vip-update/:id', component: VipUpdateComponent}
+  {path: 'vip-update/:id', component: VipUpdateComponent},
    
+  {path: 'public/profil', component: ProfilComponent },
+
+  {path: 'public/inscription', component : InscriptionComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

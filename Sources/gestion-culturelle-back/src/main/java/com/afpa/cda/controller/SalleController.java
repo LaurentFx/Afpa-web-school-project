@@ -21,7 +21,7 @@ public class SalleController {
 	@Autowired
 	private ISalleService salleService;
 	
-	@GetMapping(path = "/salle")
+	@GetMapping(path = "/public/salle")
 	public List<SalleDto> getAll(){
 		return this.salleService.findAll();
 	}

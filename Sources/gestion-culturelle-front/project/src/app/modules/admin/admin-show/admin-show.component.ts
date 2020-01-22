@@ -25,7 +25,6 @@ export class AdminShowComponent implements OnInit {
     this.adminService.getOne(id).subscribe(
       res => {
         this.admin = res;
-        console.log(res);
       }
     );
 

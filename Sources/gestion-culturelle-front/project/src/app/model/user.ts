@@ -4,13 +4,20 @@ export class User {
     id: number;
     nom: string;
     prenom: string;
+    email: string;
+    adresse: string;
     role: RoleDto;
+   
 
-    constructor(id?: number, nom?: string, prenom?: string, role?: RoleDto){
+    constructor(id?: number, nom?: string, prenom?: string, email?:string, adresse?: string,role?: RoleDto){
         this.id = id;
         this.nom= nom;
         this.prenom = prenom;
-        this.role = role;
+        this.email = email;
+        this.adresse = adresse;
+        this.role= role;
+       
+        
     }
 
 }

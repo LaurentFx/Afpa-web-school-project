@@ -21,9 +21,11 @@ import { AnimationModule } from './modules/animation/animation.module';
 import { PanierModule } from './modules/panier/panier.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { VipModule } from './modules/vip/vip.module';
-
 import { UserModule } from './modules/user/user.module';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { AnimateurModule } from './modules/animateur/animateur.module';
+import { ProfilModule } from './modules/profil/profil.module';
+import { InscriptionModule } from './modules/inscription/inscription.module';
 
 
 @NgModule({
@@ -32,7 +34,8 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
     NavebarComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -46,21 +49,25 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
     ManifestationModule, 
     AnimationModule, 
     PanierModule, 
-    AdminModule, 
+    AdminModule,
+    AnimateurModule, 
     VipModule,
     UserModule,
+    ProfilModule,
     JwtModule.forRoot({
       config: {
         // pour injecter le token dans toutes les requetes
         tokenGetter: function  tokenGetter() {
           return localStorage.getItem('access_token');
         },
-        // inject le token pour tous ces chemin
+        // injecte le token pour tous ces chemins
         whitelistedDomains: ['localhost:8080'],
         // n'injecte pas le token pour ce chemin
-        blacklistedRoutes: ['http://localhost:8080/login']
+        blacklistedRoutes: ['http://localhost:8080/public/login']
       }
-    })
+    }),
+    InscriptionModule,
+   
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
