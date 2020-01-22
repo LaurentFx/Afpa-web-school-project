@@ -22,7 +22,13 @@ export class ManifestationUpdateComponent implements OnInit {
   salles: SalleDto[];
   admins: AdminDto[];
 
-  constructor(private adminService: AdminService, private salleService : SalleService, private animationService : AnimationService,private route: ActivatedRoute, private manifestationService: ManifestationService, private router: Router) { }
+  constructor(
+    private adminService: AdminService,
+    private salleService : SalleService,
+    private animationService : AnimationService,
+    private route: ActivatedRoute,
+    private manifestationService: ManifestationService,
+    private router: Router) { }
 
   ngOnInit() {
     this.manifestation = new ManifestationDto();

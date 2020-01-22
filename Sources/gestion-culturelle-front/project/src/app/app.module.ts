@@ -21,9 +21,9 @@ import { AnimationModule } from './modules/animation/animation.module';
 import { PanierModule } from './modules/panier/panier.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { VipModule } from './modules/vip/vip.module';
-
 import { UserModule } from './modules/user/user.module';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { AnimateurModule } from './modules/animateur/animateur.module';
 
 
 @NgModule({
@@ -46,7 +46,8 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
     ManifestationModule, 
     AnimationModule, 
     PanierModule, 
-    AdminModule, 
+    AdminModule,
+    AnimateurModule, 
     VipModule,
     UserModule,
     JwtModule.forRoot({

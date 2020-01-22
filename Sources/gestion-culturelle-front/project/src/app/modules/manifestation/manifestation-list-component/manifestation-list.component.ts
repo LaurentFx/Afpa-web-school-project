@@ -12,7 +12,9 @@ export class ManifestationListComponent implements OnInit {
 
   manifestations: ManifestationDto[];
   
-  constructor(private manifestationService: ManifestationService,private router: Router) { }
+  constructor(
+    private manifestationService: ManifestationService,
+    private router: Router) { }
 
   ngOnInit() {
 
