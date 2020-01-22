@@ -2,7 +2,7 @@
 <br>
 
 <div [hidden]="submitted" style="width: 400px;">
-  >
+  
 
   <div class="container">
     <div class="row justify-content-center">
@@ -40,12 +40,11 @@
 
         <div class="form-group">
           <label for="role">Role</label>
-          <input type="text" [(ngModel)]="role.id" [value]="role.id" name="role" id="role" class="form-control"
+          <input type="text" [(ngModel)]="role.label" [value]="role.id" name="role" id="role" class="form-control"
             readonly>
           {{role.label}}
         </div>
-
-        <textarea>{{role.label}}</textarea>
+        
         <br>
 
         <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/user-list']">Annuler</a>

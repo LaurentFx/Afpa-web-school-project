@@ -39,25 +39,26 @@
             <input type="date" name="dateFin" class="form-control" id="dateFin" placeholder="Entrer la date de fin "
                 [(ngModel)]="manifestation.dateFin">
         </div>
-
+<!--
         <div class="form-group">
             <label for=" cout">Coût :</label>
             <input type="text" name="cout" class="form-control" id="cout" placeholder="Entrer le coût"
                 [(ngModel)]="manifestation.cout">
         </div>
-
+-->
 
         <label for="salle">Choix de salle :</label>
         <select name="salle" id="salle" [(ngModel)]="manifestation.salle.id" class="form-control">
             <option *ngFor="let salle of salles" [value]="salle.id">{{salle.label}}</option>
         </select>
 
-
+<!--
         <div class="form-group">
             <label for=" prixBillet">Prix du billet :</label>
             <input type="text" name="prixBillet" class="form-control" id="prixBillet"
                 placeholder="Entrer le prix du billet" [(ngModel)]="manifestation.prixBillet">
         </div>
+        -->
 
         <div class="form-group">
             <label for=" reservations">Nombre de reservations :</label>

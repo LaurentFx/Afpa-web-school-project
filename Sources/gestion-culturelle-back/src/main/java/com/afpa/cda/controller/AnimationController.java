@@ -28,7 +28,7 @@ public class AnimationController {
 	}
 	
 	//@PreAuthorize("hasAnyAuthority('ANIM')")
-	@PostMapping(path = "public/animation")
+	@PostMapping(path = "animation")
 	public AnimationDto add(@RequestBody AnimationDto anim) {
 		return this.animationService.add(anim);
 	}

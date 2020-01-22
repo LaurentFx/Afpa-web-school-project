@@ -33,9 +33,9 @@
             panier</button>
 
         <div class="form-group">
-            <label for="panier">Panier :</label>
-            <select name="panier" id="panier" [(ngModel)]="panier.manifestation.id" class="form-control">
-                <option *ngFor="let panier of paniers" [value]="manifestation.id">{{panier.manifestation}}
+            <label for="achat">Manifestations achetées :</label>
+            <select name="achat" id="achat" [(ngModel)]="panier.manifestation.id" class="form-control">
+                <option *ngFor="let manifestation of manifestations" [value]="manifestation.id">{{manifestation.label}}
                 </option>
             </select>
         </div>

@@ -8,12 +8,16 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.afpa.cda.dao.AnimationRepository;
 import com.afpa.cda.dao.ManifestationRepository;
+import com.afpa.cda.dao.SalleRepository;
 import com.afpa.cda.dto.AdminDto;
 import com.afpa.cda.dto.AnimationDto;
 import com.afpa.cda.dto.ManifestationDto;
 import com.afpa.cda.dto.SalleDto;
+import com.afpa.cda.entity.Animation;
 import com.afpa.cda.entity.Manifestation;
+import com.afpa.cda.entity.Salle;
 
 @Service
 public class ManifestationServiceImpl implements IManifestationService {
@@ -22,11 +26,17 @@ public class ManifestationServiceImpl implements IManifestationService {
 	private ManifestationRepository manifestationRepository;
 
 	@Autowired
+	private AnimationRepository animationRepository;
+
+	@Autowired
+	private SalleRepository salleRepository;
+
+	@Autowired
 	private ModelMapper modelMapper;
 
 	@Override
 	public List<ManifestationDto> findAll() {
-		
+
 		return this.manifestationRepository.findAll()
 				.stream()
 				.map(manif-> {
@@ -108,37 +118,97 @@ public class ManifestationServiceImpl implements IManifestationService {
 			manifestationDto.setReservations(manif.getReservations());
 			manifestationDto.setReservationsVip(manif.getReservationsVip());
 
-
 			manifestationDto.setDateAnnulation(manif.getDateAnnulation());
-
 
 		}
 		return manifestationDto;
 	}
 
 	@Override
-	public ManifestationDto add(ManifestationDto mani) {
+	public ManifestationDto add(ManifestationDto manifDto) {
 
-		Manifestation maniE = this.manifestationRepository.save(this.modelMapper.map(mani,Manifestation.class)); 
-		mani.setId(maniE.getId());
+		Manifestation maniE = this.manifestationRepository.save(this.modelMapper.map(manifDto,Manifestation.class)); 
+		manifDto.setId(maniE.getId());
 
-		return mani;
+		double debut=maniE.getDateDebut().getTime();
+		double fin=maniE.getDateFin().getTime();
+		double duree = 1+((((fin-debut)/1000)/3600)/24);
+
+		AnimationDto animDto = new AnimationDto();
+		Optional<Animation> animOp=animationRepository.findById(manifDto.getAnimation().getId());
+		if (animOp.isPresent()) {
+			Animation anim = animOp.get();
+			animDto=modelMapper.map(anim,AnimationDto.class);
+			System.out.println("Prix "+animDto.getPrix());
+		}
+
+		SalleDto salleDto = new SalleDto ();
+		Optional<Salle> salleOp=salleRepository.findById(manifDto.getSalle().getId());
+		if (salleOp.isPresent()) {
+			Salle salle = salleOp.get();
+			salleDto = modelMapper.map(salle,SalleDto.class);
+			System.out.println("Salle :"+ salleDto.getFraisJournalier());
+		}
+
+		manifDto.setCout(animDto.getPrix()+(duree* salleDto.getFraisJournalier()));
+		System.out.println("cout "+manifDto.getCout());
+		manifDto.setPrixBillet((manifDto.getCout()/salleDto.getCapacite())*0.8);
+		System.out.println("billet "+manifDto.getPrixBillet());
+
+		
+		this.manifestationRepository.save(this.modelMapper.map(manifDto,Manifestation.class)); 
+		return manifDto;
+		
 
 	}
 
+
 	@Override
 	public boolean updateManifestation(ManifestationDto manifDto,int id) {
+	
 		Optional<Manifestation> manifOp = this.manifestationRepository.findById(id);
 
 		if (manifOp.isPresent()) {
-			Manifestation manif = manifOp.get();
+			Manifestation maniE = manifOp.get();
 
-			this.manifestationRepository.save(this.modelMapper.map(manifDto, Manifestation.class));
+//			this.manifestationRepository.save(this.modelMapper.map(manifDto, Manifestation.class));
+		
+//		Manifestation maniE = this.manifestationRepository.save(this.modelMapper.map(manifDto,Manifestation.class)); 
+		manifDto.setId(maniE.getId());
+
+		double debut=manifDto.getDateDebut().getTime();
+		double fin=manifDto.getDateFin().getTime();
+		double duree = 1+((((fin-debut)/1000)/3600)/24);
+
+		AnimationDto animDto = new AnimationDto();
+		Optional<Animation> animOp=animationRepository.findById(manifDto.getAnimation().getId());
+		if (animOp.isPresent()) {
+			Animation anim = animOp.get();
+			animDto=modelMapper.map(anim,AnimationDto.class);
+			System.out.println("Prix "+animDto.getPrix());
+		}
+
+		SalleDto salleDto = new SalleDto ();
+		Optional<Salle> salleOp=salleRepository.findById(manifDto.getSalle().getId());
+		if (salleOp.isPresent()) {
+			Salle salle = salleOp.get();
+			salleDto = modelMapper.map(salle,SalleDto.class);
+			System.out.println("Salle :"+ salleDto.getFraisJournalier());
+		}
+
+		manifDto.setCout(animDto.getPrix()+(duree* salleDto.getFraisJournalier()));
+		System.out.println("cout "+manifDto.getCout());
+		manifDto.setPrixBillet((manifDto.getCout()/salleDto.getCapacite())*0.8);
+		System.out.println("billet "+manifDto.getPrixBillet());
+
+		
+		this.manifestationRepository.save(this.modelMapper.map(manifDto,Manifestation.class)); 
+		
+			
 			return true;
 		}
 		return false;
 	}
-
 
 
 	@Override
@@ -153,17 +223,6 @@ public class ManifestationServiceImpl implements IManifestationService {
 	}
 
 
-	public double calculCout (double prixAnim,double fraisJournalier, int nbreJours) {
-		int cout = 0;
-
-		return cout;
-	}
-
-	public double calculPrixBillet (double cout, int capacite) {
-		int prixBillet = 0;
-
-		return prixBillet;
-	}
 
 	public void annulation (AdminDto annulateur) {
 
