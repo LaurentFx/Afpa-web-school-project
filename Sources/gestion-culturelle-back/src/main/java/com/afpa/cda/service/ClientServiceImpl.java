@@ -21,7 +21,7 @@ public class ClientServiceImpl implements IClientService {
 	@Autowired
 	private ModelMapper modelMapper;
 
-	@Override
+	/*@Override
 	public List<ClientDto> findAll() {
 		return this.clientRepository.findAll()
 
@@ -44,27 +44,57 @@ public class ClientServiceImpl implements IClientService {
 				})
 
 				.collect(Collectors.toList());
-	}
+	}*/
+	
 	@Override
-	public ClientDto add(ClientDto client) {
-		User perE = this.clientRepository.save
-				(this.modelMapper.map(client, User.class));
-		client.setId(perE.getId());
-		return client;		
+	public ClientDto add(ClientDto clientDto) {
+		User perE = this.clientRepository.save(this.modelMapper.map(clientDto, User.class));
+		clientDto.setId(perE.getId());
+		System.err.println("client ajouté");
+		return clientDto;		
 
 	}
 	@Override
 	public boolean updateClient(ClientDto client, int id) {
 
-		Optional<User> perE = this.clientRepository.findById(id);
-		if (perE.isPresent()) {
+		Optional<User> perOp = this.clientRepository.findById(id);
+		if (perOp.isPresent()) {
+			User perE = perOp.get();
+			perE.setNom(client.getNom());
+			perE.setPrenom(client.getPrenom());
+			perE.setAdresse(client.getAdresse());
+			perE.setEmail(client.getEmail());
+			perE.setPassword(client.getPassword());
+			
+			
 			this.clientRepository.save(this.modelMapper.map(client,User.class));
+			System.err.println("client mis à jour");
 			return true;
 		}
 		return false;
 	}
-	
 	@Override
+	public List<ClientDto> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Optional<ClientDto> findById(Integer clientId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public ClientDto findOne(Integer clientId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public boolean delete(int id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	/*@Override
 	public boolean deleteClient(int id) {
 		if (this.clientRepository.existsById(id)) {
 			this.clientRepository.deleteById(id);
@@ -72,8 +102,9 @@ public class ClientServiceImpl implements IClientService {
 			return true;
 		}
 		return false;
-	}
-	@Override
+	}*/
+	
+	/*@Override
 	public ClientDto findById(int id) {
 
 		Optional<User> perE = this.clientRepository.findById(id);
@@ -83,7 +114,7 @@ public class ClientServiceImpl implements IClientService {
 			clientDto = this.modelMapper.map(pr, ClientDto.class);
 		}
 		return clientDto;
-	}
+	}*/
 }
 
 

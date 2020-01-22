@@ -21,11 +21,14 @@ import { AnimationModule } from './modules/animation/animation.module';
 import { PanierModule } from './modules/panier/panier.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { VipModule } from './modules/vip/vip.module';
-
 import { UserModule } from './modules/user/user.module';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+<<<<<<< HEAD
+import { AnimateurModule } from './modules/animateur/animateur.module';
+=======
 import { ProfilModule } from './modules/profil/profil.module';
 import { InscriptionModule } from './modules/inscription/inscription.module';
+>>>>>>> dev
 
 
 @NgModule({
@@ -49,7 +52,8 @@ import { InscriptionModule } from './modules/inscription/inscription.module';
     ManifestationModule, 
     AnimationModule, 
     PanierModule, 
-    AdminModule, 
+    AdminModule,
+    AnimateurModule, 
     VipModule,
     UserModule,
     ProfilModule,

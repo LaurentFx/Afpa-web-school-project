@@ -41,8 +41,14 @@ import { UserListComponent } from './modules/user/user-list/user-list.component'
 import { UserAddComponent } from './modules/user/user-add/user-add.component';
 import { UserUpdateComponent } from './modules/user/user-update/user-update.component';
 import { UserShowComponent } from './modules/user/user-show/user-show.component';
+
+import { AnimateurListComponent } from './modules/animateur/animateur-list/animateur-list.component';
+import { AnimateurAddComponent } from './modules/animateur/animateur-add/animateur-add.component';
+import { AnimateurUpdateComponent } from './modules/animateur/animateur-update/animateur-update.component';
+import { AnimateurShowComponent } from './modules/animateur/animateur-show/animateur-show.component';
 import { ProfilComponent } from './modules/profil/profil/profil.component';
 import { InscriptionComponent } from './modules/inscription/inscription/inscription.component';
+
 
 const routes: Routes = [
   { path: 'public', pathMatch: 'full', component: HomeComponent },
@@ -87,6 +93,11 @@ const routes: Routes = [
   { path: 'user-ad', component: UserAddComponent, canActivate: [AuthGuard] },
   { path: 'user-update/:id', component: UserUpdateComponent, canActivate: [AuthGuard] },
   { path: 'user-show/:id', component: UserShowComponent, canActivate: [AuthGuard] },
+
+  { path: 'animateur-list', component: AnimateurListComponent},
+  { path: 'animateur-ad', component: AnimateurAddComponent },
+  { path: 'animateur-update/:id', component: AnimateurUpdateComponent },
+  { path: 'animateur-show/:id', component: AnimateurShowComponent},
 
   {path: 'panier-list', component: PanierListComponent },
   {path: 'panier-ad', component: PanierAddComponent },

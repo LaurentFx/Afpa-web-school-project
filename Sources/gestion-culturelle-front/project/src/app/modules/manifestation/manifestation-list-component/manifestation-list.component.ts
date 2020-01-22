@@ -12,10 +12,11 @@ import { AuthService } from '../../../service/auth.service';
 export class ManifestationListComponent implements OnInit {
 
   isConnected: boolean;
-  manifestations: ManifestationDto[];
-  
+  manifestations: ManifestationDto[];  
+
   constructor(private manifestationService: ManifestationService,private router: Router,
      private authService: AuthService) { }
+
 
   ngOnInit() {
     this.isConnected = this.authService.isConnected();
