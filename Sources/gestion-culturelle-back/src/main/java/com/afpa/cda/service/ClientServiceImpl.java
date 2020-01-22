@@ -11,6 +11,7 @@ import com.afpa.cda.dao.UserRepository;
 import com.afpa.cda.dto.ClientDto;
 import com.afpa.cda.dto.PanierDto;
 import com.afpa.cda.dto.RoleDto;
+import com.afpa.cda.entity.Role;
 import com.afpa.cda.entity.User;
 @Service
 public class ClientServiceImpl implements IClientService {
@@ -48,8 +49,18 @@ public class ClientServiceImpl implements IClientService {
 	
 	@Override
 	public ClientDto add(ClientDto clientDto) {
-		User perE = this.clientRepository.save(this.modelMapper.map(clientDto, User.class));
+		User perE = this.modelMapper.map(clientDto, User.class);
+		Role client = new Role();
+		client.setId(4);
+				
+		perE.setRole(client);
+		
+//		User perE = this.clientRepository.save(this.modelMapper.map(clientDto, User.class));
+		this.clientRepository.save(perE);
+		
 		clientDto.setId(perE.getId());
+		
+		
 		System.err.println("client ajouté");
 		return clientDto;		
 

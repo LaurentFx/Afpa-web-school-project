@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../model/user';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class InscriptionService {
-  monUrl= 'http://localhost:8080/public/inscription'; 
+  monUrl= 'http://localhost:8080/newusers'; 
 
   user: User [];
   subjectMiseAJour= new Subject<number>();
@@ -19,8 +21,6 @@ export class InscriptionService {
     return this.http.post(this.monUrl,user);
   }
 
-  getOne(id: number): Observable<any> {
-    return this.http.get(`${this.monUrl}/${id}`);
-  } 
+  
 
 }

@@ -3,9 +3,11 @@ package com.afpa.cda.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,7 +20,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.afpa.cda.constant.AdminUserDefaultConf;
+import com.afpa.cda.dao.RoleRepository;
+import com.afpa.cda.dto.RoleDto;
 import com.afpa.cda.dto.UserDto;
+import com.afpa.cda.entity.Role;
 import com.afpa.cda.service.IUserService;
 
 @RestController
@@ -26,20 +31,26 @@ public class UserController {
 
 	@Autowired
 	private IUserService userService;
-	
+
+	@Autowired
+	private RoleRepository roleRepository;
+
 	@Autowired
 	private AdminUserDefaultConf adminUserDefaultConf;
-	
+
+	@Autowired
+	private ModelMapper modelMapper;
+
 	@GetMapping(path = "/users")
 	public List<UserDto> getAll(){
 		return this.userService.findAll();
 	}
-	
+
 	@GetMapping(path = "/users/{id}")
 	public UserDto getOne(@PathVariable int id){
 		return this.userService.findOne(id);
 	}
-	
+
 	@PostMapping(path = "/users")
 	public UserDto add(@RequestBody UserDto user, HttpServletResponse resp) throws IOException {
 		if(user.getRole() == null) {
@@ -53,23 +64,47 @@ public class UserController {
 			return this.userService.add(user);
 		}
 	}
-	
+
+	@PostMapping(path = "/newusers")
+	public UserDto addnew(@RequestBody UserDto user, HttpServletResponse resp) throws IOException {
+		if(user.getNom().equalsIgnoreCase(adminUserDefaultConf.getNom()) 
+				|| user.getPrenom().equalsIgnoreCase(adminUserDefaultConf.getPrenom())) {
+			resp.sendError(HttpStatus.NOT_ACCEPTABLE.value(),"prenom/nom 'admin' sont déjà pris");
+			return null;
+		} else {
+
+			Optional<Role> roleOp=roleRepository.findById(4);
+
+			RoleDto roleDto = new RoleDto ();
+			if (roleOp.isPresent()) {
+				Role role = roleOp.get();
+				roleDto = modelMapper.map(role,RoleDto.class);
+			}
+
+			user.setRole(roleDto);
+
+			return this.userService.add(user);
+		}
+	}
+
+
+
 	@GetMapping("/users/current")
 	public UserDto getCurrentUser(Principal currentUser) {
 		Integer userId = Integer.valueOf((String)((UsernamePasswordAuthenticationToken)currentUser).getPrincipal());
 		return this.userService.findById(userId).get();
-		
+
 	}
-	
+
 
 	@PutMapping(path = "/users/{id}")
 	public void update(@RequestBody UserDto user,@PathVariable int id ) {
 		this.userService.update(user, id);
 	}
-	
+
 	@DeleteMapping(path = "/users/{id}")
 	public void delete(@PathVariable int id) {
 		this.userService.delete(id);
 	}
-	
+
 }

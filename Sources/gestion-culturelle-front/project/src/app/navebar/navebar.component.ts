@@ -19,14 +19,17 @@ export class NavebarComponent implements OnInit {
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
-    this.isResp = this.authService.getCurrentUser().role.label === 'RESP';
     this.isConnected = this.authService.isConnected();
-    this.user = this.authService.getCurrentUser().nom;
-    this.role = this.authService.getCurrentUser().role;
+    if (this.authService.getCurrentUser()) {
+      this.isResp = this.authService.getCurrentUser().role.label === 'RESP';
+      this.user = this.authService.getCurrentUser().nom;
+      this.role = this.authService.getCurrentUser().role;
+    }
 
     this.authService.subjectConnexion.subscribe(
       res => {
         this.isConnected = this.authService.isConnected();
+        
         if (res == 0) {
           this.isResp = false;
           this.user = '';
