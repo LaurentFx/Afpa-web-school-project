@@ -27,5 +27,6 @@ public class AnimateurDto  {
 
 	private String entreprise;
 	private List <AnimationDto> animations;
+	private String photo;
 
 }

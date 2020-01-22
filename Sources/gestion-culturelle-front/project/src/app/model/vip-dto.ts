@@ -9,6 +9,7 @@ export class VipDto {
     adresse: string;
     role: RoleDto;
     entreprise: string;
+    photo: string;
 
     constructor(
         id?: number,

@@ -22,5 +22,5 @@ public class AdminDto {
 	private String tokenSecret;
 	private String adresse;
 	private RoleDto role;
-	
+	private String photo;
 }

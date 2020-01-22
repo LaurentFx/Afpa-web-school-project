@@ -50,7 +50,7 @@ export class VipAddComponent implements OnInit {
   }
 
   goHome() {
-    this.router.navigate(['/public/vip-list']);
+    this.router.navigate(['/vip-list']);
 
   }
 

@@ -24,4 +24,5 @@ public class VipDto {
 	private RoleDto role;
 	
 	private String entreprise;
+	private String photo;
 }

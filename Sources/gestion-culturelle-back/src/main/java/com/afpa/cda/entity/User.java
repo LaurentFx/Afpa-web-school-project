@@ -54,6 +54,7 @@ public class User {
 
 	// Pour un animateur et un VIP
 	private String entreprise;
+	private String photo;
 
 
 }

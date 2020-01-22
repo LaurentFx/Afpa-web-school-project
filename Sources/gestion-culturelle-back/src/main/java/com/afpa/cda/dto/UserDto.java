@@ -29,6 +29,5 @@ public class UserDto {
 	
 	private String email;
 	private String adresse;
-	private RoleDto role;
-	
+	private RoleDto role;	
 }
