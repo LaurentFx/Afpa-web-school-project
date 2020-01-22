@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PanierService } from '../../../service/panier.service';
 import { Router } from '@angular/router';
 import { PanierDto } from '../../../model/panierDto';
+import { ManifestationDto } from '../../../model/manifestationDto';
+import { ManifestationService } from '../../../service/manifestation.service';
 
 @Component({
   selector: 'app-panier-list',
@@ -11,8 +13,11 @@ import { PanierDto } from '../../../model/panierDto';
 export class PanierListComponent implements OnInit {
 
   paniers: PanierDto[];
+  manifestations: ManifestationDto[];
   
-  constructor(private panierService: PanierService,private router: Router) { }
+  constructor(private panierService: PanierService,
+     private manifestationService : ManifestationService,
+      private router: Router) { }
 
   ngOnInit() {
 
@@ -31,7 +36,26 @@ export class PanierListComponent implements OnInit {
           this.paniers = resultat; 
                }
     );
+
+    this.manifestationService.subjectMiseAJour.subscribe(
+      res=> {
+        this.manifestationService.getAll().subscribe(
+          donnees =>{
+			  this.manifestations = donnees; 
+          }
+        );
+      }
+    );
+
+    this.manifestationService.getAll().subscribe(
+      resultat =>{
+          this.manifestations = resultat; 
+        
+      }
+    );
   }
+
+  
 
   delete(id:number) {
     this.panierService.delete(id).subscribe(

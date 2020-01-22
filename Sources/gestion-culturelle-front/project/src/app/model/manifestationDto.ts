@@ -34,7 +34,7 @@ export class ManifestationDto {
         prixBillet?: number,
         salle?: SalleDto,
         annulateur?: AdminDto,
-        dateAnnulation?: Date,
+        dateAnnulation?: Date
     ) {
 
         this.id = id;

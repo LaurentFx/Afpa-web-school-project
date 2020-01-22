@@ -36,7 +36,7 @@ public class Panier {
 	
 	@Temporal(TemporalType.DATE)
 	private Date dateValidation;
-	private int numClient;
+	private String numClient;
 		
 	@ManyToMany
 	@JoinTable(name = "t_manifestation_panier",

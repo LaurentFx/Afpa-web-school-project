@@ -1,45 +1,47 @@
-<h3>Liste des manifestations</h3>
+<h3>Liste des VIP</h3>
 <br>
 <div class="panel-body">
     <table class="table table-striped table-bordered ">
-        <thead class="thead-dark">
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Email</th>
-                <th>Login</th>
-                <th>Password</th>
-                <th>Adresse</th>
-                <th>Role</th>
-                <th>Entreprise</th>
-                <th>Action</th>
-                
-            </tr>
-        </thead>
+      <!--  <div *ngIf="isVip"> -->
+            <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Email</th>
+                    <th>Login</th>
+                    <th>Password</th>
+                    <th>Adresse</th>
+                    <th>Role</th>
+                    <th>Entreprise</th>
+                    <th>Action</th>
 
-        <tbody>
-            <tr *ngFor="let vip of vip">
+                </tr>
+            </thead>
 
-                <td>{{vip.id}}</td>
-                <td>{{vip.nom}}</td>
-                <td>{{vip.prenom}}</td>
-                <td>{{vip.email}}</td>
-                <td>{{vip.login}}</td>
-                <td>{{vip.password}}</td>
-                <td>{{vip.adresse}}</td>
-                <td>{{vip.role.label}}</td>
-                <td>{{vip.entreprise}}</td>
+            <tbody>
+                <tr *ngFor="let vip of vips">
 
-                <td>
-                    <button (click)="redirectToShow(vip.id)" class="btn btn-sm btn-success">Show</button>
-                    <button (click)="redirectToUpdate(vip.id)" class="btn btn-sm btn-warning">Update</button>
-                    <button (click)="delete(vip.id)" class="btn btn-sm btn-danger">Delete</button>
-                </td>
+                    <td>{{vip.id}}</td>
+                    <td>{{vip.nom}}</td>
+                    <td>{{vip.prenom}}</td>
+                    <td>{{vip.email}}</td>
+                    <td>{{vip.login}}</td>
+                    <td>{{vip.password}}</td>
+                    <td>{{vip.adresse}}</td>
+                    <td>{{vip.role.label}}</td>
+                    <td>{{vip.entreprise}}</td>
 
-            </tr>
+                    <td>
+                        <button (click)="redirectToShow(vip.id)" class="btn btn-sm btn-success">Show</button>
+                        <button (click)="redirectToUpdate(vip.id)" class="btn btn-sm btn-warning">Update</button>
+                        <button (click)="delete(vip.id)" class="btn btn-sm btn-danger">Delete</button>
+                    </td>
 
-        </tbody>
+                </tr>
+
+            </tbody>
+     <!--   </div> -->
     </table>
 
     <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/vip-add']">+ Ajouter un Vip</a>

@@ -14,7 +14,8 @@ export class AuthService {
   url: string;
   subjectConnexion: Subject<number>;
   currentUser: User;
-  subjectMiseAJour= new Subject<number>();  
+  subjectMiseAJour: Subject<number>;
+
 
 
   constructor(private router: Router, private http: HttpClient) {

@@ -29,6 +29,7 @@ export class ManifestationAddComponent implements OnInit {
     this.salles = [];
     this.animations = [];
     this.admins = [];
+   
     
     this.manifestation.salle = new SalleDto();
     this.manifestation.animation = new AnimationDto();
@@ -84,7 +85,7 @@ export class ManifestationAddComponent implements OnInit {
     );
 
   }
-
+  
   add(): void {
     this.manifestationService.add(this.manifestation).subscribe(
       res => {
@@ -94,6 +95,11 @@ export class ManifestationAddComponent implements OnInit {
       }
     );
     this.manifestation = new ManifestationDto();
+    this.manifestation.validateur = new AdminDto();
+    this.manifestation.animation = new AnimationDto();
+    this.manifestation.annulateur = new AdminDto();
+    this.manifestation.salle = new SalleDto();
+
   }
 
   goHome() {

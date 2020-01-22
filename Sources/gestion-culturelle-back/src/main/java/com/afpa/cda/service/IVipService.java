@@ -1,9 +1,10 @@
 package com.afpa.cda.service;
 
 import java.util.List;
-
+import java.util.Optional;
 
 import com.afpa.cda.dto.VipDto;
+import com.afpa.cda.entity.User;
 
 
 public interface IVipService {

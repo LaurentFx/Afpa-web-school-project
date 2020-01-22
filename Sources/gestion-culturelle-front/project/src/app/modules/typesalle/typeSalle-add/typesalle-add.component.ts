@@ -31,7 +31,6 @@ export class TypeSalleAddComponent implements OnInit {
 
   goHome() {
     this.router.navigate(['/typesalle-list']);
-
   }
 
 }

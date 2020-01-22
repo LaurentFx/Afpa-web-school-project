@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="row justify-content-center">
     <div class="col-4">
 
@@ -19,12 +19,37 @@
       <div class="row mt-1">
         <button  (click)="login()" type="button" class="btn btn-secondary">
           login
-        </button>
-       <!-- [disabled]='user.password.length==0 || user.username.length==0' -->
-
+        </button> -->
+       <!-- [disabled]='user.password.length==0 || user.username.length==0'88888888 -->
+<!-- 
         <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/']">Annuler</a>
 
       </div>
+    </div>
+
+  </div>
+</div> -->
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="https://www.b-cube.in/wp-content/uploads/2014/05/aditya-300x177.jpg" id="icon" alt="User Icon" />
+      <h1>Gestion culturelle</h1>
+    </div>
+
+    <!-- Login Form -->
+    <form>
+      <input [(ngModel)]="user.username" type="text" id="login" class="fadeIn second" name="login" placeholder="username">
+      <input [(ngModel)]="user.password" type="password" id="password" class="fadeIn third" name="login" placeholder="password">
+      <input (click)="login()" type="submit" class="fadeIn fourth" value="Log In">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Je m'inscris</a>
     </div>
 
   </div>

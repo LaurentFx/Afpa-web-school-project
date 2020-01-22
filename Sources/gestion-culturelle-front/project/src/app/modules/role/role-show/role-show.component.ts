@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { RoleService } from '../../../service/Role.service';
+import { RoleService } from '../../../service/role.service';
 import { RoleDto } from '../../../model/roleDto';
 
 @Component({
