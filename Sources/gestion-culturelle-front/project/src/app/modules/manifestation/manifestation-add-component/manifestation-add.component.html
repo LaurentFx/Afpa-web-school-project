@@ -59,7 +59,7 @@
                 placeholder="Entrer le prix du billet" [(ngModel)]="manifestation.prixBillet">
         </div>
         -->
-
+<!--
         <div class="form-group">
             <label for=" reservations">Nombre de reservations :</label>
             <input type="text" name="reservations" class="form-control" id="reservations"
@@ -71,7 +71,7 @@
             <input type="text" name="reservationsVip" class="form-control" id="reservationsVip"
                 placeholder="Entrer le nombre de reservationsVip" [(ngModel)]="manifestation.reservationsVip">
         </div>
-
+-->
         <label for="salle">Nom de l'annulateur :</label>
         <select name="annulateur" id="annulateur" [(ngModel)]="manifestation.annulateur.id" class="form-control">
             <option *ngFor="let annulateur of admins" [value]="annulateur.id">{{annulateur.nom}}</option>

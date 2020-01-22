@@ -101,6 +101,7 @@ const routes: Routes = [
 
   {path: 'panier-list', component: PanierListComponent },
   {path: 'panier-ad', component: PanierAddComponent },
+  {path: 'panier-ad/:id', component: PanierAddComponent },
   {path: 'panier-update/:id', component: PanierUpdateComponent },
   {path: 'panier-show/:id', component: PanierShowComponent },
  
