@@ -1,4 +1,4 @@
-package com.afpa.cda.service;
+package com.afpa.cda.service.impl;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.afpa.cda.dao.TypeSalleRepository;
 import com.afpa.cda.dto.TypeSalleDto;
 import com.afpa.cda.entity.TypeSalle;
+import com.afpa.cda.service.ITypeSalleService;
 @Service
 public class TypeSalleServiceImpl implements ITypeSalleService {
     @Autowired

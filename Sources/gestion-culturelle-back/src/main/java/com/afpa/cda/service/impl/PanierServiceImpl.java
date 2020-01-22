@@ -1,4 +1,4 @@
-package com.afpa.cda.service;
+package com.afpa.cda.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +11,14 @@ import org.springframework.stereotype.Service;
 
 import com.afpa.cda.dao.ManifestationRepository;
 import com.afpa.cda.dao.PanierRepository;
+import com.afpa.cda.dao.UserRepository;
 import com.afpa.cda.dto.AnimationDto;
 import com.afpa.cda.dto.ManifestationDto;
 import com.afpa.cda.dto.PanierDto;
 import com.afpa.cda.entity.Manifestation;
 import com.afpa.cda.entity.Panier;
+import com.afpa.cda.entity.User;
+import com.afpa.cda.service.IPanierService;
 
 @Service
 public class PanierServiceImpl implements IPanierService {
@@ -25,6 +28,9 @@ public class PanierServiceImpl implements IPanierService {
 	private ManifestationRepository manifestationRepository;
 	@Autowired
 	private ModelMapper modelMapper;
+	@Autowired
+	private UserRepository userRepository;
+	
 
 	@Override
 	public List<PanierDto> findAll() {
@@ -86,6 +92,14 @@ public class PanierServiceImpl implements IPanierService {
 		return false;
 	}
 
+	public PanierDto addPanier (ManifestationDto manifestationDto) {
+		
+		PanierDto panierDto = new PanierDto();
+		
+		
+		return panierDto;
+	}
+	
 	@Override
 	public boolean deletePanier(int id) {
 		if (this.panierRepository.existsById(id)) {
@@ -128,4 +142,18 @@ public class PanierServiceImpl implements IPanierService {
 		return panDto;
 	}
 
+	@Override
+	public PanierDto findByUser(int id) {
+		Optional <User> userOp=this.userRepository.findById(id);
+		PanierDto panierDto = new PanierDto ();
+		if (userOp.isPresent()) {
+			Panier panier = userOp.get().getPanier();
+		panierDto = modelMapper.map(panier,PanierDto.class);
+		}
+		
+		return panierDto;
+	}
+		
+	
+	
 }

@@ -1,4 +1,4 @@
-package com.afpa.cda.service;
+package com.afpa.cda.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.afpa.cda.dao.UserRepository;
 import com.afpa.cda.dto.AdminDto;
 import com.afpa.cda.entity.User;
+import com.afpa.cda.service.IAdminService;
 
 @Service
 public class AdminServiceImpl implements IAdminService {

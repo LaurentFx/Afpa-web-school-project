@@ -1,4 +1,4 @@
-package com.afpa.cda.service;
+package com.afpa.cda.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +18,7 @@ import com.afpa.cda.dto.SalleDto;
 import com.afpa.cda.entity.Animation;
 import com.afpa.cda.entity.Manifestation;
 import com.afpa.cda.entity.Salle;
+import com.afpa.cda.service.IManifestationService;
 
 @Service
 public class ManifestationServiceImpl implements IManifestationService {
@@ -132,62 +133,46 @@ public class ManifestationServiceImpl implements IManifestationService {
 		Manifestation maniE = this.manifestationRepository.save(this.modelMapper.map(manifDto,Manifestation.class)); 
 		manifDto.setId(maniE.getId());
 
-		double debut=maniE.getDateDebut().getTime();
-		double fin=maniE.getDateFin().getTime();
-		double duree = 1+((((fin-debut)/1000)/3600)/24);
+		manifDto=calcul(manifDto);
 
-		AnimationDto animDto = new AnimationDto();
-		Optional<Animation> animOp=animationRepository.findById(manifDto.getAnimation().getId());
-		if (animOp.isPresent()) {
-			Animation anim = animOp.get();
-			animDto=modelMapper.map(anim,AnimationDto.class);
-			System.out.println("Prix "+animDto.getPrix());
-		}
-
-		SalleDto salleDto = new SalleDto ();
-		Optional<Salle> salleOp=salleRepository.findById(manifDto.getSalle().getId());
-		if (salleOp.isPresent()) {
-			Salle salle = salleOp.get();
-			salleDto = modelMapper.map(salle,SalleDto.class);
-			System.out.println("Salle :"+ salleDto.getFraisJournalier());
-		}
-
-		manifDto.setCout(animDto.getPrix()+(duree* salleDto.getFraisJournalier()));
-		System.out.println("cout "+manifDto.getCout());
-		manifDto.setPrixBillet((manifDto.getCout()/salleDto.getCapacite())*0.8);
-		System.out.println("billet "+manifDto.getPrixBillet());
-
-		
 		this.manifestationRepository.save(this.modelMapper.map(manifDto,Manifestation.class)); 
 		return manifDto;
-		
 
 	}
 
 
 	@Override
 	public boolean updateManifestation(ManifestationDto manifDto,int id) {
-	
+
 		Optional<Manifestation> manifOp = this.manifestationRepository.findById(id);
 
 		if (manifOp.isPresent()) {
 			Manifestation maniE = manifOp.get();
+			//			this.manifestationRepository.save(this.modelMapper.map(manifDto, Manifestation.class));
+			//		Manifestation maniE = this.manifestationRepository.save(this.modelMapper.map(manifDto,Manifestation.class)); 
 
-//			this.manifestationRepository.save(this.modelMapper.map(manifDto, Manifestation.class));
+			manifDto.setId(maniE.getId());
+
+			manifDto=calcul(manifDto);
+
+			this.manifestationRepository.save(this.modelMapper.map(manifDto,Manifestation.class)); 
+
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public ManifestationDto calcul (ManifestationDto manifDto) {
 		
-//		Manifestation maniE = this.manifestationRepository.save(this.modelMapper.map(manifDto,Manifestation.class)); 
-		manifDto.setId(maniE.getId());
-
 		double debut=manifDto.getDateDebut().getTime();
 		double fin=manifDto.getDateFin().getTime();
 		double duree = 1+((((fin-debut)/1000)/3600)/24);
-
 		AnimationDto animDto = new AnimationDto();
 		Optional<Animation> animOp=animationRepository.findById(manifDto.getAnimation().getId());
 		if (animOp.isPresent()) {
 			Animation anim = animOp.get();
 			animDto=modelMapper.map(anim,AnimationDto.class);
-			System.out.println("Prix "+animDto.getPrix());
 		}
 
 		SalleDto salleDto = new SalleDto ();
@@ -195,23 +180,13 @@ public class ManifestationServiceImpl implements IManifestationService {
 		if (salleOp.isPresent()) {
 			Salle salle = salleOp.get();
 			salleDto = modelMapper.map(salle,SalleDto.class);
-			System.out.println("Salle :"+ salleDto.getFraisJournalier());
 		}
 
 		manifDto.setCout(animDto.getPrix()+(duree* salleDto.getFraisJournalier()));
-		System.out.println("cout "+manifDto.getCout());
 		manifDto.setPrixBillet((manifDto.getCout()/salleDto.getCapacite())*0.8);
-		System.out.println("billet "+manifDto.getPrixBillet());
-
 		
-		this.manifestationRepository.save(this.modelMapper.map(manifDto,Manifestation.class)); 
-		
-			
-			return true;
-		}
-		return false;
+		return manifDto;
 	}
-
 
 	@Override
 	public boolean deleteManifestation(int id) {

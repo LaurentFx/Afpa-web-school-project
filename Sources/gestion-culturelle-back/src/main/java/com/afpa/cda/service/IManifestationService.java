@@ -17,4 +17,6 @@ public interface IManifestationService {
 
 	ManifestationDto findById(int id);
 
+	ManifestationDto calcul(ManifestationDto manifDto);
+
 }

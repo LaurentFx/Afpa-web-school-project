@@ -66,24 +66,14 @@ public class UserController {
 	}
 
 	@PostMapping(path = "/newusers")
-	public UserDto addnew(@RequestBody UserDto user, HttpServletResponse resp) throws IOException {
+	public UserDto addClient(@RequestBody UserDto user, HttpServletResponse resp) throws IOException {
 		if(user.getNom().equalsIgnoreCase(adminUserDefaultConf.getNom()) 
 				|| user.getPrenom().equalsIgnoreCase(adminUserDefaultConf.getPrenom())) {
 			resp.sendError(HttpStatus.NOT_ACCEPTABLE.value(),"prenom/nom 'admin' sont déjà pris");
 			return null;
 		} else {
 
-			Optional<Role> roleOp=roleRepository.findById(4);
-
-			RoleDto roleDto = new RoleDto ();
-			if (roleOp.isPresent()) {
-				Role role = roleOp.get();
-				roleDto = modelMapper.map(role,RoleDto.class);
-			}
-
-			user.setRole(roleDto);
-
-			return this.userService.add(user);
+			return this.userService.addClient(user);
 		}
 	}
 
