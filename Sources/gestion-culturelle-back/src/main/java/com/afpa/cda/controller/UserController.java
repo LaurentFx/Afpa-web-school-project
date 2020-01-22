@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.afpa.cda.constant.AdminUserDefaultConf;
-import com.afpa.cda.dto.SalleDto;
 import com.afpa.cda.dto.UserDto;
 import com.afpa.cda.service.IUserService;
 
@@ -44,7 +43,7 @@ public class UserController {
 	@PostMapping(path = "/users")
 	public UserDto add(@RequestBody UserDto user, HttpServletResponse resp) throws IOException {
 		if(user.getRole() == null) {
-			resp.sendError(HttpStatus.BAD_REQUEST.value(),"le role est obligatoire à la création du personne");
+			resp.sendError(HttpStatus.BAD_REQUEST.value(),"le role est obligatoire à la création de la personne");
 			return null;
 		} else if(user.getNom().equalsIgnoreCase(adminUserDefaultConf.getNom()) 
 				|| user.getPrenom().equalsIgnoreCase(adminUserDefaultConf.getPrenom())) {
