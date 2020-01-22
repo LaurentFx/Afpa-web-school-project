@@ -9,7 +9,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { NavebarComponent } from './navebar/navebar.component';
-import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { TypeSalleModule } from './modules/typesalle/typesalle.module';
@@ -32,7 +31,6 @@ import { InscriptionModule } from './modules/inscription/inscription.module';
   declarations: [
     AppComponent,
     NavebarComponent,
-    HeaderComponent,
     FooterComponent,
     HomeComponent,
     

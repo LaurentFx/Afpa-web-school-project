@@ -72,7 +72,9 @@ public class ManifestationServiceImpl implements IManifestationService {
 					manifestationDto.setReservationsVip(manif.getReservationsVip());
 
 
+
 					manifestationDto.setDateAnnulation(manif.getDateAnnulation());
+
 
 					return manifestationDto;
 				})
