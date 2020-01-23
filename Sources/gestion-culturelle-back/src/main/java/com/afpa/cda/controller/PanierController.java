@@ -31,11 +31,11 @@ public class PanierController {
 		return this.panierService.findById(id);
 	}
 	
-	@GetMapping(path = "/panier/user/{id}")
-	public PanierDto getUser(@PathVariable int id){
-		return this.panierService.findByUser(id);
-	}
-	
+//	@GetMapping(path = "/panier/user/{id}")
+//	public PanierDto getUser(@PathVariable int id){
+//		return this.panierService.findByUser(id);
+//	}
+//	
 	@PostMapping(path = "/panier")
 	public PanierDto add(@RequestBody PanierDto panier) {
 		return this.panierService.add(panier);

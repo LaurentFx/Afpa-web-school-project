@@ -24,9 +24,9 @@ public class ManifestationDto {
 	private AnimationDto animation;
 	private Date dateDebut;
 	private Date dateFin;
-	private int cout;
+	private double cout;
 	private SalleDto salle;
-	private int prixBillet;
+	private double prixBillet;
 	private int reservations;
 	private int reservationsVip;
 	private int rentabilite;

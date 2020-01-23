@@ -53,13 +53,13 @@ public class Manifestation {
 	private Date dateDebut;
 	@Temporal(TemporalType.DATE)
 	private Date dateFin;
-	private int cout;
+	private double cout;
 
 	@ManyToOne
 	@JoinColumn(name = "salle", nullable = false)
 	private Salle salle;
 
-	private int prixBillet;	
+	private double prixBillet;	
 	private int reservations;
 	private int reservationsVip;
 	private int rentabilite;

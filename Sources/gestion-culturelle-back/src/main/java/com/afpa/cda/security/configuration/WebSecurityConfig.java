@@ -58,13 +58,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		String[] AdminUrls = { "/salle","/vip","/animateur","/client","/users","/manifestation","/invitation"};
 
-		String[] ClientUrls = {"/panier"};
+//		String[] ClientUrls = {"/panier"};
 
 		String[] AnimUrls = {"/animation"};
 
 		String [] VipUrls = {"/invitation"} ;
 
-		String[] AllUrls = { "/newusers","/role","/public/inscription", "/public/login","public/profil","/public/animation","/public/manifestation","/public/salle","/public" };
+		String[] AllUrls = {"panier", "/commande","/newusers","/role","/public/inscription", "/public/login","public/profil","/public/animation","/public/manifestation","/public/salle","/public" };
 
 		http.csrf().disable();
 
@@ -76,7 +76,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		//.antMatchers().permitAll()
 //		.antMatchers("/*").permitAll()
 		.antMatchers(AllUrls).permitAll()
-		.antMatchers(ClientUrls).hasAnyAuthority(new String[]{"CLIENT","ADMIN","RESP"})
+	//	.antMatchers(ClientUrls).hasAnyAuthority(new String[]{"CLIENT","ADMIN","RESP"})
 		.antMatchers(AdminUrls).hasAnyAuthority(new String[]{"ADMIN","RESP"})
 		.antMatchers(VipUrls).hasAnyAuthority(new String[]{"VIP"})
 		.antMatchers(AnimUrls).hasAnyAuthority(new String[]{"ANIM"})

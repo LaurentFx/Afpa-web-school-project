@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.afpa.cda.dto.CommandeDto;
+import com.afpa.cda.dto.PanierDto;
 
 public interface ICommandeService {
 	
@@ -18,5 +19,7 @@ public interface ICommandeService {
 	boolean delete(int id);
 
 	boolean update(CommandeDto commande, int id);
+
+	PanierDto findByUser(int id);
 
 }

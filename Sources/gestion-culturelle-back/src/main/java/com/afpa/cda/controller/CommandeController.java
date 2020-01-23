@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.afpa.cda.dto.CommandeDto;
+import com.afpa.cda.dto.PanierDto;
 import com.afpa.cda.service.ICommandeService;
 
 @RestController
@@ -28,6 +29,11 @@ public class CommandeController {
 	@GetMapping(path = "/commande/{id}")
 	public CommandeDto getOne(@PathVariable int id){
 		return this.commandeService.findById(id);
+	}
+	
+	@GetMapping(path = "/commande/user/{id}")
+	public PanierDto getUser(@PathVariable int id){
+		return this.commandeService.findByUser(id);
 	}
 	
 	//@PreAuthorize("hasAnyAuthority('RESP','ADMIN')")

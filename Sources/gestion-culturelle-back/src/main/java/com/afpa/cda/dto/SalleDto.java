@@ -20,7 +20,7 @@ public class SalleDto {
 	private String label;
 	private int capacite;
 	private int placesVip;
-	private int fraisJournalier;
+	private double fraisJournalier;
 	private TypeSalleDto typeSalle;
 	private List<ManifestationDto> manifestations;
 
