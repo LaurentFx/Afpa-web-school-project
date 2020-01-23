@@ -121,7 +121,7 @@ const routes: Routes = [
   {path: 'vip-show/:id', component: VipShowComponent },
   {path: 'vip-update/:id', component: VipUpdateComponent},
 
-  {path: 'commande-ad', component: CommandeAddComponent },
+  {path: 'commande-ad/:id', component: CommandeAddComponent },
    
   {path: 'public/profil', component: ProfilComponent },
 

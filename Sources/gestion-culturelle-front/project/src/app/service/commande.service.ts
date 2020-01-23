@@ -29,6 +29,10 @@ export class CommandeService {
   getOne(id: number): Observable<any> {
     return this.http.get(`${this.monUrl}/${id}`);
   } 
+
+  getUser(id: number): Observable<any> {
+    return this.http.get(`${this.monUrl}/user/${id}`);
+  } 
   
   update(id: number, commande: Object): Observable<Object> {
     return this.http.put(`${this.monUrl}/${id}`, commande);

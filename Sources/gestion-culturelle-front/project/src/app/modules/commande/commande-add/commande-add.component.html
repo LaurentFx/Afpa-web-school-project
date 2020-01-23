@@ -19,6 +19,7 @@
         <div class="form-group">
             <label for="manifestation">Manifestation :</label>
             <input type="text" name="manifestation" class="form-control" id="manifestation"  [(ngModel)]="manifestation.label" readonly>
+            {{manifestation.label}}
         </div>
 
         <div class="form-group">
@@ -29,7 +30,7 @@
         <div class="form-group">
             <label for="nbreBillets">Nombre de billets:</label>
             <input type="number" name="nbreBillets" class="form-control" id="nbreBillets"
-                placeholder="Entrer le nombre de billets " [(ngModel)]="commande.quantite" [value]="commande.quantite">
+                placeholder="Entrer le nombre de billets " [(ngModel)]="quantite" >
         </div>
 
         <button (click)="add()" class="btn btn-secondary">Ajouter au panier</button>

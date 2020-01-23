@@ -64,7 +64,7 @@ export class ManifestationListComponent implements OnInit {
     this.router.navigateByUrl('/manifestation-show/' + id)
   }
 
-  redirectToAddPanier(id: number) {
+  redirectToAddCommande(id: number) {
     this.router.navigateByUrl('/commande-ad/' + id)
   }
 
