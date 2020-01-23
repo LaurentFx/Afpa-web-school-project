@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -36,15 +37,17 @@ public class Panier {
 	
 	@Temporal(TemporalType.DATE)
 	private Date dateValidation;
-	private String numClient;
 		
-	@ManyToMany
-	@JoinTable(name = "t_manifestation_panier",
-	joinColumns = { @JoinColumn(name = "id_panier") },
-	inverseJoinColumns = { @JoinColumn(name = "id_manifestation") })
-	private List<Manifestation> manifestations;
+//	@ManyToMany
+//	@JoinTable(name = "t_manifestation_panier",
+//	joinColumns = { @JoinColumn(name = "id_panier") },
+//	inverseJoinColumns = { @JoinColumn(name = "id_manifestation") })
+//	private List<Manifestation> manifestations;
 	
-	private int nbreBillets;
-	private double total;
+	@OneToMany (mappedBy = "panier")
+	List<Commande> listCommandes;
+	
+	
+	private int total;
 
 }

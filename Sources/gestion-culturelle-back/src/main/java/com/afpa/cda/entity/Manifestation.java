@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -58,23 +59,24 @@ public class Manifestation {
 	@JoinColumn(name = "salle", nullable = false)
 	private Salle salle;
 
-
 	private int prixBillet;	
 	private int reservations;
 	private int reservationsVip;
 	private int rentabilite;
 
-	@ManyToMany
-	@JoinTable(name = "t_manifestation_panier",
-	joinColumns = { @JoinColumn(name = "id_manifestation") },
-	inverseJoinColumns = { @JoinColumn(name = "id_panier") })
-	private List<Panier> paniers;
+//	@ManyToMany
+//	@JoinTable(name = "t_manifestation_panier",
+//	joinColumns = { @JoinColumn(name = "id_manifestation") },
+//	inverseJoinColumns = { @JoinColumn(name = "id_panier") })
+//	private List<Panier> paniers;
 
 	@OneToOne
 	private User annulateur;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dateAnnulation;
-
+	
+	@OneToMany (mappedBy = "manifestation")
+	List<Commande> listCommandes;
 
 }

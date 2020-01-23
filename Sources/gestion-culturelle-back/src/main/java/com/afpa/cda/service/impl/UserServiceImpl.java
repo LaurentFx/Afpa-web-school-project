@@ -1,6 +1,5 @@
 package com.afpa.cda.service.impl;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,8 +14,7 @@ import com.afpa.cda.dao.RoleRepository;
 import com.afpa.cda.dao.UserRepository;
 import com.afpa.cda.dto.RoleDto;
 import com.afpa.cda.dto.UserDto;
-import com.afpa.cda.entity.Animation;
-import com.afpa.cda.entity.Manifestation;
+import com.afpa.cda.entity.Commande;
 import com.afpa.cda.entity.Panier;
 import com.afpa.cda.entity.Role;
 import com.afpa.cda.entity.User;
@@ -63,14 +61,14 @@ public class UserServiceImpl implements IUserService {
 	public UserDto addClient(UserDto userDto) {
 
 		User user = this.modelMapper.map(userDto,User.class);
-
+System.out.println("test methode addclient");
 		Optional<Role> roleOp=roleRepository.findById(4);
 		if (roleOp.isPresent()) {
 			user.setRole(roleOp.get());
 		}
 		user.setNumClient(userDto.getNom().substring(0,2)+"2020"+userDto.getPrenom().substring(0,2));
-		user.setPanier(Panier.builder().numClient(user.getNumClient()).total(0).build());
-		user.getPanier().setManifestations(new ArrayList<Manifestation>());
+		user.setPanier(Panier.builder().total(0).build());
+		user.getPanier().setListCommandes(new ArrayList<Commande>());
 		panierRepository.save(user.getPanier());
 		user.setPanier(Panier.builder().id(user.getPanier().getId()).build());
 

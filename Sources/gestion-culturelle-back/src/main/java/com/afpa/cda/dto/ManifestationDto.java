@@ -1,6 +1,7 @@
 package com.afpa.cda.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,5 +32,8 @@ public class ManifestationDto {
 	private int rentabilite;
 	private AdminDto annulateur;
 	private Date dateAnnulation;
+	
+	private List<CommandeDto> listCommandes;
+	
 
 }

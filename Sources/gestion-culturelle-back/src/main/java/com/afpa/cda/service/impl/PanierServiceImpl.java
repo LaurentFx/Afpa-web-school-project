@@ -13,8 +13,10 @@ import com.afpa.cda.dao.ManifestationRepository;
 import com.afpa.cda.dao.PanierRepository;
 import com.afpa.cda.dao.UserRepository;
 import com.afpa.cda.dto.AnimationDto;
+import com.afpa.cda.dto.CommandeDto;
 import com.afpa.cda.dto.ManifestationDto;
 import com.afpa.cda.dto.PanierDto;
+import com.afpa.cda.entity.Commande;
 import com.afpa.cda.entity.Manifestation;
 import com.afpa.cda.entity.Panier;
 import com.afpa.cda.entity.User;
@@ -41,25 +43,34 @@ public class PanierServiceImpl implements IPanierService {
 					PanierDto panierDto = new PanierDto();
 					panierDto.setId(p.getId());
 					panierDto.setDateValidation(p.getDateValidation());
-					panierDto.setNumClient(p.getNumClient());
 					
-					
-					
-					panierDto.setNbreBillets(p.getNbreBillets());
 					panierDto.setTotal(p.getTotal());
 
-			  panierDto.setManifestations(new ArrayList<ManifestationDto>());
+			  panierDto.setListCommandes(new ArrayList<CommandeDto>());
 			
-			for (Manifestation m : p.getManifestations()) {
-				panierDto.getManifestations()
-						.add(ManifestationDto
-								.builder().id(m.getId())
-								.label(m.getLabel())
-								.animation(AnimationDto.builder()
-										.id(m.getAnimation().getId())
-										.label(m.getAnimation().getLabel())
+			for (Commande m : p.getListCommandes()) {
+				panierDto.getListCommandes()
+						.add(CommandeDto
+								.builder()
+								.id(m.getId())
+								.panier(PanierDto.builder()
+										.id(m.getPanier().getId())
+										.dateValidation(m.getPanier().getDateValidation())
+										.build())
+								.manifestation(ManifestationDto.builder()
+										.id(m.getManifestation().getId())
+										.label(m.getManifestation().getLabel())
+										.prixBillet(m.getManifestation().getPrixBillet())
 										.build())
 								.build());
+								
+							
+//								.label(m.getLabel())
+//								.animation(AnimationDto.builder()
+//										.id(m.getAnimation().getId())
+//										.label(m.getAnimation().getLabel())
+//										.build())
+//								.build());
 			}
 			return panierDto;
 		})
@@ -92,13 +103,13 @@ public class PanierServiceImpl implements IPanierService {
 		return false;
 	}
 
-	public PanierDto addPanier (ManifestationDto manifestationDto) {
-		
-		PanierDto panierDto = new PanierDto();
-		
-		
-		return panierDto;
-	}
+//	public PanierDto addPanier (ManifestationDto manifestationDto) {
+//		
+//		PanierDto panierDto = new PanierDto();
+//		
+//		
+//		return panierDto;
+//	}
 	
 	@Override
 	public boolean deletePanier(int id) {
@@ -119,22 +130,27 @@ public class PanierServiceImpl implements IPanierService {
 			Panier pan= panE.get();
 			panDto.setId(pan.getId());
 			panDto.setDateValidation(pan.getDateValidation());
-			panDto.setNumClient(pan.getNumClient());
-			panDto.setNbreBillets(pan.getNbreBillets());
 			panDto.setTotal(pan.getTotal());
+		
+			PanierDto panierDto = new PanierDto();
 			
-			panDto.setManifestations(new ArrayList<ManifestationDto>());
-			
-			for (Manifestation m : pan.getManifestations()) {
-				panDto.getManifestations()
-						.add(ManifestationDto
-								.builder().id(m.getId())
-								.label(m.getLabel())
-								.animation(AnimationDto.builder()
-										.id(m.getAnimation().getId())
-										.label(m.getAnimation().getLabel())
-										.build())
-								.build());
+			  panierDto.setListCommandes(new ArrayList<CommandeDto>());
+				
+				for (Commande m : pan.getListCommandes()) {
+					panierDto.getListCommandes()
+							.add(CommandeDto
+									.builder()
+									.id(m.getId())
+									.panier(PanierDto.builder()
+											.id(m.getPanier().getId())
+											.dateValidation(m.getPanier().getDateValidation())
+											.build())
+									.manifestation(ManifestationDto.builder()
+											.id(m.getManifestation().getId())
+											.label(m.getManifestation().getLabel())
+											.prixBillet(m.getManifestation().getPrixBillet())
+											.build())
+									.build());
 			
 		}
 		

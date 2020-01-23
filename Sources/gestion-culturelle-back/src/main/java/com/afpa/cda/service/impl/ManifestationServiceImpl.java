@@ -1,5 +1,6 @@
 package com.afpa.cda.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -13,9 +14,12 @@ import com.afpa.cda.dao.ManifestationRepository;
 import com.afpa.cda.dao.SalleRepository;
 import com.afpa.cda.dto.AdminDto;
 import com.afpa.cda.dto.AnimationDto;
+import com.afpa.cda.dto.CommandeDto;
 import com.afpa.cda.dto.ManifestationDto;
+import com.afpa.cda.dto.PanierDto;
 import com.afpa.cda.dto.SalleDto;
 import com.afpa.cda.entity.Animation;
+import com.afpa.cda.entity.Commande;
 import com.afpa.cda.entity.Manifestation;
 import com.afpa.cda.entity.Salle;
 import com.afpa.cda.service.IManifestationService;
@@ -72,10 +76,26 @@ public class ManifestationServiceImpl implements IManifestationService {
 					manifestationDto.setReservations(manif.getReservations());
 					manifestationDto.setReservationsVip(manif.getReservationsVip());
 
-
-
 					manifestationDto.setDateAnnulation(manif.getDateAnnulation());
 
+					manifestationDto.setListCommandes(new ArrayList<CommandeDto>());
+
+					for (Commande m : manif.getListCommandes()) {
+						manifestationDto.getListCommandes()
+						.add(CommandeDto
+								.builder()
+								.id(m.getId())
+								.panier(PanierDto.builder()
+										.id(m.getPanier().getId())
+										.dateValidation(m.getPanier().getDateValidation())
+										.build())
+								.manifestation(ManifestationDto.builder()
+										.id(m.getManifestation().getId())
+										.label(m.getManifestation().getLabel())
+										.prixBillet(m.getManifestation().getPrixBillet())
+										.build())
+								.build());
+					}
 
 					return manifestationDto;
 				})
@@ -123,8 +143,26 @@ public class ManifestationServiceImpl implements IManifestationService {
 
 			manifestationDto.setDateAnnulation(manif.getDateAnnulation());
 
+			manifestationDto.setListCommandes(new ArrayList<CommandeDto>());
+
+			for (Commande m : manif.getListCommandes()) {
+				manifestationDto.getListCommandes()
+				.add(CommandeDto
+						.builder()
+						.id(m.getId())
+						.panier(PanierDto.builder()
+								.id(m.getPanier().getId())
+								.dateValidation(m.getPanier().getDateValidation())
+								.build())
+						.manifestation(ManifestationDto.builder()
+								.id(m.getManifestation().getId())
+								.label(m.getManifestation().getLabel())
+								.prixBillet(m.getManifestation().getPrixBillet())
+								.build())
+						.build());
+			}
 		}
-		return manifestationDto;
+			return manifestationDto;
 	}
 
 	@Override
@@ -164,7 +202,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 
 	@Override
 	public ManifestationDto calcul (ManifestationDto manifDto) {
-		
+
 		double debut=manifDto.getDateDebut().getTime();
 		double fin=manifDto.getDateFin().getTime();
 		double duree = 1+((((fin-debut)/1000)/3600)/24);
@@ -184,7 +222,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 
 		manifDto.setCout((int) (animDto.getPrix()+(duree* salleDto.getFraisJournalier())));
 		manifDto.setPrixBillet((int) ((manifDto.getCout()/salleDto.getCapacite())*0.8));
-		
+
 		return manifDto;
 	}
 
