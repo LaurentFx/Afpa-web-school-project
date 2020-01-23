@@ -96,5 +96,12 @@ public class UserController {
 	public void delete(@PathVariable int id) {
 		this.userService.delete(id);
 	}
+	
+	@GetMapping(path = "/user/role/{id}")
+	public void findByRole(Integer role){
+		
+		this.userService.findByRole(role);
+		
+	}
 
 }
