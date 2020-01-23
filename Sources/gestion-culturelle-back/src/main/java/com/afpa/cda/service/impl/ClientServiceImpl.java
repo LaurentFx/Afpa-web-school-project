@@ -1,4 +1,4 @@
-package com.afpa.cda.service;
+package com.afpa.cda.service.impl;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -13,6 +13,7 @@ import com.afpa.cda.dto.PanierDto;
 import com.afpa.cda.dto.RoleDto;
 import com.afpa.cda.entity.Role;
 import com.afpa.cda.entity.User;
+import com.afpa.cda.service.IClientService;
 @Service
 public class ClientServiceImpl implements IClientService {
 

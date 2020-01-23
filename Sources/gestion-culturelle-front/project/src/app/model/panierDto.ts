@@ -11,7 +11,8 @@ export class PanierDto {
     constructor(id?: number,
         numClient?: String,
         manifestation?: ManifestationDto,
-        nbreBillets? : number, ){
+        nbreBillets? : number, )
+        {
         this.id = id;
         this.numClient=numClient;
         this.manifestation = manifestation;

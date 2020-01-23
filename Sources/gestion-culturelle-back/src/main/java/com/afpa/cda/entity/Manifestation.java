@@ -52,17 +52,17 @@ public class Manifestation {
 	private Date dateDebut;
 	@Temporal(TemporalType.DATE)
 	private Date dateFin;
-	private double cout;
+	private int cout;
 
 	@ManyToOne
 	@JoinColumn(name = "salle", nullable = false)
 	private Salle salle;
 
 
-	private double prixBillet;	
+	private int prixBillet;	
 	private int reservations;
 	private int reservationsVip;
-	private double rentabilite;
+	private int rentabilite;
 
 	@ManyToMany
 	@JoinTable(name = "t_manifestation_panier",

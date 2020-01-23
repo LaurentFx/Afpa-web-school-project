@@ -19,4 +19,6 @@ public interface IUserService {
 
 	boolean delete(int id);
 
+	UserDto addClient(UserDto userDto);
+
 }

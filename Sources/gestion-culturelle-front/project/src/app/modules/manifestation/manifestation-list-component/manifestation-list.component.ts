@@ -12,57 +12,62 @@ import { AuthService } from '../../../service/auth.service';
 export class ManifestationListComponent implements OnInit {
 
   isConnected: boolean;
-  manifestations: ManifestationDto[];  
+  manifestations: ManifestationDto[];
 
-  constructor(private manifestationService: ManifestationService,private router: Router,
-     private authService: AuthService) { }
+  constructor(private manifestationService: ManifestationService, private router: Router,
+    private authService: AuthService) { }
 
 
   ngOnInit() {
     this.isConnected = this.authService.isConnected();
 
     this.manifestationService.subjectMiseAJour.subscribe(
-      res=> {
+      res => {
         this.manifestationService.getAll().subscribe(
-          donnees =>{
-			  this.manifestations = donnees; 
+          donnees => {
+            this.manifestations = donnees;
           }
         );
       }
     );
 
     this.manifestationService.getAll().subscribe(
-      resultat =>{
-          this.manifestations = resultat; 
-        
+      resultat => {
+        this.manifestations = resultat;
+
       }
     );
 
     this.authService.subjectConnexion.subscribe(
       res => {
         this.isConnected = this.authService.isConnected();
-      
+
       }
     );
 
   }
 
- delete(id:number) {
+  delete(id: number) {
     this.manifestationService.delete(id).subscribe(
-      res=>{
+      res => {
         this.manifestationService.subjectMiseAJour.next(0);
         console.log('delete Ok ');
       }
     )
   }
-  
-  redirectToUpdate(id:number){
-    this.router.navigateByUrl('/manifestation-update/'+id)
-  }
-   
 
-  redirectToShow(id:number) {
-    this.router.navigateByUrl('/manifestation-show/'+id)
+  redirectToUpdate(id: number) {
+    this.router.navigateByUrl('/manifestation-update/' + id)
   }
+
+  redirectToShow(id: number) {
+    this.router.navigateByUrl('/manifestation-show/' + id)
+  }
+
+  redirectToAddPanier(id: number) {
+    this.router.navigateByUrl('/panier-ad/' + id)
+  }
+
+
 }
 

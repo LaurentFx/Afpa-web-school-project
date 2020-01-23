@@ -1,5 +1,7 @@
-package com.afpa.cda.service;
+package com.afpa.cda.service.impl;
 
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -8,11 +10,17 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.afpa.cda.dao.PanierRepository;
+import com.afpa.cda.dao.RoleRepository;
 import com.afpa.cda.dao.UserRepository;
 import com.afpa.cda.dto.RoleDto;
 import com.afpa.cda.dto.UserDto;
+import com.afpa.cda.entity.Animation;
+import com.afpa.cda.entity.Manifestation;
+import com.afpa.cda.entity.Panier;
+import com.afpa.cda.entity.Role;
 import com.afpa.cda.entity.User;
-
+import com.afpa.cda.service.IUserService;
 @Service
 public class UserServiceImpl implements IUserService {
 
@@ -21,6 +29,12 @@ public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	private ModelMapper modelMapper;
+
+	@Autowired
+	private RoleRepository roleRepository;
+
+	@Autowired
+	private PanierRepository panierRepository;
 
 	@Override
 	public List<UserDto> findAll() {
@@ -40,8 +54,30 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public UserDto add(UserDto userDto) {
-		User userEntity = this.UserRepository.save(this.modelMapper.map(userDto,User.class));
-		userDto.setId(userEntity.getId());
+		User user = this.UserRepository.save(this.modelMapper.map(userDto,User.class));
+		userDto.setId(user.getId());
+		return userDto;
+	}
+
+	@Override
+	public UserDto addClient(UserDto userDto) {
+
+		User user = this.modelMapper.map(userDto,User.class);
+
+		Optional<Role> roleOp=roleRepository.findById(4);
+		if (roleOp.isPresent()) {
+			user.setRole(roleOp.get());
+		}
+		user.setNumClient(userDto.getNom().substring(0,2)+"2020"+userDto.getPrenom().substring(0,2));
+		user.setPanier(Panier.builder().numClient(user.getNumClient()).total(0).build());
+		user.getPanier().setManifestations(new ArrayList<Manifestation>());
+		panierRepository.save(user.getPanier());
+		user.setPanier(Panier.builder().id(user.getPanier().getId()).build());
+
+		this.UserRepository.save(user);
+		userDto = modelMapper.map (user,UserDto.class);
+		userDto.setId(user.getId());
+
 		return userDto;
 	}
 

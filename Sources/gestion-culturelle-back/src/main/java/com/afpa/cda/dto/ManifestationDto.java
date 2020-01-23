@@ -23,12 +23,12 @@ public class ManifestationDto {
 	private AnimationDto animation;
 	private Date dateDebut;
 	private Date dateFin;
-	private double cout;
+	private int cout;
 	private SalleDto salle;
-	private double prixBillet;
+	private int prixBillet;
 	private int reservations;
 	private int reservationsVip;
-	private double rentabilite;
+	private int rentabilite;
 	private AdminDto annulateur;
 	private Date dateAnnulation;
 

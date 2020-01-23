@@ -19,4 +19,6 @@ public interface IPanierService {
 
 	PanierDto findById(int id);
 
+	PanierDto findByUser(int id);
+
 }

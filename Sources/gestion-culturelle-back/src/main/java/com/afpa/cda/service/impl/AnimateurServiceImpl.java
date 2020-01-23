@@ -1,4 +1,4 @@
-package com.afpa.cda.service;
+package com.afpa.cda.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +15,7 @@ import com.afpa.cda.dto.AnimationDto;
 import com.afpa.cda.dto.RoleDto;
 import com.afpa.cda.entity.Animation;
 import com.afpa.cda.entity.User;
+import com.afpa.cda.service.IAnimateurService;
 @Service
 public class AnimateurServiceImpl implements IAnimateurService {
 

@@ -1,4 +1,4 @@
-package com.afpa.cda.service;
+package com.afpa.cda.service.impl;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.afpa.cda.dao.RoleRepository;
 import com.afpa.cda.dto.RoleDto;
 import com.afpa.cda.entity.Role;
+import com.afpa.cda.service.IRoleService;
 
 
 @Service

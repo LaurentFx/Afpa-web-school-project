@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { PanierDto } from '../model/panierDto';
 import { HttpClient } from '@angular/common/http'
 import { Observable, Subject } from 'rxjs';
+import { ManifestationDto } from '../model/manifestationDto';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +25,17 @@ export class PanierService {
     return this.http.post(this.monUrl,panier);
   }
   
+  addPanier(manifestation: ManifestationDto): Observable<object> {
+    return this.http.put(this.monUrl,manifestation);
+  }
+  
+
   getOne(id: number): Observable<any> {
     return this.http.get(`${this.monUrl}/${id}`);
+  } 
+
+  getUser(id: number): Observable<any> {
+    return this.http.get(`${this.monUrl}/user/${id}`);
   } 
 
   update(id: number, panier: Object): Observable<Object> {
