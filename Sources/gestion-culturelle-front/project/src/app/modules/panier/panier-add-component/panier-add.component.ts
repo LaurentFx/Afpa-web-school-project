@@ -6,7 +6,6 @@ import { ManifestationDto } from '../../../model/manifestationDto';
 import { ManifestationService } from '../../../service/manifestation.service';
 import { AuthService } from '../../../service/auth.service';
 import { User } from '../../../model/user';
-import { UserService } from '../../../service/user.service';
 
 @Component({
   selector: 'app-panier-add',
@@ -15,10 +14,8 @@ import { UserService } from '../../../service/user.service';
 })
 export class PanierAddComponent implements OnInit {
 
-  date: string;
   panier: PanierDto;
   manifestation: ManifestationDto;
-  manifestations: ManifestationDto[];
   user: User;
 
   constructor(private manifestationService: ManifestationService,
@@ -28,8 +25,7 @@ export class PanierAddComponent implements OnInit {
 
   ngOnInit() {
     this.panier = new PanierDto();
-    this.panier.manifestation = new ManifestationDto();
-    this.manifestations = [];
+   // this.panier.manifestation = new ManifestationDto();
 
     let idUser = this.authService.getCurrentUser().id;
 
@@ -46,7 +42,7 @@ export class PanierAddComponent implements OnInit {
       }
     );
 
-    let nbreBillets = this.panier.nbreBillets;
+    //let nbreBillets = this.panier.nbreBillets;
 
   }
 
@@ -58,12 +54,12 @@ export class PanierAddComponent implements OnInit {
       }
     );
     this.panier = new PanierDto();
-    this.panier.manifestation = new ManifestationDto();
+   // this.panier.manifestation = new ManifestationDto();
   }
 
 
   addPanier(): void {
-    let nbreBillets = this.panier.nbreBillets;
+  //  let nbreBillets = this.panier.nbreBillets;
     this.panierService.addPanier(this.manifestation).subscribe(
       res => {
         this.panierService.subjectMiseAJour.next(0);

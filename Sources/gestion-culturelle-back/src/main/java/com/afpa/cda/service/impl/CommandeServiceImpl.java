@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.afpa.cda.dao.CommandeRepository;
 import com.afpa.cda.dto.CommandeDto;
 import com.afpa.cda.entity.Commande;
 import com.afpa.cda.service.ICommandeService;
 
+@Service
 public class CommandeServiceImpl implements ICommandeService {
 
 	@Autowired

@@ -78,24 +78,24 @@ public class ManifestationServiceImpl implements IManifestationService {
 
 					manifestationDto.setDateAnnulation(manif.getDateAnnulation());
 
-					manifestationDto.setListCommandes(new ArrayList<CommandeDto>());
-
-					for (Commande m : manif.getListCommandes()) {
-						manifestationDto.getListCommandes()
-						.add(CommandeDto
-								.builder()
-								.id(m.getId())
-								.panier(PanierDto.builder()
-										.id(m.getPanier().getId())
-										.dateValidation(m.getPanier().getDateValidation())
-										.build())
-								.manifestation(ManifestationDto.builder()
-										.id(m.getManifestation().getId())
-										.label(m.getManifestation().getLabel())
-										.prixBillet(m.getManifestation().getPrixBillet())
-										.build())
-								.build());
-					}
+//					manifestationDto.setListCommandes(new ArrayList<CommandeDto>());
+//
+//					for (Commande m : manif.getListCommandes()) {
+//						manifestationDto.getListCommandes()
+//						.add(CommandeDto
+//								.builder()
+//								.id(m.getId())
+//								.panier(PanierDto.builder()
+//										.id(m.getPanier().getId())
+//										.dateValidation(m.getPanier().getDateValidation())
+//										.build())
+//								.manifestation(ManifestationDto.builder()
+//										.id(m.getManifestation().getId())
+//										.label(m.getManifestation().getLabel())
+//										.prixBillet(m.getManifestation().getPrixBillet())
+//										.build())
+//								.build());
+//					}
 
 					return manifestationDto;
 				})
@@ -143,38 +143,38 @@ public class ManifestationServiceImpl implements IManifestationService {
 
 			manifestationDto.setDateAnnulation(manif.getDateAnnulation());
 
-			manifestationDto.setListCommandes(new ArrayList<CommandeDto>());
-
-			for (Commande m : manif.getListCommandes()) {
-				manifestationDto.getListCommandes()
-				.add(CommandeDto
-						.builder()
-						.id(m.getId())
-						.panier(PanierDto.builder()
-								.id(m.getPanier().getId())
-								.dateValidation(m.getPanier().getDateValidation())
-								.build())
-						.manifestation(ManifestationDto.builder()
-								.id(m.getManifestation().getId())
-								.label(m.getManifestation().getLabel())
-								.prixBillet(m.getManifestation().getPrixBillet())
-								.build())
-						.build());
-			}
+//			manifestationDto.setListCommandes(new ArrayList<CommandeDto>());
+//
+//			for (Commande m : manif.getListCommandes()) {
+//				manifestationDto.getListCommandes()
+//				.add(CommandeDto
+//						.builder()
+//						.id(m.getId())
+//						.panier(PanierDto.builder()
+//								.id(m.getPanier().getId())
+//								.dateValidation(m.getPanier().getDateValidation())
+//								.build())
+//						.manifestation(ManifestationDto.builder()
+//								.id(m.getManifestation().getId())
+//								.label(m.getManifestation().getLabel())
+//								.prixBillet(m.getManifestation().getPrixBillet())
+//								.build())
+//						.build());
+//			}
 		}
 			return manifestationDto;
 	}
 
 	@Override
-	public ManifestationDto add(ManifestationDto manifDto) {
+	public ManifestationDto add(ManifestationDto manifestationDto) {
+		
+		Manifestation maniE = this.manifestationRepository.save(this.modelMapper.map(manifestationDto,Manifestation.class)); 
+		manifestationDto.setId(maniE.getId());
 
-		Manifestation maniE = this.manifestationRepository.save(this.modelMapper.map(manifDto,Manifestation.class)); 
-		manifDto.setId(maniE.getId());
+		manifestationDto=calcul(manifestationDto);
 
-		manifDto=calcul(manifDto);
-
-		this.manifestationRepository.save(this.modelMapper.map(manifDto,Manifestation.class)); 
-		return manifDto;
+		this.manifestationRepository.save(this.modelMapper.map(manifestationDto,Manifestation.class)); 
+		return manifestationDto;
 
 	}
 

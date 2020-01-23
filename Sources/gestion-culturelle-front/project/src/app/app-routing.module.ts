@@ -48,6 +48,7 @@ import { AnimateurUpdateComponent } from './modules/animateur/animateur-update/a
 import { AnimateurShowComponent } from './modules/animateur/animateur-show/animateur-show.component';
 import { ProfilComponent } from './modules/profil/profil/profil.component';
 import { InscriptionComponent } from './modules/inscription/inscription/inscription.component';
+import { CommandeAddComponent } from './modules/commande/commande-add/commande-add.component';
 
 
 const routes: Routes = [
@@ -119,6 +120,8 @@ const routes: Routes = [
   {path: 'vip-add', component: VipAddComponent },
   {path: 'vip-show/:id', component: VipShowComponent },
   {path: 'vip-update/:id', component: VipUpdateComponent},
+
+  {path: 'commande-ad', component: CommandeAddComponent },
    
   {path: 'public/profil', component: ProfilComponent },
 

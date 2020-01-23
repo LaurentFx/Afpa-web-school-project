@@ -33,7 +33,7 @@ public class ManifestationDto {
 	private AdminDto annulateur;
 	private Date dateAnnulation;
 	
-	private List<CommandeDto> listCommandes;
+	
 	
 
 }
