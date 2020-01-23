@@ -120,8 +120,8 @@ public class SalleServiceImpl implements ISalleService {
 			salleDto = modelMapper.map(salle,SalleDto.class);
 		}
 
-		manifDto.setCout(animDto.getPrix()+(duree* salleDto.getFraisJournalier()));
-		manifDto.setPrixBillet((manifDto.getCout()/salleDto.getCapacite())*0.8);
+		manifDto.setCout((int) (animDto.getPrix()+(duree* salleDto.getFraisJournalier())));
+		manifDto.setPrixBillet((int) ((manifDto.getCout()/salleDto.getCapacite())*0.8));
 		
 		return manifDto;
 	}
