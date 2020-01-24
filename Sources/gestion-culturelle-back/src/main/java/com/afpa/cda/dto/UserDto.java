@@ -39,6 +39,7 @@ public class UserDto {
 	private String entreprise;
 	
 	private List <AnimationDto> animations;
+	private boolean inactif;
 
 	
 
