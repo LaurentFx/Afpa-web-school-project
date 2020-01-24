@@ -78,8 +78,8 @@ public class ManifestationServiceImpl implements IManifestationService {
 
 					manifestationDto.setDateAnnulation(manif.getDateAnnulation());
 
-//					manifestationDto.setListCommandes(new ArrayList<CommandeDto>());
-//
+					manifestationDto.setListCommandes(new ArrayList<CommandeDto>());
+
 //					for (Commande m : manif.getListCommandes()) {
 //						manifestationDto.getListCommandes()
 //						.add(CommandeDto

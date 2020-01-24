@@ -21,7 +21,7 @@ public class CommandeDto {
 	private int id;
 	
 	private ManifestationDto manifestation;
-	
+//	
 	private PanierDto panier;
 	
 	int quantite;

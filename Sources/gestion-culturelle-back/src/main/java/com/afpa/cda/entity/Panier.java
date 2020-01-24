@@ -44,7 +44,7 @@ public class Panier {
 //	inverseJoinColumns = { @JoinColumn(name = "id_manifestation") })
 //	private List<Manifestation> manifestations;
 	
-	@OneToMany (mappedBy = "panier")
+	@OneToMany
 	List<Commande> listCommandes;
 	
 	

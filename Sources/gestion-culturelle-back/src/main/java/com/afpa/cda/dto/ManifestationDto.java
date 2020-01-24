@@ -1,5 +1,6 @@
 package com.afpa.cda.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class ManifestationDto {
 	private AdminDto annulateur;
 	private Date dateAnnulation;
 	
-	
+	private List <CommandeDto> ListCommandes;
 	
 
 }

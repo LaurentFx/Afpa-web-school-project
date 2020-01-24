@@ -10,7 +10,7 @@ public interface ICommandeService {
 	
 	List<CommandeDto> findAll();
 
-	CommandeDto add(CommandeDto commande);
+	void add(CommandeDto commande);
 
 	CommandeDto findById(Integer commandeId);
 
