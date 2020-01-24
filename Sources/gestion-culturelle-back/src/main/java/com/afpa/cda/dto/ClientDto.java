@@ -32,6 +32,7 @@ public class ClientDto {
 	private String adresse;
 	private RoleDto role;
 	private String photo;
+	private boolean inactif;
 	
 
 	
