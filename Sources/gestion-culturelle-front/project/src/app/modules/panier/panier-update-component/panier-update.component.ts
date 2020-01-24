@@ -23,7 +23,7 @@ export class PanierUpdateComponent implements OnInit {
   ngOnInit() {
     this.panier = new PanierDto();
     this.manifestations = [];
-    this.panier.manifestation = new ManifestationDto ();
+   // this.panier.manifestation = new ManifestationDto ();
 
     let id = this.route.snapshot.params['id'];
 

@@ -1,6 +1,7 @@
 import { SalleDto } from "./salleDto";
 import { AnimationDto } from './animationDto';
 import { AdminDto } from "./adminDto";
+import { CommandeDto } from "./commandeDto";
 
 export class ManifestationDto {
     id: number;
@@ -18,6 +19,7 @@ export class ManifestationDto {
     rentabilte: number;
     annulateur: AdminDto;
     dateAnnulation: Date;
+    listCommandes : CommandeDto
 
 
     constructor(id?: number,
@@ -34,7 +36,8 @@ export class ManifestationDto {
         prixBillet?: number,
         salle?: SalleDto,
         annulateur?: AdminDto,
-        dateAnnulation?: Date
+        dateAnnulation?: Date,
+        listCommandes ?:CommandeDto
     ) {
 
         this.id = id;
@@ -52,6 +55,7 @@ export class ManifestationDto {
         this.salle = salle;
         this.annulateur = annulateur;
         this.dateAnnulation = dateAnnulation;
+        this.listCommandes = listCommandes;
 
     }
 }

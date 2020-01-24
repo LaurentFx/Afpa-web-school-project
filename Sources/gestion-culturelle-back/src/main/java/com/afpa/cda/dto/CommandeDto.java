@@ -1,5 +1,7 @@
 package com.afpa.cda.dto;
-import java.util.List;
+
+import com.afpa.cda.entity.Manifestation;
+import com.afpa.cda.entity.Panier;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,14 +16,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class SalleDto {
+public class CommandeDto {
 
 	private int id;
-	private String label;
-	private int capacite;
-	private int placesVip;
-	private double fraisJournalier;
-	private TypeSalleDto typeSalle;
-	private List<ManifestationDto> manifestations;
-
+	
+	private ManifestationDto manifestation;
+//	
+	private PanierDto panier;
+	
+	int quantite;
 }

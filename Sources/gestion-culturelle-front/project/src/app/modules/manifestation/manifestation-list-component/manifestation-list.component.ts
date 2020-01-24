@@ -74,8 +74,8 @@ this.role = this.authService.getCurrentUser().role;
     this.router.navigateByUrl('/manifestation-show/' + id)
   }
 
-  redirectToAddPanier(id: number) {
-    this.router.navigateByUrl('/panier-ad/' + id)
+  redirectToAddCommande(id: number) {
+    this.router.navigateByUrl('/commande-ad/' + id)
   }
 
 

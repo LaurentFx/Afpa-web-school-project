@@ -1,5 +1,6 @@
 package com.afpa.cda.entity;
-import java.util.List;
+
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,8 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.afpa.cda.entity.Manifestation.ManifestationBuilder;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,24 +25,23 @@ import lombok.Setter;
 @Setter
 @Builder
 @Table(
-		name="t_salle"
+		name="t_commande"
 )
-public class Salle {
-	
+public class Commande {
+
 	@Id
-	@GeneratedValue(generator = "SALLE_SEQ", strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator = "COMMANDE", strategy = GenerationType.SEQUENCE)
 	private int id;
-	private String label;
-	private int capacite;
-	private int placesVip;
-	private double fraisjournalier;
-
+	
 	@ManyToOne
-	private TypeSalle typesalle;
+	@JoinColumn(name = "manifestation", nullable = false)
+	Manifestation manifestation;
+	
+	@ManyToOne
+	@JoinColumn(name = "panier", nullable = false)
+	Panier panier;
 	
 	
-	@OneToMany (mappedBy = "salle")
-	private List <Manifestation> manifestations;
-
-
+	int quantite;
+	
 }

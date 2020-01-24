@@ -19,8 +19,7 @@ import lombok.ToString;
 public class PanierDto {
 	private int id;
 	private Date dateValidation;
-	private String numClient;		
-	private List<ManifestationDto> manifestations;
-	private int nbreBillets;	
-	private double total;
+	private List<CommandeDto> listCommandes;
+	
+	private int total;
 }
