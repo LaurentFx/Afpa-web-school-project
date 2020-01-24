@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.afpa.cda.dao.PanierRepository;
 import com.afpa.cda.dao.RoleRepository;
 import com.afpa.cda.dao.UserRepository;
@@ -155,6 +153,12 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public List<UserDto> findByRole(Integer roleId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*@Override
+	public List<UserDto> findByRole(Integer roleId) {
 		
 		List<UserDto> listUser = this.UserRepository.findByRole(roleId)
 				.stream()
@@ -184,6 +188,6 @@ public class UserServiceImpl implements IUserService {
 //					return userDto;
 //				}).collect(Collectors.toList());
 		
-	}
+	}*/
 
 }

@@ -68,7 +68,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			String mail = "cda@afpa.com";
 			String entreprise="Afpa";
 			
-			// ne pas oublier de bloquer la création d utilisateur avec le nom ou prenom admin
+			// ne pas oublier de bloquer la création d'utilisateur avec le nom ou prenom admin
 			Optional<User> adminE = userRepository.findByNom(adminUserConf.getNom());
 			if(! adminE.isPresent()) {
 				userRepository.save(User.builder()
