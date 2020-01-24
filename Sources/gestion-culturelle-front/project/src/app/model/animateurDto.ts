@@ -5,7 +5,7 @@ import { AnimationDto } from './animationDto';
 export class AnimateurDto {
     id: number;
     nom: string;
-    prenom: string;;
+    prenom: string;
     email: string;
     entreprise:string;    
     password: string;

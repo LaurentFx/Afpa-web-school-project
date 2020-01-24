@@ -9,7 +9,7 @@ export class VipDto {
     adresse: string;
     role: RoleDto;
     entreprise: string;
-    photo: string;
+    photo: string
 
     constructor(
         id?: number,
@@ -19,7 +19,9 @@ export class VipDto {
         password?: string,
         adresse?: string,
         role?: RoleDto,
-        entreprise?: string
+        entreprise?: string,
+        photo?: string
+
         ){
         this.id = id;
         this.nom= nom;
@@ -29,5 +31,6 @@ export class VipDto {
         this.adresse = adresse;
         this.role = role;
         this.entreprise = entreprise;
+        this.photo=photo;
     }
 }
