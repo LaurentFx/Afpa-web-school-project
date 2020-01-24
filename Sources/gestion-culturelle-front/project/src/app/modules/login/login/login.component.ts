@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     console.log('login ()');
     this.authService.login(this.user).subscribe(res=>{
       if(res){
-        console.log('test');
+        console.log('test ok');
         // window.location.reload();
         // login ok
         this.router.navigateByUrl('/public');      

@@ -3,6 +3,7 @@ import { AnimationService } from '../../../service/animation.service';
 import { Router } from '@angular/router';
 import { AnimationDto } from '../../../model/animationDto';
 import { AuthService } from '../../../service/auth.service';
+import { RoleDto } from 'src/app/model/roleDto';
 
 @Component({
   selector: 'app-animation-list',
@@ -12,6 +13,9 @@ import { AuthService } from '../../../service/auth.service';
 export class AnimationListComponent implements OnInit {
 
   isConnected: boolean;
+  isAnim: boolean;
+  user : String;
+  role : RoleDto;
   animations: AnimationDto[];
   
   constructor(private animationService: AnimationService,private router: Router,
@@ -19,7 +23,12 @@ export class AnimationListComponent implements OnInit {
 
   ngOnInit() {
     this.isConnected = this.authService.isConnected();
-
+    if(this.authService.getCurrentUser()){
+this.isAnim=this.authService.getCurrentUser().role.label==='ANIM';
+this.user = this.authService.getCurrentUser().nom;
+this.role = this.authService.getCurrentUser().role;
+    }
+    
     this.animationService.subjectMiseAJour.subscribe(
       res=> {
         this.animationService.getAll().subscribe(

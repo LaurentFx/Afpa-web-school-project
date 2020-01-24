@@ -42,6 +42,8 @@
      <!--   </div> -->
     </table>
 
-    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/vip-add']">+ Ajouter un Vip</a>
+   <!-- <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/vip-add']">+ Ajouter un Vip</a>-->
+
+   <a *ngIf="isResp" name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/vip-ad']">+ Ajouter un VIP </a>
 
     <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']">Retour à l'accueil </a>

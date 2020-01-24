@@ -55,7 +55,4 @@ export class NavebarComponent implements OnInit {
 
   }
 
-
-
-
 }

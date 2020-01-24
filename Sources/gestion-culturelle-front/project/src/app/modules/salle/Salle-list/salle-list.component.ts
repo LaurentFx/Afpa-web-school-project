@@ -3,6 +3,7 @@ import { SalleDto } from '../../../model/salleDto';
 import { Router } from '@angular/router';
 import { SalleService } from '../../../service/salle.service';
 import { AuthService } from '../../../service/auth.service';
+import { RoleDto } from 'src/app/model/roleDto';
 
 @Component({
   selector: 'app-salle-list',
@@ -13,12 +14,21 @@ export class SalleListComponent implements OnInit {
 
   isConnected: boolean;
   salles: SalleDto[];
+  isResp: boolean;
+  user : String;
+  role : RoleDto;
   
   constructor(private salleService: SalleService, private router: Router,
     private authService: AuthService) { }
 
   ngOnInit() {
+   
     this.isConnected = this.authService.isConnected();
+    if(this.authService.getCurrentUser()){
+this.isResp=this.authService.getCurrentUser().role.label==='RESP';
+this.user = this.authService.getCurrentUser().nom;
+this.role = this.authService.getCurrentUser().role;
+    }
 
     this.salleService.subjectMiseAJour.subscribe(
       res=> {

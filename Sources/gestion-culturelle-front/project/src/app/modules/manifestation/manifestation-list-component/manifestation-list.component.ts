@@ -3,6 +3,7 @@ import { ManifestationDto } from '../../../model/manifestationDto';
 import { Router } from '@angular/router';
 import { ManifestationService } from '../../../service/manifestation.service';
 import { AuthService } from '../../../service/auth.service';
+import { RoleDto } from 'src/app/model/roleDto';
 
 @Component({
   selector: 'app-manifestation-list',
@@ -13,13 +14,22 @@ export class ManifestationListComponent implements OnInit {
 
   isConnected: boolean;
   manifestations: ManifestationDto[];
+  isResp: boolean;
+  user : String;
+  role : RoleDto;
 
   constructor(private manifestationService: ManifestationService, private router: Router,
     private authService: AuthService) { }
 
 
   ngOnInit() {
+
     this.isConnected = this.authService.isConnected();
+    if(this.authService.getCurrentUser()){
+this.isResp=this.authService.getCurrentUser().role.label==='RESP';
+this.user = this.authService.getCurrentUser().nom;
+this.role = this.authService.getCurrentUser().role;
+    }
 
     this.manifestationService.subjectMiseAJour.subscribe(
       res => {
