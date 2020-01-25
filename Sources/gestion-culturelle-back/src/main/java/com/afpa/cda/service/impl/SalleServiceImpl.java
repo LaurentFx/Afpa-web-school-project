@@ -125,7 +125,7 @@ public class SalleServiceImpl implements ISalleService {
 		
 	
 		manifDto.setCout( (animDto.getPrix()+(duree* salleDto.getFraisJournalier())));
-		manifDto.setPrixBillet(((manifDto.getCout()/salleDto.getCapacite())*0.8));
+		manifDto.setPrixBillet(manifDto.getCout()/(salleDto.getCapacite()*0.8));
 		
 		return manifDto;
 	}

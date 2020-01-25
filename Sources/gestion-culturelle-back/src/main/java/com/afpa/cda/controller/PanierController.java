@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.afpa.cda.dto.CommandeDto;
 import com.afpa.cda.dto.PanierDto;
-import com.afpa.cda.dto.RoleDto;
 import com.afpa.cda.service.IPanierService;
 
 @RestController
@@ -31,14 +31,14 @@ public class PanierController {
 		return this.panierService.findById(id);
 	}
 	
-//	@GetMapping(path = "/panier/user/{id}")
-//	public PanierDto getUser(@PathVariable int id){
-//		return this.panierService.findByUser(id);
-//	}
-//	
+	@GetMapping(path = "/panier/user/{id}")
+	public PanierDto getUser(@PathVariable int id){
+		return this.panierService.findByUser(id);
+	}
+	
 	@PostMapping(path = "/panier")
-	public PanierDto add(@RequestBody PanierDto panier) {
-		return this.panierService.add(panier);
+	public void add(@RequestBody CommandeDto commandeDto) {
+		this.panierService.addCommandePanier(commandeDto);
 	}
 
 	@PutMapping(path = "/panier/{id}")

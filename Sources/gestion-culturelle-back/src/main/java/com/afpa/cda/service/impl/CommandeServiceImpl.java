@@ -47,6 +47,7 @@ public class CommandeServiceImpl implements ICommandeService {
 			
 			PanierDto panierDto = new PanierDto();
 			panierDto.setId(c.getPanier().getId());
+			panierDto.setTotal(c.getPanier().getTotal());
 			commandeDto.setPanier(panierDto);
 		
 		return commandeDto;
@@ -76,21 +77,13 @@ public class CommandeServiceImpl implements ICommandeService {
 	@Override
 	public void add(CommandeDto commandeDto) {
 
-		Commande commande = new Commande ();
+//		Commande commande = new Commande ();
 //		commande.setQuantite(commandeDto.getQuantite());
 //
 //		Manifestation manifestation = new Manifestation ();
 //manifestation.setLabel(commandeDto.getManifestation().);
-		
-
-		
 		//manifestation = modelMapper.map(commandeDto.)
-
-
-
 		//		commande.se
-
-
 		this.commandeRepository.save(this.modelMapper.map(commandeDto, Commande.class));
 		//				commandeDto.setId(commande.getId());
 		//		return null;

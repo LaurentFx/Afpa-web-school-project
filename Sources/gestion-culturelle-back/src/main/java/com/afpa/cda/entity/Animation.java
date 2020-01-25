@@ -33,7 +33,7 @@ public class Animation {
 	
 	private String type;
 	
-	private double prix;
+	private int prix;
 	
 	private int nbreSpectateursPrevus;
 	

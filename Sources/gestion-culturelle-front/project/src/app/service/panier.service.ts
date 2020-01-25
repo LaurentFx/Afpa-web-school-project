@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { PanierDto } from '../model/panierDto';
 import { HttpClient } from '@angular/common/http'
 import { Observable, Subject } from 'rxjs';
-import { ManifestationDto } from '../model/manifestationDto';
+import { CommandeDto } from '../model/commandeDto';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class PanierService {
  
   monUrl= 'http://localhost:8080/panier'; 
 
-  panier: PanierDto[]; 
+  commande: CommandeDto[]; 
 
   subjectMiseAJour= new Subject<number>();
 
@@ -21,15 +21,10 @@ export class PanierService {
     return this.http.get(this.monUrl);
   }
   
-  add(panier: PanierDto): Observable<object> {
-    return this.http.post(this.monUrl,panier);
+  add(commande: CommandeDto): Observable<object> {
+    return this.http.post(this.monUrl,commande);
   }
   
-  addPanier(manifestation: ManifestationDto): Observable<object> {
-    return this.http.put(this.monUrl,manifestation);
-  }
-  
-
   getOne(id: number): Observable<any> {
     return this.http.get(`${this.monUrl}/${id}`);
   } 
@@ -37,9 +32,9 @@ export class PanierService {
   getUser(id: number): Observable<any> {
     return this.http.get(`${this.monUrl}/user/${id}`);
   } 
-
-  update(id: number, panier: Object): Observable<Object> {
-    return this.http.put(`${this.monUrl}/${id}`, panier);
+  
+  update(id: number, commande: Object): Observable<Object> {
+    return this.http.put(`${this.monUrl}/${id}`, commande);
   }
 
  delete(id: number): Observable<any> {
@@ -47,4 +42,3 @@ export class PanierService {
   }
 
 }
-

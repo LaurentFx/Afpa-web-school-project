@@ -223,7 +223,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 		manifDto.setReservationsVip(salleDto.getPlacesVip());
 		
 		manifDto.setCout( (animDto.getPrix()+(duree* salleDto.getFraisJournalier())));
-		manifDto.setPrixBillet(((manifDto.getCout()/salleDto.getCapacite())*0.8));
+		manifDto.setPrixBillet(manifDto.getCout()/(salleDto.getCapacite()*0.8));
 
 		return manifDto;
 	}

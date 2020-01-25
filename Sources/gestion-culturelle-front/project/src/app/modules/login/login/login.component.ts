@@ -21,13 +21,12 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    console.log('login ()');
     this.authService.login(this.user).subscribe(res=>{
       if(res){
-        console.log('test ok');
-        // window.location.reload();
-        // login ok
+        console.log('connexion Ok')
         this.router.navigateByUrl('/public');      
+      } else {
+        console.log('connexion NOk')
       }
     });
   }

@@ -48,6 +48,6 @@ public class Panier {
 	List<Commande> listCommandes;
 	
 	
-	private int total;
+	private double total;
 
 }

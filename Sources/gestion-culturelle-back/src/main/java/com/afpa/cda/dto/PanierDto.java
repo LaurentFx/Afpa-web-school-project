@@ -21,5 +21,5 @@ public class PanierDto {
 	private Date dateValidation;
 	private List<CommandeDto> listCommandes;
 	
-	private int total;
+	private double total;
 }
