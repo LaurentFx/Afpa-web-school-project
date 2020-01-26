@@ -71,7 +71,6 @@ export class PanierAddComponent implements OnInit {
       res => {
         this.panierService.subjectMiseAJour.next(0);
         this.goHome(this.panierDto.id);
-        console.log('id '+this.panierDto.id)
       }
     );
 

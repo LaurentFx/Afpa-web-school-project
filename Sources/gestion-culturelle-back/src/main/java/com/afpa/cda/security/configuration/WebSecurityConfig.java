@@ -76,7 +76,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //		.antMatchers("/**").permitAll()
 //		.antMatchers("/*").permitAll()
 		.antMatchers(AllUrls).permitAll()
-	//	.antMatchers(ClientUrls).hasAnyAuthority(new String[]{"CLIENT","ADMIN","RESP"})
+		.antMatchers(ClientUrls).hasAnyAuthority(new String[]{"CLIENT","ADMIN","RESP"})
 		.antMatchers(AdminUrls).hasAnyAuthority(new String[]{"ADMIN","RESP"})
 		.antMatchers(VipUrls).hasAnyAuthority(new String[]{"VIP"})
 		.antMatchers(AnimUrls).hasAnyAuthority(new String[]{"ANIM"})

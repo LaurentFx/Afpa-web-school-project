@@ -2,15 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommandeDto } from '../../../model/commandeDto';
 import { PanierDto } from '../../../model/panierDto';
-import { ManifestationDto } from '../../../model/manifestationDto';
 import { User } from '../../../model/user';
 import { CommandeService } from '../../../service/commande.service';
 import { PanierService } from '../../../service/panier.service';
 import { ManifestationService } from '../../../service/manifestation.service';
 import { AuthService } from '../../../service/auth.service';
 import { UserService } from '../../../service/user.service';
-import { Observable } from 'rxjs';
-
 
 @Component({
   selector: 'app-panier-show',
@@ -49,26 +46,47 @@ export class PanierShowComponent implements OnInit {
     );
 
     this.id = this.route.snapshot.params['id'];
-    console.log('id1 ' + this.id);
     this.commandeService.getCommandes(this.id).subscribe(
       donnees => {
-        console.log('test getcommandes');
         this.listCommandes = donnees;
+
       }
     );
 
+  }
 
-   /*  this.id2 = this.route.snapshot.params['id'];
-    console.log('id2 ' + this.id);
-    this.panierService.getOne(this.id2).subscribe(
-      donnees => {
-        console.log('test getcommandes');
-        this.panierDto = donnees;
+  valid(id: number) {
+    this.id = this.route.snapshot.params['id'];
+    console.log('id ' + id)
+    this.panierService.delete(id).subscribe(
+      res => {
+        this.commandeService.subjectMiseAJour.next(0);
+        this.goHome()
       }
-    );*/
+    )
 
-    
-  } 
+  }
+
+cancel(id: number) {
+}
+
+delete (id: number) {
+  this.id = this.route.snapshot.params['id'];
+    console.log('id ' + id)
+    this.commandeService.delete(id).subscribe(
+      res => {
+        this.commandeService.subjectMiseAJour.next(0);
+        this.goHome()
+      }
+    )
+}
+
+  goHome() {
+
+    this.router.navigateByUrl('/public')
+
+  }
+
 
 
 }

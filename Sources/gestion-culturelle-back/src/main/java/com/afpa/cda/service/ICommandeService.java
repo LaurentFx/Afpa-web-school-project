@@ -16,7 +16,7 @@ public interface ICommandeService {
 
 	CommandeDto findOne(Integer commandeId);
 
-	boolean delete(int id);
+	void delete(int id);
 
 	boolean update(CommandeDto commande, int id);
 

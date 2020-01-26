@@ -100,7 +100,6 @@ public class PanierServiceImpl implements IPanierService {
 				manifestationDto.setReservations(manifestationDto.getReservations()-commandeDto.getQuantite());
 				DateFormat df = new SimpleDateFormat("dd/MM/yy");
 				Date dateobj = new Date();
-				System.out.println(df.format(dateobj));
 				panierDto.setDateValidation(dateobj);
 				
 				panierRepository.save(this.modelMapper.map(panierDto, Panier.class));
@@ -147,12 +146,26 @@ public class PanierServiceImpl implements IPanierService {
 	//	}
 
 	@Override
-	public boolean deletePanier(int id) {
-		if (this.panierRepository.existsById(id)) {
-			this.panierRepository.deleteById(id);
-			return true;
+	public void delete(int id) {
+		System.out.println("test delete");
+		List<Commande> listCommandes = this.commandeRepository.findAll();
+
+		Optional<Panier> panierOp = this.panierRepository.findById(id);
+		
+		if (panierOp.isPresent()) {
+			PanierDto panierDto = modelMapper.map(panierOp.get(),PanierDto.class);
+			
+			System.out.println("test delete panier "+panierOp.get());
+			for (Commande commande : listCommandes) {
+				if (commande.getPanier().getId() == id) {
+					System.out.println("test delete id "+commande.getPanier().getId()); 
+					listCommandes.remove(commande);
+					panierDto.setTotal(0);
+					panierRepository.save(this.modelMapper.map(panierDto,Panier.class));
+				}
+				System.out.println("test delete total "+panierOp.get().getTotal());
+			}
 		}
-		return false;
 	}
 
 	@Override

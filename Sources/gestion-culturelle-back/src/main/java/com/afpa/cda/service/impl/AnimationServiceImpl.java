@@ -115,10 +115,10 @@ public class AnimationServiceImpl implements IAnimationService {
 			salleDto = modelMapper.map(salle,SalleDto.class);
 		}
 
-		manifDto.setReservations(salleDto.getCapacite());
+		manifDto.setReservations(animDto.getNbreSpectateursPrevus());
 		manifDto.setReservationsVip(salleDto.getPlacesVip());
 		manifDto.setCout( (animDto.getPrix()+(duree* salleDto.getFraisJournalier())));
-		manifDto.setPrixBillet(manifDto.getCout()/(salleDto.getCapacite()*0.8));
+		manifDto.setPrixBillet(manifDto.getCout()/(animDto.getNbreSpectateursPrevus()*0.8));
 
 		return manifDto;
 	}

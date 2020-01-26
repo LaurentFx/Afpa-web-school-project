@@ -37,106 +37,106 @@ public class CommandeServiceImpl implements ICommandeService {
 	public List<CommandeDto> findAll() {
 
 		return this.commandeRepository.findAll()
-		.stream()
-		.map(c-> {
-			CommandeDto commandeDto = new CommandeDto ();
-			commandeDto.setId(c.getId());
-			commandeDto.setQuantite(c.getQuantite());
-			
-			ManifestationDto manifDto = new ManifestationDto();
-			manifDto.setId(c.getManifestation().getId());
-			manifDto.setLabel(c.getManifestation().getLabel());
-			commandeDto.setManifestation(manifDto);
-			
-			PanierDto panierDto = new PanierDto();
-			panierDto.setId(c.getPanier().getId());
-			panierDto.setTotal(c.getPanier().getTotal());
-			commandeDto.setPanier(panierDto);
-		
-		return commandeDto;
-	})
-	.collect(Collectors.toList());
-		
-//		return this.commandeRepository.findAll()
-//				.stream()
-//				.map(m-> this.modelMapper.map(m,CommandeDto.class))
-//				.collect(Collectors.toList());
-				
-				
-//				.stream()
-//				.map(c->  CommandeDto.builder()
-//						.id(c.getId())
-//						.manifestation(ManifestationDto.builder()
-//								.id(c.getManifestation().getId())
-//								.label(c.getManifestation().getLabel())
-//								.build())
-//						.quantite(c.getQuantite())
-//						.build())
-//				.collect(Collectors.toList());
-//		return null;
-	
+				.stream()
+				.map(c-> {
+					CommandeDto commandeDto = new CommandeDto ();
+					commandeDto.setId(c.getId());
+					commandeDto.setQuantite(c.getQuantite());
+
+					ManifestationDto manifDto = new ManifestationDto();
+					manifDto.setId(c.getManifestation().getId());
+					manifDto.setLabel(c.getManifestation().getLabel());
+					commandeDto.setManifestation(manifDto);
+
+					PanierDto panierDto = new PanierDto();
+					panierDto.setId(c.getPanier().getId());
+					panierDto.setTotal(c.getPanier().getTotal());
+					commandeDto.setPanier(panierDto);
+
+					return commandeDto;
+				})
+				.collect(Collectors.toList());
+
+		//		return this.commandeRepository.findAll()
+		//				.stream()
+		//				.map(m-> this.modelMapper.map(m,CommandeDto.class))
+		//				.collect(Collectors.toList());
+
+
+		//				.stream()
+		//				.map(c->  CommandeDto.builder()
+		//						.id(c.getId())
+		//						.manifestation(ManifestationDto.builder()
+		//								.id(c.getManifestation().getId())
+		//								.label(c.getManifestation().getLabel())
+		//								.build())
+		//						.quantite(c.getQuantite())
+		//						.build())
+		//				.collect(Collectors.toList());
+		//		return null;
+
 	}	
 
 	@Override
 	public List<CommandeDto> findByPanierId(int id) {
 		List<Commande> listCommandes = this.commandeRepository.findAll();
-		
+
 		List <CommandeDto> listByPanier = new ArrayList<CommandeDto>();
-		
+
 		for (Commande commande : listCommandes) {
 			if (commande.getPanier().getId() == id) {
 				CommandeDto commandeDto = new CommandeDto ();
 				commandeDto.setId(commande.getId());
-				
+
 				ManifestationDto manifestationDto = new ManifestationDto();
 				manifestationDto.setId(commande.getManifestation().getId());
 				manifestationDto.setLabel(commande.getManifestation().getLabel());
 				manifestationDto.setPrixBillet(commande.getManifestation().getPrixBillet());
 				commandeDto.setManifestation(manifestationDto);
-				
+
 				PanierDto panierDto = new PanierDto();	
 				panierDto.setId(commande.getManifestation().getId());
 				commandeDto.setPanier(panierDto);
-				
+
 				commandeDto.setQuantite(commande.getQuantite());
-				
+
 				listByPanier.add(commandeDto);
 			}
-			
+
 		}
 		return listByPanier;
-		
-//	Optional <Panier> panierOp = this.panierRepository.findById(id);
-//	System.out.println("test methode");
-//	PanierDto panierDto = new PanierDto ();
-//	List<CommandeDto> list = new ArrayList<CommandeDto>();
-//		if (panierOp.isPresent()) {
-//			panierDto = modelMapper.map(panierOp.get(),PanierDto.class);
-//			panierDto.setListCommandes(list);
-//			
-//			for (Commande c : panierOp.get().getListCommandes()) {
-//				panierDto.getListCommandes()
-//				.add(CommandeDto
-//						.builder()
-//						.manifestation(ManifestationDto.builder()
-//								.id(c.getManifestation().getId())
-//								.label(c.getManifestation().getLabel())
-//								.build())
-//						.build());
-//			}
-//		}
-//		System.out.println(list.toString());
-//		return list;
+
+		//	Optional <Panier> panierOp = this.panierRepository.findById(id);
+		//	System.out.println("test methode");
+		//	PanierDto panierDto = new PanierDto ();
+		//	List<CommandeDto> list = new ArrayList<CommandeDto>();
+		//		if (panierOp.isPresent()) {
+		//			panierDto = modelMapper.map(panierOp.get(),PanierDto.class);
+		//			panierDto.setListCommandes(list);
+		//			
+		//			for (Commande c : panierOp.get().getListCommandes()) {
+		//				panierDto.getListCommandes()
+		//				.add(CommandeDto
+		//						.builder()
+		//						.manifestation(ManifestationDto.builder()
+		//								.id(c.getManifestation().getId())
+		//								.label(c.getManifestation().getLabel())
+		//								.build())
+		//						.build());
+		//			}
+		//		}
+		//		System.out.println(list.toString());
+		//		return list;
 	}
-		
+
 	@Override
 	public void add(CommandeDto commandeDto) {
 
-//		Commande commande = new Commande ();
-//		commande.setQuantite(commandeDto.getQuantite());
-//
-//		Manifestation manifestation = new Manifestation ();
-//manifestation.setLabel(commandeDto.getManifestation().);
+		//		Commande commande = new Commande ();
+		//		commande.setQuantite(commandeDto.getQuantite());
+		//
+		//		Manifestation manifestation = new Manifestation ();
+		//manifestation.setLabel(commandeDto.getManifestation().);
 		//manifestation = modelMapper.map(commandeDto.)
 		//		commande.se
 		this.commandeRepository.save(this.modelMapper.map(commandeDto, Commande.class));
@@ -170,9 +170,17 @@ public class CommandeServiceImpl implements ICommandeService {
 	}
 
 	@Override
-	public boolean delete(int id) {
-		// TODO Auto-generated method stub
-		return false;
+	public void delete(int id) {
+		Optional<Commande> commandeOp =	this.commandeRepository.findById(id);
+		Panier panier = commandeOp.get().getPanier();
+		PanierDto panierDto = modelMapper.map(panier,PanierDto.class);
+		
+		if(this.commandeRepository.existsById(id)) {
+			this.commandeRepository.deleteById(id);
+			panierDto.setTotal(0);
+			panierRepository.save(this.modelMapper.map(panierDto,Panier.class));
+		}
+		
 	}
 
 	@Override

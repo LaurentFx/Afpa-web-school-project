@@ -15,13 +15,13 @@ public interface IPanierService {
 
 	boolean updatePanier(PanierDto panier, int id);
 
-	boolean deletePanier(int id);
-
 	PanierDto findById(int id);
 
 	PanierDto findByUser(int id);
 
 	void addCommandePanier(CommandeDto commandeDto);
+
+	void delete(int id);
 
 
 }

@@ -48,7 +48,7 @@ public class PanierController {
 
 	@DeleteMapping(path = "/panier/{id}")
 	public void delete(@PathVariable int id) {
-		this.panierService.deletePanier(id);
+		this.panierService.delete(id);
 	}
 
 }
