@@ -6,7 +6,7 @@ import { LoginComponent } from './modules/login/login/login.component';
 import { AuthGuard } from './guard/auth.guard';
 
 import { TypeSalleListComponent } from './modules/typesalle/typeSalle-list/typeSalle-list.component';
-import { TypeSalleAddComponent } from './modules/typesalle/typeSalle-add/typesalle-add.component';
+import { TypeSalleAddComponent } from './modules/typesalle/typeSalle-add/typeSalle-add.component';
 import { TypeSalleUpdateComponent } from './modules/typesalle/typesalle-update/typesalle-update.component';
 import { TypeSalleShowComponent } from './modules/typesalle/typesalle-show/typesalle-show.component';
 import { SalleListComponent } from './modules/salle/salle-list/salle-list.component';

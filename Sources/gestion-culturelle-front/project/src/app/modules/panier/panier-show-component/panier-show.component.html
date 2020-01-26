@@ -21,11 +21,12 @@
                         <li *ngFor="let commande of listCommandes" class="list-group">
                             {{commande.manifestation.label}}
                             {{commande.quantite}}
+                            <button (click)="delete(commande.id)" class="btn btn-sm btn-danger">Delete</button>
                         </li>
                     </ul>
                 </td>
                 <td>{{panierDto.total}}</td>
-                <td> <button (click)="delete(commande.id)" class="btn btn-sm btn-danger">Delete</button></td>
+                <td></td>
             </tr>
         </tbody>
     </table>

@@ -5,12 +5,12 @@ import { FormsModule } from '@angular/forms';
 
 import { TypeSalleRoutingModule } from './typesalle-routing.module';
 
-import {TypeSalleListComponent} from './typeSalle-list/typeSalle-list.component';
-import { TypeSalleAddComponent } from './typeSalle-add/typesalle-add.component';
+import { TypeSalleListComponent } from './typeSalle-list/typeSalle-list.component';
+import { TypeSalleAddComponent } from './typeSalle-add/typeSalle-add.component';
 import { TypeSalleUpdateComponent } from './typesalle-update/typesalle-update.component';
 import { TypeSalleShowComponent } from './typesalle-show/typesalle-show.component';
 
- 
+
 
 @NgModule({
   declarations: [

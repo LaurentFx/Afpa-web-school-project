@@ -1,6 +1,6 @@
-import { Component, OnInit } from '../../../../../node_modules/@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TypeSalleService } from '../../../service/typeSalle.service';
-import { Router } from '../../../../../node_modules/@angular/router';
+import { Router } from '@angular/router';
 import { TypeSalleDto } from '../../../model/typeSalleDto';
 
 @Component({

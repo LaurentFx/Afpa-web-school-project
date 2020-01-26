@@ -79,27 +79,54 @@ public class CommandeServiceImpl implements ICommandeService {
 
 	@Override
 	public List<CommandeDto> findByPanierId(int id) {
-	Optional <Panier> panierOp = this.panierRepository.findById(id);
-	System.out.println("test methode");
-	PanierDto panierDto = new PanierDto ();
-	List<CommandeDto> list = new ArrayList<CommandeDto>();
-		if (panierOp.isPresent()) {
-			panierDto = modelMapper.map(panierOp.get(),PanierDto.class);
-			panierDto.setListCommandes(list);
-			
-			for (Commande c : panierOp.get().getListCommandes()) {
-				panierDto.getListCommandes()
-				.add(CommandeDto
-						.builder()
-						.manifestation(ManifestationDto.builder()
-								.id(c.getManifestation().getId())
-								.label(c.getManifestation().getLabel())
-								.build())
-						.build());
+		List<Commande> listCommandes = this.commandeRepository.findAll();
+		
+		List <CommandeDto> listByPanier = new ArrayList<CommandeDto>();
+		
+		for (Commande commande : listCommandes) {
+			if (commande.getPanier().getId() == id) {
+				CommandeDto commandeDto = new CommandeDto ();
+				commandeDto.setId(commande.getId());
+				
+				ManifestationDto manifestationDto = new ManifestationDto();
+				manifestationDto.setId(commande.getManifestation().getId());
+				manifestationDto.setLabel(commande.getManifestation().getLabel());
+				manifestationDto.setPrixBillet(commande.getManifestation().getPrixBillet());
+				commandeDto.setManifestation(manifestationDto);
+				
+				PanierDto panierDto = new PanierDto();	
+				panierDto.setId(commande.getManifestation().getId());
+				commandeDto.setPanier(panierDto);
+				
+				commandeDto.setQuantite(commande.getQuantite());
+				
+				listByPanier.add(commandeDto);
 			}
+			
 		}
-		System.out.println(list.toString());
-		return list;
+		return listByPanier;
+		
+//	Optional <Panier> panierOp = this.panierRepository.findById(id);
+//	System.out.println("test methode");
+//	PanierDto panierDto = new PanierDto ();
+//	List<CommandeDto> list = new ArrayList<CommandeDto>();
+//		if (panierOp.isPresent()) {
+//			panierDto = modelMapper.map(panierOp.get(),PanierDto.class);
+//			panierDto.setListCommandes(list);
+//			
+//			for (Commande c : panierOp.get().getListCommandes()) {
+//				panierDto.getListCommandes()
+//				.add(CommandeDto
+//						.builder()
+//						.manifestation(ManifestationDto.builder()
+//								.id(c.getManifestation().getId())
+//								.label(c.getManifestation().getLabel())
+//								.build())
+//						.build());
+//			}
+//		}
+//		System.out.println(list.toString());
+//		return list;
 	}
 		
 	@Override

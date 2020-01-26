@@ -1,7 +1,7 @@
-import { Component, OnInit } from '../../../../../node_modules/@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TypeSalleDto } from '../../../model/typeSalleDto';
 import { TypeSalleService } from '../../../service/typeSalle.service';
-import { Router } from '../../../../../node_modules/@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../../../service/auth.service';
 
 @Component({

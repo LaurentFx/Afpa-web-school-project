@@ -58,15 +58,17 @@ export class PanierShowComponent implements OnInit {
     );
 
 
-    this.id2 = this.route.snapshot.params['id'];
+   /*  this.id2 = this.route.snapshot.params['id'];
     console.log('id2 ' + this.id);
     this.panierService.getOne(this.id2).subscribe(
       donnees => {
         console.log('test getcommandes');
         this.panierDto = donnees;
       }
-    );
-  }
+    );*/
+
+    
+  } 
 
 
 }
