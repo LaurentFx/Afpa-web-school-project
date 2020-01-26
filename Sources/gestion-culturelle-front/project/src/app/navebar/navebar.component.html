@@ -22,12 +22,12 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a routerLink='public/salle-list' class="dropdown-item" routerLinkActive=active>Salles</a>
-          <div *ngIf="isConnected" class="dropdown-divider"></div>
+          <div  class="dropdown-divider"></div>
           <a routerLink='public/animation-list' class="dropdown-item" routerLinkActive=active>Animations</a>
           <a routerLink='public/manifestation-list' class="dropdown-item" routerLinkActive=active>Manifestations</a>
 
           <div *ngIf="isClient" class="dropdown-divider"></div>
-          <a routerLink='panier-show' class="dropdown-item" routerLinkActive=active>Panier</a>
+          <a *ngIf="isClient" routerLink='panier-show' class="dropdown-item" routerLinkActive=active>Panier</a>
         </div>
 
       </li>

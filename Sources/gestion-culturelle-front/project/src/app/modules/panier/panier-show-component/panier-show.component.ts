@@ -68,6 +68,7 @@ export class PanierShowComponent implements OnInit {
   }
 
 cancel(id: number) {
+  this.goHome()
 }
 
 delete (id: number) {
