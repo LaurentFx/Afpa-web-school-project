@@ -84,15 +84,13 @@ public class PanierServiceImpl implements IPanierService {
 	@Override
 	public void addCommandePanier (CommandeDto commandeDto) {
 
+
 		Optional <Panier> panierOp=panierRepository.findById(commandeDto.getPanier().getId());
 		Optional <Manifestation> manifestationOp=manifestationRepository.findById(commandeDto.getManifestation().getId());
-		
-		
 		PanierDto panierDto = new PanierDto();
 		ManifestationDto manifestationDto = new ManifestationDto();
 
 		if (panierOp.isPresent() && manifestationOp.isPresent()) {
-			
 			panierDto = modelMapper.map(panierOp.get(), PanierDto.class);
 			manifestationDto = modelMapper.map(manifestationOp.get(),ManifestationDto.class);
 
@@ -100,12 +98,10 @@ public class PanierServiceImpl implements IPanierService {
 				this.commandeRepository.save(this.modelMapper.map(commandeDto, Commande.class));
 				panierDto.setTotal(panierDto.getTotal()+commandeDto.getQuantite()*manifestationDto.getPrixBillet());
 				manifestationDto.setReservations(manifestationDto.getReservations()-commandeDto.getQuantite());
-				
 				DateFormat df = new SimpleDateFormat("dd/MM/yy");
 				Date dateobj = new Date();
 				System.out.println(df.format(dateobj));
 				panierDto.setDateValidation(dateobj);
-				
 				
 				panierRepository.save(this.modelMapper.map(panierDto, Panier.class));
 				manifestationRepository.save(this.modelMapper.map(manifestationDto, Manifestation.class));
@@ -208,6 +204,5 @@ public class PanierServiceImpl implements IPanierService {
 
 		return panierDto;
 	}
-
 
 }

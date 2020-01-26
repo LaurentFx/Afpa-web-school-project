@@ -81,7 +81,8 @@ export class PanierAddComponent implements OnInit {
 
     this.router.navigateByUrl('/panier-show/'+ id)
 
-  }
+
+
 
 
 
