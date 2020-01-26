@@ -6,10 +6,10 @@
                 <tr>
                     <th>Id</th>
                     <th>Label</th>
+                    <th>Type de salle</th>
                     <th>Capacite</th>
                     <th>Places reservees VIP</th>
                     <th>Frais journaliers</th>
-                    <th>Type de salle</th>
         </tr>
     </thead>
 
@@ -17,10 +17,10 @@
         <tr>
             <td>{{salle.id}}</td>
             <td>{{salle.label}}</td>
+            <td>{{salle.typeSalle.label}}</td>
             <td>{{salle.capacite}}</td>
             <td>{{salle.placesVip}}</td>
             <td>{{salle.fraisJournalier}}</td>
-            <td>{{salle.typeSalle.label}}</td>
         </tr>
 
     </tbody>

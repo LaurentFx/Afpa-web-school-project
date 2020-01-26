@@ -1,6 +1,9 @@
 package com.afpa.cda.service.impl;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -9,10 +12,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.afpa.cda.dao.CommandeRepository;
 import com.afpa.cda.dao.ManifestationRepository;
 import com.afpa.cda.dao.PanierRepository;
 import com.afpa.cda.dao.UserRepository;
-import com.afpa.cda.dto.AnimationDto;
 import com.afpa.cda.dto.CommandeDto;
 import com.afpa.cda.dto.ManifestationDto;
 import com.afpa.cda.dto.PanierDto;
@@ -27,12 +30,14 @@ public class PanierServiceImpl implements IPanierService {
 	@Autowired
 	private PanierRepository panierRepository;
 	@Autowired
+	private CommandeRepository commandeRepository;
+	@Autowired
 	private ManifestationRepository manifestationRepository;
 	@Autowired
 	private ModelMapper modelMapper;
 	@Autowired
 	private UserRepository userRepository;
-	
+
 
 	@Override
 	public List<PanierDto> findAll() {
@@ -43,13 +48,12 @@ public class PanierServiceImpl implements IPanierService {
 					PanierDto panierDto = new PanierDto();
 					panierDto.setId(p.getId());
 					panierDto.setDateValidation(p.getDateValidation());
-					
 					panierDto.setTotal(p.getTotal());
 
-			  panierDto.setListCommandes(new ArrayList<CommandeDto>());
-			
-			for (Commande m : p.getListCommandes()) {
-				panierDto.getListCommandes()
+					panierDto.setListCommandes(new ArrayList<CommandeDto>());
+
+					for (Commande m : p.getListCommandes()) {
+						panierDto.getListCommandes()
 						.add(CommandeDto
 								.builder()
 								.id(m.getId())
@@ -63,19 +67,54 @@ public class PanierServiceImpl implements IPanierService {
 										.prixBillet(m.getManifestation().getPrixBillet())
 										.build())
 								.build());
-								
-							
-//								.label(m.getLabel())
-//								.animation(AnimationDto.builder()
-//										.id(m.getAnimation().getId())
-//										.label(m.getAnimation().getLabel())
-//										.build())
-//								.build());
-			}
-			return panierDto;
-		})
+
+
+						//								.label(m.getLabel())
+						//								.animation(AnimationDto.builder()
+						//										.id(m.getAnimation().getId())
+						//										.label(m.getAnimation().getLabel())
+						//										.build())
+						//								.build());
+					}
+					return panierDto;
+				})
 				.collect(Collectors.toList());
 	}
+
+	@Override
+	public void addCommandePanier (CommandeDto commandeDto) {
+
+		Optional <Panier> panierOp=panierRepository.findById(commandeDto.getPanier().getId());
+		Optional <Manifestation> manifestationOp=manifestationRepository.findById(commandeDto.getManifestation().getId());
+		
+		
+		PanierDto panierDto = new PanierDto();
+		ManifestationDto manifestationDto = new ManifestationDto();
+
+		if (panierOp.isPresent() && manifestationOp.isPresent()) {
+			
+			panierDto = modelMapper.map(panierOp.get(), PanierDto.class);
+			manifestationDto = modelMapper.map(manifestationOp.get(),ManifestationDto.class);
+
+			if (manifestationDto.getReservations() >= commandeDto.getQuantite()) {
+				this.commandeRepository.save(this.modelMapper.map(commandeDto, Commande.class));
+				panierDto.setTotal(panierDto.getTotal()+commandeDto.getQuantite()*manifestationDto.getPrixBillet());
+				manifestationDto.setReservations(manifestationDto.getReservations()-commandeDto.getQuantite());
+				
+				DateFormat df = new SimpleDateFormat("dd/MM/yy");
+				Date dateobj = new Date();
+				System.out.println(df.format(dateobj));
+				panierDto.setDateValidation(dateobj);
+				
+				
+				panierRepository.save(this.modelMapper.map(panierDto, Panier.class));
+				manifestationRepository.save(this.modelMapper.map(manifestationDto, Manifestation.class));
+			}
+
+		}
+
+	}
+
 
 	@Override
 	public PanierDto add(PanierDto panier) {
@@ -103,14 +142,14 @@ public class PanierServiceImpl implements IPanierService {
 		return false;
 	}
 
-//	public PanierDto addPanier (ManifestationDto manifestationDto) {
-//		
-//		PanierDto panierDto = new PanierDto();
-//		
-//		
-//		return panierDto;
-//	}
-	
+	//	public PanierDto addPanier (ManifestationDto manifestationDto) {
+	//		
+	//		PanierDto panierDto = new PanierDto();
+	//		
+	//		
+	//		return panierDto;
+	//	}
+
 	@Override
 	public boolean deletePanier(int id) {
 		if (this.panierRepository.existsById(id)) {
@@ -124,37 +163,37 @@ public class PanierServiceImpl implements IPanierService {
 	public PanierDto findById(int id) {
 		Optional<Panier> panE = this.panierRepository.findById(id);
 		PanierDto panDto = new PanierDto();
-		
+
 		if (panE.isPresent()) {
-			
+
 			Panier pan= panE.get();
 			panDto.setId(pan.getId());
 			panDto.setDateValidation(pan.getDateValidation());
 			panDto.setTotal(pan.getTotal());
-		
+
 			PanierDto panierDto = new PanierDto();
-			
-			  panierDto.setListCommandes(new ArrayList<CommandeDto>());
-				
-				for (Commande m : pan.getListCommandes()) {
-					panierDto.getListCommandes()
-							.add(CommandeDto
-									.builder()
-									.id(m.getId())
-									.panier(PanierDto.builder()
-											.id(m.getPanier().getId())
-											.dateValidation(m.getPanier().getDateValidation())
-											.build())
-									.manifestation(ManifestationDto.builder()
-											.id(m.getManifestation().getId())
-											.label(m.getManifestation().getLabel())
-											.prixBillet(m.getManifestation().getPrixBillet())
-											.build())
-									.build());
-			
+
+			panierDto.setListCommandes(new ArrayList<CommandeDto>());
+
+			for (Commande m : pan.getListCommandes()) {
+				panierDto.getListCommandes()
+				.add(CommandeDto
+						.builder()
+						.id(m.getId())
+						.panier(PanierDto.builder()
+								.id(m.getPanier().getId())
+								.dateValidation(m.getPanier().getDateValidation())
+								.build())
+						.manifestation(ManifestationDto.builder()
+								.id(m.getManifestation().getId())
+								.label(m.getManifestation().getLabel())
+								.prixBillet(m.getManifestation().getPrixBillet())
+								.build())
+						.build());
+
+			}
+
 		}
-		
-	}
 		return panDto;
 	}
 
@@ -164,12 +203,11 @@ public class PanierServiceImpl implements IPanierService {
 		PanierDto panierDto = new PanierDto ();
 		if (userOp.isPresent()) {
 			Panier panier = userOp.get().getPanier();
-		panierDto = modelMapper.map(panier,PanierDto.class);
+			panierDto = modelMapper.map(panier,PanierDto.class);
 		}
-		
+
 		return panierDto;
 	}
-		
-	
-	
+
+
 }

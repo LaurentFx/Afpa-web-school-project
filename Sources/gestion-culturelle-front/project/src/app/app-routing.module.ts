@@ -79,6 +79,8 @@ const routes: Routes = [
   { path: 'panier-ad', component: PanierAddComponent },
   { path: 'panier-update/:id', component: PanierUpdateComponent },
   { path: 'panier-show/:id', component: PanierShowComponent },
+   {path: 'panier-ad/:id', component: PanierAddComponent },
+   {path: 'panier-show', component: PanierShowComponent },
 
   { path: 'role-list', component: RoleListComponent, canActivate: [AuthGuard] },
   { path: 'role-ad', component: RoleAddComponent, canActivate: [AuthGuard] },
@@ -99,12 +101,6 @@ const routes: Routes = [
   { path: 'animateur-ad', component: AnimateurAddComponent },
   { path: 'animateur-update/:id', component: AnimateurUpdateComponent },
   { path: 'animateur-show/:id', component: AnimateurShowComponent},
-
-  {path: 'panier-list', component: PanierListComponent },
-  {path: 'panier-ad', component: PanierAddComponent },
-  {path: 'panier-ad/:id', component: PanierAddComponent },
-  {path: 'panier-update/:id', component: PanierUpdateComponent },
-  {path: 'panier-show/:id', component: PanierShowComponent },
  
   {path: 'role-list', component: RoleListComponent},
   {path: 'role-ad', component: RoleAddComponent },

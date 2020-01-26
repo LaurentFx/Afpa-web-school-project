@@ -17,6 +17,6 @@ public class AnimationDto {
 	private int id;
 	private String label;
 	private String type;
-	private double prix;
+	private int prix;
 	private int nbreSpectateursPrevus;
 }

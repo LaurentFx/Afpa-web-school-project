@@ -15,8 +15,9 @@ export class ManifestationListComponent implements OnInit {
   isConnected: boolean;
   manifestations: ManifestationDto[];
   isResp: boolean;
-  user : String;
-  role : RoleDto;
+  isClient: boolean;
+  user: String;
+  role: RoleDto;
 
   constructor(private manifestationService: ManifestationService, private router: Router,
     private authService: AuthService) { }
@@ -25,10 +26,11 @@ export class ManifestationListComponent implements OnInit {
   ngOnInit() {
 
     this.isConnected = this.authService.isConnected();
-    if(this.authService.getCurrentUser()){
-this.isResp=this.authService.getCurrentUser().role.label==='RESP';
-this.user = this.authService.getCurrentUser().nom;
-this.role = this.authService.getCurrentUser().role;
+    if (this.authService.getCurrentUser()) {
+      this.isResp = this.authService.getCurrentUser().role.label === 'RESP';
+      this.isClient = this.authService.getCurrentUser().role.label === 'CLIENT';
+      this.user = this.authService.getCurrentUser().nom;
+      this.role = this.authService.getCurrentUser().role;
     }
 
     this.manifestationService.subjectMiseAJour.subscribe(
@@ -74,8 +76,8 @@ this.role = this.authService.getCurrentUser().role;
     this.router.navigateByUrl('/manifestation-show/' + id)
   }
 
-  redirectToAddCommande(id: number) {
-    this.router.navigateByUrl('/commande-ad/' + id)
+  redirectToAddPanier(id: number) {
+    this.router.navigateByUrl('/panier-ad/' + id)
   }
 
 

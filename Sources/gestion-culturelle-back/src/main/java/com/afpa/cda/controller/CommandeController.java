@@ -33,6 +33,12 @@ public class CommandeController {
 		return this.commandeService.findById(id);
 	}
 	
+	@GetMapping(path = "/commande/panier/{id}")
+	public List<CommandeDto> getCommandes(@PathVariable int id){
+		return this.commandeService.findByPanierId(id);
+	}
+	
+	
 	@GetMapping(path = "/commande/user/{id}")
 	public PanierDto getUser(@PathVariable int id){
 		return this.commandeService.findByUser(id);

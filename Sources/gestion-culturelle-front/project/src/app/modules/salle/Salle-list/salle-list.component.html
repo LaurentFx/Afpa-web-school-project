@@ -4,26 +4,19 @@
     <table class="table table-striped table-bordered ">
         <thead class="thead-dark">
             <tr>
-                    <th>Id</th>
+                  
                     <th>Label</th>
-                    <th>Capacite</th>
-                    <th>Places reservees VIP</th>
-                    <th>Frais journaliers</th>
                     <th>Type de salle</th>
+                    <th>Capacite</th>
                     <th>Actions</th>
             </tr>
         </thead>
 
         <tbody>
             <tr *ngFor="let salle of salles">
-
-                    <td>{{salle.id}}</td>
                     <td>{{salle.label}}</td>
+                     <td>{{salle.typeSalle.label}}</td>
                     <td>{{salle.capacite}}</td>
-                    <td>{{salle.placesVip}}</td>
-                    <td>{{salle.fraisJournalier}}</td>
-                    <td>{{salle.typeSalle.label}}</td>
-               
              
                 <td>
                     <button (click)="redirectToShow(salle.id)" class="btn btn-sm btn-success">Show</button>

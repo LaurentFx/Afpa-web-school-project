@@ -22,4 +22,6 @@ public interface ICommandeService {
 
 	PanierDto findByUser(int id);
 
+	List<CommandeDto> findByPanierId(int id);
+
 }

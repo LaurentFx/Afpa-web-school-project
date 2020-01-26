@@ -18,7 +18,6 @@ import com.afpa.cda.security.model.RefreshRequest;
 import com.afpa.cda.security.service.JwtTokenService;
 
 @RestController
-//@RequestMapping("/api")
 public class AuthenticationController {
 
     @Autowired

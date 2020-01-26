@@ -1,5 +1,6 @@
 package com.afpa.cda.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -9,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.afpa.cda.dao.CommandeRepository;
+import com.afpa.cda.dao.PanierRepository;
 import com.afpa.cda.dao.UserRepository;
 import com.afpa.cda.dto.CommandeDto;
 import com.afpa.cda.dto.ManifestationDto;
 import com.afpa.cda.dto.PanierDto;
 import com.afpa.cda.entity.Commande;
-import com.afpa.cda.entity.Manifestation;
 import com.afpa.cda.entity.Panier;
 import com.afpa.cda.entity.User;
 import com.afpa.cda.service.ICommandeService;
@@ -24,6 +25,8 @@ public class CommandeServiceImpl implements ICommandeService {
 
 	@Autowired
 	private CommandeRepository commandeRepository;
+	@Autowired
+	private PanierRepository panierRepository;
 	@Autowired
 	private ModelMapper modelMapper;
 	@Autowired
@@ -47,6 +50,7 @@ public class CommandeServiceImpl implements ICommandeService {
 			
 			PanierDto panierDto = new PanierDto();
 			panierDto.setId(c.getPanier().getId());
+			panierDto.setTotal(c.getPanier().getTotal());
 			commandeDto.setPanier(panierDto);
 		
 		return commandeDto;
@@ -74,23 +78,40 @@ public class CommandeServiceImpl implements ICommandeService {
 	}	
 
 	@Override
+	public List<CommandeDto> findByPanierId(int id) {
+	Optional <Panier> panierOp = this.panierRepository.findById(id);
+	System.out.println("test methode");
+	PanierDto panierDto = new PanierDto ();
+	List<CommandeDto> list = new ArrayList<CommandeDto>();
+		if (panierOp.isPresent()) {
+			panierDto = modelMapper.map(panierOp.get(),PanierDto.class);
+			panierDto.setListCommandes(list);
+			
+			for (Commande c : panierOp.get().getListCommandes()) {
+				panierDto.getListCommandes()
+				.add(CommandeDto
+						.builder()
+						.manifestation(ManifestationDto.builder()
+								.id(c.getManifestation().getId())
+								.label(c.getManifestation().getLabel())
+								.build())
+						.build());
+			}
+		}
+		System.out.println(list.toString());
+		return list;
+	}
+		
+	@Override
 	public void add(CommandeDto commandeDto) {
 
-		Commande commande = new Commande ();
+//		Commande commande = new Commande ();
 //		commande.setQuantite(commandeDto.getQuantite());
 //
 //		Manifestation manifestation = new Manifestation ();
 //manifestation.setLabel(commandeDto.getManifestation().);
-		
-
-		
 		//manifestation = modelMapper.map(commandeDto.)
-
-
-
 		//		commande.se
-
-
 		this.commandeRepository.save(this.modelMapper.map(commandeDto, Commande.class));
 		//				commandeDto.setId(commande.getId());
 		//		return null;

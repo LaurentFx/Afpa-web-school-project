@@ -33,7 +33,7 @@ public class Salle {
 	private String label;
 	private int capacite;
 	private int placesVip;
-	private double fraisjournalier;
+	private int fraisjournalier;
 
 	@ManyToOne
 	private TypeSalle typesalle;
