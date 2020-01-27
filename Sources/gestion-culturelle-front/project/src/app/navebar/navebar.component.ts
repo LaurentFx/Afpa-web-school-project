@@ -29,6 +29,8 @@ export class NavebarComponent implements OnInit {
       this.isClient = this.authService.getCurrentUser().role.label === 'CLIENT';
       this.isAnim = this.authService.getCurrentUser().role.label === 'ANIM';
       this.isAdmin = this.authService.getCurrentUser().role.label === 'ADMIN';
+      this.isRespAdmin = (this.authService.getCurrentUser().role.label === 'RESP') || (this.authService.getCurrentUser().role.label === 'ADMIN');
+      console.log('label = '+this.authService.getCurrentUser().role.label);
 
       this.user = this.authService.getCurrentUser().nom;
       this.role = this.authService.getCurrentUser().role;
@@ -40,6 +42,10 @@ export class NavebarComponent implements OnInit {
 
         if (res == 0) {
           this.isResp = false;
+          this.isClient = false;
+          this.isAnim = false;
+          this.isAdmin = false;
+          this.isRespAdmin = false;
           this.user = '';
           this.role = null;
         } else {
@@ -48,7 +54,7 @@ export class NavebarComponent implements OnInit {
           this.isClient = userCourant.role.label === 'CLIENT';
           this.isAnim = userCourant.role.label === 'ANIM';
           this.isAdmin = userCourant.role.label === 'ADMIN';
-          this.isRespAdmin = userCourant.role.label === ('RESP' || 'ADMIN');
+          this.isRespAdmin = (userCourant.role.label === 'RESP') || (userCourant.role.label === 'ADMIN');
           this.user = userCourant.nom;
           this.role = userCourant.role;
         }

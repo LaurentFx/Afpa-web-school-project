@@ -13,11 +13,15 @@
             id="icon" alt="User Icon" /><span class="sr-only">(current)</span></a>
       </li>
 
-      <li *ngIf="isResp" class="nav-item">
-        <a routerLink='user-list' class="nav-link" routerLinkActive=active>Utilisateurs</a>
+      <li *ngIf="isResp" class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">Utilisateurs</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a routerLink='user-list' class="dropdown-item" routerLinkActive=active>Lister</a>
+          <a routerLink='user-ad' class="dropdown-item" routerLinkActive=active>Ajouter</a>
+        </div>
       </li>
 
-      <!--
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">Salles</a>
@@ -27,12 +31,12 @@
         </div>
       </li>
 
-      <li *ngIf="isClient" class="nav-item dropdown">
+      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">Animations</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a routerLink='public/animation-list' class="dropdown-item" routerLinkActive=active>Lister</a>
-          <a  routerLink='animation-ad' class="dropdown-item" routerLinkActive=active>Ajouter</a>
+          <a *ngIf="isAnim" routerLink='animation-ad' class="dropdown-item" routerLinkActive=active>Ajouter</a>
         </div>
       </li>
 
@@ -41,24 +45,19 @@
           aria-haspopup="true" aria-expanded="false">Manifestations</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a routerLink='public/manifestation-list' class="dropdown-item" routerLinkActive=active>Lister</a>
-          <a *ngIf="isAdmin" routerLink='manifestation-ad' class="dropdown-item" routerLinkActive=active>Ajouter</a>
+          <a *ngIf="isRespAdmin" routerLink='manifestation-ad' class="dropdown-item" routerLinkActive=active>Ajouter</a>
         </div>
       </li>
 
-      <li *ngIf="isClient" class="nav-item">
-        <a routerLink='panier-show' class="nav-link" routerLinkActive=active>Panier1</a>
-
-      </li>
-
-      <li *ngIf="isClient" class="nav-item">
+      <li *ngIf="isClient" class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">Panier2</a>
+          aria-haspopup="true" aria-expanded="false">Panier</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a routerLink='panier-show' class="dropdown-item" routerLinkActive=active>Voir</a>
-          <a routerLink='panier-ad' class="dropdown-item" routerLinkActive=active>Ajouter</a>
+          <a routerLink='public/manifestation-list' class="dropdown-item" routerLinkActive=active>Ajouter</a>
         </div>
       </li>
-      -->
+      <!--
           <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false"> Actions </a>
@@ -71,7 +70,7 @@
           <div *ngIf="isConnected" class="dropdown-divider"></div>
           <a *ngIf="isConnected" routerLink='panier-show' class="dropdown-item" routerLinkActive=active>Panier</a>
         </div>
-      </li>
+      </li>-->
 
     </ul>
     <!-- <form class="form-inline my-2 my-lg-0">
@@ -83,11 +82,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-<!--
-        <li *ngIf="isClient" class="nav-item">
-          <a routerLink='panier-show' class="nav-link" routerLinkActive=active><b>Panier3</b></a>
-        </li>
--->
+
         <li *ngIf="!isConnected" class="nav-item">
           <a routerLink='/public/login' class="nav-link" routerLinkActive=active><b>Login</b></a>
         </li>
