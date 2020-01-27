@@ -1,7 +1,6 @@
 package com.afpa.cda.service.impl;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.afpa.cda.dao.UserRepository;
 import com.afpa.cda.dto.ClientDto;
-import com.afpa.cda.dto.PanierDto;
-import com.afpa.cda.dto.RoleDto;
 import com.afpa.cda.entity.Role;
 import com.afpa.cda.entity.User;
 import com.afpa.cda.service.IClientService;

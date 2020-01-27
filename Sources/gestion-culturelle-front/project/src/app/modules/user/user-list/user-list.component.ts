@@ -51,5 +51,9 @@ export class UserListComponent implements OnInit {
     this.router.navigateByUrl('/user-show/'+id)
   }
 
+  redirectToRole(id:number){
+    this.router.navigateByUrl('user-role-list'+id)
+  }
+
 
 }

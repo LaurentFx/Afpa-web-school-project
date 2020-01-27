@@ -48,6 +48,7 @@ import { AnimateurUpdateComponent } from './modules/animateur/animateur-update/a
 import { AnimateurShowComponent } from './modules/animateur/animateur-show/animateur-show.component';
 import { ProfilComponent } from './modules/profil/profil/profil.component';
 import { InscriptionComponent } from './modules/inscription/inscription/inscription.component';
+import { UserRoleListComponent } from './modules/user/user-role-list/user-role-list.component';
 
 
 const routes: Routes = [
@@ -93,6 +94,7 @@ const routes: Routes = [
   { path: 'user-ad', component: UserAddComponent, canActivate: [AuthGuard] },
   { path: 'user-update/:id', component: UserUpdateComponent, canActivate: [AuthGuard] },
   { path: 'user-show/:id', component: UserShowComponent, canActivate: [AuthGuard] },
+  { path: 'user-role-list:id',component: UserRoleListComponent},
 
   { path: 'animateur-list', component: AnimateurListComponent},
   { path: 'animateur-ad', component: AnimateurAddComponent },
