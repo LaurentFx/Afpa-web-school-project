@@ -14,6 +14,8 @@ export class NavebarComponent implements OnInit {
   isConnected: boolean;
   isResp: boolean;
   isClient: boolean;
+  isAnim: boolean;
+  isAdmin: boolean;
   user: String;
   role: RoleDto;
 
@@ -24,6 +26,8 @@ export class NavebarComponent implements OnInit {
     if (this.authService.getCurrentUser()) {
       this.isResp = this.authService.getCurrentUser().role.label === 'RESP';
       this.isClient = this.authService.getCurrentUser().role.label === 'CLIENT';
+    /*   this.isAnim = this.authService.getCurrentUser().role.label === 'ANIM';
+      this.isAdmin = this.authService.getCurrentUser().role.label === 'ADMIN'; */
       this.user = this.authService.getCurrentUser().nom;
       this.role = this.authService.getCurrentUser().role;
     }
