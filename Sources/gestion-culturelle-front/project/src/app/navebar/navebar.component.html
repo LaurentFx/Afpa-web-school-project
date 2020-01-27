@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <!-- <a class="navbar-brand" href="#">Gestion culturelle</a> -->
-  
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -9,24 +9,27 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a routerLink='public' class="nav-link" routerLinkActive=active><img src="/assets/app.png" class="icon" id="icon" alt="User Icon" /><span class="sr-only">(current)</span></a>
+        <a routerLink='public' class="nav-link" routerLinkActive=active><img src="/assets/app.png" class="icon"
+            id="icon" alt="User Icon" /><span class="sr-only">(current)</span></a>
       </li>
-      <li *ngIf="isConnected" class="nav-item">
-        <a routerLink='user-list' class="nav-link" routerLinkActive=active>User</a>
+      <li *ngIf="isResp" class="nav-item">
+        <a routerLink='user-list' class="nav-link" routerLinkActive=active>Utilisateurs</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
-          Action
+          Actions
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a routerLink='public/salle-list' class="dropdown-item" routerLinkActive=active>salle</a>
-          <a routerLink='public/animation-list' class="dropdown-item" routerLinkActive=active>Animation</a>
-          <a routerLink='public/manifestation-list' class="dropdown-item" routerLinkActive=active>Manifestation</a>
-          <div *ngIf="isConnected" class="dropdown-divider"></div>
-          <a routerLink='panier-list' class="dropdown-item" routerLinkActive=active>Panier</a>
-          <a routerLink='vip-list' class="dropdown-item" routerLinkActive=active>Vip</a>
+          <a routerLink='public/salle-list' class="dropdown-item" routerLinkActive=active>Salles</a>
+          <div  class="dropdown-divider"></div>
+          <a routerLink='public/animation-list' class="dropdown-item" routerLinkActive=active>Animations</a>
+          <a routerLink='public/manifestation-list' class="dropdown-item" routerLinkActive=active>Manifestations</a>
+
+          <div *ngIf="isClient" class="dropdown-divider"></div>
+          <a *ngIf="isClient" routerLink='panier-show' class="dropdown-item" routerLinkActive=active>Panier</a>
         </div>
+
       </li>
       <li *ngIf="!isConnected" class="nav-item">
         <a routerLink='/public/login' class="nav-link" routerLinkActive=active>Login</a>

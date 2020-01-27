@@ -1,3 +1,4 @@
+
 <!-- <div class="container">
   <div class="row justify-content-center">
     <div class="col-4">
@@ -31,10 +32,6 @@
 </div> -->
 
 
-
-
-
-
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
@@ -43,18 +40,19 @@
     <div class="fadeIn first">
       <img src="/assets/app.png" id="icon" alt="User Icon" />
       <h1>Gestion culturelle</h1>
+      <h2>Connexion</h2>
     </div>
 
     <!-- Login Form -->
     <form>
-      <input [(ngModel)]="user.username" type="text" id="login" class="fadeIn second" name="login" placeholder="username">
-      <input [(ngModel)]="user.password" type="password" id="password" class="fadeIn third" name="login" placeholder="password">
-      <input (click)="login()" type="submit" class="fadeIn fourth" value="Log In">
+      <input [(ngModel)]="user.username" type="text" id="login" class="fadeIn second" name="login" placeholder="Username">
+      <input [(ngModel)]="user.password" type="password" id="password" class="fadeIn third" name="login" placeholder="Password">
+      <input (click)="login()" type="submit" class="fadeIn fourth" value="LogIn">
     </form>
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
-      <a routerLink='/public/inscription' class="underlineHover" routerLinkActive=active>Je m'inscris</a>
+      <a routerLink='/public/inscription' class="underlineHover" routerLinkActive=active>Inscription</a>
     </div>
 
   </div>

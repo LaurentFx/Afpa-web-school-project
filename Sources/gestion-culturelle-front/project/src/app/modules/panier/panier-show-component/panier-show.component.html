@@ -1,42 +1,85 @@
+<h2>Detail du panier</h2>
+<br>
+<div [hidden]="submitted" style="width: 400px;">
+    <form>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <div class="form-group">
+
+                        <label for="numClient">N° Client :</label>
+                        <input type="numClient" name="date" class="form-control" id="numClient"
+                            placeholder="{{userDto.numClient}}" readonly>
+
+                        <label for="date">Date :</label>
+                        <input type="text" name="date" class="form-control" id="date"
+                            placeholder="{{panierDto.dateValidation}}" readonly>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+<br>
+
 <div class="panel-body">
     <table class="table table-striped table-bordered ">
         <thead class="thead-dark">
             <tr>
-                <th>Id</th>
-                <th>Date validation</th>
-                <th>numClient</th>
-                <th>Manifestation</th>
+                <th>Manifestations</th>
+                <th>Prix du billet</th>
                 <th>Nombre de billets</th>
-                <th>Prix total</th>        
-
-
+                <th>Actions</th>
             </tr>
         </thead>
 
         <tbody>
-            <tr>
-                    <td>{{panier.id}}</td>
-                    <td>{{panier.dateValidation}}</td>
-                    <td>{{panier.numClient}}</td>
-                    <td>
-                        <select size="3">
-                            <option *ngFor="let manifestation of manifestations" class="list-group" >
-    
-                                {{manifestation.label}}
-                            </option>
-                        </select>
-                    </td>
-    
-                    <td>{{panier.nbreBillets}}</td>
-                    <td>{{panier.total}}</td>
-
+            <tr *ngFor="let commande of listCommandes">
+                <td>{{commande.manifestation.label}}</td>
+                <td>{{commande.manifestation.prixBillet}}</td>
+                <td> {{commande.quantite}}</td>
+                <td>  <button (click)="delete(commande.id)" class="btn btn-sm btn-danger">Delete</button></td>
+              
+               
             </tr>
-
         </tbody>
-
     </table>
+</div>
 
-<br>
-<br>
-<a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/panier-list']">Retour à la
-    liste</a>
+<div [hidden]="submitted" style="width: 400px;">
+    <form>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="total">Total panier :</label>
+                        <input type="text" name="total" class="form-control" id="total"
+                            placeholder="{{panierDto.total}}" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+        <br>
+        <br>
+
+        <a name="" id="" class="btn btn-secondary" href="#" role="button"
+        [routerLink]="['/public']">Retour à l'accueil</a>
+
+        <br>
+        <br>
+
+        <button (click)="cancel(panierDto.id)" class="btn btn-secondary">Annuler le panier</button>
+
+        <a name="" id="" class="btn btn-secondary" href="#" role="button"
+            [routerLink]="['/public/manifestation-list']">Ajouter un article au panier</a>
+
+            <button (click)="valid(panierDto.id)" class="btn btn-secondary">Valider le panier</button>
+      

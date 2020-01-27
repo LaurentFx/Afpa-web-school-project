@@ -16,6 +16,7 @@ export class AnimationAddComponent implements OnInit {
 
   ngOnInit() {
     this.animation = new AnimationDto();
+    
   }
 
   add(): void {

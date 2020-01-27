@@ -21,6 +21,6 @@ public interface IUserService {
 
 	UserDto addClient(UserDto userDto);
 	
-	List<UserDto> findByRole(Integer roleId);
+//	List<UserDto> findByRole(Integer roleId);
 
 }

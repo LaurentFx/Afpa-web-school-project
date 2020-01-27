@@ -1,23 +1,23 @@
 import { ManifestationDto } from './manifestationDto';
+import { CommandeDto } from './commandeDto';
 
 export class PanierDto {
     id: number;
-    dateValidation : Date;
-    numClient: String;
-    manifestation: ManifestationDto;
-    nbreBillets: number;
-    total : number;
+    dateValidation: Date;
+    listCommandes: CommandeDto;
+    total: number;
 
     constructor(id?: number,
-        numClient?: String,
-        manifestation?: ManifestationDto,
-        nbreBillets? : number, )
-        {
+        dateValidation?: Date,
+        listCommandes?: CommandeDto,
+        total?: number
+
+    ) {
         this.id = id;
-        this.numClient=numClient;
-        this.manifestation = manifestation;
-        this.nbreBillets = nbreBillets;       
-       
+        this.dateValidation = dateValidation;
+        this.listCommandes = listCommandes;
+        this.total = total;
+
     }
 }
 

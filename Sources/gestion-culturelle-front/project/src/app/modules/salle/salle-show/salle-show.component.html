@@ -1,33 +1,45 @@
-<h3>Voir une salle</h3>
+<h2>Voir une salle</h2>
 
-<div class="panel-body">
-    <table class="table table-striped table-bordered ">
-        <thead class="thead-dark">    
-                <tr>
-                    <th>Id</th>
-                    <th>Label</th>
-                    <th>Capacite</th>
-                    <th>Places reservees VIP</th>
-                    <th>Frais journaliers</th>
-                    <th>Type de salle</th>
-        </tr>
-    </thead>
+<div [hidden]="submitted" style="width: 400px;">
+    <form>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <div class="form-group">
 
-    <tbody>
-        <tr>
-            <td>{{salle.id}}</td>
-            <td>{{salle.label}}</td>
-            <td>{{salle.capacite}}</td>
-            <td>{{salle.placesVip}}</td>
-            <td>{{salle.fraisJournalier}}</td>
-            <td>{{salle.typeSalle.label}}</td>
-        </tr>
+                        <label for="id">Id :</label>
+                        <input type="text" name="id" class="form-control" id="id"
+                            placeholder="{{salle.id}}" readonly>
 
-    </tbody>
+                        <label for="label">Label :</label>
+                        <input type="text" name="label" class="form-control" id="label"
+                            placeholder="{{salle.label}}" readonly>
 
-</table>
+                        <label for="typesalle">Type de salle :</label>
+                        <input type="text" name="typesalle" class="form-control" id="typesalle"
+                            placeholder="{{salle.typeSalle.label}}" readonly>
 
-<br>
-<br>
-<a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public/salle-list']">Retour à la
-    liste</a>
+                        <label for="capacite">Capacite :</label>
+                        <input type="text" name="capacite" class="form-control" id="capacite"
+                            placeholder="{{salle.capacite}}" readonly>
+
+                        <label for="placesVip">Places reservees VIP :</label>
+                        <input type="text" name="placesVip" class="form-control" id="placesVip"
+                            placeholder="{{salle.placesVip}}" readonly>
+
+                        <label for="fraisJournalier">Frais journaliers :</label>
+                        <input type="text" name="fraisJournalier" class="form-control" id="fraisJournalier"
+                            placeholder="{{salle.fraisJournalier}}" readonly>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+    <br>
+    <br>
+    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public/salle-list']">Retour à la
+        liste</a>

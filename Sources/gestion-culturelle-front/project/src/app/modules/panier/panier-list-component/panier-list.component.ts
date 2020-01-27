@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { PanierDto } from '../../../model/panierDto';
 import { ManifestationDto } from '../../../model/manifestationDto';
 import { ManifestationService } from '../../../service/manifestation.service';
+import { AuthService } from 'src/app/service/auth.service';
+import { RoleDto } from 'src/app/model/roleDto';
 
 @Component({
   selector: 'app-panier-list',
@@ -14,13 +16,23 @@ export class PanierListComponent implements OnInit {
 
   paniers: PanierDto[];
   manifestations: ManifestationDto[];
+  isConnected: boolean;
+  isClient: boolean;
+  user : String;
+  role : RoleDto;
   
   constructor(private panierService: PanierService,
-     private manifestationService : ManifestationService,
-      private router: Router) { }
+     private manifestationService : ManifestationService,  private authService: AuthService
+      ,private router: Router) { }
 
   ngOnInit() {
 
+    this.isConnected = this.authService.isConnected();
+    if(this.authService.getCurrentUser()){
+this.isClient=this.authService.getCurrentUser().role.label==='CLIENT';
+this.user = this.authService.getCurrentUser().nom;
+this.role = this.authService.getCurrentUser().role;
+    }
     this.panierService.subjectMiseAJour.subscribe(
       res=> {
         this.panierService.getAll().subscribe(

@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { PanierService } from '../../../service/panier.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { CommandeDto } from '../../../model/commandeDto';
 import { PanierDto } from '../../../model/panierDto';
 import { ManifestationDto } from '../../../model/manifestationDto';
+import { User } from '../../../model/user';
+import { CommandeService } from '../../../service/commande.service';
+import { PanierService } from '../../../service/panier.service';
 import { ManifestationService } from '../../../service/manifestation.service';
 import { AuthService } from '../../../service/auth.service';
-import { User } from '../../../model/user';
 import { UserService } from '../../../service/user.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-panier-add',
@@ -14,72 +17,72 @@ import { UserService } from '../../../service/user.service';
   styleUrls: ['./panier-add.component.css']
 })
 export class PanierAddComponent implements OnInit {
-
-  date: string;
-  panier: PanierDto;
-  manifestation: ManifestationDto;
-  manifestations: ManifestationDto[];
+  commande: CommandeDto;
+  panierDto: PanierDto;
+  userDto: User;
+  manifestationDto: ManifestationDto;
+  quantite: number;
   user: User;
+  idUser: number;
+  idManif: number;
+  commandetmp: CommandeDto;
+
+  dateValidation: Date;
 
   constructor(private manifestationService: ManifestationService,
     private panierService: PanierService, private route: ActivatedRoute,
     private router: Router, private authService: AuthService,
-  ) { }
+    private userService: UserService, ) {
+    this.manifestationDto = new ManifestationDto();
+    this.userDto = new User();
+    this.panierDto = new PanierDto();
+    this.commandetmp = new CommandeDto();
+  }
 
   ngOnInit() {
-    this.panier = new PanierDto();
-    this.panier.manifestation = new ManifestationDto();
-    this.manifestations = [];
+    //this.dateValidation = Date.ow();
+    this.reload();
+  }
 
+  reload() {
     let idUser = this.authService.getCurrentUser().id;
 
-    this.panierService.getUser(idUser).subscribe(
+    this.userService.getOne(idUser).subscribe(
       res => {
-        this.panier = res;
+        this.panierDto = res.panier;
+        this.userDto = res;
       }
     );
 
-    let id = this.route.snapshot.params['id'];
-    this.manifestationService.getOne(id).subscribe(
-      res => {
-        this.manifestation = res;
+    this.manifestationService.getOne(this.route.snapshot.params['id']).subscribe(
+      resu => {
+        this.manifestationDto = resu;
       }
-    );
-
-    let nbreBillets = this.panier.nbreBillets;
-
+    )
   }
 
   add(): void {
-    this.panierService.add(this.panier).subscribe(
+    this.reload();
+    this.commandetmp.manifestation = this.manifestationDto;
+    this.commandetmp.panier = this.panierDto;
+    this.commandetmp.quantite = this.quantite;
+
+    this.panierService.add(this.commandetmp).subscribe(
       res => {
         this.panierService.subjectMiseAJour.next(0);
-        this.goHome();
+        this.goHome(this.panierDto.id);
       }
     );
-    this.panier = new PanierDto();
-    this.panier.manifestation = new ManifestationDto();
+
   }
 
+  goHome(id: number) {
 
-  addPanier(): void {
-    let nbreBillets = this.panier.nbreBillets;
-    this.panierService.addPanier(this.manifestation).subscribe(
-      res => {
-        this.panierService.subjectMiseAJour.next(0);
-        // this.panier = res;
-
-      }
-    )
-
+    this.router.navigateByUrl('/panier-show/'+ id)
 
   }
 
 
-  goHome() {
 
-    this.router.navigate(['/panier-list']);
-
-  }
 
 }

@@ -48,7 +48,11 @@ import { AnimateurUpdateComponent } from './modules/animateur/animateur-update/a
 import { AnimateurShowComponent } from './modules/animateur/animateur-show/animateur-show.component';
 import { ProfilComponent } from './modules/profil/profil/profil.component';
 import { InscriptionComponent } from './modules/inscription/inscription/inscription.component';
+
 import { UserRoleListComponent } from './modules/user/user-role-list/user-role-list.component';
+
+import { CommandeAddComponent } from './modules/commande/commande-add/commande-add.component';
+
 
 
 const routes: Routes = [
@@ -79,6 +83,8 @@ const routes: Routes = [
   { path: 'panier-ad', component: PanierAddComponent },
   { path: 'panier-update/:id', component: PanierUpdateComponent },
   { path: 'panier-show/:id', component: PanierShowComponent },
+   {path: 'panier-ad/:id', component: PanierAddComponent },
+   {path: 'panier-show', component: PanierShowComponent },
 
   { path: 'role-list', component: RoleListComponent, canActivate: [AuthGuard] },
   { path: 'role-ad', component: RoleAddComponent, canActivate: [AuthGuard] },
@@ -100,12 +106,6 @@ const routes: Routes = [
   { path: 'animateur-ad', component: AnimateurAddComponent },
   { path: 'animateur-update/:id', component: AnimateurUpdateComponent },
   { path: 'animateur-show/:id', component: AnimateurShowComponent},
-
-  {path: 'panier-list', component: PanierListComponent },
-  {path: 'panier-ad', component: PanierAddComponent },
-  {path: 'panier-ad/:id', component: PanierAddComponent },
-  {path: 'panier-update/:id', component: PanierUpdateComponent },
-  {path: 'panier-show/:id', component: PanierShowComponent },
  
   {path: 'role-list', component: RoleListComponent},
   {path: 'role-ad', component: RoleAddComponent },
@@ -121,6 +121,8 @@ const routes: Routes = [
   {path: 'vip-add', component: VipAddComponent },
   {path: 'vip-show/:id', component: VipShowComponent },
   {path: 'vip-update/:id', component: VipUpdateComponent},
+
+  {path: 'commande-ad/:id', component: CommandeAddComponent },
    
   {path: 'public/profil', component: ProfilComponent },
 

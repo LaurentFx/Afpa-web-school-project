@@ -4,10 +4,8 @@
     <table class="table table-striped table-bordered ">
         <thead class="thead-dark">
             <tr>
-                <th>Id</th>
+              
                 <th>Label</th>
-                <th>Date de Validation</th>
-                <th>Validateur</th>
                 <th>Animation</th>
                 <th>Date de Debut</th>
                 <th>Date de Fin</th>
@@ -16,8 +14,6 @@
                 <th>Prix du billet</th>
                 <th>Reservations</th>
                 <th>Reservations Vip</th>
-                <th>Annulateur</th>
-                <th>Date d'annulation</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -25,10 +21,7 @@
         <tbody>
             <tr *ngFor="let manifestation of manifestations">
 
-                <td>{{manifestation.id}}</td>
                 <td>{{manifestation.label}}</td>
-                <td>{{manifestation.dateValidation}}</td>
-                <td>{{manifestation.validateur.nom}}</td>
                 <td>{{manifestation.animation.label}}</td>
                 <td>{{manifestation.dateDebut}}</td>
                 <td>{{manifestation.dateFin}}</td>
@@ -37,14 +30,12 @@
                 <td>{{manifestation.prixBillet}}</td>
                 <td>{{manifestation.reservations}}</td>
                 <td>{{manifestation.reservationsVip}}</td>
-                <td>{{manifestation.annulateur.nom}}</td>
-                <td>{{manifestation.dateAnnulation}}</td>
 
                 <td>
                     <button (click)="redirectToShow(manifestation.id)" class="btn btn-sm btn-success">Show</button>
-                    <button *ngIf="isConnected" (click)="redirectToUpdate(manifestation.id)" class="btn btn-sm btn-warning">Update</button>
-                    <button *ngIf="isConnected" (click)="delete(manifestation.id)" class="btn btn-sm btn-danger">Delete</button>
-                    <button *ngIf="isConnected" (click)="redirectToAddPanier(manifestation.id)" class="btn btn-sm btn-primary">Acheter</button>
+                    <button *ngIf="isResp" (click)="redirectToUpdate(manifestation.id)" class="btn btn-sm btn-warning">Update</button>
+                    <button *ngIf="isResp" (click)="delete(manifestation.id)" class="btn btn-sm btn-danger">Delete</button>
+                    <button *ngIf="isClient" (click)="redirectToAddPanier(manifestation.id)" class="btn btn-sm btn-primary">Acheter</button>
                 </td>
 
             </tr>
@@ -52,7 +43,7 @@
         </tbody>
     </table>
 
-    <a *ngIf="isConnected" name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/manifestation-ad']">+ Ajouter une
+    <a *ngIf="isResp" name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/manifestation-ad']">+ Ajouter une
         manifestation </a>
 
     <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']">Retour à l'accueil </a>

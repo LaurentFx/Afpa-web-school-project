@@ -25,6 +25,7 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { AnimateurModule } from './modules/animateur/animateur.module';
 import { ProfilModule } from './modules/profil/profil.module';
 import { InscriptionModule } from './modules/inscription/inscription.module';
+import { CommandeModule } from './modules/commande/commande.module';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { InscriptionModule } from './modules/inscription/inscription.module';
     VipModule,
     UserModule,
     ProfilModule,
+    
     JwtModule.forRoot({
       config: {
         // pour injecter le token dans toutes les requetes
@@ -65,6 +67,7 @@ import { InscriptionModule } from './modules/inscription/inscription.module';
       }
     }),
     InscriptionModule,
+    CommandeModule,
    
   ],
   providers: [
