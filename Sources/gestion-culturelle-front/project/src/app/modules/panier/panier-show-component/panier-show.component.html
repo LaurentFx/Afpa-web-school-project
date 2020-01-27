@@ -76,10 +76,10 @@
         <br>
         <br>
 
-        <button (click)="cancel(panierDto.id)" class="btn btn-secondary">Annuler le panier</button>
+        <button  *ngIf="isAnim" (click)="cancel(panierDto.id)" class="btn btn-secondary">Annuler le panier</button>
 
-        <a name="" id="" class="btn btn-secondary" href="#" role="button"
+        <a  *ngIf="isAnim" name="" id="" class="btn btn-secondary" href="#" role="button"
             [routerLink]="['/public/manifestation-list']">Ajouter un article au panier</a>
 
-            <button (click)="valid(panierDto.id)" class="btn btn-secondary">Valider le panier</button>
+            <button  *ngIf="isAnim" (click)="valid(panierDto.id)" class="btn btn-secondary">Valider le panier</button>
       
