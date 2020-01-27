@@ -168,7 +168,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 	@Override
 	public ManifestationDto add(ManifestationDto manifestationDto) {
 		
-//		manifestationDto.setAnnulateur(null);
+//		manifestationDto.setAnnulateur();
 //		manifestationDto.setDateAnnulation(null);
 		Manifestation maniE = this.manifestationRepository.save(this.modelMapper.map(manifestationDto,Manifestation.class)); 
 		manifestationDto.setId(maniE.getId());

@@ -16,6 +16,7 @@ export class NavebarComponent implements OnInit {
   isClient: boolean;
   isAnim: boolean;
   isAdmin: boolean;
+  isRespAdmin: boolean;
   user: String;
   role: RoleDto;
 
@@ -26,8 +27,9 @@ export class NavebarComponent implements OnInit {
     if (this.authService.getCurrentUser()) {
       this.isResp = this.authService.getCurrentUser().role.label === 'RESP';
       this.isClient = this.authService.getCurrentUser().role.label === 'CLIENT';
-    /*   this.isAnim = this.authService.getCurrentUser().role.label === 'ANIM';
-      this.isAdmin = this.authService.getCurrentUser().role.label === 'ADMIN'; */
+      this.isAnim = this.authService.getCurrentUser().role.label === 'ANIM';
+      this.isAdmin = this.authService.getCurrentUser().role.label === 'ADMIN';
+
       this.user = this.authService.getCurrentUser().nom;
       this.role = this.authService.getCurrentUser().role;
     }
@@ -35,7 +37,7 @@ export class NavebarComponent implements OnInit {
     this.authService.subjectConnexion.subscribe(
       res => {
         this.isConnected = this.authService.isConnected();
-        
+
         if (res == 0) {
           this.isResp = false;
           this.user = '';
@@ -43,6 +45,10 @@ export class NavebarComponent implements OnInit {
         } else {
           const userCourant = this.authService.getCurrentUser();
           this.isResp = userCourant.role.label === 'RESP';
+          this.isClient = userCourant.role.label === 'CLIENT';
+          this.isAnim = userCourant.role.label === 'ANIM';
+          this.isAdmin = userCourant.role.label === 'ADMIN';
+          this.isRespAdmin = userCourant.role.label === ('RESP' || 'ADMIN');
           this.user = userCourant.nom;
           this.role = userCourant.role;
         }

@@ -3,7 +3,7 @@ import { AnimationService } from '../../../service/animation.service';
 import { Router } from '@angular/router';
 import { AnimationDto } from '../../../model/animationDto';
 import { AuthService } from '../../../service/auth.service';
-import { RoleDto } from 'src/app/model/roleDto';
+import { RoleDto } from '../../../model/roleDto';
 
 @Component({
   selector: 'app-animation-list',
