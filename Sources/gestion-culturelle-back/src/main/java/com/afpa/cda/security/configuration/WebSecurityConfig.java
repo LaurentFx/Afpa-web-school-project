@@ -64,7 +64,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		String [] VipUrls = {"/invitation"} ;
 
-		String[] AllUrls = {"/commande","/newusers","/role","/public/inscription", "/public/login","public/profil","/public/animation","/public/manifestation","/public/salle","/public" };
+		String[] AllUrls = {"/commande","/newusers","/role","/public/inscription", "/public/login","public/profil",
+				"/public/animation","/public/manifestation","/public/salle","/public" };
 
 		http.csrf().disable();
 

@@ -16,6 +16,7 @@ export class NavebarComponent implements OnInit {
   isClient: boolean;
   isAnim: boolean;
   isAdmin: boolean;
+  isRespAdmin: boolean;
   user: String;
   role: RoleDto;
 
@@ -26,8 +27,11 @@ export class NavebarComponent implements OnInit {
     if (this.authService.getCurrentUser()) {
       this.isResp = this.authService.getCurrentUser().role.label === 'RESP';
       this.isClient = this.authService.getCurrentUser().role.label === 'CLIENT';
-    /*   this.isAnim = this.authService.getCurrentUser().role.label === 'ANIM';
-      this.isAdmin = this.authService.getCurrentUser().role.label === 'ADMIN'; */
+      this.isAnim = this.authService.getCurrentUser().role.label === 'ANIM';
+      this.isAdmin = this.authService.getCurrentUser().role.label === 'ADMIN';
+      this.isRespAdmin = (this.authService.getCurrentUser().role.label === 'RESP') || (this.authService.getCurrentUser().role.label === 'ADMIN');
+      console.log('label = '+this.authService.getCurrentUser().role.label);
+
       this.user = this.authService.getCurrentUser().nom;
       this.role = this.authService.getCurrentUser().role;
     }
@@ -35,14 +39,22 @@ export class NavebarComponent implements OnInit {
     this.authService.subjectConnexion.subscribe(
       res => {
         this.isConnected = this.authService.isConnected();
-        
+
         if (res == 0) {
           this.isResp = false;
+          this.isClient = false;
+          this.isAnim = false;
+          this.isAdmin = false;
+          this.isRespAdmin = false;
           this.user = '';
           this.role = null;
         } else {
           const userCourant = this.authService.getCurrentUser();
           this.isResp = userCourant.role.label === 'RESP';
+          this.isClient = userCourant.role.label === 'CLIENT';
+          this.isAnim = userCourant.role.label === 'ANIM';
+          this.isAdmin = userCourant.role.label === 'ADMIN';
+          this.isRespAdmin = (userCourant.role.label === 'RESP') || (userCourant.role.label === 'ADMIN');
           this.user = userCourant.nom;
           this.role = userCourant.role;
         }
