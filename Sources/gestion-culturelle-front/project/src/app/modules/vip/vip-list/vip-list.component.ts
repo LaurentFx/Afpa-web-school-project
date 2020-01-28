@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { VipDto } from '../../../model/vip-dto';
 import { AuthService } from 'src/app/service/auth.service';
 import { RoleDto } from 'src/app/model/roleDto';
+import { faInfoCircle, faEdit, faTrashAlt, faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-vip-list',
@@ -11,6 +12,12 @@ import { RoleDto } from 'src/app/model/roleDto';
   styleUrls: ['./vip-list.component.css']
 })
 export class VipListComponent implements OnInit {
+
+  faInfoCircle =faInfoCircle;
+  faEdit = faEdit;
+  faTrashAlt = faTrashAlt;
+  faHome = faHome;
+  faPlusSquare = faPlusSquare;
 
   vips: VipDto[];
   isResp: boolean;

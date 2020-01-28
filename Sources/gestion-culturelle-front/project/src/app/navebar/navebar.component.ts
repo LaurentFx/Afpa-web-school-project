@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import { RoleDto } from '../model/roleDto';
-
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navebar',
@@ -10,7 +10,7 @@ import { RoleDto } from '../model/roleDto';
   styleUrls: ['./navebar.component.css']
 })
 export class NavebarComponent implements OnInit {
-
+  faInfoCircle =faInfoCircle;
   isConnected: boolean;
   isResp: boolean;
   isClient: boolean;

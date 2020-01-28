@@ -6,6 +6,8 @@ import { ManifestationDto } from '../../../model/manifestationDto';
 import { ManifestationService } from '../../../service/manifestation.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { RoleDto } from 'src/app/model/roleDto';
+import { faInfoCircle, faEdit, faTrashAlt, faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-panier-list',
@@ -13,6 +15,12 @@ import { RoleDto } from 'src/app/model/roleDto';
   styleUrls: ['./panier-list.component.css']
 })
 export class PanierListComponent implements OnInit {
+
+  faInfoCircle =faInfoCircle;
+  faEdit = faEdit;
+  faTrashAlt = faTrashAlt;
+  faHome = faHome;
+  faPlusSquare = faPlusSquare;
 
   paniers: PanierDto[];
   manifestations: ManifestationDto[];

@@ -4,14 +4,18 @@ import { FormsModule } from '@angular/forms';
 
 import { ProfilRoutingModule } from './profil-routing.module';
 import { ProfilComponent } from './profil/profil.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
-  declarations: [ProfilComponent],
+  declarations: [
+    ProfilComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
-    ProfilRoutingModule
+    ProfilRoutingModule,
+    FontAwesomeModule
   ],
   exports: [
     ProfilComponent

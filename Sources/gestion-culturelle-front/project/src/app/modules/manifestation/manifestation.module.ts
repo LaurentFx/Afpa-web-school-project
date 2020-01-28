@@ -6,6 +6,7 @@ import { ManifestationAddComponent } from './manifestation-add-component/manifes
 import { ManifestationUpdateComponent } from './manifestation-update-component/manifestation-update.component';
 import { FormsModule } from '@angular/forms';
 import { ManifestationListComponent } from './manifestation-list-component/manifestation-list.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ManifestationListComponent } from './manifestation-list-component/manif
   imports: [
     CommonModule,
     ManifestationRoutingModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   exports: [
     ManifestationShowComponent,

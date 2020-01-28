@@ -6,6 +6,7 @@ import { AnimationAddComponent } from './animation-add-component/animation-add.c
 import { AnimationUpdateComponent } from './animation-update-component/animation-update.component';
 import { AnimationShowComponent } from './animation-show-component/animation-show.component';
 import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     AnimationRoutingModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   exports: [
     AnimationListComponent,

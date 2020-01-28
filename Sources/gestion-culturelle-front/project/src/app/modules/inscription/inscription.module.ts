@@ -4,14 +4,18 @@ import { FormsModule } from '@angular/forms';
 
 import { InscriptionRoutingModule } from './inscription-routing.module';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
-  declarations: [InscriptionComponent],
+  declarations: [
+    InscriptionComponent
+  ],
   imports: [
     CommonModule,
     InscriptionRoutingModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   exports: [
     InscriptionComponent

@@ -32,9 +32,12 @@
                 <td>{{manifestation.reservationsVip}}</td>
 
                 <td>
-                    <button (click)="redirectToShow(manifestation.id)" class="btn btn-sm btn-success">Show</button>
-                    <button *ngIf="isResp" (click)="redirectToUpdate(manifestation.id)" class="btn btn-sm btn-warning">Update</button>
-                    <button *ngIf="isResp" (click)="delete(manifestation.id)" class="btn btn-sm btn-danger">Delete</button>
+                    <button (click)="redirectToShow(manifestation.id)" class="btn btn-sm btn-success"><fa-icon class="icon p-0" [icon]="faInfoCircle">Show</fa-icon></button>
+                    &nbsp;
+                    <button *ngIf="isResp" (click)="redirectToUpdate(manifestation.id)" class="btn btn-sm btn-warning"><fa-icon [icon]="faEdit">Update</fa-icon></button>
+                    &nbsp;
+                    <button *ngIf="isResp" (click)="delete(manifestation.id)" class="btn btn-sm btn-danger"><fa-icon [icon]="faTrashAlt">Delete</fa-icon></button>
+                    &nbsp;
                     <button *ngIf="isClient" (click)="redirectToAddPanier(manifestation.id)" class="btn btn-sm btn-primary">Acheter</button>
                 </td>
 
@@ -42,8 +45,7 @@
 
         </tbody>
     </table>
-
-    <a *ngIf="isResp" name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/manifestation-ad']">+ Ajouter une
-        manifestation </a>
-
-    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']">Retour à l'accueil </a>
+    &nbsp;
+    <a *ngIf="isResp" name="" id="" class="btn btn-info" href="#" role="button" [routerLink]="['/manifestation-ad']"><fa-icon class="icon p-2" [icon]="faPlusSquare">+ Ajouter</fa-icon></a>
+    &nbsp;
+    <a name="" id="" class="btn btn-info" href="#" role="button" [routerLink]="['/public']"><fa-icon class="icon p-2" [icon]="faHome">Retour à l'accueil</fa-icon></a>

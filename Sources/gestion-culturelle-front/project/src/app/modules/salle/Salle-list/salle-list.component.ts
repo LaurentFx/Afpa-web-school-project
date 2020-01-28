@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SalleService } from '../../../service/salle.service';
 import { AuthService } from '../../../service/auth.service';
 import { RoleDto } from 'src/app/model/roleDto';
+import { faInfoCircle, faEdit, faTrashAlt, faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-salle-list',
@@ -12,6 +13,12 @@ import { RoleDto } from 'src/app/model/roleDto';
 })
 export class SalleListComponent implements OnInit {
 
+  faInfoCircle =faInfoCircle;
+  faEdit = faEdit;
+  faTrashAlt = faTrashAlt;
+  faHome = faHome;
+  faPlusSquare = faPlusSquare;
+  
   isConnected: boolean;
   salles: SalleDto[];
   isResp: boolean;

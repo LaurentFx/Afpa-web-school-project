@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { RoleDto } from "../../../model/roleDto";
 import { Router } from "@angular/router";
 import { RoleService } from "../../../service/role.service";
+import { faInfoCircle, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -10,6 +11,9 @@ import { RoleService } from "../../../service/role.service";
   styleUrls: ['./role-list.component.css']
 })
 export class RoleListComponent implements OnInit {
+  faInfoCircle =faInfoCircle;
+  faEdit = faEdit;
+  faTrashAlt = faTrashAlt;
   roles: RoleDto[];
   
   constructor(private roleService: RoleService,private router: Router) { }
