@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵɵsanitizeUrlOrResourceUrl } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import { RoleDto } from '../model/roleDto';
+import { PanierDto } from '../model/panierDto';
+import { UserService } from '../service/user.service';
+import { User } from '../model/user';
 
 
 @Component({
@@ -18,11 +21,17 @@ export class NavebarComponent implements OnInit {
   isAdmin: boolean;
   isRespAdmin: boolean;
   user: String;
+  userDto: User;
   role: RoleDto;
+  panierDto: PanierDto;
+  id:number;
+  idPanier:number;
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private userService: UserService, private authService: AuthService  ) 
+  {  this.panierDto = new PanierDto()}
 
   ngOnInit() {
+    this.reload();
     this.isConnected = this.authService.isConnected();
     if (this.authService.getCurrentUser()) {
       this.isResp = this.authService.getCurrentUser().role.label === 'RESP';
@@ -30,10 +39,11 @@ export class NavebarComponent implements OnInit {
       this.isAnim = this.authService.getCurrentUser().role.label === 'ANIM';
       this.isAdmin = this.authService.getCurrentUser().role.label === 'ADMIN';
       this.isRespAdmin = (this.authService.getCurrentUser().role.label === 'RESP') || (this.authService.getCurrentUser().role.label === 'ADMIN');
-      console.log('label = '+this.authService.getCurrentUser().role.label);
 
       this.user = this.authService.getCurrentUser().nom;
+      this.userDto = this.authService.getCurrentUser();
       this.role = this.authService.getCurrentUser().role;
+      this.panierDto = this.authService.getCurrentUser().panier;
     }
 
     this.authService.subjectConnexion.subscribe(
@@ -55,9 +65,24 @@ export class NavebarComponent implements OnInit {
           this.isAnim = userCourant.role.label === 'ANIM';
           this.isAdmin = userCourant.role.label === 'ADMIN';
           this.isRespAdmin = (userCourant.role.label === 'RESP') || (userCourant.role.label === 'ADMIN');
+          this.userDto = userCourant;
           this.user = userCourant.nom;
           this.role = userCourant.role;
+          this.panierDto = userCourant.panier
         }
+      }
+    );
+  }
+
+
+  reload() {
+    let idUser = this.authService.getCurrentUser().id;
+
+    this.userService.getOne(idUser).subscribe(
+      res => {
+        this.userDto = res;
+        this.panierDto = res.panier;
+        this.idPanier = res.panier.id;
       }
     );
   }
@@ -67,6 +92,13 @@ export class NavebarComponent implements OnInit {
     this.router.navigateByUrl('/public/login');
     this.isConnected = false;
   }
+
+  redirectToShowPanier(id: number) {
+    console.log('panier navebar' + this.panierDto.id);
+    this.router.navigateByUrl('/panier-show/'+ id)
+
+  }
+
 
   redirectToProfil(): void {
     this.router.navigateByUrl('/public/profil')

@@ -54,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				"/configuration/security", "/swagger-ui.html", "/webjars/**", "/error"
 		};
 
-		String[] RespUrls = { "/admin","/role" , "/typesalle"};
+		String[] RespUrls = { "/admin","/role*" , "/typesalle"};
 
 		String[] AdminUrls = { "/salle","/vip","/animateur","/client","/users","/manifestation","/invitation"};
 

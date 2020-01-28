@@ -15,7 +15,9 @@ export class ManifestationListComponent implements OnInit {
   isConnected: boolean;
   manifestations: ManifestationDto[];
   isResp: boolean;
+  isAdmin:boolean;
   isClient: boolean;
+  isRespAdmin: boolean;
   user: String;
   role: RoleDto;
 
@@ -28,6 +30,8 @@ export class ManifestationListComponent implements OnInit {
     this.isConnected = this.authService.isConnected();
     if (this.authService.getCurrentUser()) {
       this.isResp = this.authService.getCurrentUser().role.label === 'RESP';
+      this.isAdmin = this.authService.getCurrentUser().role.label === 'ADMIN';
+      this.isRespAdmin = (this.authService.getCurrentUser().role.label === 'RESP') || (this.authService.getCurrentUser().role.label === 'ADMIN');
       this.isClient = this.authService.getCurrentUser().role.label === 'CLIENT';
       this.user = this.authService.getCurrentUser().nom;
       this.role = this.authService.getCurrentUser().role;

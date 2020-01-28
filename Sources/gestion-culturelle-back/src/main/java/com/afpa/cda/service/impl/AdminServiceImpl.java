@@ -29,8 +29,13 @@ public class AdminServiceImpl implements IAdminService {
 		.stream()
 		.map(ts-> this.modelMapper.map(ts,AdminDto.class ))
 		.collect(Collectors.toList());
+		
+		
 	}
 
+	
+	
+	
 	
 	@Override
 	public AdminDto add(AdminDto admin) {		

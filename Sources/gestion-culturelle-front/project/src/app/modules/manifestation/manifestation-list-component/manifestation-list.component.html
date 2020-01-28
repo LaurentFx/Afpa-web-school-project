@@ -33,8 +33,8 @@
 
                 <td>
                     <button (click)="redirectToShow(manifestation.id)" class="btn btn-sm btn-success">Show</button>
-                    <button *ngIf="isResp" (click)="redirectToUpdate(manifestation.id)" class="btn btn-sm btn-warning">Update</button>
-                    <button *ngIf="isResp" (click)="delete(manifestation.id)" class="btn btn-sm btn-danger">Delete</button>
+                    <button *ngIf="isRespAdmin" (click)="redirectToUpdate(manifestation.id)" class="btn btn-sm btn-warning">Update</button>
+                    <button *ngIf="isRespAdmin" (click)="delete(manifestation.id)" class="btn btn-sm btn-danger">Delete</button>
                     <button *ngIf="isClient" (click)="redirectToAddPanier(manifestation.id)" class="btn btn-sm btn-primary">Acheter</button>
                 </td>
 

@@ -1,6 +1,7 @@
 package com.afpa.cda.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -76,15 +77,16 @@ public class UserServiceImpl implements IUserService {
 
 		@Override
 		public UserDto addClient(UserDto userDto) {
-
-
 			User user = this.modelMapper.map(userDto,User.class);
 			Optional<Role> roleOp=roleRepository.findById(4);
 			if (roleOp.isPresent()) {
 				user.setRole(roleOp.get());
 			}
 			user.setNumClient(userDto.getNom().substring(0,2)+"2020"+userDto.getPrenom().substring(0,2));
-			user.setPanier(Panier.builder().total(0).build());
+			Date dateDuJour = new Date();
+			user.setPanier(Panier.builder()
+					.dateValidation(dateDuJour)
+					.total(0).build());
 			user.getPanier().setListCommandes(new ArrayList<Commande>());
 			user.setInactif(true);
 

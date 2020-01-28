@@ -45,7 +45,7 @@
           aria-haspopup="true" aria-expanded="false">Manifestations</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a routerLink='public/manifestation-list' class="dropdown-item" routerLinkActive=active>Lister</a>
-          <a *ngIf="isRespAdmin" routerLink='manifestation-ad' class="dropdown-item" routerLinkActive=active>Ajouter</a>
+          <a *ngIf="isResp" routerLink='manifestation-ad' class="dropdown-item" routerLinkActive=active>Ajouter</a>
         </div>
       </li>
 
@@ -53,10 +53,22 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">Panier</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a routerLink='panier-show' class="dropdown-item" routerLinkActive=active>Voir</a>
+          <button (click)="redirectToShowPanier(panierDto.id)" class="dropdown-item">Voir</button>
           <a routerLink='public/manifestation-list' class="dropdown-item" routerLinkActive=active>Ajouter</a>
         </div>
       </li>
+
+      <li *ngIf="isClient" class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">Profil</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a routerLink='public' class="dropdown-item" routerLinkActive=active>Voir</a>
+          <a routerLink='public/profil' class="dropdown-item" routerLinkActive=active>Modifier</a>
+        </div>
+
+      </li>
+
+
       <!--
           <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -83,6 +95,8 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
 
+
+
         <li *ngIf="!isConnected" class="nav-item">
           <a routerLink='/public/login' class="nav-link" routerLinkActive=active><b>Login</b></a>
         </li>
@@ -92,6 +106,9 @@
         <li>
           <p class="nav-link" *ngIf="isConnected"><i>User : {{user}} - Role : {{role.label}} </i></p>
         </li>
+        <li *ngIf="isConnected" class="nav-item">
+
+
         <li>
           <img src="/assets/Logo_Afpa.jpg" class="icon" id="icon" alt="User Icon" />
         </li>

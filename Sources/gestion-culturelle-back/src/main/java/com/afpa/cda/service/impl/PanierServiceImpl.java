@@ -84,7 +84,6 @@ public class PanierServiceImpl implements IPanierService {
 	@Override
 	public void addCommandePanier (CommandeDto commandeDto) {
 
-
 		Optional <Panier> panierOp=panierRepository.findById(commandeDto.getPanier().getId());
 		Optional <Manifestation> manifestationOp=manifestationRepository.findById(commandeDto.getManifestation().getId());
 		PanierDto panierDto = new PanierDto();
@@ -98,14 +97,13 @@ public class PanierServiceImpl implements IPanierService {
 				this.commandeRepository.save(this.modelMapper.map(commandeDto, Commande.class));
 				panierDto.setTotal(panierDto.getTotal()+commandeDto.getQuantite()*manifestationDto.getPrixBillet());
 				manifestationDto.setReservations(manifestationDto.getReservations()-commandeDto.getQuantite());
-				DateFormat df = new SimpleDateFormat("dd/MM/yy");
+				//				DateFormat df = new SimpleDateFormat("dd/MM/yy");
 				Date dateobj = new Date();
 				panierDto.setDateValidation(dateobj);
-				
 				panierRepository.save(this.modelMapper.map(panierDto, Panier.class));
 				manifestationRepository.save(this.modelMapper.map(manifestationDto, Manifestation.class));
-			}
-
+			} else {
+				System.out.println("Pas assez de billets dispo"); }
 		}
 
 	}
@@ -148,23 +146,25 @@ public class PanierServiceImpl implements IPanierService {
 	@Override
 	public void delete(int id) {
 		System.out.println("test delete");
-		List<Commande> listCommandes = this.commandeRepository.findAll();
+	//	List<Commande> listCommandes = this.commandeRepository.findAll();
 
 		Optional<Panier> panierOp = this.panierRepository.findById(id);
-		
+
 		if (panierOp.isPresent()) {
 			PanierDto panierDto = modelMapper.map(panierOp.get(),PanierDto.class);
-			
-			System.out.println("test delete panier "+panierOp.get());
-			for (Commande commande : listCommandes) {
-				if (commande.getPanier().getId() == id) {
-					System.out.println("test delete id "+commande.getPanier().getId()); 
-					listCommandes.remove(commande);
-					panierDto.setTotal(0);
-					panierRepository.save(this.modelMapper.map(panierDto,Panier.class));
-				}
-				System.out.println("test delete total "+panierOp.get().getTotal());
-			}
+			panierDto.getListCommandes().clear();
+			panierDto.setTotal(0);
+			panierRepository.save(this.modelMapper.map(panierDto,Panier.class));			
+
+			//			System.out.println("test delete panier "+panierOp.get());
+			//			for (Commande commande : listCommandes) {
+			//				if (commande.getPanier().getId() == id) {
+			//					System.out.println("test delete id "+commande.getPanier().getId()); 
+			//					listCommandes.remove(commande);
+			//					panierRepository.save(this.modelMapper.map(panierDto,Panier.class));
+			//				}
+			//				System.out.println("test delete total "+panierOp.get().getTotal());
+			//			}
 		}
 	}
 

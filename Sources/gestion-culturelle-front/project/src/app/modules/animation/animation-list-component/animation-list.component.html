@@ -28,7 +28,7 @@
                 <td>
                     <button (click)="redirectToShow(animation.id)" class="btn btn-sm btn-success">Show</button>
                     <button *ngIf="isAnim" (click)="redirectToUpdate(animation.id)" class="btn btn-sm btn-warning">Update</button>
-                    <button *ngIf="isAnim" (click)="delete(animation.id)" class="btn btn-sm btn-danger">Delete</button>
+                    <button *ngIf="isRespAdmin" (click)="delete(animation.id)" class="btn btn-sm btn-danger">Delete</button>
            
                 </td>
 

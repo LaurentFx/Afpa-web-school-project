@@ -27,7 +27,7 @@ export class PanierAddComponent implements OnInit {
   idManif: number;
   commandetmp: CommandeDto;
 
-  dateValidation: Date;
+ // dateValidation: Date;
 
   constructor(private manifestationService: ManifestationService,
     private panierService: PanierService, private route: ActivatedRoute,
@@ -40,7 +40,6 @@ export class PanierAddComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.dateValidation = Date.ow();
     this.reload();
   }
 
@@ -66,7 +65,7 @@ export class PanierAddComponent implements OnInit {
     this.commandetmp.manifestation = this.manifestationDto;
     this.commandetmp.panier = this.panierDto;
     this.commandetmp.quantite = this.quantite;
-
+    
     this.panierService.add(this.commandetmp).subscribe(
       res => {
         this.panierService.subjectMiseAJour.next(0);
@@ -81,8 +80,6 @@ export class PanierAddComponent implements OnInit {
     this.router.navigateByUrl('/panier-show/'+ id)
 
   }
-
-
 
 
 }

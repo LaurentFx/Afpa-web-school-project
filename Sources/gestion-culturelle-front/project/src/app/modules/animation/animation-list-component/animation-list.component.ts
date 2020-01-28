@@ -14,59 +14,61 @@ export class AnimationListComponent implements OnInit {
 
   isConnected: boolean;
   isAnim: boolean;
-  user : String;
-  role : RoleDto;
+  isRespAdmin: boolean;
+  user: String;
+  role: RoleDto;
   animations: AnimationDto[];
-  
-  constructor(private animationService: AnimationService,private router: Router,
+
+  constructor(private animationService: AnimationService, private router: Router,
     private authService: AuthService) { }
 
   ngOnInit() {
     this.isConnected = this.authService.isConnected();
-    if(this.authService.getCurrentUser()){
-this.isAnim=this.authService.getCurrentUser().role.label==='ANIM';
-this.user = this.authService.getCurrentUser().nom;
-this.role = this.authService.getCurrentUser().role;
+    if (this.authService.getCurrentUser()) {
+      this.isAnim = this.authService.getCurrentUser().role.label === 'ANIM';
+      this.isRespAdmin = (this.authService.getCurrentUser().role.label === 'RESP') || (this.authService.getCurrentUser().role.label === 'ADMIN');
+      this.user = this.authService.getCurrentUser().nom;
+      this.role = this.authService.getCurrentUser().role;
     }
-    
+
     this.animationService.subjectMiseAJour.subscribe(
-      res=> {
+      res => {
         this.animationService.getAll().subscribe(
-          donnees =>{
-			  this.animations = donnees; 
+          donnees => {
+            this.animations = donnees;
           }
         );
       }
     );
 
     this.animationService.getAll().subscribe(
-      resultat =>{
-          this.animations = resultat; 
-               }
+      resultat => {
+        this.animations = resultat;
+      }
     );
     this.authService.subjectConnexion.subscribe(
       res => {
         this.isConnected = this.authService.isConnected();
-      
+
       }
     );
   }
 
-  delete(id:number) {
+  delete(id: number) {
     this.animationService.delete(id).subscribe(
-      res=>{
+      res => {
         this.animationService.subjectMiseAJour.next(0);
         console.log('delete Ok ');
       }
     )
   }
-  
-  redirectToUpdate(id:number){
-    this.router.navigateByUrl('/animation-update/'+id)
-  }
-   
 
-  redirectToShow(id:number) {
-    this.router.navigateByUrl('/animation-show/'+id)
+  redirectToUpdate(id: number) {
+    this.router.navigateByUrl('/animation-update/' + id)
+  }
+
+
+  redirectToShow(id: number) {
+    this.router.navigateByUrl('/animation-show/' + id)
   }
 }

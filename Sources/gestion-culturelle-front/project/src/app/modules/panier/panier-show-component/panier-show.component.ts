@@ -26,6 +26,7 @@ export class PanierShowComponent implements OnInit {
   role: RoleDto;
   isClient: boolean;
   isConnected: boolean;
+  date = new Date ();
 
   constructor(private commandeService: CommandeService,
     private panierService: PanierService, private route: ActivatedRoute,

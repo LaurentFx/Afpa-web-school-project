@@ -79,7 +79,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 						.email(mail)
 						.entreprise(entreprise)
 						.role(roleRepository.findById(resp.getId()).get())
-						//				.role(resp)
+						//				.role(resp) //postgres
 						.build());
 			}
 		};
@@ -90,13 +90,13 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 	private void initRole(RoleRepository roleRepository, Role role) {
 		Optional<Role> roleBddOpt = roleRepository.findByLabel(role.getLabel());
 		if( ! roleBddOpt.isPresent() ) {
-//			Role roleBdd = roleBddOpt.get();
-//			if(! roleBdd.getLabel().equals(role.getLabel())) {
-//				throw new RuntimeException("\n--- > > >  un autre role "+roleBdd.getLabel()+" a l'id "+role.getId()+" résérvé pour "+role.getLabel());
-//			}
-//		} else {
+			Role roleBdd = roleBddOpt.get();
+			if(! roleBdd.getLabel().equals(role.getLabel())) {
+				throw new RuntimeException("\n--- > > >  un autre role "+roleBdd.getLabel()+" a l'id "+role.getId()+" résérvé pour "+role.getLabel());
+			}
+		} else {
 
-			//			role = roleRepository.save(
+			//			role = roleRepository.save( //postgres
 			roleRepository.save(
 					Role.builder()
 					.id(role.getId())
@@ -108,12 +108,12 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 	private void initTypeSalle(TypeSalleRepository typeSalleRepository, TypeSalle typeSalle) {
 		Optional<TypeSalle> typeSalleBddOpt = typeSalleRepository.findById(typeSalle.getId());
 		if( ! typeSalleBddOpt.isPresent() ) {
-//			TypeSalle typeSalleBdd = typeSalleBddOpt.get();
-//			if(! typeSalleBdd.getLabel().equals(typeSalle.getLabel())) {
-//				throw new RuntimeException("\n--- > > >  un autre type de salle "+typeSalleBdd.getLabel()+" a l'id "+typeSalle.getId()+" résérvé pour "+typeSalle.getLabel());
-//			}
-//		} else {
-			//			typeSalle = typeSalleRepository.save(
+			TypeSalle typeSalleBdd = typeSalleBddOpt.get();
+			if(! typeSalleBdd.getLabel().equals(typeSalle.getLabel())) {
+				throw new RuntimeException("\n--- > > >  un autre type de salle "+typeSalleBdd.getLabel()+" a l'id "+typeSalle.getId()+" résérvé pour "+typeSalle.getLabel());
+			}
+		} else {
+			//			typeSalle = typeSalleRepository.save( //postgres
 			typeSalleRepository.save(
 					TypeSalle.builder()
 					.id(typeSalle.getId())

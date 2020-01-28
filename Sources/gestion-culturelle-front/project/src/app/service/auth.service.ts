@@ -49,7 +49,6 @@ export class AuthService {
 
         this.subjectConnexion.next(1);
 
-        console.log("this.subjectConnexion.next(5);");
         observer.next(true);
       },
         err => {

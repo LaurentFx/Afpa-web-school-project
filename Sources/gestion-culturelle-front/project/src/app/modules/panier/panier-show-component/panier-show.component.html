@@ -15,7 +15,6 @@
                         <label for="date">Date :</label>
                         <input type="text" name="date" class="form-control" id="date"
                             placeholder="{{panierDto.dateValidation}}" readonly>
-
                     </div>
 
                 </div>
@@ -76,10 +75,10 @@
         <br>
         <br>
 
-        <button  *ngIf="isAnim" (click)="cancel(panierDto.id)" class="btn btn-secondary">Annuler le panier</button>
+        <button  (click)="cancel(panierDto.id)" class="btn btn-secondary">Annuler le panier</button>
 
-        <a  *ngIf="isAnim" name="" id="" class="btn btn-secondary" href="#" role="button"
+        <a   name="" id="" class="btn btn-secondary" href="#" role="button"
             [routerLink]="['/public/manifestation-list']">Ajouter un article au panier</a>
 
-            <button  *ngIf="isAnim" (click)="valid(panierDto.id)" class="btn btn-secondary">Valider le panier</button>
+            <button  (click)="valid(panierDto.id)" class="btn btn-secondary">Valider le panier</button>
       
