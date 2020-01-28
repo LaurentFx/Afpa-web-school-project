@@ -84,7 +84,6 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 
 						// Postgres
 						.role(resp)
-
 						.build());
 			}
 		};
@@ -95,9 +94,9 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 	private void initRole(RoleRepository roleRepository, Role role) {
 		Optional<Role> roleBddOpt = roleRepository.findByLabel(role.getLabel());
 		if( ! roleBddOpt.isPresent() ) {
-
+			
 			// H2
-			//	Role roleBdd = roleBddOpt.get();
+			//			Role roleBdd = roleBddOpt.get();  
 			//	if(! roleBdd.getLabel().equals(role.getLabel())) {
 			//			throw new RuntimeException("\n--- > > >  un autre role "+roleBdd.getLabel()+" a l'id "+role.getId()+" résérvé pour "+role.getLabel());
 			//		}
@@ -105,12 +104,6 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			//			roleRepository.save(
 
 			// Postgres
-			Role roleBdd = roleBddOpt.get();                        
-			if(! roleBdd.getLabel().equals(role.getLabel())) {
-				throw new RuntimeException		("\n--- > > >  un autre role "+roleBdd.getLabel()+" a l'id "+role.getId()+" résérvé pour "+role.getLabel());
-			}
-		} else {                                              
-
 			role = roleRepository.save(
 					Role.builder()
 					.id(role.getId())
@@ -131,13 +124,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			//		} else {
 			//typeSalleRepository.save(
 
-					// Postgres
-					TypeSalle typeSalleBdd = typeSalleBddOpt.get();
-					if(! typeSalleBdd.getLabel().equals(typeSalle.getLabel())) {
-						throw new RuntimeException
-						("\n--- > > >  un autre type de salle "+typeSalleBdd.getLabel()+" a l'id "+typeSalle.getId()+" résérvé pour "+typeSalle.getLabel());
-					}
-		} else {
+			// Postgres
 			typeSalle = typeSalleRepository.save(
 
 					TypeSalle.builder()
