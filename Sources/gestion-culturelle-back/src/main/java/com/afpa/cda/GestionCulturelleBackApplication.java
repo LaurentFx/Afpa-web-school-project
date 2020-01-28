@@ -11,12 +11,14 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.afpa.cda.constant.AdminUserDefaultConf;
-import com.afpa.cda.dao.PanierRepository;
+import com.afpa.cda.dao.AnimationRepository;
 import com.afpa.cda.dao.RoleRepository;
+import com.afpa.cda.dao.SalleRepository;
 import com.afpa.cda.dao.TypeSalleRepository;
 import com.afpa.cda.dao.UserRepository;
-import com.afpa.cda.entity.Panier;
+import com.afpa.cda.entity.Animation;
 import com.afpa.cda.entity.Role;
+import com.afpa.cda.entity.Salle;
 import com.afpa.cda.entity.TypeSalle;
 import com.afpa.cda.entity.User;
 
@@ -41,7 +43,9 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 	}
 
 	@Bean
-	public CommandLineRunner init(RoleRepository roleRepository, UserRepository userRepository,AdminUserDefaultConf adminUserConf, TypeSalleRepository typeSalleRepository, PanierRepository panierRepository) {
+	public CommandLineRunner init(RoleRepository roleRepository, UserRepository userRepository,
+			AdminUserDefaultConf adminUserConf, TypeSalleRepository typeSalleRepository,
+			SalleRepository salleRepository, AnimationRepository animationRepository) {
 		return (String... args)->{
 
 			Role resp = new Role (1,"RESP");
@@ -64,19 +68,111 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			initTypeSalle(typeSalleRepository,stade);
 			initTypeSalle(typeSalleRepository,theatre);
 
+			Salle foot = new Salle ();
+			foot.setId(1);
+			foot.setLabel("Terrain de football");
+			foot.setCapacite(2500);
+			foot.setFraisjournalier(400);
+			foot.setPlacesVip(10);
+			foot.setTypesalle(stade);
+
+			Salle zenith = new Salle ();
+			zenith.setId(2);
+			zenith.setLabel("Zenith de Lille");
+			zenith.setCapacite(3000);
+			zenith.setFraisjournalier(650);
+			zenith.setPlacesVip(20);
+			zenith.setTypesalle(concert);
+
+			Salle colisee = new Salle ();
+			colisee.setId(3);
+			colisee.setLabel("Colisée de Roubaix");
+			colisee.setCapacite(1500);
+			colisee.setFraisjournalier(450);
+			colisee.setPlacesVip(15);
+			colisee.setTypesalle(theatre);
+
+			initSalle(salleRepository, foot);
+			initSalle(salleRepository, zenith);
+			initSalle(salleRepository, colisee);
+
 			String adresse = "Lille";
 			String mail = "cda@afpa.com";
 			String entreprise="Afpa";
+			String password = "1234";
+
+			User admin1 = new User ();
+			admin1.setId(1);
+			admin1.setNom("admin1");
+			admin1.setPrenom("admin1");
+			admin1.setPassword(password);
+			admin1.setAdresse(adresse);
+			admin1.setEmail(mail);
+			admin1.setInactif(false);
+			admin1.setEntreprise(entreprise);
+			admin1.setRole(admin);
+
+			User anim1 = new User ();
+			anim1.setId(2);
+			anim1.setNom("anim1");
+			anim1.setPrenom("anim1");
+			anim1.setPassword(password);
+			anim1.setAdresse(adresse);
+			anim1.setEmail(mail);
+			anim1.setInactif(false);
+			anim1.setEntreprise(entreprise);
+			anim1.setRole(anim);
+			
+			User vip1 = new User ();
+			vip1.setId(3);
+			vip1.setNom("vip1");
+			vip1.setPrenom("vip1");
+			vip1.setPassword(password);
+			vip1.setAdresse(adresse);
+			vip1.setEmail(mail);
+			vip1.setInactif(false);
+			vip1.setEntreprise(entreprise);
+			vip1.setRole(vip);
+			
+			initUser(userRepository,admin1);
+			initUser(userRepository,anim1);
+			initUser(userRepository,vip1);
+			
+			Animation animat1 = new Animation ();
+			animat1.setId(1);
+			animat1.setLabel("Match Lille-Paris");
+			animat1.setType("Sport");
+			animat1.setPrix(12000);
+			animat1.setNbreSpectateursPrevus(1000);
+			
+			Animation animat2 = new Animation ();
+			animat2.setId(2);
+			animat2.setLabel("Concert Rock");
+			animat2.setType("Musique");
+			animat2.setPrix(26000);
+			animat2.setNbreSpectateursPrevus(2000);
+			
+			Animation animat3 = new Animation ();
+			animat3.setId(3);
+			animat3.setLabel("L'avare Molière");
+			animat3.setType("Art");
+			animat3.setPrix(12000);
+			animat3.setNbreSpectateursPrevus(800);
+			
+			initAnimation(animationRepository,animat1);
+			initAnimation(animationRepository,animat2);
+			initAnimation(animationRepository,animat3);
 
 			// ne pas oublier de bloquer la création d'utilisateur avec le nom ou prenom admin
-			Optional<User> adminE = userRepository.findByNom(adminUserConf.getNom());
-			if(! adminE.isPresent()) {
+			Optional<User> resp1 = userRepository.findByNom(adminUserConf.getNom());
+			if(! resp1.isPresent()) {
 				userRepository.save(User.builder()
 						.nom(adminUserConf.getNom())
 						.prenom(adminUserConf.getPrenom())
 						.password(adminUserConf.getPassword())
 						.adresse(adresse)
 						.email(mail)
+						.inactif(false)
 						.entreprise(entreprise)
 
 						// H2
@@ -94,7 +190,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 	private void initRole(RoleRepository roleRepository, Role role) {
 		Optional<Role> roleBddOpt = roleRepository.findByLabel(role.getLabel());
 		if( ! roleBddOpt.isPresent() ) {
-			
+
 			// H2
 			//			Role roleBdd = roleBddOpt.get();  
 			//	if(! roleBdd.getLabel().equals(role.getLabel())) {
@@ -134,6 +230,58 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 		}
 	}
 
+	private void initSalle(SalleRepository salleRepository, Salle salle) {
+		Optional<Salle> salleBddOpt = salleRepository.findById(salle.getId());
+		if( ! salleBddOpt.isPresent() ) {
+
+			salle = salleRepository.save(
+					Salle.builder()
+					.id(salle.getId())
+					.label(salle.getLabel())
+					.capacite(salle.getCapacite())
+					.fraisjournalier(salle.getFraisjournalier())
+					.placesVip(salle.getPlacesVip())
+					.typesalle(salle.getTypesalle())
+					.build());
+
+		}
+	}
+
+	private void initUser(UserRepository userRepository, User user) {
+		Optional<User> userBddOpt = userRepository.findById(user.getId());
+		if( ! userBddOpt.isPresent() ) {
+
+			user = userRepository.save(
+					User.builder()
+					.id(user.getId())
+					.nom(user.getNom())
+					.prenom(user.getPrenom())
+					.password(user.getPassword())
+					.adresse(user.getAdresse())
+					.email(user.getEmail())
+					.inactif(user.isInactif())
+					.entreprise(user.getEntreprise())
+					.role(user.getRole())
+					.build());
+
+		}
+	}
+
+	private void initAnimation (AnimationRepository animationRepository, Animation animation) {
+		Optional<Animation> animationBddOpt = animationRepository.findById(animation.getId());
+		if( ! animationBddOpt.isPresent() ) {
+
+			animation = animationRepository.save(
+					Animation.builder()
+					.id(animation.getId())
+					.label(animation.getLabel())
+					.type(animation.getType())
+					.prix(animation.getPrix())
+					.nbreSpectateursPrevus(animation.getNbreSpectateursPrevus())
+					.build());
+		}
+	}
+	
 }
 
 

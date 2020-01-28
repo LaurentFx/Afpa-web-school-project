@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../service/auth.service';
 import { Router } from '@angular/router';
 import { UserAuth } from '../../../model/user-auth';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,9 @@ export class LoginComponent implements OnInit {
 
   user: UserAuth;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router,
+  //  private toastrService: ToastrService
+    ) { }
 
   ngOnInit() {
     this.user=new UserAuth();
@@ -26,6 +29,7 @@ export class LoginComponent implements OnInit {
         console.log('connexion Ok')
         this.router.navigateByUrl('/public');      
       } else {
+      //  this.toastrService.error('Connexion refusée','Erreur');
         console.log('connexion NOk')
       }
     });

@@ -24,6 +24,7 @@ export class NavebarComponent implements OnInit {
   user: String;
   userDto: User;
   role: RoleDto;
+  panier : PanierDto;
   panierDto: PanierDto;
   id:number;
   idPanier:number;
