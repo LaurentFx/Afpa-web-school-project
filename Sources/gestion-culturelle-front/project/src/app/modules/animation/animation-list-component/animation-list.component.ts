@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AnimationDto } from '../../../model/animationDto';
 import { AuthService } from '../../../service/auth.service';
 import { RoleDto } from '../../../model/roleDto';
+import { faInfoCircle, faEdit, faTrashAlt, faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-animation-list',
@@ -11,6 +12,12 @@ import { RoleDto } from '../../../model/roleDto';
   styleUrls: ['./animation-list.component.css']
 })
 export class AnimationListComponent implements OnInit {
+
+  faInfoCircle =faInfoCircle;
+  faEdit = faEdit;
+  faTrashAlt = faTrashAlt;
+  faHome = faHome;
+  faPlusSquare = faPlusSquare;
 
   isConnected: boolean;
   isAnim: boolean;

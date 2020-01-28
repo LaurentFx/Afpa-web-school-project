@@ -30,7 +30,7 @@ import lombok.Setter;
 		)
 public class User {
 	@Id
-	@GeneratedValue(generator = "USER_SEQ", strategy = GenerationType.SEQUENCE)
+//	@GeneratedValue(generator = "USER_SEQ", strategy = GenerationType.SEQUENCE) // H2 database
 	private int id;
 	private String nom;
 	private String prenom;

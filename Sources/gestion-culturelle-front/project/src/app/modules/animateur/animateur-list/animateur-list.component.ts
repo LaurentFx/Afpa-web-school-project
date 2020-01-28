@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AnimateurService } from '../../../service/animateur.service';
 import { AnimateurDto } from '../../../model/animateurDto';
+import { faInfoCircle, faEdit, faTrashAlt, faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-animateur-list',
@@ -9,6 +10,12 @@ import { AnimateurDto } from '../../../model/animateurDto';
   styleUrls: ['./animateur-list.component.css']
 })
 export class AnimateurListComponent implements OnInit {
+
+  faInfoCircle =faInfoCircle;
+  faEdit = faEdit;
+  faTrashAlt = faTrashAlt;
+  faHome = faHome;
+  faPlusSquare = faPlusSquare;
 
   animateurs: AnimateurDto[];
 

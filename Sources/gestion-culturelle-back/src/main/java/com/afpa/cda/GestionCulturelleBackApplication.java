@@ -78,8 +78,13 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 						.adresse(adresse)
 						.email(mail)
 						.entreprise(entreprise)
-						.role(roleRepository.findById(resp.getId()).get())
-						//				.role(resp) //postgres
+
+						// H2
+						//	.role(roleRepository.findById(resp.getId()).get())
+
+						// Postgres
+						.role(resp)
+
 						.build());
 			}
 		};
@@ -90,14 +95,23 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 	private void initRole(RoleRepository roleRepository, Role role) {
 		Optional<Role> roleBddOpt = roleRepository.findByLabel(role.getLabel());
 		if( ! roleBddOpt.isPresent() ) {
-			Role roleBdd = roleBddOpt.get();
-			if(! roleBdd.getLabel().equals(role.getLabel())) {
-				throw new RuntimeException("\n--- > > >  un autre role "+roleBdd.getLabel()+" a l'id "+role.getId()+" résérvé pour "+role.getLabel());
-			}
-		} else {
 
-			//			role = roleRepository.save( //postgres
-			roleRepository.save(
+			// H2
+			//	Role roleBdd = roleBddOpt.get();
+			//	if(! roleBdd.getLabel().equals(role.getLabel())) {
+			//			throw new RuntimeException("\n--- > > >  un autre role "+roleBdd.getLabel()+" a l'id "+role.getId()+" résérvé pour "+role.getLabel());
+			//		}
+			//		} else {
+			//			roleRepository.save(
+
+			// Postgres
+			Role roleBdd = roleBddOpt.get();                        
+			if(! roleBdd.getLabel().equals(role.getLabel())) {
+				throw new RuntimeException		("\n--- > > >  un autre role "+roleBdd.getLabel()+" a l'id "+role.getId()+" résérvé pour "+role.getLabel());
+			}
+		} else {                                              
+
+			role = roleRepository.save(
 					Role.builder()
 					.id(role.getId())
 					.label(role.getLabel())
@@ -108,13 +122,24 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 	private void initTypeSalle(TypeSalleRepository typeSalleRepository, TypeSalle typeSalle) {
 		Optional<TypeSalle> typeSalleBddOpt = typeSalleRepository.findById(typeSalle.getId());
 		if( ! typeSalleBddOpt.isPresent() ) {
-			TypeSalle typeSalleBdd = typeSalleBddOpt.get();
-			if(! typeSalleBdd.getLabel().equals(typeSalle.getLabel())) {
-				throw new RuntimeException("\n--- > > >  un autre type de salle "+typeSalleBdd.getLabel()+" a l'id "+typeSalle.getId()+" résérvé pour "+typeSalle.getLabel());
-			}
+
+			// H2
+			//			TypeSalle typeSalleBdd = typeSalleBddOpt.get();
+			//			if(! typeSalleBdd.getLabel().equals(typeSalle.getLabel())) {
+			//				throw new RuntimeException("\n--- > > >  un autre type de salle "+typeSalleBdd.getLabel()+" a l'id "+typeSalle.getId()+" résérvé pour "+typeSalle.getLabel());
+			//			}
+			//		} else {
+			//typeSalleRepository.save(
+
+					// Postgres
+					TypeSalle typeSalleBdd = typeSalleBddOpt.get();
+					if(! typeSalleBdd.getLabel().equals(typeSalle.getLabel())) {
+						throw new RuntimeException
+						("\n--- > > >  un autre type de salle "+typeSalleBdd.getLabel()+" a l'id "+typeSalle.getId()+" résérvé pour "+typeSalle.getLabel());
+					}
 		} else {
-			//			typeSalle = typeSalleRepository.save( //postgres
-			typeSalleRepository.save(
+			typeSalle = typeSalleRepository.save(
+
 					TypeSalle.builder()
 					.id(typeSalle.getId())
 					.label(typeSalle.getLabel())

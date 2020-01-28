@@ -6,6 +6,7 @@ import { PanierDto } from '../model/panierDto';
 import { UserService } from '../service/user.service';
 import { User } from '../model/user';
 
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navebar',
@@ -13,7 +14,7 @@ import { User } from '../model/user';
   styleUrls: ['./navebar.component.css']
 })
 export class NavebarComponent implements OnInit {
-
+  faInfoCircle =faInfoCircle;
   isConnected: boolean;
   isResp: boolean;
   isClient: boolean;

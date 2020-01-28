@@ -30,9 +30,9 @@
                 <td>{{panier.total}}</td>
 
                 <td>
-                    <button (click)="redirectToShow(panier.id)" class="btn btn-sm btn-success">Show</button>
-                    <button *ngIf="isClient" (click)="redirectToUpdate(panier.id)" class="btn btn-sm btn-warning">Update</button>
-                    <button *ngIf="isClient" (click)="delete(panier.id)" class="btn btn-sm btn-danger">Delete</button>
+                    <button (click)="redirectToShow(panier.id)" class="btn btn-sm btn-success"><fa-icon class="icon p-0" [icon]="faInfoCircle">Show</fa-icon></button>
+                    <button *ngIf="isClient" (click)="redirectToUpdate(panier.id)" class="btn btn-sm btn-warning"><fa-icon [icon]="faEdit">Update</fa-icon></button>
+                    <button *ngIf="isClient" (click)="delete(panier.id)" class="btn btn-sm btn-danger"><fa-icon [icon]="faTrashAlt">Delete</fa-icon></button>
                 </td>
 
             </tr>
@@ -40,8 +40,8 @@
         </tbody>
     </table>
 
-    <a *ngIf="isClient" name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/panier-ad']">+ Ajouter une commande</a>
+    <a *ngIf="isClient" name="" id="" class="btn btn-info" href="#" role="button" [routerLink]="['/panier-ad']"><fa-icon class="icon p-2" [icon]="faPlusSquare">+ Ajouter une salle</fa-icon></a>
 
 
 
-    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']">Retour à l'accueil </a>
+    <a name="" id="" class="btn btn-info" href="#" role="button" [routerLink]="['/public']"><fa-icon class="icon p-2" [icon]="faHome">Retour à l'accueil</fa-icon></a>

@@ -7,6 +7,7 @@ import { VipAddComponent } from './vip-add/vip-add.component';
 import { FormsModule } from '@angular/forms';
 import { VipUpdateComponent } from './vip-update/vip-update.component';
 import { VipShowComponent } from './vip-show/vip-show.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -20,7 +21,8 @@ import { VipShowComponent } from './vip-show/vip-show.component';
   imports: [
     CommonModule,
     VipRoutingModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   exports: [
     VipListComponent, 

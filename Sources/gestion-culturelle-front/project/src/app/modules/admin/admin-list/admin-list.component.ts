@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminDto } from '../../../model/adminDto';
 import { AdminService } from '../../../service/admin.service';
 import { Router } from '@angular/router';
+import { faInfoCircle, faEdit, faTrashAlt, faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-admin-list',
@@ -9,6 +10,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-list.component.css']
 })
 export class AdminListComponent implements OnInit {
+
+  faInfoCircle =faInfoCircle;
+  faEdit = faEdit;
+  faTrashAlt = faTrashAlt;
+  faHome = faHome;
+  faPlusSquare = faPlusSquare;
 
   admins: AdminDto[];
   

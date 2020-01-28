@@ -26,6 +26,7 @@ import { AnimateurModule } from './modules/animateur/animateur.module';
 import { ProfilModule } from './modules/profil/profil.module';
 import { InscriptionModule } from './modules/inscription/inscription.module';
 import { CommandeModule } from './modules/commande/commande.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -53,7 +54,7 @@ import { CommandeModule } from './modules/commande/commande.module';
     VipModule,
     UserModule,
     ProfilModule,
-    
+    FontAwesomeModule,
     JwtModule.forRoot({
       config: {
         // pour injecter le token dans toutes les requetes

@@ -31,9 +31,11 @@
                     <td>{{vip.entreprise}}</td>
 
                     <td>
-                        <button (click)="redirectToShow(vip.id)" class="btn btn-sm btn-success">Show</button>
-                        <button (click)="redirectToUpdate(vip.id)" class="btn btn-sm btn-warning">Update</button>
-                        <button (click)="delete(vip.id)" class="btn btn-sm btn-danger">Delete</button>
+                        <button (click)="redirectToShow(vip.id)" class="btn btn-sm btn-success"><fa-icon class="icon p-0" [icon]="faInfoCircle">Show</fa-icon></button>
+                        &nbsp;
+                        <button (click)="redirectToUpdate(vip.id)" class="btn btn-sm btn-warning"><fa-icon [icon]="faEdit">Update</fa-icon></button>
+                        &nbsp;
+                        <button (click)="delete(vip.id)" class="btn btn-sm btn-danger"><fa-icon [icon]="faTrashAlt">Delete</fa-icon></button>
                     </td>
 
                 </tr>
@@ -44,6 +46,6 @@
 
    <!-- <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/vip-add']">+ Ajouter un Vip</a>-->
 
-   <a *ngIf="isResp" name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/vip-ad']">+ Ajouter un VIP </a>
-
-    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']">Retour à l'accueil </a>
+   <a *ngIf="isResp" name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/vip-ad']"><fa-icon class="icon p-2" [icon]="faPlusSquare">+ Ajouter une Vip</fa-icon></a>
+   &nbsp;
+    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']"><fa-icon class="icon p-2" [icon]="faHome">Retour à l'accueil</fa-icon></a>

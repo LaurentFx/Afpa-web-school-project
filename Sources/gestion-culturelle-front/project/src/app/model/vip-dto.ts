@@ -32,5 +32,6 @@ export class VipDto {
         this.role = role;
         this.entreprise = entreprise;
         this.photo=photo;
+
     }
 }

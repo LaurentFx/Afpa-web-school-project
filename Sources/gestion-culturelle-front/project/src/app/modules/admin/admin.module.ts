@@ -6,6 +6,7 @@ import { AdminUpdateComponent } from './admin-update/admin-update.component';
 import { AdminShowComponent } from './admin-show/admin-show.component';
 import { FormsModule } from '@angular/forms';
 import { AdminRoutingModule } from './admin-routing.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { AdminRoutingModule } from './admin-routing.module';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   exports: [
     AdminAddComponent,

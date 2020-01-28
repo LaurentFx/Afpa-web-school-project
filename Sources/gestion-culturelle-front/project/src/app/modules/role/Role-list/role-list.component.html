@@ -20,9 +20,11 @@
                 <td>{{role.label}}</td>                
 
                 <td>
-                    <button (click)="redirectToShow(role.id)" class="btn btn-sm btn-success">Show</button>
-                    <button (click)="redirectToUpdate(role.id)" class="btn btn-sm btn-warning">Update</button>
-                   <!-- <button (click)="delete(role.id)" class="btn btn-sm btn-danger">Delete</button> -->
+                    <button (click)="redirectToShow(role.id)" class="btn btn-sm btn-success"><fa-icon class="icon p-0" [icon]="faInfoCircle">Show</fa-icon></button>
+                    &nbsp;
+                    <button (click)="redirectToUpdate(role.id)" class="btn btn-sm btn-warning"><fa-icon [icon]="faEdit">Update</fa-icon></button>
+                    &nbsp;
+                   <!-- <button (click)="delete(role.id)" class="btn btn-sm btn-danger"><fa-icon [icon]="faTrashAlt">Delete</fa-icon></button> -->
                 </td>
 
             </tr>

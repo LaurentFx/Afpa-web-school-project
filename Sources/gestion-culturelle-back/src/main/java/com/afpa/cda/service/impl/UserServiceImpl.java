@@ -196,12 +196,14 @@ public class UserServiceImpl implements IUserService {
 		/*@Override
 	public List<UserDto> findByRole(Integer roleId) {
 
+
 		List<UserDto> listUser = this.UserRepository.findByRole(roleId)
 				.stream()
+
 				.map(ru -> UserDto.builder().nom(ru.getNom()).prenom(ru.getPrenom())
-						.role(RoleDto.builder().id(ru.getRole().getId()).label(ru.getRole().getLabel()).build()).build())
-						.collect(Collectors.toList());
-		return listUser ;
+						.role(RoleDto.builder().id(ru.getRole().getId()).label(ru.getRole().getLabel()).build())
+						.build())
+				.collect(Collectors.toList());
 //		Role role = new Role();
 //		Optional<Role> roleOp = this.roleRepository.findById(roleId);
 //		if (roleOp.isPresent()) {
@@ -223,6 +225,7 @@ public class UserServiceImpl implements IUserService {
 //					userDto.setRole(this.modelMapper.map(r.getRole(),RoleDto.class));
 //					return userDto;
 //				}).collect(Collectors.toList());
+
 
 	}*/
 
@@ -256,6 +259,7 @@ public class UserServiceImpl implements IUserService {
 		//					userDto.setRole(this.modelMapper.map(r.getRole(),RoleDto.class));
 		//					return userDto;
 		//				}).collect(Collectors.toList());
+
 
 	}
 

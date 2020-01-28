@@ -7,6 +7,7 @@ import { PanierAddComponent } from './panier-add-component/panier-add.component'
 import { PanierUpdateComponent } from './panier-update-component/panier-update.component';
 import { PanierShowComponent } from './panier-show-component/panier-show.component';
 import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -14,11 +15,13 @@ import { FormsModule } from '@angular/forms';
     PanierListComponent,
     PanierAddComponent,
     PanierUpdateComponent,
-    PanierShowComponent],
+    PanierShowComponent
+  ],
   imports: [
     CommonModule,
     PanierRoutingModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   exports: [
     PanierListComponent,

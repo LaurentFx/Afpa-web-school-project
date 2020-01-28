@@ -74,6 +74,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
 		.antMatchers(HttpMethod.OPTIONS).permitAll()
+
 //		.antMatchers("/**").permitAll()
 //		.antMatchers("/*").permitAll()
 		.antMatchers(AllUrls).permitAll()
@@ -82,6 +83,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers(VipUrls).hasAnyAuthority(new String[]{"VIP"})
 		.antMatchers(AnimUrls).hasAnyAuthority(new String[]{"ANIM"})
 		.antMatchers(RespUrls).hasAnyAuthority(new String[]{"RESP"})
+
 		.antMatchers(swaggerUrls).permitAll()
 		.antMatchers("/h2-console/**").permitAll()
 		.anyRequest().authenticated();

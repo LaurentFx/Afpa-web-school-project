@@ -7,6 +7,7 @@ import { SalleListComponent } from './salle-list/salle-list.component';
 import { SalleShowComponent } from './salle-show/salle-show.component';
 import { SalleUpdateComponent } from './salle-update/salle-update.component';
 import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     SalleRoutingModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   exports: [
     SalleAddComponent,

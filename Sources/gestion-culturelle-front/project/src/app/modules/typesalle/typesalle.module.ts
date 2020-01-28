@@ -9,6 +9,7 @@ import { TypeSalleListComponent } from './typeSalle-list/typeSalle-list.componen
 import { TypeSalleAddComponent } from './typeSalle-add/typeSalle-add.component';
 import { TypeSalleUpdateComponent } from './typesalle-update/typesalle-update.component';
 import { TypeSalleShowComponent } from './typesalle-show/typesalle-show.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -22,7 +23,8 @@ import { TypeSalleShowComponent } from './typesalle-show/typesalle-show.componen
   imports: [
     CommonModule,
     TypeSalleRoutingModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   exports: [
     TypeSalleListComponent,

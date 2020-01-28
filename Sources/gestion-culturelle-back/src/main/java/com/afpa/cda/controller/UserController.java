@@ -3,7 +3,6 @@ package com.afpa.cda.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,9 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.afpa.cda.constant.AdminUserDefaultConf;
 import com.afpa.cda.dao.RoleRepository;
-import com.afpa.cda.dto.RoleDto;
 import com.afpa.cda.dto.UserDto;
-import com.afpa.cda.entity.Role;
 import com.afpa.cda.service.IUserService;
 
 @RestController
