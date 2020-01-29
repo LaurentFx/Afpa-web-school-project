@@ -28,7 +28,7 @@ import lombok.Setter;
 public class Salle {
 	
 	@Id
-	//@GeneratedValue(generator = "SALLE_SEQ", strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator = "SALLE_SEQ", strategy = GenerationType.SEQUENCE)
 	private int id;
 	private String label;
 	private int capacite;

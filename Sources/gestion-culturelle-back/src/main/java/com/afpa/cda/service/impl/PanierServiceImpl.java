@@ -103,7 +103,7 @@ public class PanierServiceImpl implements IPanierService {
 				panierRepository.save(this.modelMapper.map(panierDto, Panier.class));
 				manifestationRepository.save(this.modelMapper.map(manifestationDto, Manifestation.class));
 			} else {
-				System.out.println("Pas assez de billets dispo"); }
+				System.err.println("Pas assez de billets dispo"); }
 		}
 
 	}
@@ -145,13 +145,20 @@ public class PanierServiceImpl implements IPanierService {
 
 	@Override
 	public void delete(int id) {
-		System.out.println("test delete");
 	//	List<Commande> listCommandes = this.commandeRepository.findAll();
 
 		Optional<Panier> panierOp = this.panierRepository.findById(id);
 
 		if (panierOp.isPresent()) {
+			System.out.println("test delete panier 1");
+			
+			for (Commande c : panierOp.get().getListCommandes()) {
+				System.out.println("test delete panier 2");
+				this.commandeRepository.clearListCommandes(id);
+				
+			}
 			PanierDto panierDto = modelMapper.map(panierOp.get(),PanierDto.class);
+			System.out.println("test delete panier 3");
 			panierDto.getListCommandes().clear();
 			panierDto.setTotal(0);
 			panierRepository.save(this.modelMapper.map(panierDto,Panier.class));			

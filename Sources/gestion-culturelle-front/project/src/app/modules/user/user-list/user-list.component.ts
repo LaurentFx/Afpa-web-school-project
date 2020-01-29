@@ -43,7 +43,6 @@ export class UserListComponent implements OnInit {
     this.userService.delete(id).subscribe(
       res=>{
         this.userService.subjectMiseAJour.next(0);
-        console.log('delete Ok ');
       }
     )
   }
