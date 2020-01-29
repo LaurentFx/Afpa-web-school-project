@@ -1,6 +1,8 @@
 package com.afpa.cda.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -21,6 +23,7 @@ import lombok.Setter;
 )
 public class TypeSalle {
 	@Id
+	@GeneratedValue(generator = "SALLE_SEQ", strategy = GenerationType.SEQUENCE)
 	private int id;
 	
 	private String label;

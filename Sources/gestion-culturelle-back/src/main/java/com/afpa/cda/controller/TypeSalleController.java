@@ -33,8 +33,8 @@ public class TypeSalleController {
 	
 	//@PreAuthorize("hasAnyAuthority('RESP','ADMIN')")
 	@PostMapping(path = "/typesalle")
-	public TypeSalleDto add(@RequestBody TypeSalleDto typ) {
-		return this.typeSalleService.add(typ);
+	public boolean add(@RequestBody TypeSalleDto typeSalleDto) {
+		return this.typeSalleService.add(typeSalleDto);
 	}
 	
 	@PutMapping(path = "/typesalle/{id}")
@@ -44,8 +44,8 @@ public class TypeSalleController {
 	}
 	
 	@DeleteMapping(path = "/typesalle/{id}")
-	public void delete(@PathVariable int id) {
-		this.typeSalleService.deleteTypeSalle(id);
+	public boolean delete(@PathVariable int id) {
+		return this.typeSalleService.deleteTypeSalle(id);
 	}
 	
 	

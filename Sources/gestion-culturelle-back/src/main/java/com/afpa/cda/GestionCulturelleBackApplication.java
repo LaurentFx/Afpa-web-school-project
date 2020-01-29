@@ -209,7 +209,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 	}
 
 	private void initTypeSalle(TypeSalleRepository typeSalleRepository, TypeSalle typeSalle) {
-		Optional<TypeSalle> typeSalleBddOpt = typeSalleRepository.findById(typeSalle.getId());
+		Optional<TypeSalle> typeSalleBddOpt = typeSalleRepository.findByLabel(typeSalle.getLabel());
 		if( ! typeSalleBddOpt.isPresent() ) {
 
 			// H2

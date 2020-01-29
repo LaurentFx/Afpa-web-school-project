@@ -2,11 +2,15 @@ package com.afpa.cda.service.impl;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.afpa.cda.dao.SalleRepository;
 import com.afpa.cda.dao.TypeSalleRepository;
 import com.afpa.cda.dto.TypeSalleDto;
+import com.afpa.cda.entity.Salle;
 import com.afpa.cda.entity.TypeSalle;
 import com.afpa.cda.service.ITypeSalleService;
 @Service
@@ -14,6 +18,8 @@ public class TypeSalleServiceImpl implements ITypeSalleService {
     @Autowired
     private TypeSalleRepository typeSalleRepository;
     @Autowired
+    private SalleRepository salleRepository;
+        @Autowired
     private ModelMapper modelMapper;
     @Override
     public List<TypeSalleDto> findAll() {
@@ -34,12 +40,23 @@ public class TypeSalleServiceImpl implements ITypeSalleService {
         return tps;
     }
     @Override
-    public TypeSalleDto add(TypeSalleDto typ) {
-        TypeSalle typeSalle = this.typeSalleRepository.save(this.modelMapper.map(typ,TypeSalle.class));
-        typ.setId(typeSalle.getId());
-        System.err.println("typesalle ajoute");
-        return typ;
+    public boolean add(TypeSalleDto typeSalleDto) {
+    	List <TypeSalle> listTypeSalles = this.typeSalleRepository.findAll();
+    	boolean TypeSalleExistant = false;
+    	for (TypeSalle typeSalle : listTypeSalles) {
+    		if (typeSalle.getLabel().equalsIgnoreCase(typeSalleDto.getLabel())) {
+    			TypeSalleExistant = true;
+    			System.out.println("test true");
+    		}
+    	}
+    	if (!TypeSalleExistant) {
+    		TypeSalle typeSalle = this.typeSalleRepository.save(this.modelMapper.map(typeSalleDto,TypeSalle.class));
+    		System.err.println("typesalle ajoute");
+    		return TypeSalleExistant;
+    	}
+    	return TypeSalleExistant;
     }
+    
     @Override
     public boolean updateTypeSalle (TypeSalleDto typ, int id) {
         Optional <TypeSalle> typeSalleOp = this.typeSalleRepository.findById(id);
@@ -54,7 +71,14 @@ public class TypeSalleServiceImpl implements ITypeSalleService {
     }
     @Override
     public boolean deleteTypeSalle (int id) {
-        if(this.typeSalleRepository.existsById(id)) {
+    	List <Salle> listSalles = salleRepository.findAll();
+    	boolean salleAvecTypeSalle = false;
+    	for (Salle salle : listSalles) {
+    		if (salle.getTypesalle().getId()==id) {
+    			salleAvecTypeSalle = true;
+    		}
+    	}
+        if(this.typeSalleRepository.existsById(id) && !salleAvecTypeSalle) {
             this.typeSalleRepository.deleteById(id);
             System.err.println("typesalle supprimé");
             return true;

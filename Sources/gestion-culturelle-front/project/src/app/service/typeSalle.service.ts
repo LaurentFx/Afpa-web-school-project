@@ -25,7 +25,6 @@ export class TypeSalleService {
   }
 
   add(typeSalle: TypeSalleDto): Observable<object> {
-    console.log('lolo');
     return this.http.post(this.monUrl, typeSalle);
   }
 

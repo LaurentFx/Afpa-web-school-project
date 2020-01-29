@@ -26,7 +26,8 @@ export class NavebarComponent implements OnInit {
   role: RoleDto;
   panierDto: PanierDto;
 
-  constructor(private router: Router, private userService: UserService, private authService: AuthService) { this.panierDto = new PanierDto() }
+  constructor(private router: Router, private userService: UserService,
+     private authService: AuthService) { this.panierDto = new PanierDto() }
 
   ngOnInit() {
     this.reload();

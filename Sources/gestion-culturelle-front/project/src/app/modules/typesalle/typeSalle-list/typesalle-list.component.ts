@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TypeSalleDto } from '../../../model/typeSalleDto';
 import { TypeSalleService } from '../../../service/typeSalle.service';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../service/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-typesalle-list',
@@ -12,43 +12,59 @@ import { AuthService } from '../../../service/auth.service';
 export class TypeSalleListComponent implements OnInit {
 
   typeSalles: TypeSalleDto[];
-  
-  
-  constructor(private typeSalleService: TypeSalleService,private router: Router) { }
+  typeSalle : TypeSalleDto;
+
+
+  constructor(private typeSalleService: TypeSalleService, private router: Router
+    , private toastrService:ToastrService) { }
 
   ngOnInit() {
     this.typeSalleService.subjectMiseAJour.subscribe(
-      res=> {
+      res => {
         this.typeSalleService.getAll().subscribe(
-          donnees =>{
-			  this.typeSalles = donnees; 
+          donnees => {
+            this.typeSalles = donnees;
           }
         );
       }
     );
 
     this.typeSalleService.getAll().subscribe(
-      resultat =>{
-          this.typeSalles = resultat; 
-               }
+      resultat => {
+        this.typeSalles = resultat;
+      }
     );
   }
 
-  delete(id:number) {
+  delete(id: number) {
+    this.typeSalle = new TypeSalleDto();
+
+    this.typeSalleService.getOne(id).subscribe(
+      res => {
+        this.typeSalle = res;
+        console.log(res);
+      }
+    );
+
     this.typeSalleService.delete(id).subscribe(
-      res=>{
+      res => {
         this.typeSalleService.subjectMiseAJour.next(0);
-        console.log('delete Ok ');
+        if (res) {
+          this.toastrService.success(this.typeSalle.label+' effacé.','Suppression Ok.')
+        } else {
+          this.toastrService.error('Le type de salle '+ this.typeSalle.label+' est associé à une salle','Suppression impossible')
+        }
       }
     )
-  }
-  
-  redirectToUpdate(id:number){
-    this.router.navigateByUrl('/typesalle-update/'+id)
-  }
-   
 
-  redirectToShow(id:number) {
-    this.router.navigateByUrl('/typesalle-show/'+id)
+  }
+
+  redirectToUpdate(id: number) {
+    this.router.navigateByUrl('/typesalle-update/' + id)
+  }
+
+
+  redirectToShow(id: number) {
+    this.router.navigateByUrl('/typesalle-show/' + id)
   }
 }

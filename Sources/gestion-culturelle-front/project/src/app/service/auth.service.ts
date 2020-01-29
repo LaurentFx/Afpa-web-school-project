@@ -7,6 +7,7 @@ import { User } from '../model/user';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { RoleDto } from '../model/roleDto';
 import { ToastrService } from 'ngx-toastr';
+import { PanierService } from './panier.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,9 @@ export class AuthService {
   currentUser: User;
   subjectMiseAJour: Subject<number>;
 
-  constructor(private router: Router, private http: HttpClient,private toastrService: ToastrService) {
+  constructor(private router: Router, private http: HttpClient,
+    private toastrService: ToastrService, private panierService : PanierService,
+    private authService: AuthService) {
     this.url = 'http://localhost:8080/public/login';
     this.subjectConnexion = new Subject<number>();
   }
@@ -49,7 +52,7 @@ export class AuthService {
         localStorage.setItem('current_user', JSON.stringify(currentUser));
 
         this.subjectConnexion.next(1);
-        this.toastrService.success('Bienvenue '+currentUser.nom);
+        this.toastrService.success('Bienvenue '+currentUser.nom,'Connexion Ok');
         observer.next(true);
       },
         err => {
@@ -63,10 +66,11 @@ export class AuthService {
   }
 
   logout() {
+  //  this.panierService.deleteCommandes(this.currentUser.panier.id);
     localStorage.removeItem('isConnected');
     localStorage.removeItem('access_token');
     localStorage.removeItem('current_user');
-    this.toastrService.info('Deconnexion');
+    this.toastrService.info('A bientôt', 'Deconnexion');
     this.subjectConnexion.next(0);
     this.router.navigateByUrl('/public/login');
   }

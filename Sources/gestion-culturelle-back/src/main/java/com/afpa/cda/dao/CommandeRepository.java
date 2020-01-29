@@ -14,9 +14,12 @@ public interface CommandeRepository  extends CrudRepository<Commande, Integer> {
 
 	List <Commande> findAll();
 	
-	@Modifying
-	@Query(nativeQuery = true, value = "delete from t_panier_list_commandes where panier=:id")
-	public void clearListCommandes(int id);
+//	@Query("SELECT FROM t_commande c WHERE c.panier = :id")
+//	List<Commande> FindByPanier (int id);
+	
+//	@Modifying
+//	@Query(nativeQuery = true, value = "delete from t__commande where panier=:id")
+//	public void clearListCommandes(int id);
 }
 
 

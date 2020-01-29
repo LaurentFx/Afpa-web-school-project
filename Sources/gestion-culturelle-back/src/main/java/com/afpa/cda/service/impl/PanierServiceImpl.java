@@ -143,50 +143,56 @@ public class PanierServiceImpl implements IPanierService {
 
 	@Override
 	public void deletePanier(int id) {
-		//	List<Commande> listCommandes = this.commandeRepository.findAll();
-
 		Optional<Panier> panierOp = this.panierRepository.findById(id);
 
 		if (panierOp.isPresent()) {
-			System.out.println("test deletePanier panier 1");
+			List<Commande> listCommandes = this.commandeRepository.findAll();
+			List<Commande> listCommandesByPanier = new ArrayList<Commande>();
+			for (Commande commande : listCommandes) {
+				if (commande.getPanier().getId()==id) {
+					listCommandesByPanier.add(commande);
+				}
+			}
 
-			for (Commande c : panierOp.get().getListCommandes()) {
-				System.out.println("test deletePanier panier 2");
-				this.commandeRepository.clearListCommandes(id);
-				//this.commandeRepository.deleteById(c.getId());
-				this.commandeRepository.deleteAll();
-
+			for (Commande commande : listCommandesByPanier) {
+				this.commandeRepository.deleteById(commande.getId());
 			}
 
 			PanierDto panierDto = modelMapper.map(panierOp.get(),PanierDto.class);
-			System.out.println("test deletePanier panier 3");
 			panierDto.getListCommandes().clear();
 			panierDto.setTotal(0);
 			panierRepository.save(this.modelMapper.map(panierDto,Panier.class));			
 		}
 	}
 
-
-
 	@Override
 	public void deleteCommandes(int id) {
 		Optional<Panier> panierOp =	this.panierRepository.findById(id);
-		Panier panier = panierOp.get();
-		PanierDto panierDto = modelMapper.map(panier,PanierDto.class);
-		System.out.println("test deleteCommandes panier 1");
-		for (CommandeDto commandeDto : panierDto.getListCommandes()) {
-			ManifestationDto manifestationDto = commandeDto.getManifestation();
-			manifestationDto.setReservations(manifestationDto.getReservations()+commandeDto.getQuantite());
-			panierDto.setTotal(panierDto.getTotal()-(manifestationDto.getPrixBillet()*commandeDto.getQuantite()));
-			System.out.println("test deleteCommandes panier 1");
-			this.manifestationRepository.save(this.modelMapper.map(manifestationDto,Manifestation.class));
-			this.panierRepository.save(this.modelMapper.map(panierDto,Panier.class));
+		if (panierOp.isPresent()) {
+			List<Commande> listCommandes = this.commandeRepository.findAll();
+			List<Commande> listCommandesByPanier = new ArrayList<Commande>();
+			for (Commande commande : listCommandes) {
+				if (commande.getPanier().getId()==id) {
+					listCommandesByPanier.add(commande);
+				}
+			}
 
-			this.commandeRepository.deleteById(id);
+			PanierDto panierDto = modelMapper.map(panierOp.get(),PanierDto.class);
+			CommandeDto commandeDto = new CommandeDto();
+			ManifestationDto manifestationDto = new ManifestationDto ();
+
+			for (Commande commande : listCommandesByPanier) {
+				commandeDto= modelMapper.map(commande,CommandeDto.class);
+				manifestationDto = commandeDto.getManifestation();
+				manifestationDto.setReservations(manifestationDto.getReservations()+commandeDto.getQuantite());
+				panierDto.setTotal(panierDto.getTotal()-(manifestationDto.getPrixBillet()*commandeDto.getQuantite()));
+				this.manifestationRepository.save(this.modelMapper.map(manifestationDto,Manifestation.class));
+				this.panierRepository.save(this.modelMapper.map(panierDto,Panier.class));
+			}
+			this.commandeRepository.deleteAll();
 		}
 
 	}
-
 
 
 	@Override

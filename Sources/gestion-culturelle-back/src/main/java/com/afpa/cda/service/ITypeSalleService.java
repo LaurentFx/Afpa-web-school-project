@@ -8,7 +8,7 @@ public interface ITypeSalleService {
 
 	List<TypeSalleDto> findAll();
 
-	TypeSalleDto add(TypeSalleDto typ);
+	boolean add(TypeSalleDto typ);
 
 	boolean updateTypeSalle(TypeSalleDto typ, int id);
 
