@@ -1,12 +1,15 @@
-<h2>Ajouter une manifestation</h2>
-<br>
+<div class="row justify-content-center align-items-center">
+
 
 <div [hidden]="submitted" style="width: 400px;">
     <form>
+        <br>
+        <h2>Ajouter une manifestation</h2>
+        <br>
 
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-6">
+                <div class="col-12">
                     <div class="form-group">
 
                         <label for="label">Nouveau label :</label>
@@ -50,26 +53,28 @@
                         <option *ngFor="let salle of salles" [value]="salle.id">{{salle.label}}</option>
                     </select>
             
-                    <label for="salle">Nom de l'annulateur :</label>
+                    <!-- <label for="salle">Nom de l'annulateur :</label>
                     <select name="annulateur" id="annulateur" [(ngModel)]="manifestation.annulateur.id"
                         class="form-control">
                         <option *ngFor="let annulateur of admins" [value]="annulateur.id">{{annulateur.nom}}</option>
-                    </select>
+                    </select> -->
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="dateAnnulation">Date d'annulation :</label>
                         <input type="date" name="dateAnnulation" class="form-control" id="dateAnnulation"
                             placeholder="Entrer la date d'annulation " [(ngModel)]="manifestation.dateAnnulation">
-                    </div>
+                    </div> -->
                  
                 </div>
             </div>
         </div>
     <br>
-        <a name="" id="" class="btn btn-secondary" href="#" role="button"
-            [routerLink]="['/public/manifestation-list']">Annuler</a>
-
+    &nbsp;
+    &nbsp;
+        <a name="" id="" class="btn btn-secondary" href="#" role="button"[routerLink]="['/public/manifestation-list']">Annuler</a>
+        &nbsp;
         <button (click)="add()" class="btn btn-secondary" [disabled]="manifestation.length==0">Ajouter</button>
 
     </form>
+</div>
 </div>

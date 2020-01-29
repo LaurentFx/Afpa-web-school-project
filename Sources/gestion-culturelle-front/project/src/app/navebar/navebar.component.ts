@@ -84,7 +84,7 @@ export class NavebarComponent implements OnInit {
       res => {
         this.userDto = res;
         this.panierDto = res.panier;
-        this.idPanier = res.panier.id;
+        // this.idPanier = res.panier.id;
       }
     );
   }

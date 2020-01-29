@@ -70,11 +70,11 @@ public class Manifestation {
 //	inverseJoinColumns = { @JoinColumn(name = "id_panier") })
 //	private List<Panier> paniers;
 
-	@OneToOne
-	private User annulateur;
+//	@OneToOne
+//	private User annulateur;
 	
-	@Temporal(TemporalType.DATE)
-	private Date dateAnnulation;
+//	@Temporal(TemporalType.DATE)
+//	private Date dateAnnulation;
 	
 	@OneToMany (mappedBy = "manifestation")
 	List<Commande> listCommandes;

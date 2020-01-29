@@ -6,6 +6,7 @@ import { UserAuth } from '../model/user-auth';
 import { User } from '../model/user';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { RoleDto } from '../model/roleDto';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class AuthService {
   currentUser: User;
   subjectMiseAJour: Subject<number>;
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(private router: Router, private http: HttpClient,private toastrService: ToastrService) {
     this.url = 'http://localhost:8080/public/login';
     this.subjectConnexion = new Subject<number>();
   }
@@ -48,7 +49,7 @@ export class AuthService {
         localStorage.setItem('current_user', JSON.stringify(currentUser));
 
         this.subjectConnexion.next(1);
-
+        this.toastrService.success('Bienvenu '+currentUser.nom);
         observer.next(true);
       },
         err => {
@@ -65,6 +66,7 @@ export class AuthService {
     localStorage.removeItem('isConnected');
     localStorage.removeItem('access_token');
     localStorage.removeItem('current_user');
+    // this.toastrService.success('Vous êtes déconnecté');
     this.subjectConnexion.next(0);
     this.router.navigateByUrl('/public/login');
   }

@@ -27,6 +27,8 @@ import { ProfilModule } from './modules/profil/profil.module';
 import { InscriptionModule } from './modules/inscription/inscription.module';
 import { CommandeModule } from './modules/commande/commande.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -55,6 +57,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     UserModule,
     ProfilModule,
     FontAwesomeModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     JwtModule.forRoot({
       config: {
         // pour injecter le token dans toutes les requetes
