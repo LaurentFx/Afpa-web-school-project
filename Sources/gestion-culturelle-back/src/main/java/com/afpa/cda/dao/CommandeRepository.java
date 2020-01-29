@@ -2,6 +2,7 @@ package com.afpa.cda.dao;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -13,7 +14,8 @@ public interface CommandeRepository  extends CrudRepository<Commande, Integer> {
 
 	List <Commande> findAll();
 	
-	@Query(nativeQuery = true, value = "delete from t_commande where panier=:id")
+	@Modifying
+	@Query(nativeQuery = true, value = "delete from t_panier_list_commandes where panier=:id")
 	public void clearListCommandes(int id);
 }
 

@@ -16,12 +16,13 @@ public interface ICommandeService {
 
 	CommandeDto findOne(Integer commandeId);
 
-	void delete(int id);
 
 	boolean update(CommandeDto commande, int id);
 
 	PanierDto findByUser(int id);
 
 	List<CommandeDto> findByPanierId(int id);
+
+	void delete(int id);
 
 }

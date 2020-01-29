@@ -32,7 +32,7 @@
                 <td>
                     <button (click)="redirectToShow(panier.id)" class="btn btn-sm btn-success"><fa-icon class="icon p-0" [icon]="faInfoCircle">Show</fa-icon></button>
                     <button *ngIf="isClient" (click)="redirectToUpdate(panier.id)" class="btn btn-sm btn-warning"><fa-icon [icon]="faEdit">Update</fa-icon></button>
-                    <button *ngIf="isClient" (click)="delete(panier.id)" class="btn btn-sm btn-danger"><fa-icon [icon]="faTrashAlt">Delete</fa-icon></button>
+                 <button *ngIf="isClient" (click)="delete(panier.id)" class="btn btn-sm btn-danger"><fa-icon [icon]="faTrashAlt">Delete</fa-icon></button> 
                 </td>
 
             </tr>

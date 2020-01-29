@@ -7,6 +7,7 @@ import { ManifestationService } from '../../../service/manifestation.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { RoleDto } from 'src/app/model/roleDto';
 import { faInfoCircle, faEdit, faTrashAlt, faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { CommandeService } from 'src/app/service/commande.service';
 
 
 @Component({
@@ -29,7 +30,7 @@ export class PanierListComponent implements OnInit {
   user : String;
   role : RoleDto;
   
-  constructor(private panierService: PanierService,
+  constructor(private panierService: PanierService, private commandeService : CommandeService,
      private manifestationService : ManifestationService,  private authService: AuthService
       ,private router: Router) { }
 
@@ -77,14 +78,14 @@ this.role = this.authService.getCurrentUser().role;
 
   
 
-  delete(id:number) {
-    this.panierService.delete(id).subscribe(
+  /* delete(id:number) {
+    this.panierService.deleteCommande(id).subscribe(
       res=>{
-        this.panierService.subjectMiseAJour.next(0);
+        this.commandeService.subjectMiseAJour.next(0);
         console.log('delete Ok ');
       }
     )
-  }
+  }  */
   
   redirectToUpdate(id:number){
     this.router.navigateByUrl('/panier-update/'+id)

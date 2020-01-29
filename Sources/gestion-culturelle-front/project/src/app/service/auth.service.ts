@@ -49,7 +49,7 @@ export class AuthService {
         localStorage.setItem('current_user', JSON.stringify(currentUser));
 
         this.subjectConnexion.next(1);
-        this.toastrService.success('Bienvenu '+currentUser.nom);
+        this.toastrService.success('Bienvenue '+currentUser.nom);
         observer.next(true);
       },
         err => {
@@ -66,7 +66,7 @@ export class AuthService {
     localStorage.removeItem('isConnected');
     localStorage.removeItem('access_token');
     localStorage.removeItem('current_user');
-    // this.toastrService.success('Vous êtes déconnecté');
+    this.toastrService.info('Deconnexion');
     this.subjectConnexion.next(0);
     this.router.navigateByUrl('/public/login');
   }

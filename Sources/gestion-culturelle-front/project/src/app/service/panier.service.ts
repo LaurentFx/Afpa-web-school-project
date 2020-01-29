@@ -36,7 +36,7 @@ export class PanierService {
   update(id: number, panier: Object): Observable<Object> {
     return this.http.put(`${this.monUrl}/${id}`, panier);
   }
-
+ 
  deleteCommandes(id: number): Observable<any> {
    console.log('Url deleteCommandes')
     return this.http.delete(`${this.monUrl}/commandes/${id}`);

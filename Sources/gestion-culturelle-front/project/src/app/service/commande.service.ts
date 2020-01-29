@@ -42,11 +42,11 @@ export class CommandeService {
     return this.http.put(`${this.monUrl}/${id}`, commande);
   }
 
-  deleteCommandes(id: number): Observable<any> {
+  delete(id: number): Observable<any> {
     return this.http.delete(`${this.monUrl}/${id}`);
   }
 
- 
 
+ 
 }
 

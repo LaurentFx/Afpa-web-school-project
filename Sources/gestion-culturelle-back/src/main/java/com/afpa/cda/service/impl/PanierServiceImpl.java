@@ -143,21 +143,21 @@ public class PanierServiceImpl implements IPanierService {
 
 	@Override
 	public void deletePanier(int id) {
-	//	List<Commande> listCommandes = this.commandeRepository.findAll();
+		//	List<Commande> listCommandes = this.commandeRepository.findAll();
 
 		Optional<Panier> panierOp = this.panierRepository.findById(id);
 
 		if (panierOp.isPresent()) {
 			System.out.println("test deletePanier panier 1");
-			
+
 			for (Commande c : panierOp.get().getListCommandes()) {
 				System.out.println("test deletePanier panier 2");
-		//		this.commandeRepository.clearListCommandes(id);
-				this.commandeRepository.deleteById(c.getId());
-				//this.commandeRepository.deleteAll();
-				
+				this.commandeRepository.clearListCommandes(id);
+				//this.commandeRepository.deleteById(c.getId());
+				this.commandeRepository.deleteAll();
+
 			}
-			
+
 			PanierDto panierDto = modelMapper.map(panierOp.get(),PanierDto.class);
 			System.out.println("test deletePanier panier 3");
 			panierDto.getListCommandes().clear();
@@ -166,8 +166,8 @@ public class PanierServiceImpl implements IPanierService {
 		}
 	}
 
-	
-	
+
+
 	@Override
 	public void deleteCommandes(int id) {
 		Optional<Panier> panierOp =	this.panierRepository.findById(id);
@@ -181,14 +181,14 @@ public class PanierServiceImpl implements IPanierService {
 			System.out.println("test deleteCommandes panier 1");
 			this.manifestationRepository.save(this.modelMapper.map(manifestationDto,Manifestation.class));
 			this.panierRepository.save(this.modelMapper.map(panierDto,Panier.class));
-			
+
 			this.commandeRepository.deleteById(id);
 		}
-		
+
 	}
 
-	
-	
+
+
 	@Override
 	public PanierDto findById(int id) {
 		Optional<Panier> panE = this.panierRepository.findById(id);

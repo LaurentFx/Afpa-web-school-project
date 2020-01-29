@@ -22,7 +22,7 @@ export class AuthInterceptor implements HttpInterceptor {
             if(err instanceof HttpErrorResponse
               && (err.status == 403 ||  err.status == 401 ) ) {
                 if (err.status == 401) {
-                  this.toastrService.error('mauvais username/password')
+                  this.toastrService.error('Connexion refusée : Mauvais username/password')
                 }
               this.authService.logout();      
             }

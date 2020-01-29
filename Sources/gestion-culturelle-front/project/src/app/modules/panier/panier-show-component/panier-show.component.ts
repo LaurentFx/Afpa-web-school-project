@@ -86,10 +86,10 @@ export class PanierShowComponent implements OnInit {
     )
   }
 
-  deleteCommandes(id: number) {
+  delete(id: number) {
     this.id = this.route.snapshot.params['id'];
     console.log('id ' + id)
-    this.commandeService.deleteCommandes(id).subscribe(
+    this.commandeService.delete(id).subscribe(
       res => {
         this.commandeService.subjectMiseAJour.next(0);
         this.reload()
