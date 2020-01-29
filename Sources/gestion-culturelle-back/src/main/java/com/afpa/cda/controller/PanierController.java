@@ -47,10 +47,17 @@ public class PanierController {
 	}
 
 	@DeleteMapping(path = "/panier/{id}")
-	public void delete(@PathVariable int id) {
-		this.panierService.delete(id);
+	public void deletePanier(@PathVariable int id) {
+		this.panierService.deletePanier(id);
 	}
 
+	@DeleteMapping(path = "/panier/commandes/{id}")
+	public void deleteCommandes(@PathVariable int id) {
+		System.out.println("test deleteCommandes controller 1");
+		this.panierService.deleteCommandes(id);
+	}
+	
+	
 }
 
 

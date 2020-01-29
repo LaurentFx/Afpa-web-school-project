@@ -21,7 +21,10 @@ public interface IPanierService {
 
 	void addCommandePanier(CommandeDto commandeDto);
 
-	void delete(int id);
+
+	void deletePanier(int id);
+
+	void deleteCommandes(int id);
 
 
 }

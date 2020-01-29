@@ -33,11 +33,16 @@ export class PanierService {
     return this.http.get(`${this.monUrl}/user/${id}`);
   } 
   
-  update(id: number, commande: Object): Observable<Object> {
-    return this.http.put(`${this.monUrl}/${id}`, commande);
+  update(id: number, panier: Object): Observable<Object> {
+    return this.http.put(`${this.monUrl}/${id}`, panier);
   }
 
- delete(id: number): Observable<any> {
+ deleteCommandes(id: number): Observable<any> {
+   console.log('Url deleteCommandes')
+    return this.http.delete(`${this.monUrl}/commandes/${id}`);
+  }
+
+  deletePanier(id: number): Observable<any> {
     return this.http.delete(`${this.monUrl}/${id}`);
   }
 

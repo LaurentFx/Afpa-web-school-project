@@ -67,8 +67,7 @@ export class PanierShowComponent implements OnInit {
 
   valid(id: number) {
     this.id = this.route.snapshot.params['id'];
-    console.log('id ' + id)
-    this.panierService.delete(id).subscribe(
+    this.panierService.deletePanier(id).subscribe(
       res => {
         this.commandeService.subjectMiseAJour.next(0);
         this.goHome()
@@ -78,13 +77,19 @@ export class PanierShowComponent implements OnInit {
   }
 
   cancel(id: number) {
-    this.goHome()
+    this.id = this.route.snapshot.params['id'];
+    this.panierService.deleteCommandes(id).subscribe(
+      res => {
+        this.commandeService.subjectMiseAJour.next(0);
+        this.goHome()
+      }
+    )
   }
 
-  delete(id: number) {
+  deleteCommandes(id: number) {
     this.id = this.route.snapshot.params['id'];
     console.log('id ' + id)
-    this.commandeService.delete(id).subscribe(
+    this.commandeService.deleteCommandes(id).subscribe(
       res => {
         this.commandeService.subjectMiseAJour.next(0);
         this.reload()
