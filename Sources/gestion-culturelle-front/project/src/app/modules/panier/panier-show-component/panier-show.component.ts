@@ -87,7 +87,7 @@ export class PanierShowComponent implements OnInit {
     this.commandeService.delete(id).subscribe(
       res => {
         this.commandeService.subjectMiseAJour.next(0);
-        this.goHome()
+        this.reload()
       }
     )
   }

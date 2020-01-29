@@ -122,7 +122,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			anim1.setInactif(false);
 			anim1.setEntreprise(entreprise);
 			anim1.setRole(anim);
-			
+
 			User vip1 = new User ();
 			vip1.setId(3);
 			vip1.setNom("vip1");
@@ -133,32 +133,32 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			vip1.setInactif(false);
 			vip1.setEntreprise(entreprise);
 			vip1.setRole(vip);
-			
+
 			initUser(userRepository,admin1);
 			initUser(userRepository,anim1);
 			initUser(userRepository,vip1);
-			
+
 			Animation animat1 = new Animation ();
 			animat1.setId(1);
 			animat1.setLabel("Match Lille-Paris");
 			animat1.setType("Sport");
 			animat1.setPrix(12000);
 			animat1.setNbreSpectateursPrevus(1000);
-			
+
 			Animation animat2 = new Animation ();
 			animat2.setId(2);
 			animat2.setLabel("Concert Rock");
 			animat2.setType("Musique");
 			animat2.setPrix(26000);
 			animat2.setNbreSpectateursPrevus(2000);
-			
+
 			Animation animat3 = new Animation ();
 			animat3.setId(3);
 			animat3.setLabel("L'avare Molière");
 			animat3.setType("Art");
 			animat3.setPrix(12000);
 			animat3.setNbreSpectateursPrevus(800);
-			
+
 			initAnimation(animationRepository,animat1);
 			initAnimation(animationRepository,animat2);
 			initAnimation(animationRepository,animat3);
@@ -231,7 +231,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 	}
 
 	private void initSalle(SalleRepository salleRepository, Salle salle) {
-		Optional<Salle> salleBddOpt = salleRepository.findById(salle.getId());
+		Optional<Salle> salleBddOpt = salleRepository.findByLabel(salle.getLabel());
 		if( ! salleBddOpt.isPresent() ) {
 
 			salle = salleRepository.save(
@@ -248,8 +248,9 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 	}
 
 	private void initUser(UserRepository userRepository, User user) {
-		Optional<User> userBddOpt = userRepository.findById(user.getId());
-		if( ! userBddOpt.isPresent() ) {
+		Optional<User> userNomBddOpt = userRepository.findByNom(user.getNom());
+		Optional<User> userPrenomBddOpt = userRepository.findByPrenom(user.getPrenom());
+		if( ! userNomBddOpt.isPresent() &&  ! userPrenomBddOpt.isPresent()) {
 
 			user = userRepository.save(
 					User.builder()
@@ -268,7 +269,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 	}
 
 	private void initAnimation (AnimationRepository animationRepository, Animation animation) {
-		Optional<Animation> animationBddOpt = animationRepository.findById(animation.getId());
+		Optional<Animation> animationBddOpt = animationRepository.findByLabel(animation.getLabel());
 		if( ! animationBddOpt.isPresent() ) {
 
 			animation = animationRepository.save(
@@ -281,7 +282,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 					.build());
 		}
 	}
-	
+
 }
 
 

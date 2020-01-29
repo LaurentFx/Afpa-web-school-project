@@ -14,7 +14,7 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./navebar.component.css']
 })
 export class NavebarComponent implements OnInit {
-  faInfoCircle =faInfoCircle;
+  faInfoCircle = faInfoCircle;
   isConnected: boolean;
   isResp: boolean;
   isClient: boolean;
@@ -24,30 +24,13 @@ export class NavebarComponent implements OnInit {
   user: String;
   userDto: User;
   role: RoleDto;
-  panier : PanierDto;
   panierDto: PanierDto;
-  id:number;
-  idPanier:number;
 
-  constructor(private router: Router, private userService: UserService, private authService: AuthService  ) 
-  {  this.panierDto = new PanierDto()}
+  constructor(private router: Router, private userService: UserService, private authService: AuthService) { this.panierDto = new PanierDto() }
 
   ngOnInit() {
     this.reload();
-    this.isConnected = this.authService.isConnected();
-    if (this.authService.getCurrentUser()) {
-      this.isResp = this.authService.getCurrentUser().role.label === 'RESP';
-      this.isClient = this.authService.getCurrentUser().role.label === 'CLIENT';
-      this.isAnim = this.authService.getCurrentUser().role.label === 'ANIM';
-      this.isAdmin = this.authService.getCurrentUser().role.label === 'ADMIN';
-      this.isRespAdmin = (this.authService.getCurrentUser().role.label === 'RESP') || (this.authService.getCurrentUser().role.label === 'ADMIN');
-
-      this.user = this.authService.getCurrentUser().nom;
-      this.userDto = this.authService.getCurrentUser();
-      this.role = this.authService.getCurrentUser().role;
-      this.panierDto = this.authService.getCurrentUser().panier;
-    }
-
+   
     this.authService.subjectConnexion.subscribe(
       res => {
         this.isConnected = this.authService.isConnected();
@@ -61,32 +44,36 @@ export class NavebarComponent implements OnInit {
           this.user = '';
           this.role = null;
         } else {
-          const userCourant = this.authService.getCurrentUser();
-          this.isResp = userCourant.role.label === 'RESP';
-          this.isClient = userCourant.role.label === 'CLIENT';
-          this.isAnim = userCourant.role.label === 'ANIM';
-          this.isAdmin = userCourant.role.label === 'ADMIN';
-          this.isRespAdmin = (userCourant.role.label === 'RESP') || (userCourant.role.label === 'ADMIN');
-          this.userDto = userCourant;
-          this.user = userCourant.nom;
-          this.role = userCourant.role;
-          this.panierDto = userCourant.panier
+          this.reload();
+
         }
       }
     );
   }
 
-
   reload() {
-    let idUser = this.authService.getCurrentUser().id;
+    this.isConnected = this.authService.isConnected();
 
-    this.userService.getOne(idUser).subscribe(
-      res => {
-        this.userDto = res;
-        this.panierDto = res.panier;
-        this.idPanier = res.panier.id;
+    if (this.authService.getCurrentUser()) {
+      const userCourant = this.authService.getCurrentUser();
+      this.isResp = userCourant.role.label === 'RESP';
+      this.isClient = userCourant.role.label === 'CLIENT';
+      this.isAnim = userCourant.role.label === 'ANIM';
+      this.isAdmin = userCourant.role.label === 'ADMIN';
+      this.isRespAdmin = (userCourant.role.label === 'RESP') || (userCourant.role.label === 'ADMIN');
+      this.userDto = userCourant;
+      this.user = userCourant.nom;
+      this.role = userCourant.role;
+
+      if (this.userDto.role.label === 'CLIENT') {
+        this.userService.getOne(this.userDto.id).subscribe(
+          res => {
+            this.panierDto = res.panier;
+          }
+
+        );
       }
-    );
+    }
   }
 
   logout(): void {
@@ -96,15 +83,12 @@ export class NavebarComponent implements OnInit {
   }
 
   redirectToShowPanier(id: number) {
-    console.log('panier navebar' + this.panierDto.id);
-    this.router.navigateByUrl('/panier-show/'+ id)
-
+    /* console.log('panier navebar ' + this.panierDto.id); */
+    this.router.navigateByUrl('/panier-show/' + id)
   }
-
 
   redirectToProfil(): void {
     this.router.navigateByUrl('/public/profil')
-
   }
 
 }
