@@ -23,15 +23,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	private UserRepository userRepository;
 	
 	@Override
-	public UserSecDto loadUserByUsername(String username) {
+	public UserSecDto loadUserByUsername(String username){
 
 		Objects.requireNonNull(username);
 		User userE = userRepository.findByNom(username)
-				.orElseThrow(() -> new UsernameNotFoundException("User not found"));
+				.orElseThrow(()-> new UsernameNotFoundException("User not found"));
 		
         Collection<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(userE.getRole().getLabel()));
-
+        
 		return new UserSecDto(
 				userE.getId(), 
 				userE.getNom(), 
