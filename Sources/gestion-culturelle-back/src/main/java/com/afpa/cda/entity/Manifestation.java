@@ -51,13 +51,14 @@ public class Manifestation {
 	@Temporal(TemporalType.DATE)
 	private Date dateFin;
 	
+	@Column(precision=6,scale=2)
 	private double cout;
 
 	@ManyToOne
 	@JoinColumn(name = "salle", nullable = false)
 	private Salle salle;
 
-	@Column(precision=6,scale=2,columnDefinition="NUMBER(6,2)")
+	@Column(precision=6,scale=2)
 	private double prixBillet;	
 	private int reservations;
 	private int reservationsVip;
