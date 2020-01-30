@@ -53,7 +53,6 @@ public class ClientServiceImpl implements IClientService {
 				
 		perE.setRole(client);
 		
-//		User perE = this.clientRepository.save(this.modelMapper.map(clientDto, User.class));
 		this.clientRepository.save(perE);
 		
 		clientDto.setId(perE.getId());
@@ -103,27 +102,6 @@ public class ClientServiceImpl implements IClientService {
 		return false;
 	}
 	
-	/*@Override
-	public boolean deleteClient(int id) {
-		if (this.clientRepository.existsById(id)) {
-			this.clientRepository.deleteById(id);
-			System.err.println("client supprimé");
-			return true;
-		}
-		return false;
-	}*/
-	
-	/*@Override
-	public ClientDto findById(int id) {
-
-		Optional<User> perE = this.clientRepository.findById(id);
-		ClientDto clientDto = null;
-		if (perE.isPresent()) {
-			User pr = perE.get();
-			clientDto = this.modelMapper.map(pr, ClientDto.class);
-		}
-		return clientDto;
-	}*/
 }
 
 

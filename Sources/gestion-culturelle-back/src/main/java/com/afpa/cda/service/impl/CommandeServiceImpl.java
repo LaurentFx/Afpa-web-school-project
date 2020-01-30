@@ -110,27 +110,6 @@ public class CommandeServiceImpl implements ICommandeService {
 		}
 		return listByPanier;
 
-		//	Optional <Panier> panierOp = this.panierRepository.findById(id);
-		//	System.out.println("test methode");
-		//	PanierDto panierDto = new PanierDto ();
-		//	List<CommandeDto> list = new ArrayList<CommandeDto>();
-		//		if (panierOp.isPresent()) {
-		//			panierDto = modelMapper.map(panierOp.get(),PanierDto.class);
-		//			panierDto.setListCommandes(list);
-		//			
-		//			for (Commande c : panierOp.get().getListCommandes()) {
-		//				panierDto.getListCommandes()
-		//				.add(CommandeDto
-		//						.builder()
-		//						.manifestation(ManifestationDto.builder()
-		//								.id(c.getManifestation().getId())
-		//								.label(c.getManifestation().getLabel())
-		//								.build())
-		//						.build());
-		//			}
-		//		}
-		//		System.out.println(list.toString());
-		//		return list;
 	}
 
 	@Override

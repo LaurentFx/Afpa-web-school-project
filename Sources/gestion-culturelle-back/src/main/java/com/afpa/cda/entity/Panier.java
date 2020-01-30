@@ -38,12 +38,6 @@ public class Panier {
 	@Temporal(TemporalType.DATE)
 	private Date dateValidation;
 		
-//	@ManyToMany
-//	@JoinTable(name = "t_manifestation_panier",
-//	joinColumns = { @JoinColumn(name = "id_panier") },
-//	inverseJoinColumns = { @JoinColumn(name = "id_manifestation") })
-//	private List<Manifestation> manifestations;
-	
 	@OneToMany
 	List<Commande> listCommandes;
 	

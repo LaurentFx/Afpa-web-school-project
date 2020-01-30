@@ -3,11 +3,12 @@
     font-style: italic;
 }
 html{
-    background-image: url("/assets/image.jpg")no-repeat center center fixed;
+  /*   background-image: url("/assets/image.jpg")no-repeat center center fixed;
     -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
-  -o-background-size: cover;
-    
+  -o-background-size: cover; */
+    background-color:transparent;
 }
+
 

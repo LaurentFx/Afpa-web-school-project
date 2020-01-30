@@ -65,41 +65,10 @@ public class AnimateurServiceImpl implements IAnimateurService {
 					animateurDto.setRole(roleDto);
 				
 				return animateurDto;
-
 					
 				})
 
 				.collect(Collectors.toList());
-				
-				/* List<User> liste_Animateurs= this.animateurRepository.findByRole("ANIM");
-				 
-			 	
-				 for(User user: liste_Animateurs ) {			 
-					 
-					 	AnimateurDto animDto = new AnimateurDto();	
-					 	
-						animDto.setId(user.getId());
-						animDto.setNom(user.getNom());
-						animDto.setEmail(user.getEmail());			
-						animDto.setAdresse(user.getAdresse());
-
-									
-					ArrayList<AnimationDto> list_Animations = new ArrayList<AnimationDto>();
-					
-					animDto.setAnimations(new ArrayList<AnimationDto>());			
-						for (AnimationDto animation: list_Animations) {
-							         animDto.getAnimations()
-									.add(AnimationDto
-											.builder().id(animation.getId())
-											.label(animation.getLabel())								
-											.build());
-						}
-						
-						
-				 }
-				return null;
-			
-			}*/
 
 	}
 	@Override

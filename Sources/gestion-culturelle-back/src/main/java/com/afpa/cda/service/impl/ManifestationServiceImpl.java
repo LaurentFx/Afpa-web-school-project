@@ -188,8 +188,6 @@ public class ManifestationServiceImpl implements IManifestationService {
 
 		if (manifOp.isPresent()) {
 			Manifestation maniE = manifOp.get();
-			//			this.manifestationRepository.save(this.modelMapper.map(manifDto, Manifestation.class));
-			//		Manifestation maniE = this.manifestationRepository.save(this.modelMapper.map(manifDto,Manifestation.class)); 
 
 			manifDto.setId(maniE.getId());
 

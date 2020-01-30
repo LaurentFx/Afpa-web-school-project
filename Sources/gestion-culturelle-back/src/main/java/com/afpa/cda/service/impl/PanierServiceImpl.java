@@ -110,10 +110,6 @@ public class PanierServiceImpl implements IPanierService {
 	@Override
 	public PanierDto add(PanierDto panier) {
 		Panier panE = this.panierRepository.save(this.modelMapper.map(panier, Panier.class));
-		// Panier panE = this.modelMapper.map(panier,Panier.class);
-		// Manifestation manifE =
-		// this.manifestationRepository.findAll(panier.getManifestations().);
-		// Panier entityPan = this.panierRepository.save(panE);
 		panier.setId(panE.getId());
 		return panier;
 	}
@@ -133,13 +129,6 @@ public class PanierServiceImpl implements IPanierService {
 		return false;
 	}
 
-	//	public PanierDto addPanier (ManifestationDto manifestationDto) {
-	//		
-	//		PanierDto panierDto = new PanierDto();
-	//		
-	//		
-	//		return panierDto;
-	//	}
 
 	@Override
 	public void deletePanier(int id) {
