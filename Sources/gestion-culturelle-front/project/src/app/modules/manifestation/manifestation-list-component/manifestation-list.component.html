@@ -39,6 +39,8 @@
                     <button *ngIf="isRespAdmin" (click)="delete(manifestation.id)" class="btn btn-sm btn-danger"><fa-icon [icon]="faTrashAlt">Delete</fa-icon></button>
                     &nbsp;
                     <button *ngIf="isClient" (click)="redirectToAddPanier(manifestation.id)" class="btn btn-sm btn-primary">Acheter</button>
+                    &nbsp;
+                    <button *ngIf="isRespAdmin" (click)="redirectToInvit(manifestation.id)" class="btn btn-sm btn-primary">Inviter Vip</button>
                 </td>
 
             </tr>

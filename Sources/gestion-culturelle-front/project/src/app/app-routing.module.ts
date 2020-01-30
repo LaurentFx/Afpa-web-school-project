@@ -52,6 +52,7 @@ import { InscriptionComponent } from './modules/inscription/inscription/inscript
 import { UserRoleListComponent } from './modules/user/user-role-list/user-role-list.component';
 
 import { CommandeAddComponent } from './modules/commande/commande-add/commande-add.component';
+import { InvitationAddComponent } from './modules/invitation/invitation-add/invitation-add.component';
 
 
 
@@ -121,6 +122,8 @@ const routes: Routes = [
   {path: 'vip-add', component: VipAddComponent },
   {path: 'vip-show/:id', component: VipShowComponent },
   {path: 'vip-update/:id', component: VipUpdateComponent},
+
+  {path: 'invitation-ad/:id', component: InvitationAddComponent },
 
   {path: 'commande-ad/:id', component: CommandeAddComponent },
    

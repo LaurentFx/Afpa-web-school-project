@@ -29,6 +29,7 @@ import { CommandeModule } from './modules/commande/commande.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { InvitationModule } from './modules/invitation/invitation.module';
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import { ToastrModule } from 'ngx-toastr';
     }),
     InscriptionModule,
     CommandeModule,
+    InvitationModule,
    
   ],
   providers: [

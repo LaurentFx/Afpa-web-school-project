@@ -57,10 +57,10 @@ public class ManifestationServiceImpl implements IManifestationService {
 					adminDto.setNom(manif.getValidateur().getNom());
 					manifestationDto.setValidateur(adminDto);
 
-					adminDto = new AdminDto ();
-					adminDto.setId(manif.getAnnulateur().getId());
-					adminDto.setNom(manif.getAnnulateur().getNom());
-					manifestationDto.setAnnulateur(adminDto);
+//					adminDto = new AdminDto ();
+//					adminDto.setId(manif.getAnnulateur().getId());
+//					adminDto.setNom(manif.getAnnulateur().getNom());
+//					manifestationDto.setAnnulateur(adminDto);
 
 					AnimationDto animationDto = new AnimationDto();
 					animationDto.setLabel(manif.getAnimation().getLabel());
@@ -78,7 +78,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 					manifestationDto.setReservations(manif.getReservations());
 					manifestationDto.setReservationsVip(manif.getReservationsVip());
 
-					manifestationDto.setDateAnnulation(manif.getDateAnnulation());
+//					manifestationDto.setDateAnnulation(manif.getDateAnnulation());
 
 					manifestationDto.setListCommandes(new ArrayList<CommandeDto>());
 
@@ -132,10 +132,10 @@ public class ManifestationServiceImpl implements IManifestationService {
 			adminDto.setNom(manif.getValidateur().getNom());
 			manifestationDto.setValidateur(adminDto);
 
-			adminDto = new AdminDto ();
-			adminDto.setId(manif.getAnnulateur().getId());
-			adminDto.setNom(manif.getAnnulateur().getNom());
-			manifestationDto.setAnnulateur(adminDto);
+//			adminDto = new AdminDto ();
+//			adminDto.setId(manif.getAnnulateur().getId());
+//			adminDto.setNom(manif.getAnnulateur().getNom());
+//			manifestationDto.setAnnulateur(adminDto);
 
 			AnimationDto animationDto = new AnimationDto();
 			animationDto.setLabel(manif.getAnimation().getLabel());
@@ -153,7 +153,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 			manifestationDto.setReservations(manif.getReservations());
 			manifestationDto.setReservationsVip(manif.getReservationsVip());
 
-			manifestationDto.setDateAnnulation(manif.getDateAnnulation());
+//			manifestationDto.setDateAnnulation(manif.getDateAnnulation());
 
 			manifestationDto.setListCommandes(new ArrayList<CommandeDto>());
 			for (Commande m : manif.getListCommandes()) {

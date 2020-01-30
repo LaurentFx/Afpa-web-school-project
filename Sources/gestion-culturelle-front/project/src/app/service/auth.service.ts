@@ -69,7 +69,6 @@ export class AuthService {
     localStorage.removeItem('isConnected');
     localStorage.removeItem('access_token');
     localStorage.removeItem('current_user');
-    this.toastrService.info('A bientôt', 'Deconnexion');
     this.subjectConnexion.next(0);
     this.router.navigateByUrl('/public/login');
   }
