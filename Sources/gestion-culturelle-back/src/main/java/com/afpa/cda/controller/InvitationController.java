@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.afpa.cda.dto.ManifestationDto;
 import com.afpa.cda.dto.UserDto;
-import com.afpa.cda.dto.VipDto;
 import com.afpa.cda.service.IInvitationService;
 
 @RestController
@@ -31,14 +31,19 @@ public class InvitationController {
 		return this.invitationService.findByRole(id);
 	}
 	
+	@GetMapping(path="/invitation/list/{id}")
+	public List<UserDto> getListVips(@PathVariable int id) {
+		return this.invitationService.findAllVipsByManifestation(id);
+	}
+	
 	@PostMapping(path="/invitation")
 	public UserDto add(@RequestBody UserDto invitation) {
 		return this.invitationService.add(invitation);
 	}
 	
 	@PutMapping(path="/invitation/{id}")
-	public void update(@RequestBody UserDto invitation ,@PathVariable int id) {
-		this.invitationService.update(invitation, id);
+	public void update(@RequestBody ManifestationDto manifestation ,@PathVariable int id) {
+		this.invitationService.update(manifestation, id);
 	}
 	
 	@DeleteMapping(path="/invitation/{id}")

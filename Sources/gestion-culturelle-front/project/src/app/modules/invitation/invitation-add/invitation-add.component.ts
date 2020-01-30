@@ -18,6 +18,8 @@ export class InvitationAddComponent implements OnInit {
   userDto: User;
   vip: User;
   vips: User[];
+  invits: User[];
+  manifestationtmp: ManifestationDto;
 
   constructor(private manifestationService: ManifestationService,
     private route: ActivatedRoute, private router: Router,
@@ -27,6 +29,7 @@ export class InvitationAddComponent implements OnInit {
   ) {
     this.manifestationDto = new ManifestationDto();
     this.userDto = new User();
+    this.manifestationtmp = new ManifestationDto();
   }
 
   ngOnInit() {
@@ -35,14 +38,16 @@ export class InvitationAddComponent implements OnInit {
 
 
   reload() {
-
+    //let manif = this.manifestationDto.id;
     this.manifestationService.getOne(this.route.snapshot.params['id']).subscribe(
       resu => {
         this.manifestationDto = resu;
+        //manif=resu.id;
       }
     )
 
-    this.invitationService.getAll().subscribe(
+    console.log('manifestationDto id ' + this.route.snapshot.params['id']);
+    this.invitationService.getVips(this.route.snapshot.params['id']).subscribe(
       res => {
         this.vips = res;
       }
@@ -55,9 +60,28 @@ export class InvitationAddComponent implements OnInit {
     );
  */
 
-
-
+    this.invitationService.getListVips(this.route.snapshot.params['id']).subscribe(
+      res => {
+        this.invits = res;
+      }
+    );
   }
+
+  addVips(idVip: number): void {
+    this.reload();
+    this.manifestationtmp = this.manifestationDto;
+    console.log('manifestationDto ' + this.manifestationtmp);
+    this.manifestationtmp.listVips.id = idVip;
+    console.log('ListVips ' + idVip);
+
+
+    this.invitationService.update(idVip, this.manifestationtmp).subscribe(
+      res => {
+        this.invitationService.subjectMiseAJour.next(0);
+      }
+    );
+  }
+
 
 
   goHome() {
