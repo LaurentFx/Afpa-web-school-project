@@ -27,8 +27,8 @@ public class InvitationController {
 	}
 	
 	@GetMapping(path="/invitation/{id}")
-	public UserDto getOne(@PathVariable int id) {
-		return this.invitationService.findById(id);
+	public List<UserDto> getOne(@PathVariable int id) {
+		return this.invitationService.findByRole(id);
 	}
 	
 	@PostMapping(path="/invitation")

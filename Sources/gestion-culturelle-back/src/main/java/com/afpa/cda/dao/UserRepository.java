@@ -11,7 +11,7 @@ import com.afpa.cda.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
-//	List<UserDto> findAll();
+	List<User> findAll();
 
 	Optional<User> findByNom(String nom);
 

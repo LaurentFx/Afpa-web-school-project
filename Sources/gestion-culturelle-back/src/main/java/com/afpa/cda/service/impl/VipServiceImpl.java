@@ -33,7 +33,7 @@ public class VipServiceImpl implements IVipService {
 					vipDto.setEmail(v.getEmail());
 					vipDto.setPassword(v.getPassword());
 					vipDto.setAdresse(v.getAdresse());
-					vipDto.setPhoto(v.getPhoto());
+//					vipDto.setPhoto(v.getPhoto());
 					
 					RoleDto rolDto = new RoleDto();
 					rolDto.setId(v.getRole().getId());

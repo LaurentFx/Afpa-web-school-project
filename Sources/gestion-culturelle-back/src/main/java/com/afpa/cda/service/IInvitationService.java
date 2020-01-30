@@ -16,5 +16,7 @@ public interface IInvitationService {
 	boolean update(UserDto user, int id);
 
 	boolean delete(int id);
+
+	List<UserDto> findByRole(int id);
 	
 }

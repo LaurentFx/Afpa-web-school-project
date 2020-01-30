@@ -16,14 +16,14 @@ import com.afpa.cda.service.IInvitationService;
 public class InvitationServiceImpl implements IInvitationService {
 	
     @Autowired
-    private UserRepository vipRepository;
+    private UserRepository invitationService;
     
     @Autowired
     private ModelMapper modelMapper;
 
- //   @Override
+    @Override
 	public List<UserDto> findAll() {
-		return this.vipRepository.findAll()
+		return this.invitationService.findAll()
 				.stream()
 				.map(v-> { 
 					UserDto userDto = new UserDto();
@@ -42,16 +42,15 @@ public class InvitationServiceImpl implements IInvitationService {
 				})
 				.collect(Collectors.toList());
 	}
-	
+    @Override
     public List <UserDto> findByRole (int id) {
-    	this.vipRepository.findByRoleId(id);
+    	return this.invitationService.findByRoleId(id);
     	
-    	return null;
     }
     
     @Override
 	public UserDto add(UserDto userDto) {
-		User user = this.vipRepository.save
+		User user = this.invitationService.save
 				(this.modelMapper.map(userDto, User.class));
 		userDto.setId(user.getId());
 		return userDto;
@@ -60,7 +59,7 @@ public class InvitationServiceImpl implements IInvitationService {
 	
     @Override
 	public UserDto findById(int id) {
-		Optional<User> userOp = this.vipRepository.findById(id);
+		Optional<User> userOp = this.invitationService.findById(id);
 		UserDto userDto = null;
 		if (userOp.isPresent()) {
 			User user = userOp.get();
@@ -72,9 +71,9 @@ public class InvitationServiceImpl implements IInvitationService {
     
     @Override
 	public boolean update(UserDto user, int id) {
-    	Optional<User> perE = this.vipRepository.findById(id);
+    	Optional<User> perE = this.invitationService.findById(id);
     	if (perE.isPresent()) {
-			this.vipRepository.save(this.modelMapper.map(user,User.class));
+			this.invitationService.save(this.modelMapper.map(user,User.class));
 		return true;
     	}
 		return false;
@@ -83,8 +82,8 @@ public class InvitationServiceImpl implements IInvitationService {
     
     @Override
 	public boolean delete(int id) {
-		if (this.vipRepository.existsById(id)) {
-			this.vipRepository.deleteById(id);
+		if (this.invitationService.existsById(id)) {
+			this.invitationService.deleteById(id);
 			System.err.println("user supprimé");
 			return true;
 		}

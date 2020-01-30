@@ -48,7 +48,12 @@ export class InvitationAddComponent implements OnInit {
       }
     );
 
-
+    /* this.invitationService.getOne(4).subscribe(
+      res => {
+        this.vips = res;
+      }
+    );
+ */
 
 
 
