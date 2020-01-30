@@ -1,7 +1,5 @@
 package com.afpa.cda.entity;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,8 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.afpa.cda.entity.Manifestation.ManifestationBuilder;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

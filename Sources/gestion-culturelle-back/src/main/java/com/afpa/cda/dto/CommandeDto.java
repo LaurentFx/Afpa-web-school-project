@@ -1,8 +1,5 @@
 package com.afpa.cda.dto;
 
-import com.afpa.cda.entity.Manifestation;
-import com.afpa.cda.entity.Panier;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

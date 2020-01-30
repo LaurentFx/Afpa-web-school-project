@@ -66,11 +66,11 @@ public class Manifestation {
 	private int reservationsVip;
 	private int rentabilite;
 
-	@OneToOne
-	private User annulateur;
-
-	@Temporal(TemporalType.DATE)
-	private Date dateAnnulation;
+//	@OneToOne
+//	private User annulateur;
+//
+//	@Temporal(TemporalType.DATE)
+//	private Date dateAnnulation;
 
 	@OneToMany (mappedBy = "manifestation")
 	List<Commande> listCommandes;
