@@ -80,7 +80,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers(AllUrls).permitAll()
 		.antMatchers(ClientUrls).hasAnyAuthority(new String[]{"CLIENT","ADMIN","RESP"})
 		.antMatchers(AdminUrls).hasAnyAuthority(new String[]{"ADMIN","RESP"})
-		.antMatchers(VipUrls).hasAnyAuthority(new String[]{"VIP"})
+		.antMatchers(VipUrls).hasAnyAuthority(new String[]{"VIP","RESP"})
 		.antMatchers(AnimUrls).hasAnyAuthority(new String[]{"ANIM"})
 		.antMatchers(RespUrls).hasAnyAuthority(new String[]{"RESP"})
 
