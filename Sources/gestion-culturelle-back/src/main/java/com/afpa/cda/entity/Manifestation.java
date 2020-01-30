@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -30,7 +32,7 @@ import lombok.Setter;
 @Builder
 @Table(
 		name="t_manifestation"
-)
+		)
 public class Manifestation {
 
 	@Id
@@ -50,7 +52,7 @@ public class Manifestation {
 	private Date dateDebut;
 	@Temporal(TemporalType.DATE)
 	private Date dateFin;
-	
+
 	@Column(precision=6,scale=2)
 	private double cout;
 
@@ -66,11 +68,21 @@ public class Manifestation {
 
 	@OneToOne
 	private User annulateur;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Date dateAnnulation;
-	
+
 	@OneToMany (mappedBy = "manifestation")
 	List<Commande> listCommandes;
+
+	@ManyToMany
+	@JoinTable(name = "t_manifestation_vip",
+	joinColumns = { @JoinColumn(name = "id_manifestation") },
+	inverseJoinColumns = { @JoinColumn(name = "id_vip") })
+	List<User> listVips;
+
+
+
+
 
 }

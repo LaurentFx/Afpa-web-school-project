@@ -15,8 +15,8 @@ public interface IVipService {
 
 	boolean updateVip(VipDto vip, int id);
 
-	boolean deleteVop(int id);
-
 	VipDto findById(int id);
+
+	boolean deleteVip(int id);
 	
 }

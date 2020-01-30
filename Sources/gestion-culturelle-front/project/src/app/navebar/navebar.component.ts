@@ -7,6 +7,8 @@ import { UserService } from '../service/user.service';
 import { User } from '../model/user';
 
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { CompileShallowModuleMetadata } from '@angular/compiler';
+import { PanierService } from '../service/panier.service';
 
 @Component({
   selector: 'app-navebar',
@@ -25,13 +27,15 @@ export class NavebarComponent implements OnInit {
   userDto: User;
   role: RoleDto;
   panierDto: PanierDto;
+  userCourant: User;
 
   constructor(private router: Router, private userService: UserService,
-     private authService: AuthService) { this.panierDto = new PanierDto() }
+    private authService: AuthService, private panierService: PanierService
+  ) { this.panierDto = new PanierDto() }
 
   ngOnInit() {
     this.reload();
-   
+
     this.authService.subjectConnexion.subscribe(
       res => {
         this.isConnected = this.authService.isConnected();
@@ -78,6 +82,24 @@ export class NavebarComponent implements OnInit {
   }
 
   logout(): void {
+    this.userCourant = this.authService.getCurrentUser();
+    console.log('user id' + this.userCourant.id);
+
+    if (this.userCourant.role.label === 'CLIENT') {
+      console.log('user role' + this.userCourant.role.label);
+      this.panierService.getUser(this.userCourant.id).subscribe(
+        res => {
+          this.panierDto = res;
+        }
+      )
+    }
+    this.panierService.deleteCommandes(this.panierDto.id).subscribe(
+      res => {
+
+      }
+    )
+    console.log('panier id' + this.panierDto.id);
+
     this.authService.logout();
     this.router.navigateByUrl('/public/login');
     this.isConnected = false;

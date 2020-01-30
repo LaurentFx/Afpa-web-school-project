@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -50,12 +53,18 @@ public class User {
 
 	// Pour un animateur
 	@OneToMany
-	private List <Animation> animations;
+	private List <Animation> listAnimations;
 
 	// Pour un animateur et un VIP
 	private String entreprise;
 	private String photo;
 	private boolean inactif; 
+	
+	@ManyToMany
+	@JoinTable(name = "t_manifestation_vip",
+	joinColumns = { @JoinColumn(name = "id_vip") },
+	inverseJoinColumns = { @JoinColumn(name = "id_manifestation") })
+	List<Manifestation> listManifestations;
 
 
 }

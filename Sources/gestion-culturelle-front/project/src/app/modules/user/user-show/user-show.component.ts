@@ -24,7 +24,6 @@ export class UserShowComponent implements OnInit {
     this.userService.getOne(id).subscribe(
       res => {
         this.user = res;
-        console.log(res);
       }
     );
 

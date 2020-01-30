@@ -66,7 +66,6 @@ export class AuthService {
   }
 
   logout() {
-  //  this.panierService.deleteCommandes(this.currentUser.panier.id);
     localStorage.removeItem('isConnected');
     localStorage.removeItem('access_token');
     localStorage.removeItem('current_user');

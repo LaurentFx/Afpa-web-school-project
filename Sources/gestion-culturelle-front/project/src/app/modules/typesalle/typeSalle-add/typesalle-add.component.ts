@@ -21,15 +21,14 @@ export class TypeSalleAddComponent implements OnInit {
   }
 
   add(): void {
-    //this.typeSalle = new TypeSalleDto();
+    let nom = this.typeSalle.label;
     this.typeSalleService.add(this.typeSalle).subscribe(
-      
       res => {
         this.typeSalleService.subjectMiseAJour.next(0);
         if (res) {
-          this.toastrService.error(this.typeSalle.label + ' existe déjà', 'Ajout impossible')
+          this.toastrService.error('Le type de salle '+nom +' existe déjà', 'Ajout impossible')
         } else {
-          this.toastrService.success('Nouveau type de salle : ' + this.typeSalle.label, 'Ajout Ok')
+          this.toastrService.success('Nouveau type de salle : ' +nom, 'Ajout Ok')
         }
 
         this.goHome();

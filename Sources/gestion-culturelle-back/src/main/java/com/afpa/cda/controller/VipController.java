@@ -42,7 +42,7 @@ public class VipController {
 	
 	@DeleteMapping(path="/vip/{id}")
 	public void delete(@PathVariable int id) {
-		this.vipService.deleteVop(id);
+		this.vipService.deleteVip(id);
 	}
 	
 

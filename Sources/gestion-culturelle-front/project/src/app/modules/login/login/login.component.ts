@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.user).subscribe(res=>{
       if(res){
         this.router.navigateByUrl('/public'); 
-        // this.toastrService.success('connexion Ok')     
       } else {
        this.toastrService.error('Connexion refusée'),
         console.log('connexion NOk')

@@ -92,9 +92,9 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			colisee.setPlacesVip(15);
 			colisee.setTypesalle(theatre);
 
-			initSalle(salleRepository, foot);
-			initSalle(salleRepository, zenith);
-			initSalle(salleRepository, colisee);
+			initSalle(salleRepository, typeSalleRepository, foot);
+			initSalle(salleRepository, typeSalleRepository,zenith);
+			initSalle(salleRepository, typeSalleRepository,colisee);
 
 			String adresse = "Lille";
 			String mail = "cda@afpa.com";
@@ -230,7 +230,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 		}
 	}
 
-	private void initSalle(SalleRepository salleRepository, Salle salle) {
+	private void initSalle(SalleRepository salleRepository, TypeSalleRepository typeSalleRepository,Salle salle) {
 		Optional<Salle> salleBddOpt = salleRepository.findByLabel(salle.getLabel());
 		if( ! salleBddOpt.isPresent() ) {
 
@@ -241,7 +241,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 					.capacite(salle.getCapacite())
 					.fraisjournalier(salle.getFraisjournalier())
 					.placesVip(salle.getPlacesVip())
-					.typesalle(salle.getTypesalle())
+					.typesalle(typeSalleRepository.findByLabel(salle.getTypesalle().getLabel()).get())
 					.build());
 
 		}

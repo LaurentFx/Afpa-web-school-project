@@ -80,7 +80,7 @@ public class VipServiceImpl implements IVipService {
 	
     
     @Override
-	public boolean deleteVop(int id) {
+	public boolean deleteVip(int id) {
 		if (this.vipRepository.existsById(id)) {
 			this.vipRepository.deleteById(id);
 			System.err.println("vip supprimé");

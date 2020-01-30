@@ -46,7 +46,7 @@ public class AnimateurServiceImpl implements IAnimateurService {
 
 					animateurDto.setAnimations(new ArrayList<AnimationDto>());
 
-					for (Animation anim : an.getAnimations()) {	
+					for (Animation anim : an.getListAnimations()) {	
 						animateurDto.getAnimations()
 								.add(AnimationDto
 										.builder().id(anim.getId())

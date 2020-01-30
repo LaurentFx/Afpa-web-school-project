@@ -53,17 +53,17 @@
                         <option *ngFor="let salle of salles" [value]="salle.id">{{salle.label}}</option>
                     </select>
             
-                    <!-- <label for="salle">Nom de l'annulateur :</label>
+                  <label for="salle">Nom de l'annulateur :</label>
                     <select name="annulateur" id="annulateur" [(ngModel)]="manifestation.annulateur.id"
                         class="form-control">
                         <option *ngFor="let annulateur of admins" [value]="annulateur.id">{{annulateur.nom}}</option>
-                    </select> -->
+                    </select> 
 
-                    <!-- <div class="form-group">
+                    <div class="form-group">
                         <label for="dateAnnulation">Date d'annulation :</label>
                         <input type="date" name="dateAnnulation" class="form-control" id="dateAnnulation"
                             placeholder="Entrer la date d'annulation " [(ngModel)]="manifestation.dateAnnulation">
-                    </div> -->
+                    </div> 
                  
                 </div>
             </div>

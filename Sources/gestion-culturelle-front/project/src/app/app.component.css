@@ -8,7 +8,13 @@ html{
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover; */
-    background-color:transparent;
+   
+
+
+}
+body {
+  background-color:#5499c7  !important;;
+
 }
 
 

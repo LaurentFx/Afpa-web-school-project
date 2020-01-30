@@ -33,8 +33,8 @@ public class ManifestationDto {
 	private int rentabilite;
 	private AdminDto annulateur;
 	private Date dateAnnulation;
-	
-	private List <CommandeDto> ListCommandes;
-	
 
+	private List <CommandeDto> listCommandes;
+
+	private List <UserDto> listVips;
 }
