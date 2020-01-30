@@ -91,6 +91,9 @@ export class ManifestationListComponent implements OnInit {
     this.router.navigateByUrl('/panier-ad/' + id)
   }
 
+  redirectToInvit(id: number) {
+    this.router.navigateByUrl('/invitation-ad/' + id)
+  }
 
 }
 

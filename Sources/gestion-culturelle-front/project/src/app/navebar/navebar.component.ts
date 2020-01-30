@@ -5,7 +5,7 @@ import { RoleDto } from '../model/roleDto';
 import { PanierDto } from '../model/panierDto';
 import { UserService } from '../service/user.service';
 import { User } from '../model/user';
-
+import { ToastrService } from 'ngx-toastr';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { PanierService } from '../service/panier.service';
@@ -30,7 +30,8 @@ export class NavebarComponent implements OnInit {
   userCourant: User;
 
   constructor(private router: Router, private userService: UserService,
-    private authService: AuthService, private panierService: PanierService
+    private authService: AuthService, private panierService: PanierService,
+    private toastrService: ToastrService,
   ) { this.panierDto = new PanierDto() }
 
   ngOnInit() {
@@ -83,10 +84,8 @@ export class NavebarComponent implements OnInit {
 
   logout(): void {
     this.userCourant = this.authService.getCurrentUser();
-    console.log('user id' + this.userCourant.id);
 
     if (this.userCourant.role.label === 'CLIENT') {
-      console.log('user role' + this.userCourant.role.label);
       this.panierService.getUser(this.userCourant.id).subscribe(
         res => {
           this.panierDto = res;
@@ -98,15 +97,13 @@ export class NavebarComponent implements OnInit {
 
       }
     )
-    console.log('panier id' + this.panierDto.id);
-
+    this.toastrService.info('A bientôt', 'Deconnexion');
     this.authService.logout();
     this.router.navigateByUrl('/public/login');
     this.isConnected = false;
   }
 
   redirectToShowPanier(id: number) {
-    /* console.log('panier navebar ' + this.panierDto.id); */
     this.router.navigateByUrl('/panier-show/' + id)
   }
 

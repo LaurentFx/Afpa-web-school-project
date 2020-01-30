@@ -92,16 +92,6 @@ public class UserServiceImpl implements IUserService {
 			user.getPanier().setListCommandes(new ArrayList<Commande>());
 			user.setInactif(true);
 
-			//		User user = this.modelMapper.map(userDto, User.class);
-			//
-			//		Optional<Role> roleOp = roleRepository.findById(4);
-			//		if (roleOp.isPresent()) {
-			//			user.setRole(roleOp.get());
-			//		}
-			//		user.setNumClient(userDto.getNom().substring(0, 2) + "2020" + userDto.getPrenom().substring(0, 2));
-			//		user.setPanier(Panier.builder().numClient(user.getNumClient()).total(0).build());
-			//		user.getPanier().setManifestations(new ArrayList<Manifestation>());
-
 			panierRepository.save(user.getPanier());
 			user.setPanier(Panier.builder().id(user.getPanier().getId()).build());
 
@@ -145,17 +135,6 @@ public class UserServiceImpl implements IUserService {
 			return userDto;
 		}
 
-		// @Override
-		// public boolean update (UserDto user, int id) {
-		// Optional<User> userOp = this.UserRepository.findById(id);
-		// if(userOp.isPresent()) {
-		// this.UserRepository.save(this.modelMapper.map(user,User.class));
-		// System.err.println("user mis à jour");
-		// return true;
-		// }
-		//
-		// return false;
-		// }
 
 		@Override
 		public boolean update(UserDto user, int id) {
