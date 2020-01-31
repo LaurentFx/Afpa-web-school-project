@@ -3,7 +3,7 @@ import { RoleDto } from "../../../model/roleDto";
 import { Router } from "@angular/router";
 import { RoleService } from "../../../service/role.service";
 import { faInfoCircle, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-role-list',
@@ -16,7 +16,7 @@ export class RoleListComponent implements OnInit {
   faTrashAlt = faTrashAlt;
   roles: RoleDto[];
   
-  constructor(private roleService: RoleService,private router: Router) { }
+  constructor(private roleService: RoleService,private router: Router, private toastrService:ToastrService) { }
 
   ngOnInit() {
 

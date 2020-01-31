@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.afpa.cda.dao.RoleRepository;
+import com.afpa.cda.dao.UserRepository;
 import com.afpa.cda.dto.RoleDto;
 import com.afpa.cda.entity.Role;
+import com.afpa.cda.entity.User;
 import com.afpa.cda.service.IRoleService;
 
 
@@ -18,6 +20,9 @@ public class RoleServiceImpl implements IRoleService {
 
 	@Autowired
 	private RoleRepository roleRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -74,8 +79,14 @@ public class RoleServiceImpl implements IRoleService {
 
 	@Override
 	public boolean deleteRole(int id) {
-
-		if(this.roleRepository.existsById(id)) {
+		List<User> listeUser = userRepository.findAll();
+		boolean userAvecRole = false;
+		for (User user : listeUser) {
+			if (user.getRole().getId()==id) {
+				userAvecRole  = true;
+			}
+		}
+		if(this.roleRepository.existsById(id) && !userAvecRole) {
 			this.roleRepository.deleteById(id);
 			System.err.println("role supprimé");
 			return true;

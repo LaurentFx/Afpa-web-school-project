@@ -53,7 +53,6 @@ export class ManifestationDto {
         this.cout = cout;
         this.prixBillet = prixBillet;
         this.reservations = reservations;
-        this.reservationsVip = reservationsVip;
         this.rentabilte = rentabilte;
         this.salle = salle;
         this.annulateur = annulateur;
