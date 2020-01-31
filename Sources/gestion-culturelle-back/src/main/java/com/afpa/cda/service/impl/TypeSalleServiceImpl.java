@@ -39,6 +39,7 @@ public class TypeSalleServiceImpl implements ITypeSalleService {
         }
         return tps;
     }
+    
     @Override
     public boolean add(TypeSalleDto typeSalleDto) {
     	List <TypeSalle> listTypeSalles = this.typeSalleRepository.findAll();

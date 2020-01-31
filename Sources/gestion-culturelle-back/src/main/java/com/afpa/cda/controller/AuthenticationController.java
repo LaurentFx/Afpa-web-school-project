@@ -18,27 +18,30 @@ import com.afpa.cda.security.service.JwtTokenService;
 @RestController
 public class AuthenticationController {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+	@Autowired
+	private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private JwtTokenService jwtTokenService;
+	@Autowired
+	private JwtTokenService jwtTokenService;
 
-    @PostMapping(value = "/public/login", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
+	@PostMapping(value = "/public/login", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
+		try {
+			UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(authenticationRequest.username, authenticationRequest.password);
+			Authentication authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+			if(authentication != null && authentication.isAuthenticated()) {
+				JwtTokens tokens = jwtTokenService.createTokens(authentication);
+				return ResponseEntity.ok().body(tokens);
+			}
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(authenticationRequest.username, authenticationRequest.password);
-        Authentication authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(HttpStatus.UNAUTHORIZED.getReasonPhrase());
+	}
 
-        if(authentication != null && authentication.isAuthenticated()) {
-            JwtTokens tokens = jwtTokenService.createTokens(authentication);
-            return ResponseEntity.ok().body(tokens);
-        }
-
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(HttpStatus.UNAUTHORIZED.getReasonPhrase());
-    }
-
-    /*@PostMapping(value = "public/login/refresh", consumes = MediaType.APPLICATION_JSON_VALUE)
+	/*@PostMapping(value = "public/login/refresh", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> refreshToken(@RequestBody RefreshRequest refreshRequest) {
         try {
             JwtTokens tokens = jwtTokenService.refreshJwtToken(refreshRequest.refreshToken);

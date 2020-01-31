@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable, Subject } from 'rxjs';
 import { User } from '../model/user';
+import { ManifestationDto } from '../model/manifestationDto';
 
 
 @Injectable({
@@ -12,6 +13,7 @@ export class InvitationService {
   monUrl= 'http://localhost:8080/invitation'; 
 
   user: User[]; 
+  manifestation : ManifestationDto [];
   subjectMiseAJour= new Subject<number>();
 
   constructor(private http: HttpClient) { }
@@ -24,16 +26,24 @@ export class InvitationService {
     return this.http.post(this.monUrl,user);
   }
   
-  getOne(id: number): Observable<any> {
+  getVips(id: number): Observable<any> {
     return this.http.get(`${this.monUrl}/${id}`);
+  } 
+
+  getListVips(id: number): Observable<any> {
+    return this.http.get(`${this.monUrl}/list/${id}`);
   } 
 
   getUser(id: number): Observable<any> {
     return this.http.get(`${this.monUrl}/user/${id}`);
   } 
   
-  update(id: number,user: User): Observable<Object> {
-    return this.http.put(`${this.monUrl}/${id}`, user);
+  updateAdd(id: number,manifestation: ManifestationDto): Observable<Object> {
+    return this.http.put(`${this.monUrl}/add/${id}`, manifestation);
+  }
+
+  updateSub(id: number,manifestation: ManifestationDto): Observable<Object> {
+    return this.http.put(`${this.monUrl}/sub/${id}`, manifestation);
   }
 
   delete(id: number): Observable<any> {
