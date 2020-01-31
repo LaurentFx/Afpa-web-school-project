@@ -2,19 +2,7 @@
     font-weight:bold;
     font-style: italic;
 }
-html{
-  /*   background-image: url("/assets/image.jpg")no-repeat center center fixed;
-    -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover; */
-   
-
-
+.cda-contenu {
+  background-color:#728fa1;
 }
-body {
-  background-color:#5499c7  !important;;
-
-}
-
 

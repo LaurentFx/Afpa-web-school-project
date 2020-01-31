@@ -14,12 +14,14 @@ public interface IInvitationService {
 
 	UserDto findById(int id);
 
-	boolean update(ManifestationDto manifestation, int id);
-
 	boolean delete(int id);
 
 	List<UserDto> findByRole(int id);
 
 	List<UserDto> findAllVipsByManifestation(int id);
+
+	boolean updateAdd(ManifestationDto manifestationDto, int id);
+
+	boolean updateSub(ManifestationDto manifestationDto, int id);
 	
 }

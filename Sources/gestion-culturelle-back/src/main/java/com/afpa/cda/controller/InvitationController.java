@@ -41,9 +41,14 @@ public class InvitationController {
 		return this.invitationService.add(invitation);
 	}
 	
-	@PutMapping(path="/invitation/{id}")
-	public void update(@RequestBody ManifestationDto manifestation ,@PathVariable int id) {
-		this.invitationService.update(manifestation, id);
+	@PutMapping(path="/invitation/add/{id}")
+	public void updateAdd(@RequestBody ManifestationDto manifestation ,@PathVariable int id) {
+		this.invitationService.updateAdd(manifestation, id);
+	}
+	
+	@PutMapping(path="/invitation/sub/{id}")
+	public void updateSub(@RequestBody ManifestationDto manifestation ,@PathVariable int id) {
+		this.invitationService.updateSub(manifestation, id);
 	}
 	
 	@DeleteMapping(path="/invitation/{id}")

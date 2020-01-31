@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="reservationsVip">Nbre d'invitations Vips :</label>
+                        <label for="reservationsVip">Nbre de Vips à inviter :</label>
                         <input type="text" name="reservationsVip" class="form-control" id="reservationsVip"
                             [(ngModel)]="manifestationDto.reservationsVip" readonly>
                     </div>
@@ -54,7 +54,7 @@
 
                                     <td>{{vip.nom}}</td>
                                     <td>{{vip.prenom}}</td>
-                                    <td>{{vip.prenom}}</td>
+                                    <td>{{vip.entreprise}}</td>
                                     <td><button (click)="addVips(vip.id)" class="btn btn-secondary">Ajouter</button></td>
                                 </tr>
                             </tbody>
@@ -80,8 +80,8 @@
 
                                     <td>{{invit.nom}}</td>
                                     <td>{{invit.prenom}}</td>
-                                    <td>{{invit.prenom}}</td>
-                                   <td> <button (click)="subVips(vip.id)" class="btn btn-secondary">Retirer</button></td>
+                                    <td>{{invit.entreprise}}</td>
+                                   <td> <button (click)="subVips(invit.id)" class="btn btn-secondary">Retirer</button></td>
                                 </tr>
                             </tbody>
                         </table>

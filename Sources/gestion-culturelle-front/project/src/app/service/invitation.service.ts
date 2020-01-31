@@ -38,8 +38,12 @@ export class InvitationService {
     return this.http.get(`${this.monUrl}/user/${id}`);
   } 
   
-  update(id: number,manifestation: ManifestationDto): Observable<Object> {
-    return this.http.put(`${this.monUrl}/${id}`, manifestation);
+  updateAdd(id: number,manifestation: ManifestationDto): Observable<Object> {
+    return this.http.put(`${this.monUrl}/add/${id}`, manifestation);
+  }
+
+  updateSub(id: number,manifestation: ManifestationDto): Observable<Object> {
+    return this.http.put(`${this.monUrl}/sub/${id}`, manifestation);
   }
 
   delete(id: number): Observable<any> {
