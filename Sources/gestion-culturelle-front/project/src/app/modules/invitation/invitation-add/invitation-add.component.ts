@@ -27,12 +27,15 @@ export class InvitationAddComponent implements OnInit {
     private invitationService: InvitationService,
 
   ) {
-    this.manifestationDto = new ManifestationDto();
-    this.userDto = new User();
-    this.manifestationtmp = new ManifestationDto();
+    
   }
 
   ngOnInit() {
+    this.manifestationDto = new ManifestationDto();
+    this.userDto = new User();
+    this.manifestationtmp = new ManifestationDto();
+    this.manifestationDto.listVips = new User ();
+
     this.reload();
   }
 
@@ -58,12 +61,12 @@ export class InvitationAddComponent implements OnInit {
   }
 
   addVips(idVip: number): void {
-    this.manifestationtmp = this.manifestationDto;
-    console.log('manifestationDto id 2 ' + this.manifestationtmp.id);
-    this.manifestationtmp.listVips.id = idVip;
+   /*  this.manifestationtmp = this.manifestationDto; */
+    console.log('manifestationDto id 2 ' + this.manifestationDto.id);
+    this.manifestationDto.listVips.id = idVip;
     console.log('ListVips id ' + idVip);
 
-    this.invitationService.updateAdd(idVip, this.manifestationtmp).subscribe(
+    this.invitationService.updateAdd(idVip, this.manifestationDto).subscribe(
       res => {
         this.invitationService.subjectMiseAJour.next(0);
       }

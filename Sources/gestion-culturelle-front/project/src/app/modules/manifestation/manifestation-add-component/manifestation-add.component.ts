@@ -20,21 +20,26 @@ export class ManifestationAddComponent implements OnInit {
   salles: SalleDto[];
   animations: AnimationDto[];
   admins: AdminDto[];
+  salle: SalleDto;
   
-  constructor(private adminService: AdminService, private salleService: SalleService, private animationService: AnimationService, private manifestationService: ManifestationService, private router: Router) { }
+  constructor(private adminService: AdminService, private salleService: SalleService,
+     private animationService: AnimationService, private manifestationService: ManifestationService,
+      private router: Router)
+   { }
 
   ngOnInit() {
     this.manifestation = new ManifestationDto();
-
+ this.salle = new SalleDto ();
     this.salles = [];
     this.animations = [];
     this.admins = [];
-   
-    
     this.manifestation.salle = new SalleDto();
     this.manifestation.animation = new AnimationDto();
     this.manifestation.validateur = new AdminDto();
     this.manifestation.annulateur = new AdminDto();
+    
+    
+  
 
     this.animationService.subjectMiseAJour.subscribe(
       res => {
@@ -87,8 +92,10 @@ export class ManifestationAddComponent implements OnInit {
   }
   
   add(): void {
+    console.log('salle 1 '+this.manifestation.salle.label);
     this.manifestationService.add(this.manifestation).subscribe(
       res => {
+        console.log('salle 2 '+this.manifestation.salle.label);
         this.manifestationService.subjectMiseAJour.next(0);
         console.log("Ajout Ok ");
         this.goHome();

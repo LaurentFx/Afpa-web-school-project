@@ -1,10 +1,11 @@
 
 package com.afpa.cda.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
-
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.afpa.cda.dao.AnimationRepository;
 import com.afpa.cda.dao.ManifestationRepository;
 import com.afpa.cda.dao.SalleRepository;
+import com.afpa.cda.dao.TypeSalleRepository;
 import com.afpa.cda.dto.AnimationDto;
 import com.afpa.cda.dto.ManifestationDto;
 import com.afpa.cda.dto.SalleDto;
@@ -27,6 +29,9 @@ public class SalleServiceImpl implements ISalleService {
 
 	@Autowired
 	private SalleRepository salleRepository;
+	
+	@Autowired
+	private TypeSalleRepository 	typeSalleRepository;
 	
 	@Autowired
 	private AnimationRepository animationRepository;
@@ -58,15 +63,41 @@ public class SalleServiceImpl implements ISalleService {
 
 
 	@Override
-	public SalleDto add(SalleDto sal) {
-		try {
-		Salle salle = this.salleRepository.save(this.modelMapper.map(sal,Salle.class));
-		sal.setId(salle.getId());
-		System.err.println("Salle ajoutee");
-		} catch (Exception e) {
-			System.err.println(e.getStackTrace());
+	public SalleDto add(SalleDto salleDto) {
+		
+		Salle salle = new Salle ();
+		salle.setLabel(salleDto.getLabel());
+		salle.setCapacite(salleDto.getCapacite());
+		salle.setPlacesVip(salleDto.getPlacesVip());
+		salle.setFraisjournalier(salleDto.getFraisJournalier());
+		
+		Optional <TypeSalle> typesalleOp = this.typeSalleRepository.findById(salleDto.getTypeSalle().getId());
+		if (typesalleOp.isPresent()) {
+			TypeSalle typesalle = typesalleOp.get();
+			TypeSalleDto typesalleDto = modelMapper.map(typesalle,TypeSalleDto.class);			
+			
+			salleDto.setTypeSalle(typesalleDto);
 		}
-		return sal;
+		
+		List<ManifestationDto> listManifestations = new ArrayList<ManifestationDto>() ;
+		
+		salleDto.setManifestations(listManifestations);
+		
+		this.salleRepository.save(this.modelMapper.map(salleDto,Salle.class));
+		
+		
+		return salleDto;
+		
+		
+//		try {
+//		Salle salle = this.salleRepository.save(this.modelMapper.map(salleDto,Salle.class));
+//		salleDto.setId(salle.getId());
+//		System.err.println("Salle ajoutee");
+//		} catch (Exception e) {
+//			System.err.println(e.getStackTrace());
+//		}
+//		return salleDto;
+//		
 	}
 
 	
