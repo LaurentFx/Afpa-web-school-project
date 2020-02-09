@@ -32,7 +32,7 @@ public class SalleController {
 	}
 	
 	@PostMapping(path = "/salle")
-	public SalleDto add(@RequestBody SalleDto sal) {
+	public boolean add(@RequestBody SalleDto sal) {
 		return this.salleService.add(sal);
 	}
 	

@@ -43,19 +43,18 @@ public class TypeSalleServiceImpl implements ITypeSalleService {
     @Override
     public boolean add(TypeSalleDto typeSalleDto) {
     	List <TypeSalle> listTypeSalles = this.typeSalleRepository.findAll();
-    	boolean TypeSalleExistant = false;
+    	boolean typeSalleExistant = false;
     	for (TypeSalle typeSalle : listTypeSalles) {
     		if (typeSalle.getLabel().equalsIgnoreCase(typeSalleDto.getLabel())) {
-    			TypeSalleExistant = true;
-    			System.out.println("test true");
+    			typeSalleExistant = true;
     		}
     	}
-    	if (!TypeSalleExistant) {
+    	if (!typeSalleExistant) {
     		TypeSalle typeSalle = this.typeSalleRepository.save(this.modelMapper.map(typeSalleDto,TypeSalle.class));
     		System.err.println("typesalle ajoute");
-    		return TypeSalleExistant;
+    		return typeSalleExistant;
     	}
-    	return TypeSalleExistant;
+    	return typeSalleExistant;
     }
     
     @Override
@@ -70,6 +69,7 @@ public class TypeSalleServiceImpl implements ITypeSalleService {
         }
         return false;
     }
+    
     @Override
     public boolean deleteTypeSalle (int id) {
     	List <Salle> listSalles = salleRepository.findAll();

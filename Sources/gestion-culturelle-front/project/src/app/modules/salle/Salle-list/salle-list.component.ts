@@ -3,7 +3,8 @@ import { SalleDto } from '../../../model/salleDto';
 import { Router } from '@angular/router';
 import { SalleService } from '../../../service/salle.service';
 import { AuthService } from '../../../service/auth.service';
-import { RoleDto } from 'src/app/model/roleDto';
+import { RoleDto } from '../../../model/roleDto';
+import { ToastrService } from 'ngx-toastr';
 import { faInfoCircle, faEdit, faTrashAlt, faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -13,71 +14,89 @@ import { faInfoCircle, faEdit, faTrashAlt, faHome, faPlusSquare } from '@fortawe
 })
 export class SalleListComponent implements OnInit {
 
-  faInfoCircle =faInfoCircle;
+  faInfoCircle = faInfoCircle;
   faEdit = faEdit;
   faTrashAlt = faTrashAlt;
   faHome = faHome;
   faPlusSquare = faPlusSquare;
-  
+
   isConnected: boolean;
   salles: SalleDto[];
   isResp: boolean;
-  user : String;
-  role : RoleDto;
-  
+  user: String;
+  role: RoleDto;
+  salle: SalleDto;
+
   constructor(private salleService: SalleService, private router: Router,
-    private authService: AuthService) { }
+    private authService: AuthService, private toastrService: ToastrService) { }
 
   ngOnInit() {
-   
+
     this.isConnected = this.authService.isConnected();
-    if(this.authService.getCurrentUser()){
-this.isResp=this.authService.getCurrentUser().role.label==='RESP';
-this.user = this.authService.getCurrentUser().nom;
-this.role = this.authService.getCurrentUser().role;
+    if (this.authService.getCurrentUser()) {
+      this.isResp = this.authService.getCurrentUser().role.label === 'RESP';
+      this.user = this.authService.getCurrentUser().nom;
+      this.role = this.authService.getCurrentUser().role;
     }
 
     this.salleService.subjectMiseAJour.subscribe(
-      res=> {
+      res => {
         this.salleService.getAll().subscribe(
-          donnees =>{
-			  this.salles = donnees; 
+          donnees => {
+            this.salles = donnees;
           }
         );
       }
     );
 
     this.salleService.getAll().subscribe(
-      resultat =>{
-          this.salles = resultat; 
-        
+      resultat => {
+        this.salles = resultat;
+
       }
     );
 
     this.authService.subjectConnexion.subscribe(
       res => {
         this.isConnected = this.authService.isConnected();
-      
+
       }
     );
 
   }
 
- delete(id:number) {
+  delete(id: number) {
+    this.salle = new SalleDto();
+
+    this.salleService.getOne(id).subscribe(
+      res => {
+        this.salle = res;
+        console.log('salle ' + res);
+      }
+
+    );
+
     this.salleService.delete(id).subscribe(
-      res=>{
+      res => {
         this.salleService.subjectMiseAJour.next(0);
-        console.log('delete Ok ');
+        console.log('res1 ' + res);
+        if (res) {
+          this.toastrService.success(this.salle.label + ' effacé.', 'Suppression Ok.')
+          console.log('res2 ' + res);
+        } else {
+          this.toastrService.error('La salle ' + this.salle.label + ' est associée à une manifestation', 'Suppression impossible')
+          console.log('res3 ' + res);
+        }
       }
     );
   }
-  
-  redirectToUpdate(id:number){
-    this.router.navigateByUrl('/salle-update/'+id)
-  }
-   
 
-  redirectToShow(id:number) {
-    this.router.navigateByUrl('/salle-show/'+id)
+  redirectToUpdate(id: number) {
+    this.router.navigateByUrl('/salle-update/' + id)
+  }
+
+
+  redirectToShow(id: number) {
+    this.router.navigateByUrl('/salle-show/' + id)
   }
 }

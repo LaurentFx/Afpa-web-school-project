@@ -32,8 +32,6 @@ export class TypeSalleAddComponent implements OnInit {
         }
 
         this.goHome();
-
-
       }
     );
     this.typeSalle = new TypeSalleDto();

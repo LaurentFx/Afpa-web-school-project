@@ -15,7 +15,8 @@ export class TypeSalleListComponent implements OnInit {
   typeSalle : TypeSalleDto;
 
 
-  constructor(private typeSalleService: TypeSalleService, private router: Router
+  constructor(private typeSalleService: TypeSalleService,
+     private router: Router
     , private toastrService:ToastrService) { }
 
   ngOnInit() {
@@ -42,7 +43,7 @@ export class TypeSalleListComponent implements OnInit {
     this.typeSalleService.getOne(id).subscribe(
       res => {
         this.typeSalle = res;
-        console.log(res);
+        console.log('typesalle '+res);
       }
     );
 
@@ -56,7 +57,6 @@ export class TypeSalleListComponent implements OnInit {
         }
       }
     )
-
   }
 
   redirectToUpdate(id: number) {
