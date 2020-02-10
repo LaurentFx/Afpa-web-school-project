@@ -26,7 +26,7 @@ import lombok.Setter;
 public class Animation {
 	
 	@Id
-//	@GeneratedValue(generator = "ANIMATION_SEQ", strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator = "ANIMATION_SEQ", strategy = GenerationType.SEQUENCE)
 	private int id;
 	
 	private String label;

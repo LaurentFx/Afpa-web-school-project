@@ -313,7 +313,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 
 	@Override
 	public boolean deleteManifestation(int id) {
-
+		
 		if (this.manifestationRepository.existsById(id)) {
 			this.manifestationRepository.deleteById(id);
 			System.err.println("manifestation supprimée");

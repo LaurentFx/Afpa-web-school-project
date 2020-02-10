@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AnimationDto } from '../../../model/animationDto';
 import { AuthService } from '../../../service/auth.service';
 import { RoleDto } from '../../../model/roleDto';
+import { ToastrService } from 'ngx-toastr';
 import { faInfoCircle, faEdit, faTrashAlt, faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -24,10 +25,11 @@ export class AnimationListComponent implements OnInit {
   isRespAdmin: boolean;
   user: String;
   role: RoleDto;
+  animation: AnimationDto;
   animations: AnimationDto[];
 
   constructor(private animationService: AnimationService, private router: Router,
-    private authService: AuthService) { }
+    private authService: AuthService, private toastrService:ToastrService) { }
 
   ngOnInit() {
     this.isConnected = this.authService.isConnected();
@@ -62,10 +64,23 @@ export class AnimationListComponent implements OnInit {
   }
 
   delete(id: number) {
+this.animation = new AnimationDto ();
+
+this.animationService.getOne(id).subscribe(
+  res=> {
+    this.animation = res;
+  }
+)
+
+
     this.animationService.delete(id).subscribe(
       res => {
         this.animationService.subjectMiseAJour.next(0);
-        console.log('delete Ok ');
+        if (res) {
+          this.toastrService.success(this.animation.label+' effacé.','Suppression Ok.')
+        } else {
+          this.toastrService.error('L animation '+ this.animation.label+' est associée à une manifestation','Suppression impossible')
+        }
       }
     )
   }

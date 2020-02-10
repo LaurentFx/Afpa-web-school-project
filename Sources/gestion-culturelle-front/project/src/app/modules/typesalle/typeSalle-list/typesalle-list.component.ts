@@ -43,7 +43,6 @@ export class TypeSalleListComponent implements OnInit {
     this.typeSalleService.getOne(id).subscribe(
       res => {
         this.typeSalle = res;
-        console.log('typesalle '+res);
       }
     );
 

@@ -42,7 +42,7 @@ public class SalleController {
 	}
 	
 	@DeleteMapping(path = "/salle/{id}")
-	public void delete(@PathVariable int id) {
-		this.salleService.deleteSalle(id);
+	public boolean delete(@PathVariable int id) {
+		return this.salleService.deleteSalle(id);
 	}
 }

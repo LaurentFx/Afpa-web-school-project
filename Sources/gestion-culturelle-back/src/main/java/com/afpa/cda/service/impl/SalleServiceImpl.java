@@ -1,7 +1,6 @@
 
 package com.afpa.cda.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -62,17 +61,32 @@ public class SalleServiceImpl implements ISalleService {
 	}
 
 	@Override
-	public boolean add(SalleDto salleDto) {
-		List <Salle> listSalles = this.salleRepository.findAll();
-		boolean salleExistant = false;
-		for (Salle salle : listSalles) {
-			if (salle.getLabel().equalsIgnoreCase(salleDto.getLabel())) {
-				salleExistant = true;
-			}
+	public SalleDto findById(int id) {
+		Optional<Salle> salleOp = this.salleRepository.findById(id);
+		SalleDto salleDto = new SalleDto();
+		if(salleOp.isPresent()) {
+			Salle salle = salleOp.get();
+
+			salleDto.setId(salle.getId());
+			salleDto.setLabel(salle.getLabel());
+			salleDto.setCapacite(salle.getCapacite());
+			salleDto.setPlacesVip(salle.getPlacesVip());
+			salleDto.setFraisJournalier(salle.getFraisjournalier());
+
+			TypeSalleDto typeSalleDto = new TypeSalleDto();
+			typeSalleDto.setId(salle.getTypesalle().getId());
+			typeSalleDto.setLabel(salle.getTypesalle().getLabel());
+			salleDto.setTypeSalle(typeSalleDto);
+
 		}
-
-		if (!salleExistant) {
-
+		return salleDto;
+	}
+	
+	@Override
+	public boolean add(SalleDto salleDto) {
+		
+		Optional<Salle> salleOp = this.salleRepository.findByLabel(salleDto.getLabel());
+		if (!salleOp.isPresent()) {
 			Salle salle = new Salle ();
 			salle.setLabel(salleDto.getLabel());
 			salle.setCapacite(salleDto.getCapacite());
@@ -88,26 +102,12 @@ public class SalleServiceImpl implements ISalleService {
 			}
 
 			//		List<ManifestationDto> listManifestations = new ArrayList<ManifestationDto>() ;
-
 			//		salleDto.setManifestations(listManifestations);
-
 			this.salleRepository.save(this.modelMapper.map(salleDto,Salle.class));
-
-
-			return salleExistant;
-
-
-			//		try {
-			//		Salle salle = this.salleRepository.save(this.modelMapper.map(salleDto,Salle.class));
-			//		salleDto.setId(salle.getId());
-			//		System.err.println("Salle ajoutee");
-			//		} catch (Exception e) {
-			//			System.err.println(e.getStackTrace());
-			//		}
-			//		return salleDto;
-			//		
+			return false;
 		}
-		return salleExistant;
+		
+	return true;
 	}
 
 
@@ -173,45 +173,15 @@ public class SalleServiceImpl implements ISalleService {
 
 	@Override
 	public boolean deleteSalle(int id) {
-		List <Manifestation> listManifestations = manifestationRepository.findAll(); 
-		boolean manifestationAvecSalle = false;
-		for (Manifestation manifestation : listManifestations) {
-			if (manifestation.getSalle().getId()==id) {
-				manifestationAvecSalle = true;
-				System.err.println(manifestationAvecSalle);
-				System.err.println("Salle non supprimee");
-			}
-		}
+		List <Manifestation> listManifestations = manifestationRepository.findManifestationBySalleId(id);
 
-		if(this.salleRepository.existsById(id) && !manifestationAvecSalle) {
-			this.salleRepository.deleteById(id);
-			System.err.println("Salle supprimee");
-			System.err.println(manifestationAvecSalle);
-			return true;
+		if (listManifestations.isEmpty() && this.salleRepository.existsById(id)) {
+
+				this.salleRepository.deleteById(id);
+				return true;
 		}
-		System.err.println(manifestationAvecSalle);
 		return false;
 	}
 
-	@Override
-	public SalleDto findById(int id) {
-		Optional<Salle> salleOp = this.salleRepository.findById(id);
-		SalleDto salleDto = new SalleDto();
-		if(salleOp.isPresent()) {
-			Salle salle = salleOp.get();
-
-			salleDto.setId(salle.getId());
-			salleDto.setLabel(salle.getLabel());
-			salleDto.setCapacite(salle.getCapacite());
-			salleDto.setPlacesVip(salle.getPlacesVip());
-			salleDto.setFraisJournalier(salle.getFraisjournalier());
-
-			TypeSalleDto typeSalleDto = new TypeSalleDto();
-			typeSalleDto.setId(salle.getTypesalle().getId());
-			typeSalleDto.setLabel(salle.getTypesalle().getLabel());
-			salleDto.setTypeSalle(typeSalleDto);
-
-		}
-		return salleDto;
-	}
+	
 }

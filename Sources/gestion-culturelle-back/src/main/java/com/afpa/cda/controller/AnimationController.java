@@ -29,7 +29,7 @@ public class AnimationController {
 	
 	//@PreAuthorize("hasAnyAuthority('ANIM')")
 	@PostMapping(path = "animation")
-	public AnimationDto add(@RequestBody AnimationDto anim) {
+	public boolean add(@RequestBody AnimationDto anim) {
 		return this.animationService.add(anim);
 	}
 	
@@ -44,8 +44,8 @@ public class AnimationController {
 	}
 	
 	@DeleteMapping(path="/animation/{id}")
-	public void delete(@PathVariable int id) {
-		this.animationService.delete(id);
+	public boolean delete(@PathVariable int id) {
+		return this.animationService.delete(id);
 	}
 	
 }

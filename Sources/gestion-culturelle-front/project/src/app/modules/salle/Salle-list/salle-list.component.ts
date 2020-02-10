@@ -71,7 +71,6 @@ export class SalleListComponent implements OnInit {
     this.salleService.getOne(id).subscribe(
       res => {
         this.salle = res;
-        console.log('salle ' + res);
       }
 
     );
@@ -79,13 +78,10 @@ export class SalleListComponent implements OnInit {
     this.salleService.delete(id).subscribe(
       res => {
         this.salleService.subjectMiseAJour.next(0);
-        console.log('res1 ' + res);
         if (res) {
           this.toastrService.success(this.salle.label + ' effacé.', 'Suppression Ok.')
-          console.log('res2 ' + res);
         } else {
           this.toastrService.error('La salle ' + this.salle.label + ' est associée à une manifestation', 'Suppression impossible')
-          console.log('res3 ' + res);
         }
       }
     );
