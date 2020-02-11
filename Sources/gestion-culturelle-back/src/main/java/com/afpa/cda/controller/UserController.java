@@ -49,16 +49,17 @@ public class UserController {
 	}
 
 	@PostMapping(path = "/users")
-	public UserDto add(@RequestBody UserDto user, HttpServletResponse resp) throws IOException {
+	public boolean add(@RequestBody UserDto user, HttpServletResponse resp) throws IOException {
 		if(user.getRole() == null) {
 			resp.sendError(HttpStatus.BAD_REQUEST.value(),"le role est obligatoire à la création de la personne");
-			return null;
+			return true;
 		} else if(user.getNom().equalsIgnoreCase(adminUserDefaultConf.getNom()) 
 				|| user.getPrenom().equalsIgnoreCase(adminUserDefaultConf.getPrenom())) {
 			resp.sendError(HttpStatus.NOT_ACCEPTABLE.value(),"prenom/nom 'admin' sont déjà pris");
-			return null;
+			return true;
 		} else {
 			return this.userService.add(user);
+			
 		}
 	}
 

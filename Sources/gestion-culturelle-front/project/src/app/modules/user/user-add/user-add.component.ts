@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../..//model/user';
 import { UserService } from '../../../service/user.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { RoleService } from '../../../service/role.service';
 import { RoleDto } from '../../../model/roleDto';
 
@@ -17,7 +18,8 @@ export class UserAddComponent implements OnInit {
   
   constructor(private userService: UserService, 
     private router: Router,
-    private roleService: RoleService ) { }
+    private roleService: RoleService,
+     private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.roles= [];
@@ -31,11 +33,23 @@ export class UserAddComponent implements OnInit {
   }
 
   add() : void {
+    let nom = this.user.nom;
     this.userService.add(this.user).subscribe(
-      res=>{
-        this.router.navigateByUrl('/user-list');
+        res => {
+          this.userService.subjectMiseAJour.next(0);
+          if (res) {
+            this.toastrService.error('Le user '+nom +' existe déjà', 'Ajout impossible')
+          } else {
+            this.toastrService.success('Nouveau user : ' +nom, 'Ajout Ok')
+          }
+          this.goHome();
       }
     );
+  }
+
+
+  goHome() {
+    this.router.navigate(['/user-list']);
   }
 
 }

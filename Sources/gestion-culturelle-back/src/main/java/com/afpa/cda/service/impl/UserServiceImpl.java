@@ -69,10 +69,16 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public UserDto add(UserDto userDto) {
-		User user = this.UserRepository.save(this.modelMapper.map(userDto, User.class));
-		userDto.setId(user.getId());
-		return userDto;
+	public boolean add(UserDto userDto) {
+		Optional <User> userOp = this.UserRepository.findByNomAndPrenom(userDto.getNom(), userDto.getPrenom());
+		System.out.println(userOp.get().getNom()+" "+userOp.get().getPrenom());
+		if (!userOp.isPresent()) {
+			System.out.println("test2");
+			User user = this.UserRepository.save(this.modelMapper.map(userDto, User.class));
+			return false;
+		}
+		
+		return true;
 	}
 
 

@@ -26,6 +26,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Query(value = "SELECT * FROM User u WHERE u.role = :id",  nativeQuery = true)
 	List <UserDto> findByRoleId(int id);
 
+	@Query(value = "SELECT * FROM t_user u WHERE u.nom = :name and u.prenom = :fname",  nativeQuery = true)
+	Optional<User> findByNomAndPrenom(String name, String fname);
 
 
 
