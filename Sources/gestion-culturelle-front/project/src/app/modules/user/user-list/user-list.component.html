@@ -1,7 +1,12 @@
 <h3>Liste des users</h3>
 <br>
 
-
+<div> 
+  <form action="">
+  <input type="text" [(ngModel)]=rolee name="nom" id="nom" class="form-control">
+  <input class="btn btn-secondary" type="button" value="ajouter"  (click)="test()">
+</form>
+</div>
 <div class="panel-body">
   <table class="table table-striped table-bordered ">
     <thead class="thead-dark">
@@ -13,7 +18,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of users">
+        <tr *ngFor="let user of users" >
         <td>{{user.nom}}</td>
         <td>{{user.prenom}}</td>
         <td>{{user.role.label}}</td>
@@ -27,7 +32,6 @@
           &nbsp;
           <button (click)="redirectToRole(user.role.id)" class="btn btn-sm btn-primary">Role</button>
         </td>
-
       </tr>
     </tbody>
 

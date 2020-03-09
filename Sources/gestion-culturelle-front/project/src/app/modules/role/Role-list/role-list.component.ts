@@ -11,12 +11,17 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./role-list.component.css']
 })
 export class RoleListComponent implements OnInit {
+
   faInfoCircle =faInfoCircle;
   faEdit = faEdit;
   faTrashAlt = faTrashAlt;
+
   roles: RoleDto[];
+  role: RoleDto;
   
-  constructor(private roleService: RoleService,private router: Router, private toastrService:ToastrService) { }
+  constructor(private roleService: RoleService,
+    private router: Router, 
+    private toastrService:ToastrService) { }
 
   ngOnInit() {
 
@@ -37,21 +42,35 @@ export class RoleListComponent implements OnInit {
     );
   }
 
-  delete(id:number) {
+  delete(id: number) {
+    this.role = new RoleDto();
+
+    this.roleService.getOne(id).subscribe(
+      res=>{
+        this.role = res
+        console.log(res);
+        console.log('delete Ok ');
+      }
+    )
+
     this.roleService.delete(id).subscribe(
       res=>{
-        this.roleService.subjectMiseAJour.next(0);
-        console.log('delete Ok ');
+        this.roleService.subjectMiseAJour.next(0)
+        if(res){
+          this.toastrService.success(this.role.label+' effacé.','Suppression Ok.')
+        }else{
+          this.toastrService.error('Le role '+this.role.label+' est associé à une user')
+        }
       }
     )
   }
   
-  redirectToUpdate(id:number){
+  redirectToUpdate(id: number){
     this.router.navigateByUrl('/role-update/'+id)
   }
    
 
-  redirectToShow(id:number) {
+  redirectToShow(id: number) {
     this.router.navigateByUrl('/role-show/'+id)
   }
 

@@ -16,7 +16,9 @@ export class UserListComponent implements OnInit {
   faTrashAlt = faTrashAlt;
   faHome = faHome;
   faPlusSquare = faPlusSquare;
+  
   users: User[];
+  rolee: string;
 
   constructor(private userService: UserService,private router: Router) { }
 
@@ -24,10 +26,45 @@ export class UserListComponent implements OnInit {
     this.users=[];
     this.userService.getAll().subscribe(
       donnees =>{
-        this.users = donnees; 
+        // this.users = donnees; 
+        for (let index = 0; index < donnees.length; index++) {
+          console.log(donnees[index].role)
+          if(donnees[index].role.label === this.rolee){
+            this.users.push(donnees[index]);
+          }
+           
+
+          
+        }
       }
     );
 
+    this.userService.subjectMiseAJour.subscribe(
+      res=>{
+        this.userService.getAll().subscribe(
+          donnees =>{
+            this.users = donnees; 
+          }
+        );
+      }
+    );
+  }
+
+  test(){
+    console.log(this.rolee)
+    // this.router.navigateByUrl('')
+    this.userService.getAll().subscribe(
+      donnees =>{
+        // this.users = donnees; 
+        for (let index = 0; index < donnees.length; index++) {
+          console.log(donnees[index].role)
+          if(donnees[index].role.label === this.rolee){
+            this.users= [];
+            this.users.push(donnees[index]);
+          }
+        }
+      }
+    );
     this.userService.subjectMiseAJour.subscribe(
       res=>{
         this.userService.getAll().subscribe(
