@@ -22,7 +22,7 @@ cda:
   admin:
     nom: resp1
     prenom: presp1
-    login: luser1
+#    login: luser1
     password: 1234
   security:
     token:
