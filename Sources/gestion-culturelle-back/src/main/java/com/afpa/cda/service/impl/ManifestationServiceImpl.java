@@ -194,70 +194,47 @@ public class ManifestationServiceImpl implements IManifestationService {
 
 	@Override
 	public ManifestationDto add(ManifestationDto manifestationDto) {
+		Manifestation manifestation = new Manifestation ();
+		manifestation.setLabel(manifestationDto.getLabel());
+		manifestation.setDateValidation(manifestationDto.getDateValidation());
 
-//		Manifestation manifestation = new Manifestation ();
-//		manifestation.setLabel(manifestationDto.getLabel());
-//		manifestation.setDateValidation(manifestationDto.getDateValidation());
-//
-//		Optional <User> validOp = this.userRepository.findById(manifestationDto.getValidateur().getId());
-//		if (validOp.isPresent()) {
-//			User valid = validOp.get();
-//			UserDto validDto = modelMapper.map(valid,UserDto.class);
-//
-//			manifestationDto.setValidateur(validDto);
-//
-//			Optional <Animation> animationOp = this.animationRepository.findById(manifestationDto.getAnimation().getId());
-//			if (animationOp.isPresent()) {
-//				Animation animation = animationOp.get();
-//				AnimationDto animationDto = modelMapper.map(animation,AnimationDto.class);
-//
-//				manifestationDto.setAnimation(animationDto);
-//				manifestation.setDateDebut(manifestationDto.getDateDebut());		
-//				manifestation.setDateFin(manifestationDto.getDateFin());
-//
-//				Optional <Salle> salleOp = this.salleRepository.findById(manifestationDto.getSalle().getId());
-//				System.out.println("SALLE id "+manifestationDto.getSalle().getId());
-//				if (salleOp.isPresent()) {
-//					Salle salle = salleOp.get();
-//					SalleDto salleDto = modelMapper.map(salle,SalleDto.class);
-//					System.out.println("SALLE Dto label : "+salleDto.getLabel());
-//
-//					manifestationDto.setSalle(salleDto);
-//
-//					manifestationDto=calcul(manifestationDto);
-//
-//					manifestation.setRentabilite(0);
-//
-//					manifestation.setDateAnnulation(manifestationDto.getDateAnnulation());
-//
-//					Optional <User> annulOp = this.userRepository.findById(manifestationDto.getAnnulateur().getId());
-//					if (annulOp.isPresent()) {
-//						User annul = annulOp.get();
-//						UserDto annulDto = modelMapper.map(annul,UserDto.class);
-//						manifestationDto.setValidateur(annulDto);
-//					}
-//				}
-//			}
-//		}
-//		System.out.println(manifestation.toString());
-//		this.manifestationRepository.save(manifestation);
+		Optional <User> validOp = this.userRepository.findById(manifestationDto.getValidateur().getId());
+		if (validOp.isPresent()) {
+			User valid = validOp.get();
+			manifestation.setValidateur(valid);
+		}
 
+		Optional <Animation> animationOp = this.animationRepository.findById(manifestationDto.getAnimation().getId());
+		if (animationOp.isPresent()) {
+			Animation animation = animationOp.get();
+			manifestation.setAnimation(animation);
+		}
 
-				
-//				manifestationDto.setAnnulateur("null");
-//				manifestationDto.setDateAnnulation(null);
-			
-//				Manifestation manifestation = this.modelMapper.map(manifestationDto,Manifestation.class);
-				
-				
-				
-				Manifestation maniE = this.manifestationRepository.save(this.modelMapper.map(manifestationDto,Manifestation.class)); 
-				manifestationDto.setId(maniE.getId());
+		manifestation.setDateDebut(manifestationDto.getDateDebut());		
+		manifestation.setDateFin(manifestationDto.getDateFin());
+
+		Optional <Salle> salleOp = this.salleRepository.findById(manifestationDto.getSalle().getId());
+		if (salleOp.isPresent()) {
+			Salle salle = salleOp.get();
+			manifestation.setSalle(salle);
+		}
+
+		manifestation.setRentabilite(0);
+		manifestation.setDateAnnulation(manifestationDto.getDateAnnulation());
+
+		Optional <User> annulOp = this.userRepository.findById(manifestationDto.getAnnulateur().getId());
+		if (annulOp.isPresent()) {
+			User annul = annulOp.get();
+			manifestation.setAnnulateur(annul);
+		}
 		
-				manifestationDto=calcul(manifestationDto);
-				
-				this.manifestationRepository.save(this.modelMapper.map(manifestationDto,Manifestation.class)); 
+		manifestationDto=calcul(manifestationDto);
+		manifestation.setReservations(manifestationDto.getReservations());
+		manifestation.setReservationsVip(manifestationDto.getReservationsVip());
+		manifestation.setCout(manifestationDto.getCout());
+		manifestation.setPrixBillet(manifestationDto.getPrixBillet());
 
+		this.manifestationRepository.save(manifestation);
 
 		return manifestationDto;
 
@@ -274,7 +251,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 
 			manifDto.setId(maniE.getId());
 
-			manifDto=calcul(manifDto);
+			//	manifDto=calcul(manifDto);
 
 			this.manifestationRepository.save(this.modelMapper.map(manifDto,Manifestation.class)); 
 
@@ -307,13 +284,12 @@ public class ManifestationServiceImpl implements IManifestationService {
 
 		manifDto.setCout( (animDto.getPrix()+(duree* salleDto.getFraisJournalier())));
 		manifDto.setPrixBillet(manifDto.getCout()/(animDto.getNbreSpectateursPrevus()*0.8));
-
 		return manifDto;
 	}
 
 	@Override
 	public boolean deleteManifestation(int id) {
-		
+
 		if (this.manifestationRepository.existsById(id)) {
 			this.manifestationRepository.deleteById(id);
 			System.err.println("manifestation supprimée");

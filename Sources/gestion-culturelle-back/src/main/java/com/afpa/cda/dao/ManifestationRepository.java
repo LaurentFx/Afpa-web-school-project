@@ -27,5 +27,4 @@ public interface ManifestationRepository extends CrudRepository<Manifestation, I
 	
 	Optional<Manifestation> findByLabel(String label);
 	
-	
 }

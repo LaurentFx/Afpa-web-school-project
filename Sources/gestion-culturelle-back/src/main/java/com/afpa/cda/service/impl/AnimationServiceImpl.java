@@ -9,14 +9,12 @@ import org.springframework.stereotype.Service;
 
 import com.afpa.cda.dao.AnimationRepository;
 import com.afpa.cda.dao.ManifestationRepository;
-import com.afpa.cda.dao.SalleRepository;
 import com.afpa.cda.dto.AnimationDto;
 import com.afpa.cda.dto.ManifestationDto;
-import com.afpa.cda.dto.SalleDto;
 import com.afpa.cda.entity.Animation;
 import com.afpa.cda.entity.Manifestation;
-import com.afpa.cda.entity.Salle;
 import com.afpa.cda.service.IAnimationService;
+import com.afpa.cda.service.IManifestationService;
 @Service
 public class AnimationServiceImpl implements IAnimationService {
 	@Autowired
@@ -28,7 +26,7 @@ public class AnimationServiceImpl implements IAnimationService {
 	private ManifestationRepository manifestationRepository;
 
 	@Autowired
-	private SalleRepository salleRepository;
+	private IManifestationService manifestationService;
 
 
 	@Override
@@ -64,10 +62,6 @@ public class AnimationServiceImpl implements IAnimationService {
 			return false;
 		}
 
-//		Animation animE = this.modelMapper.map(animationDto,Animation.class);
-//		Animation animationEntity = this.animationRepository.save(animE);
-		//animationDto.setId(animationEntity .getId());
-//		return false;
 		return true;
 	}
 
@@ -81,12 +75,14 @@ public class AnimationServiceImpl implements IAnimationService {
 			animation.setType(animationDto.getType());
 			animation.setPrix(animationDto.getPrix());
 			animation.setNbreSpectateursPrevus(animationDto.getNbreSpectateursPrevus());
+			this.animationRepository.save(animation);
 
-			List<Manifestation> listManifestation = manifestationRepository.findAll();
-			for (Manifestation manifestation : listManifestation) {
-				if (manifestation.getAnimation().getId()==animation.getId()) {
+			List<Manifestation> listManifestations = manifestationRepository.findManifestationByAnimationId(id);
+			if (!listManifestations.isEmpty()) {
+				for (Manifestation manifestation : listManifestations) {
+					//if (manifestation.getAnimation().getId()==animation.getId()) {
 					ManifestationDto manifestationDto = modelMapper.map(manifestation,ManifestationDto.class);
-					manifestationDto=calcul(manifestationDto);
+					manifestationDto=manifestationService.calcul(manifestationDto);
 					Manifestation manif = modelMapper.map(manifestationDto,Manifestation.class);
 
 					Optional<Manifestation> manifOp = this.manifestationRepository.findById(manifestation.getId());
@@ -94,56 +90,26 @@ public class AnimationServiceImpl implements IAnimationService {
 						this.manifestationRepository.save(manif);
 					}
 				}
-
 			}
 
-			this.animationRepository.save(animation);
 			return true;
 		}
 		return false;
-	}
-
-	@Override
-	public ManifestationDto calcul (ManifestationDto manifestationDto) {
-
-		double debut=manifestationDto.getDateDebut().getTime();
-		double fin=manifestationDto.getDateFin().getTime();
-		double duree = 1+((((fin-debut)/1000)/3600)/24);
-		AnimationDto animationDto = new AnimationDto();
-		Optional<Animation> animationOp=animationRepository.findById(manifestationDto.getAnimation().getId());
-		if (animationOp.isPresent()) {
-			Animation anim = animationOp.get();
-			animationDto=modelMapper.map(anim,AnimationDto.class);
-		}
-
-		SalleDto salleDto = new SalleDto ();
-		Optional<Salle> salleOp=salleRepository.findById(manifestationDto.getSalle().getId());
-		if (salleOp.isPresent()) {
-			Salle salle = salleOp.get();
-			salleDto = modelMapper.map(salle,SalleDto.class);
-		}
-
-		manifestationDto.setReservations(animationDto.getNbreSpectateursPrevus());
-		manifestationDto.setReservationsVip(salleDto.getPlacesVip());
-		manifestationDto.setCout( (animationDto.getPrix()+(duree* salleDto.getFraisJournalier())));
-		manifestationDto.setPrixBillet(manifestationDto.getCout()/(animationDto.getNbreSpectateursPrevus()*0.8));
-
-		return manifestationDto;
 	}
 
 
 	@Override
 	public boolean delete(int id) {
 		List <Manifestation> listManifestations = manifestationRepository.findManifestationByAnimationId(id);
-		
+
 		if (listManifestations.isEmpty() && this.animationRepository.existsById(id))		 {
 			this.animationRepository.deleteById(id);
 			return true;
 		}
-//		if(this.animationRepository.existsById(id)) {
-//			this.animationRepository.deleteById(id);
-//			return true;
-//		}
+		//		if(this.animationRepository.existsById(id)) {
+		//			this.animationRepository.deleteById(id);
+		//			return true;
+		//		}
 		return false;
 	}
 }

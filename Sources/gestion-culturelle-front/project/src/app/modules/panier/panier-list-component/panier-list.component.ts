@@ -17,7 +17,7 @@ import { CommandeService } from 'src/app/service/commande.service';
 })
 export class PanierListComponent implements OnInit {
 
-  faInfoCircle =faInfoCircle;
+  faInfoCircle = faInfoCircle;
   faEdit = faEdit;
   faTrashAlt = faTrashAlt;
   faHome = faHome;
@@ -27,56 +27,56 @@ export class PanierListComponent implements OnInit {
   manifestations: ManifestationDto[];
   isConnected: boolean;
   isClient: boolean;
-  user : String;
-  role : RoleDto;
-  
-  constructor(private panierService: PanierService, private commandeService : CommandeService,
-     private manifestationService : ManifestationService,  private authService: AuthService
-      ,private router: Router) { }
+  user: String;
+  role: RoleDto;
+
+  constructor(private panierService: PanierService, private commandeService: CommandeService,
+    private manifestationService: ManifestationService, private authService: AuthService
+    , private router: Router) { }
 
   ngOnInit() {
 
     this.isConnected = this.authService.isConnected();
-    if(this.authService.getCurrentUser()){
-this.isClient=this.authService.getCurrentUser().role.label==='CLIENT';
-this.user = this.authService.getCurrentUser().nom;
-this.role = this.authService.getCurrentUser().role;
+    if (this.authService.getCurrentUser()) {
+      this.isClient = this.authService.getCurrentUser().role.label === 'CLIENT';
+      this.user = this.authService.getCurrentUser().nom;
+      this.role = this.authService.getCurrentUser().role;
     }
     this.panierService.subjectMiseAJour.subscribe(
-      res=> {
+      res => {
         this.panierService.getAll().subscribe(
-          donnees =>{
-			  this.paniers = donnees; 
+          donnees => {
+            this.paniers = donnees;
           }
         );
       }
     );
 
     this.panierService.getAll().subscribe(
-      resultat =>{
-          this.paniers = resultat; 
-               }
+      resultat => {
+        this.paniers = resultat;
+      }
     );
 
     this.manifestationService.subjectMiseAJour.subscribe(
-      res=> {
+      res => {
         this.manifestationService.getAll().subscribe(
-          donnees =>{
-			  this.manifestations = donnees; 
+          donnees => {
+            this.manifestations = donnees;
           }
         );
       }
     );
 
     this.manifestationService.getAll().subscribe(
-      resultat =>{
-          this.manifestations = resultat; 
-        
+      resultat => {
+        this.manifestations = resultat;
+
       }
     );
   }
 
-  
+
 
   /* delete(id:number) {
     this.panierService.deleteCommande(id).subscribe(
@@ -86,13 +86,13 @@ this.role = this.authService.getCurrentUser().role;
       }
     )
   }  */
-  
-  redirectToUpdate(id:number){
-    this.router.navigateByUrl('/panier-update/'+id)
-  }
-   
 
-  redirectToShow(id:number) {
-    this.router.navigateByUrl('/panier-show/'+id)
+  redirectToUpdate(id: number) {
+    this.router.navigateByUrl('/panier-update/' + id)
+  }
+
+
+  redirectToShow(id: number) {
+    this.router.navigateByUrl('/panier-show/' + id)
   }
 }

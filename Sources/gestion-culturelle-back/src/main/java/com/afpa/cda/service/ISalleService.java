@@ -17,7 +17,8 @@ public interface ISalleService {
 
 	SalleDto findById(int id);
 
-	ManifestationDto calcul(ManifestationDto manifDto);
+	//ManifestationDto calcul(ManifestationDto manifDto);
+
 
 	
 

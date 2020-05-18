@@ -25,7 +25,7 @@ import com.afpa.cda.service.IUserService;
 public class UserServiceImpl implements IUserService {
 
 	@Autowired
-	private UserRepository UserRepository;
+	private UserRepository userRepository;
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -38,7 +38,8 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public List<UserDto> findAll() {
-		return this.UserRepository.findAll().stream().map(me -> {
+		
+		return this.userRepository.findAll().stream().map(me -> {
 			UserDto userDto = this.modelMapper.map(me, UserDto.class);
 			// solution temporaire
 			// ne pas remonter les mots de passe pour le service get
@@ -47,12 +48,13 @@ public class UserServiceImpl implements IUserService {
 			userDto.setRole(this.modelMapper.map(me.getRole(), RoleDto.class));
 			return userDto;
 		}).collect(Collectors.toList());
+		
 	}
 
 
 	@Override
 	public List<UserDto> findByRole(int id) {
-		List <User> listUsers =  this.UserRepository.findAll();
+		List <User> listUsers =  this.userRepository.findAll();
 
 		List <UserDto> listByRole = new ArrayList<UserDto> ();
 
@@ -70,11 +72,11 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public boolean add(UserDto userDto) {
-		Optional <User> userOp = this.UserRepository.findByNomAndPrenom(userDto.getNom(), userDto.getPrenom());
-		System.out.println(userOp.get().getNom()+" "+userOp.get().getPrenom());
+		Optional <User> userOp = this.userRepository.findByNomAndPrenom(userDto.getNom(), userDto.getPrenom());
+	//	System.out.println(userOp.get().getNom()+" "+userOp.get().getPrenom());
 		if (!userOp.isPresent()) {
 			System.out.println("test2");
-			User user = this.UserRepository.save(this.modelMapper.map(userDto, User.class));
+			User user = this.userRepository.save(this.modelMapper.map(userDto, User.class));
 			return false;
 		}
 		
@@ -101,7 +103,7 @@ public class UserServiceImpl implements IUserService {
 		panierRepository.save(user.getPanier());
 		user.setPanier(Panier.builder().id(user.getPanier().getId()).build());
 
-		this.UserRepository.save(user);
+		this.userRepository.save(user);
 		userDto = modelMapper.map(user, UserDto.class);
 		userDto.setId(user.getId());
 
@@ -110,7 +112,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public Optional<UserDto> findById(Integer userId) {
-		Optional<User> userEnOpt = this.UserRepository.findById(userId);
+		Optional<User> userEnOpt = this.userRepository.findById(userId);
 		UserDto userDto = new UserDto();
 		if (userEnOpt.isPresent()) {
 			User me = userEnOpt.get();
@@ -127,7 +129,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public UserDto findOne(Integer userId) {
-		Optional<User> userEnOpt = this.UserRepository.findById(userId);
+		Optional<User> userEnOpt = this.userRepository.findById(userId);
 		UserDto userDto = new UserDto();
 		if (userEnOpt.isPresent()) {
 			User me = userEnOpt.get();
@@ -144,14 +146,14 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public boolean update(UserDto user, int id) {
-		Optional<User> userOp = this.UserRepository.findById(id);
+		Optional<User> userOp = this.userRepository.findById(id);
 		if (userOp.isPresent()) {
 			User userE = userOp.get();
 
 			userE.setEmail(user.getEmail());
 			userE.setAdresse(user.getAdresse());
 
-			this.UserRepository.save(userE);
+			this.userRepository.save(userE);
 
 			// this.UserRepository.save(this.modelMapper.map(user,User.class));
 			System.err.println("user mis à jour");
@@ -164,8 +166,8 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public boolean delete(int id) {
 
-		if (this.UserRepository.existsById(id)) {
-			this.UserRepository.deleteById(id);
+		if (this.userRepository.existsById(id)) {
+			this.userRepository.deleteById(id);
 			System.err.println("user supprimé");
 			return true;
 		}

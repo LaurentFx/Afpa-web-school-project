@@ -17,6 +17,6 @@ public interface IAnimationService {
 
 	AnimationDto findById(int id);
 
-	ManifestationDto calcul(ManifestationDto manifDto);
+	//ManifestationDto calcul(ManifestationDto manifDto);
 
 }
