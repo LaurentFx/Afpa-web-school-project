@@ -51,7 +51,7 @@
                     <tbody>
                         <tr *ngFor="let commande of listCommandes">
                             <td>{{commande.manifestation.label}}</td>
-                            <td>{{commande.manifestation.prixBillet}}</td>
+                            <td>{{commande.manifestation.prixBillet|number:'.0-2'}}</td>
                             <td> {{commande.quantite}}</td>
                             <td> <button (click)="delete(commande.id)" class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -71,7 +71,7 @@
                                 <div class="form-group">
                                     <label for="total">Total panier :</label>
                                     <input type="text" name="total" class="form-control" id="total"
-                                        placeholder="{{panierDto.total}}" readonly>
+                                        placeholder="{{panierDto.total|number:'.0-2'}}" readonly>
                                 </div>
                             </div>
                         </div>

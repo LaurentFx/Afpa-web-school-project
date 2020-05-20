@@ -34,7 +34,5 @@ public class ManifestationDto {
 	private UserDto annulateur;
 	private Date dateAnnulation;
 
-	private List <CommandeDto> listCommandes;
-
 	private List <UserDto> listVips;
 }

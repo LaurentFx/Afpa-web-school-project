@@ -72,6 +72,8 @@ public class InvitationServiceImpl implements IInvitationService {
 
 	@Override
 	public List<UserDto> findByRole(int id) {
+		// A tester
+	//	List<UserDto> listUsers = this.userRepository.findByRoleId(5);
 		
 		List<User> listUsers = this.userRepository.findAll();
 		System.out.println("test methode findByRole ");
@@ -128,8 +130,6 @@ public class InvitationServiceImpl implements IInvitationService {
 				System.out.println(manifestation.getReservationsVip());
 				this.manifestationRepository.save(manifestation);
 			}
-
-			// this.userRepository.save(this.modelMapper.map(user,User.class));
 			return true;
 		}
 		return false;
@@ -155,7 +155,6 @@ public class InvitationServiceImpl implements IInvitationService {
 				this.manifestationRepository.save(manifestation);
 			}
 
-			// this.userRepository.save(this.modelMapper.map(user,User.class));
 			return true;
 		}
 		return false;

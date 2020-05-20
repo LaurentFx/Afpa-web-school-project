@@ -20,7 +20,7 @@ export class ManifestationDto {
     rentabilte: number;
     annulateur: AdminDto;
     dateAnnulation: Date;
-    listCommandes : CommandeDto;
+  //  listCommandes : CommandeDto;
     listVips : User;
 
 
@@ -39,7 +39,7 @@ export class ManifestationDto {
         salle?: SalleDto,
         annulateur?: AdminDto,
         dateAnnulation?: Date,
-        listCommandes ?:CommandeDto,
+     //   listCommandes ?:CommandeDto,
         listVips?: User,
     ) {
 
@@ -58,7 +58,7 @@ export class ManifestationDto {
         this.salle = salle;
         this.annulateur = annulateur;
         this.dateAnnulation = dateAnnulation;
-        this.listCommandes = listCommandes;
+    //    this.listCommandes = listCommandes;
         this.listVips = listVips;
 
     }

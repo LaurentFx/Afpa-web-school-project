@@ -14,12 +14,14 @@ export class User {
     role: RoleDto;
     entreprise: string;
     listAnimations: AnimationDto;
-    inactif: Boolean;
+ //   inactif: Boolean;
     listManifestations: ManifestationDto;
 
     constructor(id?: number, nom?: string, prenom?: string, email?: string,
         adresse?: string, numClient?: string, role?: RoleDto, panier?: PanierDto,
-        entreprise?: string, listAnimations?: AnimationDto, inactif?: boolean, listManifestations?: ManifestationDto
+        entreprise?: string, listAnimations?: AnimationDto, 
+      //  inactif?: boolean,
+         listManifestations?: ManifestationDto
 
     ) {
         this.id = id;
@@ -32,7 +34,7 @@ export class User {
         this.role = role;
         this.entreprise = entreprise;
         this.listAnimations = listAnimations;
-        this.inactif = inactif;
+    //    this.inactif = inactif;
         this.listManifestations = listManifestations;
 
     }

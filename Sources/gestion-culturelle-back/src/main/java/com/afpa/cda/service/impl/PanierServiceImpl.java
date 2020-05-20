@@ -66,13 +66,6 @@ public class PanierServiceImpl implements IPanierService {
 										.build())
 								.build());
 
-
-						//								.label(m.getLabel())
-						//								.animation(AnimationDto.builder()
-						//										.id(m.getAnimation().getId())
-						//										.label(m.getAnimation().getLabel())
-						//										.build())
-						//								.build());
 					}
 					return panierDto;
 				})

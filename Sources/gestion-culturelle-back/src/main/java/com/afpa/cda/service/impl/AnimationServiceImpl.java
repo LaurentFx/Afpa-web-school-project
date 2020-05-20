@@ -49,9 +49,7 @@ public class AnimationServiceImpl implements IAnimationService {
 				.stream()
 				.map(a-> this.modelMapper.map(a,AnimationDto.class))
 				.collect(Collectors.toList());
-
 	}   
-
 
 	@Override
 	public boolean add(AnimationDto animationDto) {
@@ -80,7 +78,6 @@ public class AnimationServiceImpl implements IAnimationService {
 			List<Manifestation> listManifestations = manifestationRepository.findManifestationByAnimationId(id);
 			if (!listManifestations.isEmpty()) {
 				for (Manifestation manifestation : listManifestations) {
-					//if (manifestation.getAnimation().getId()==animation.getId()) {
 					ManifestationDto manifestationDto = modelMapper.map(manifestation,ManifestationDto.class);
 					manifestationDto=manifestationService.calcul(manifestationDto);
 					Manifestation manif = modelMapper.map(manifestationDto,Manifestation.class);
@@ -91,7 +88,6 @@ public class AnimationServiceImpl implements IAnimationService {
 					}
 				}
 			}
-
 			return true;
 		}
 		return false;
@@ -106,10 +102,6 @@ public class AnimationServiceImpl implements IAnimationService {
 			this.animationRepository.deleteById(id);
 			return true;
 		}
-		//		if(this.animationRepository.existsById(id)) {
-		//			this.animationRepository.deleteById(id);
-		//			return true;
-		//		}
 		return false;
 	}
 }

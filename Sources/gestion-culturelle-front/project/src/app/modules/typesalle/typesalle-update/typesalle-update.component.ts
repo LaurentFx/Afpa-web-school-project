@@ -31,7 +31,6 @@ export class TypeSalleUpdateComponent implements OnInit {
     let id = this.route.snapshot.params['id'];
     this.typeSalleService.update(id, this.typeSalle).subscribe(
       res => {
-       console.log("Modification Ok");
         this.goHome();
       }
     );

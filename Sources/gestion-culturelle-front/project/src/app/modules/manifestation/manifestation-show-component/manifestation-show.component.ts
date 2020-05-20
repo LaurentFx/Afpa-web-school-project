@@ -29,7 +29,6 @@ export class ManifestationShowComponent implements OnInit {
     this.manifestationService.getOne(id).subscribe(
       res => {
         this.manifestation = res;
-        console.log(res);
       }
     );
 

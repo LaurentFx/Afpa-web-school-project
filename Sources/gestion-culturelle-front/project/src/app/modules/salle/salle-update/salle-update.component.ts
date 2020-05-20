@@ -54,7 +54,6 @@ export class SalleUpdateComponent implements OnInit {
     let id = this.route.snapshot.params['id'];
     this.salleService.update(id, this.salle).subscribe(
       res => {
-       console.log("Modification Ok");
         this.goHome();
       }
     );

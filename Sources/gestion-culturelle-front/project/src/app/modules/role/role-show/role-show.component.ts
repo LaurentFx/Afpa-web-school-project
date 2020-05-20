@@ -18,7 +18,6 @@ export class RoleShowComponent implements OnInit {
     this.roleService.getOne(id).subscribe(
       res => {
         this.role = res;
-        console.log(res);
       }
     );
   }

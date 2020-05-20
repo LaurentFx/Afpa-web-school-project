@@ -18,7 +18,7 @@
 
                         <label for="prix">Prix de l'animation :</label>
                         <input type="text" name="prix" class="form-control" id="prix"
-                            placeholder="{{animation.prix}}" readonly>
+                            placeholder="{{animation.prix|number:'.0-2'}}" readonly>
 
                         <label for=" nbreSpectateursPrevus">Prevision Spectateurs :</label>
                         <input type="text" name="nbreSpectateursPrevus" class="form-control" id="nbreSpectateursPrevus"

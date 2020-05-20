@@ -8,6 +8,8 @@ import { AnimationService } from '../../../service/animation.service';
 import { SalleService } from '../../../service/salle.service';
 import { AdminDto } from '../../../model/adminDto';
 import { AdminService } from '../../../service/admin.service';
+import { User } from '../../../model/user';
+import { AuthService } from '../../../service/auth.service';
 
 @Component({
   selector: 'app-manifestation-add',
@@ -21,10 +23,11 @@ export class ManifestationAddComponent implements OnInit {
   animations: AnimationDto[];
   admins: AdminDto[];
   salle: SalleDto;
+  userCourant: User;
 
   constructor(private adminService: AdminService, private salleService: SalleService,
     private animationService: AnimationService, private manifestationService: ManifestationService,
-    private router: Router) { }
+    private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.manifestation = new ManifestationDto();
@@ -36,6 +39,7 @@ export class ManifestationAddComponent implements OnInit {
     this.manifestation.animation = new AnimationDto();
     this.manifestation.validateur = new AdminDto();
     this.manifestation.annulateur = new AdminDto();
+   this.userCourant = this.authService.getCurrentUser();
 
 
     this.animationService.subjectMiseAJour.subscribe(
@@ -89,12 +93,9 @@ export class ManifestationAddComponent implements OnInit {
   }
 
   add(): void {
-    console.log('salle 1 ' + this.manifestation.salle.label);
     this.manifestationService.add(this.manifestation).subscribe(
       res => {
-        console.log('salle 2 ' + this.manifestation.salle.label);
         this.manifestationService.subjectMiseAJour.next(0);
-        console.log("Ajout Ok ");
         this.goHome();
       }
     );

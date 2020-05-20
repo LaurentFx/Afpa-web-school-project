@@ -22,7 +22,6 @@ _
       this.roleService.add(this.role).subscribe(
         res => {
           this.roleService.subjectMiseAJour.next(0);
-          console.log("Ajout Ok");
           this.goHome();
         }
   

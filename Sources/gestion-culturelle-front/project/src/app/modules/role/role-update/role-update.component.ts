@@ -31,7 +31,6 @@ export class RoleUpdateComponent implements OnInit {
     let id = this.route.snapshot.params['id'];
     this.roleService.update(id,this.role).subscribe(
       res => {
-       console.log("Modification Ok");
         this.goHome();
       }
     );

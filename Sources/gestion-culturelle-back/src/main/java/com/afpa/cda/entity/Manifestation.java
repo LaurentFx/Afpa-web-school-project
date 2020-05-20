@@ -72,9 +72,6 @@ public class Manifestation {
 	@Temporal(TemporalType.DATE)
 	private Date dateAnnulation;
 
-	@OneToMany (mappedBy = "manifestation")
-	List<Commande> listCommandes;
-
 	@ManyToMany
 	@JoinTable(name = "t_manifestation_vip",
 	joinColumns = { @JoinColumn(name = "id_manifestation") },

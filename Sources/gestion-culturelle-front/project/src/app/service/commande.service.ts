@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { PanierDto } from '../model/panierDto';
 import { HttpClient } from '@angular/common/http'
@@ -17,7 +18,7 @@ export class CommandeService {
   subjectMiseAJour= new Subject<number>();
 
   constructor(private http: HttpClient) { }
-
+/*
   getAll(): Observable<any> {
     return this.http.get(this.monUrl);
   }
@@ -33,15 +34,15 @@ export class CommandeService {
   getUser(id: number): Observable<any> {
     return this.http.get(`${this.monUrl}/user/${id}`);
   } 
-  
+  */
   getCommandes(id: number): Observable<any> {
     return this.http.get(`${this.monUrl}/panier/${id}`);
   } 
-
+/*
   update(id: number, commande: Object): Observable<Object> {
     return this.http.put(`${this.monUrl}/${id}`, commande);
   }
-
+*/
   delete(id: number): Observable<any> {
     return this.http.delete(`${this.monUrl}/${id}`);
   }

@@ -36,10 +36,8 @@ export class ProfilComponent implements OnInit {
 
   update(): void {
     let id = this.authService.getCurrentUser().id;
-    console.log({ id });
     this.profilService.update(id, this.user).subscribe(
       res => {
-        console.log("Modification Ok");
         this.goHome();
       }
     );

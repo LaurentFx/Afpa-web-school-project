@@ -13,8 +13,8 @@
                         <input type="date" name="dateValidation" class="form-control" id="dateValidation"
                             placeholder="Entrer la date de validation" [(ngModel)]="panierDto.dateValidation">
                     </div>
-                    <div class="form-group">
 
+                    <div class="form-group">
                         <label for="numClient">Numero de client :</label>
                         <input type="text" name="type" class="form-control" id="numClient"
                             placeholder="{{userDto.numClient}}" readonly>
@@ -29,7 +29,8 @@
                     <div class="form-group">
                         <label for="prix">Prix du billet(en €) :</label>
                         <input type="text" name="prix" class="form-control" id="prix"
-                            [(ngModel)]="manifestationDto.prixBillet" readonly>
+                        placeholder="{{manifestationDto.prixBillet|number:'.0-2'}}"
+                            readonly>
                     </div>
 
                     <div class="form-group">

@@ -41,7 +41,6 @@ export class RoleListComponent implements OnInit {
     this.roleService.delete(id).subscribe(
       res=>{
         this.roleService.subjectMiseAJour.next(0);
-        console.log('delete Ok ');
       }
     )
   }

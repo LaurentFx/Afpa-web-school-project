@@ -65,7 +65,7 @@ public class RoleServiceImpl implements IRoleService {
 		}
 	}
 		if (!roleExistant) {
-			Role role = this.roleRepository.save(this.modelMapper.map(roleDto,Role.class));
+			this.roleRepository.save(this.modelMapper.map(roleDto,Role.class));
 			System.err.println("role ajouté");
 			return roleExistant;
 		}

@@ -25,7 +25,6 @@ export class VipShowComponent implements OnInit {
     this.vipService.getOne(id).subscribe(
       res=>{
         this.vip= res;
-        console.log(res);
       }
     )
   }

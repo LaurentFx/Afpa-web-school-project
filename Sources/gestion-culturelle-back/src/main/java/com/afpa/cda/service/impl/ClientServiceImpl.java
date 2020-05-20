@@ -20,30 +20,31 @@ public class ClientServiceImpl implements IClientService {
 	@Autowired
 	private ModelMapper modelMapper;
 
-	/*@Override
+	@Override
 	public List<ClientDto> findAll() {
-		return this.clientRepository.findAll()
-
-				.stream()
-				.map(c-> {		
-					ClientDto clientDto = new ClientDto();
-					clientDto.setId(c.getId());
-					clientDto.setNom(c.getNom());
-					clientDto.setPrenom(c.getPrenom());			
-
-					RoleDto roleDto = new RoleDto();
-					roleDto.setLabel(c.getRole().getLabel());
-					clientDto.setRole(roleDto);
-
-					PanierDto panierDto = new PanierDto();
-					panierDto.setId(c.getPanier().getId());
-					clientDto.setPanier(panierDto);
-
-					return clientDto;
-				})
-
-				.collect(Collectors.toList());
-	}*/
+//		return this.clientRepository.findAll()
+//
+//				.stream()
+//				.map(c-> {		
+//					ClientDto clientDto = new ClientDto();
+//					clientDto.setId(c.getId());
+//					clientDto.setNom(c.getNom());
+//					clientDto.setPrenom(c.getPrenom());			
+//
+//					RoleDto roleDto = new RoleDto();
+//					roleDto.setLabel(c.getRole().getLabel());
+//					clientDto.setRole(roleDto);
+//
+//					PanierDto panierDto = new PanierDto();
+//					panierDto.setId(c.getPanier().getId());
+//					clientDto.setPanier(panierDto);
+//
+//					return clientDto;
+//				})
+//
+//				.collect(Collectors.toList());
+		return null;
+	}
 	
 	@Override
 	public ClientDto add(ClientDto clientDto) {
@@ -80,11 +81,6 @@ public class ClientServiceImpl implements IClientService {
 			return true;
 		}
 		return false;
-	}
-	@Override
-	public List<ClientDto> findAll() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	@Override
 	public Optional<ClientDto> findById(Integer clientId) {

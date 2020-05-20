@@ -42,7 +42,6 @@ export class VipAddComponent implements OnInit {
   add(): void {
     this.vipService.add(this.vip).subscribe(
       res => {    
-        console.log("Ajout Ok ");
         this.goHome();
       }
     );

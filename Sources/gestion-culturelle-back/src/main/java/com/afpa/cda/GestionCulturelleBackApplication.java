@@ -70,26 +70,26 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 
 			Salle foot = new Salle ();
 			foot.setId(1);
-			foot.setLabel("Terrain de football");
-			foot.setCapacite(2500);
-			foot.setFraisjournalier(400);
-			foot.setPlacesVip(10);
-			foot.setTypesalle(stade);
-
+			foot.setLabel("Zenith");
+			foot.setCapacite(800);
+			foot.setFraisjournalier(300);
+			foot.setPlacesVip(6);
+			foot.setTypesalle(concert);
+			
 			Salle zenith = new Salle ();
 			zenith.setId(2);
-			zenith.setLabel("Zenith de Lille");
-			zenith.setCapacite(3000);
-			zenith.setFraisjournalier(650);
-			zenith.setPlacesVip(20);
-			zenith.setTypesalle(concert);
+			zenith.setLabel("Terrain");
+			zenith.setCapacite(1200);
+			zenith.setFraisjournalier(200);
+			zenith.setPlacesVip(4);
+			zenith.setTypesalle(stade);
 
 			Salle colisee = new Salle ();
 			colisee.setId(3);
-			colisee.setLabel("Colisée de Roubaix");
-			colisee.setCapacite(1500);
-			colisee.setFraisjournalier(450);
-			colisee.setPlacesVip(15);
+			colisee.setLabel("Colisée");
+			colisee.setCapacite(400);
+			colisee.setFraisjournalier(400);
+			colisee.setPlacesVip(2);
 			colisee.setTypesalle(theatre);
 
 			initSalle(salleRepository, typeSalleRepository, foot);
@@ -108,7 +108,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			admin1.setPassword(password);
 			admin1.setAdresse(adresse);
 			admin1.setEmail(mail);
-			admin1.setInactif(false);
+		//	admin1.setInactif(false);
 			admin1.setEntreprise(entreprise);
 			admin1.setRole(admin);
 
@@ -119,7 +119,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			anim1.setPassword(password);
 			anim1.setAdresse(adresse);
 			anim1.setEmail(mail);
-			anim1.setInactif(false);
+	//		anim1.setInactif(false);
 			anim1.setEntreprise(entreprise);
 			anim1.setRole(anim);
 
@@ -130,34 +130,94 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			vip1.setPassword(password);
 			vip1.setAdresse(adresse);
 			vip1.setEmail(mail);
-			vip1.setInactif(false);
+	//		vip1.setInactif(false);
 			vip1.setEntreprise(entreprise);
 			vip1.setRole(vip);
+			
+			User vip2 = new User ();
+			vip2.setId(3);
+			vip2.setNom("vip2");
+			vip2.setPrenom("vip2");
+			vip2.setPassword(password);
+			vip2.setAdresse(adresse);
+			vip2.setEmail(mail);
+	//		vip2.setInactif(false);
+			vip2.setEntreprise(entreprise);
+			vip2.setRole(vip);
+			
+			User vip3 = new User ();
+			vip3.setId(3);
+			vip3.setNom("vip3");
+			vip3.setPrenom("vip3");
+			vip3.setPassword(password);
+			vip3.setAdresse(adresse);
+			vip3.setEmail(mail);
+	//		vip3.setInactif(false);
+			vip3.setEntreprise(entreprise);
+			vip3.setRole(vip);
+			
+			User vip4 = new User ();
+			vip4.setId(3);
+			vip4.setNom("vip4");
+			vip4.setPrenom("vip4");
+			vip4.setPassword(password);
+			vip4.setAdresse(adresse);
+			vip4.setEmail(mail);
+		//	vip4.setInactif(false);
+			vip4.setEntreprise(entreprise);
+			vip4.setRole(vip);
+			
+			User vip5 = new User ();
+			vip5.setId(3);
+			vip5.setNom("vip5");
+			vip5.setPrenom("vip5");
+			vip5.setPassword(password);
+			vip5.setAdresse(adresse);
+			vip5.setEmail(mail);
+	//		vip5.setInactif(false);
+			vip5.setEntreprise(entreprise);
+			vip5.setRole(vip);
+			
+			User vip6 = new User ();
+			vip6.setId(3);
+			vip6.setNom("vip6");
+			vip6.setPrenom("vip6");
+			vip6.setPassword(password);
+			vip6.setAdresse(adresse);
+			vip6.setEmail(mail);
+	//		vip6.setInactif(false);
+			vip6.setEntreprise(entreprise);
+			vip6.setRole(vip);
 
 			initUser(userRepository,admin1);
 			initUser(userRepository,anim1);
 			initUser(userRepository,vip1);
+			initUser(userRepository,vip2);
+			initUser(userRepository,vip3);
+			initUser(userRepository,vip4);
+			initUser(userRepository,vip5);
+			initUser(userRepository,vip6);
 
 			Animation animat1 = new Animation ();
 			animat1.setId(1);
-			animat1.setLabel("Match Lille-Paris");
+			animat1.setLabel("Match de football");
 			animat1.setType("Sport");
-			animat1.setPrix(12000);
+			animat1.setPrix(7800);
 			animat1.setNbreSpectateursPrevus(1000);
 
 			Animation animat2 = new Animation ();
 			animat2.setId(2);
 			animat2.setLabel("Concert Rock");
 			animat2.setType("Musique");
-			animat2.setPrix(26000);
-			animat2.setNbreSpectateursPrevus(2000);
+			animat2.setPrix(7500);
+			animat2.setNbreSpectateursPrevus(650);
 
 			Animation animat3 = new Animation ();
 			animat3.setId(3);
-			animat3.setLabel("L'avare Molière");
+			animat3.setLabel("Pièce classique");
 			animat3.setType("Art");
-			animat3.setPrix(12000);
-			animat3.setNbreSpectateursPrevus(800);
+			animat3.setPrix(1520);
+			animat3.setNbreSpectateursPrevus(300);
 
 			initAnimation(animationRepository,animat1);
 			initAnimation(animationRepository,animat2);
@@ -172,7 +232,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 						.password(adminUserConf.getPassword())
 						.adresse(adresse)
 						.email(mail)
-						.inactif(false)
+				//		.inactif(false)
 						.entreprise(entreprise)
 
 						// H2
@@ -260,7 +320,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 					.password(user.getPassword())
 					.adresse(user.getAdresse())
 					.email(user.getEmail())
-					.inactif(user.isInactif())
+				//	.inactif(user.isInactif())
 					.entreprise(user.getEntreprise())
 					.role(user.getRole())
 					.build());

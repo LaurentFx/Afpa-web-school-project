@@ -57,8 +57,8 @@ public class User {
 
 	// Pour un animateur et un VIP
 	private String entreprise;
-	private String photo;
-	private boolean inactif; 
+//	private String photo;
+//	private boolean inactif; 
 	
 	@ManyToMany
 	@JoinTable(name = "t_manifestation_vip",

@@ -54,12 +54,17 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public List<UserDto> findByRole(int id) {
+		// A tester
+		//	List<UserDto> listUsers = this.userRepository.findByRoleId(id);
+		
 		List <User> listUsers =  this.userRepository.findAll();
 
 		List <UserDto> listByRole = new ArrayList<UserDto> ();
 
 		for (User user : listUsers) {
-			if (user.getRole().getId()==id && user.isInactif()) {
+			if (user.getRole().getId()==id
+				//&& user.isInactif()
+					) {
 				UserDto userDto = this.modelMapper.map(user, UserDto.class);
 				userDto.setPassword(null);
 				userDto.setTokenSecret(null);
@@ -76,7 +81,7 @@ public class UserServiceImpl implements IUserService {
 	//	System.out.println(userOp.get().getNom()+" "+userOp.get().getPrenom());
 		if (!userOp.isPresent()) {
 			System.out.println("test2");
-			User user = this.userRepository.save(this.modelMapper.map(userDto, User.class));
+			this.userRepository.save(this.modelMapper.map(userDto, User.class));
 			return false;
 		}
 		
@@ -98,7 +103,7 @@ public class UserServiceImpl implements IUserService {
 				.dateValidation(dateDuJour)
 				.total(0).build());
 		user.getPanier().setListCommandes(new ArrayList<Commande>());
-		user.setInactif(true);
+	//	user.setInactif(true);
 
 		panierRepository.save(user.getPanier());
 		user.setPanier(Panier.builder().id(user.getPanier().getId()).build());

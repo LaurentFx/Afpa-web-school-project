@@ -99,8 +99,6 @@ public class SalleServiceImpl implements ISalleService {
 				salleDto.setTypeSalle(typesalleDto);
 			}
 
-			//		List<ManifestationDto> listManifestations = new ArrayList<ManifestationDto>() ;
-			//		salleDto.setManifestations(listManifestations);
 			this.salleRepository.save(this.modelMapper.map(salleDto,Salle.class));
 			return false;
 		}
