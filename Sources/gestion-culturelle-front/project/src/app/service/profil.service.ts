@@ -20,7 +20,6 @@ export class ProfilService {
   } 
 
   update(id: number, user: Object): Observable<Object> {
-    console.log({id});
     return this.http.put(`${this.monUrl}/${id}`, user);
   }
 

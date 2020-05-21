@@ -56,7 +56,6 @@ export class UserUpdateComponent implements OnInit {
     let id = this.route.snapshot.params['id'];
     this.userService.update(id, this.user).subscribe(
       res => {
-       console.log("Modification Ok");
         this.goHome();
       }
     );

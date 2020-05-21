@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Testability } from '@angular/core';
 import { ManifestationDto } from '../../../model/manifestationDto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ManifestationService } from '../../../service/manifestation.service';
@@ -18,24 +18,26 @@ export class ManifestationUpdateComponent implements OnInit {
 
   id: number;
   manifestation: ManifestationDto;
+  animation: AnimationDto;
   animations: AnimationDto[];
   salles: SalleDto[];
   admins: AdminDto[];
 
   constructor(
     private adminService: AdminService,
-    private salleService : SalleService,
-    private animationService : AnimationService,
+    private salleService: SalleService,
+    private animationService: AnimationService,
     private route: ActivatedRoute,
     private manifestationService: ManifestationService,
     private router: Router) { }
 
   ngOnInit() {
     this.manifestation = new ManifestationDto();
-    this.salles =[];
+    this.animation = new AnimationDto();
+    this.salles = [];
     this.animations = [];
     this.admins = [];
-    
+
     this.manifestation.salle = new SalleDto();
     this.manifestation.animation = new AnimationDto();
     this.manifestation.validateur = new AdminDto();
@@ -46,6 +48,7 @@ export class ManifestationUpdateComponent implements OnInit {
     this.manifestationService.getOne(id).subscribe(
       res => {
         this.manifestation = res;
+        this.animation = this.manifestation.animation;
       }
     );
 
@@ -62,6 +65,7 @@ export class ManifestationUpdateComponent implements OnInit {
     this.animationService.getAll().subscribe(
       resultat => {
         this.animations = resultat;
+
       }
     );
 
@@ -70,6 +74,7 @@ export class ManifestationUpdateComponent implements OnInit {
         this.salleService.getAll().subscribe(
           donnees => {
             this.salles = donnees;
+
           }
         );
       }
@@ -78,6 +83,10 @@ export class ManifestationUpdateComponent implements OnInit {
     this.salleService.getAll().subscribe(
       resultat => {
         this.salles = resultat;
+        this.salles.forEach(function (item, index, array) {
+          console.log("salles " + item.capacite, index);
+  //        console.log("nbreSpectateursPrevus 2 " + this.animation.nbreSpectateursPrevus);
+        });
       }
     );
 
@@ -100,11 +109,12 @@ export class ManifestationUpdateComponent implements OnInit {
 
   }
 
+
   update(): void {
     let id = this.route.snapshot.params['id'];
     this.manifestationService.update(id, this.manifestation).subscribe(
       res => {
-        console.log("Modification Ok");
+        console.log(this.manifestation);
         this.goHome();
       }
     );

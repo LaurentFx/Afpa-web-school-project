@@ -23,7 +23,6 @@ export class TypeSalleShowComponent implements OnInit {
     this.typeSalleService.getOne(id).subscribe(
       res => {
         this.typeSalle = res;
-        console.log(res);
       }
     );
   }

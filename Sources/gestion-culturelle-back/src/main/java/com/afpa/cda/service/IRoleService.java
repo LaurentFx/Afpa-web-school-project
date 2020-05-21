@@ -8,7 +8,7 @@ public interface IRoleService {
 	
 	List<RoleDto> findAll();
 
-	RoleDto add(RoleDto rol);
+	boolean add(RoleDto rol);
 
 	boolean updateRole(RoleDto rol, int id);
 

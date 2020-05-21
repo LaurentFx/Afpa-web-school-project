@@ -22,7 +22,7 @@ import com.afpa.cda.service.IInvitationService;
 public class InvitationServiceImpl implements IInvitationService {
 
 	@Autowired
-	private UserRepository invitationService;
+	private UserRepository userRepository;
 
 	@Autowired
 	private ManifestationRepository manifestationRepository;
@@ -32,7 +32,7 @@ public class InvitationServiceImpl implements IInvitationService {
 
 	@Override
 	public List<UserDto> findAll() {
-		return this.invitationService.findAll().stream().map(v -> {
+		return this.userRepository.findAll().stream().map(v -> {
 			UserDto userDto = new UserDto();
 			userDto.setId(v.getId());
 			userDto.setNom(v.getNom());
@@ -50,7 +50,7 @@ public class InvitationServiceImpl implements IInvitationService {
 
 	// @Override
 	// public List <UserDto> findByRole (int id) {
-	// return this.invitationService.findByRoleId(id);
+	// return this.userRepository.findByRoleId(id);
 	//
 	// }
 
@@ -72,7 +72,10 @@ public class InvitationServiceImpl implements IInvitationService {
 
 	@Override
 	public List<UserDto> findByRole(int id) {
-		List<User> listUsers = this.invitationService.findAll();
+		// A tester
+	//	List<UserDto> listUsers = this.userRepository.findByRoleId(5);
+		
+		List<User> listUsers = this.userRepository.findAll();
 		System.out.println("test methode findByRole ");
 		List<UserDto> listByRole = new ArrayList<UserDto>();
 
@@ -93,14 +96,14 @@ public class InvitationServiceImpl implements IInvitationService {
 
 	@Override
 	public UserDto add(UserDto userDto) {
-		User user = this.invitationService.save(this.modelMapper.map(userDto, User.class));
+		User user = this.userRepository.save(this.modelMapper.map(userDto, User.class));
 		userDto.setId(user.getId());
 		return userDto;
 	}
 
 	@Override
 	public UserDto findById(int id) {
-		Optional<User> userOp = this.invitationService.findById(id);
+		Optional<User> userOp = this.userRepository.findById(id);
 		UserDto userDto = null;
 		if (userOp.isPresent()) {
 			User user = userOp.get();
@@ -111,7 +114,7 @@ public class InvitationServiceImpl implements IInvitationService {
 
 	@Override
 	public boolean updateAdd(ManifestationDto manifestationDto, int id) {
-		Optional<User> vipOp = this.invitationService.findById(id);
+		Optional<User> vipOp = this.userRepository.findById(id);
 
 		if (vipOp.isPresent()) {
 			Optional<Manifestation> manifestationOp = this.manifestationRepository.findById(manifestationDto.getId());
@@ -127,8 +130,6 @@ public class InvitationServiceImpl implements IInvitationService {
 				System.out.println(manifestation.getReservationsVip());
 				this.manifestationRepository.save(manifestation);
 			}
-
-			// this.invitationService.save(this.modelMapper.map(user,User.class));
 			return true;
 		}
 		return false;
@@ -137,7 +138,7 @@ public class InvitationServiceImpl implements IInvitationService {
 	
 	@Override
 	public boolean updateSub(ManifestationDto manifestationDto, int id) {
-		Optional<User> vipOp = this.invitationService.findById(id);
+		Optional<User> vipOp = this.userRepository.findById(id);
 
 		if (vipOp.isPresent()) {
 			Optional<Manifestation> manifestationOp = this.manifestationRepository.findById(manifestationDto.getId());
@@ -154,7 +155,6 @@ public class InvitationServiceImpl implements IInvitationService {
 				this.manifestationRepository.save(manifestation);
 			}
 
-			// this.invitationService.save(this.modelMapper.map(user,User.class));
 			return true;
 		}
 		return false;
@@ -163,8 +163,8 @@ public class InvitationServiceImpl implements IInvitationService {
 
 	@Override
 	public boolean delete(int id) {
-		if (this.invitationService.existsById(id)) {
-			this.invitationService.deleteById(id);
+		if (this.userRepository.existsById(id)) {
+			this.userRepository.deleteById(id);
 			System.err.println("user supprimé");
 			return true;
 		}

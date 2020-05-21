@@ -9,7 +9,7 @@ public interface ISalleService {
 	
 	List<SalleDto> findAll();
 	
-	SalleDto add(SalleDto sal);
+	boolean add(SalleDto sal);
 	
 	boolean updateSalle(SalleDto sal, int id);
 	
@@ -17,7 +17,8 @@ public interface ISalleService {
 
 	SalleDto findById(int id);
 
-	ManifestationDto calcul(ManifestationDto manifDto);
+	//ManifestationDto calcul(ManifestationDto manifDto);
+
 
 	
 

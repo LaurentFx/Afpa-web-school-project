@@ -20,7 +20,7 @@ public class ManifestationDto {
 	private int id;
 	private String label;
 	private Date dateValidation;
-	private AdminDto validateur;
+	private UserDto validateur;
 	private AnimationDto animation;
 	private Date dateDebut;
 	private Date dateFin;
@@ -30,10 +30,8 @@ public class ManifestationDto {
 	private int reservations;
 	private int reservationsVip;
 	private int rentabilite;
-//	private AdminDto annulateur;
-//	private Date dateAnnulation;
-
-	private List <CommandeDto> listCommandes;
+	private UserDto annulateur;
+	private Date dateAnnulation;
 
 	private List <UserDto> listVips;
 }

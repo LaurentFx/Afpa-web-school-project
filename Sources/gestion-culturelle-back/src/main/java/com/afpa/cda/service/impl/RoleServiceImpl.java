@@ -44,31 +44,40 @@ public class RoleServiceImpl implements IRoleService {
 	@Override
 	public RoleDto findById(int id) {
 		Optional <Role> roleOp = this.roleRepository.findById(id);
-		RoleDto rol =null; 
+		RoleDto roleDto =null; 
 		if(roleOp.isPresent()) {
 			Role role= roleOp.get();
 
-			rol=this.modelMapper.map(role,RoleDto.class);
+			roleDto=this.modelMapper.map(role,RoleDto.class);
 		}
-		return rol;
+		return roleDto;
 	}
 
 
 
 	@Override
-	public RoleDto add(RoleDto rol) {
-		Role role = this.roleRepository.save(this.modelMapper.map(rol,Role.class));
-		rol.setLabel(role.getLabel());
-		System.err.println("role ajouté");
-		return rol;
+	public boolean add(RoleDto roleDto) {
+	List <Role> listRoles = this.roleRepository.findAll();
+	boolean roleExistant = false;
+	for (Role role : listRoles) {
+		if (role.getLabel().equalsIgnoreCase(roleDto.getLabel())) {
+			roleExistant=true;
+		}
+	}
+		if (!roleExistant) {
+			this.roleRepository.save(this.modelMapper.map(roleDto,Role.class));
+			System.err.println("role ajouté");
+			return roleExistant;
+		}
+		return roleExistant;
 	}
 
 	@Override
-	public boolean updateRole(RoleDto rol, int id) {
+	public boolean updateRole(RoleDto roleDto, int id) {
 		Optional <Role> roleOp = this.roleRepository.findById(id);
 		if(roleOp.isPresent()) {
 			Role role = roleOp.get();
-			role.setLabel(rol.getLabel());
+			role.setLabel(roleDto.getLabel());
 			this.roleRepository.save(role);
 			System.err.println("role mise à jour");
 			return true;
@@ -79,11 +88,14 @@ public class RoleServiceImpl implements IRoleService {
 
 	@Override
 	public boolean deleteRole(int id) {
-		List<User> listeUser = userRepository.findAll();
+
+		List <User> listUsers = userRepository.findAll();
 		boolean userAvecRole = false;
-		for (User user : listeUser) {
-			if (user.getRole().getId()==id) {
-				userAvecRole  = true;
+		
+		for (User user : listUsers) {
+			if(user.getRole().getId()==id) {
+				userAvecRole = true;
+
 			}
 		}
 		if(this.roleRepository.existsById(id) && !userAvecRole) {
@@ -91,7 +103,6 @@ public class RoleServiceImpl implements IRoleService {
 			System.err.println("role supprimé");
 			return true;
 		}
-
 		return false;
 	}
 }

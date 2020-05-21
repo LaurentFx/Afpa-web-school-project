@@ -21,9 +21,7 @@ import { ManifestationListComponent } from './modules/manifestation/manifestatio
 import { ManifestationAddComponent } from './modules/manifestation/manifestation-add-component/manifestation-add.component';
 import { ManifestationShowComponent } from './modules/manifestation/manifestation-show-component/manifestation-show.component';
 import { ManifestationUpdateComponent } from './modules/manifestation/manifestation-update-component/manifestation-update.component';
-import { PanierListComponent } from './modules/panier/panier-list-component/panier-list.component';
 import { PanierAddComponent } from './modules/panier/panier-add-component/panier-add.component';
-import { PanierUpdateComponent } from './modules/panier/panier-update-component/panier-update.component';
 import { PanierShowComponent } from './modules/panier/panier-show-component/panier-show.component';
 import { RoleAddComponent } from './modules/role/role-add/role-add.component';
 import { RoleUpdateComponent } from './modules/role/role-update/role-update.component';
@@ -51,7 +49,6 @@ import { InscriptionComponent } from './modules/inscription/inscription/inscript
 
 import { UserRoleListComponent } from './modules/user/user-role-list/user-role-list.component';
 
-import { CommandeAddComponent } from './modules/commande/commande-add/commande-add.component';
 import { InvitationAddComponent } from './modules/invitation/invitation-add/invitation-add.component';
 
 
@@ -80,9 +77,7 @@ const routes: Routes = [
   { path: 'animation-update/:id', component: AnimationUpdateComponent },
   { path: 'animation-show/:id', component: AnimationShowComponent },
 
-  { path: 'panier-list', component: PanierListComponent  },
   { path: 'panier-ad', component: PanierAddComponent },
-  { path: 'panier-update/:id', component: PanierUpdateComponent },
   { path: 'panier-show/:id', component: PanierShowComponent },
    {path: 'panier-ad/:id', component: PanierAddComponent },
    {path: 'panier-show', component: PanierShowComponent },
@@ -124,8 +119,6 @@ const routes: Routes = [
   {path: 'vip-update/:id', component: VipUpdateComponent},
 
   {path: 'invitation-ad/:id', component: InvitationAddComponent },
-
-  {path: 'commande-ad/:id', component: CommandeAddComponent },
    
   {path: 'public/profil', component: ProfilComponent },
 

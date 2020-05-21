@@ -40,7 +40,7 @@ public class UserDto {
 	
 	private List <AnimationDto> listAnimations;
 	
-	private boolean inactif;
+//	private boolean inactif;
 	
 	private List <ManifestationDto> listManifestations;
 

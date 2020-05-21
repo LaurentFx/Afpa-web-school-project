@@ -23,6 +23,6 @@ public class AdminUserDefaultConf {
 	@Value("${cda.admin.password}")
 	private String password;
 	
-	@Value("${cda.admin.login}")
-	private String login;
+//	@Value("${cda.admin.login}")
+//	private String login;
 }

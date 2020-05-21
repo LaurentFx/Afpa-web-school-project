@@ -25,7 +25,6 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { AnimateurModule } from './modules/animateur/animateur.module';
 import { ProfilModule } from './modules/profil/profil.module';
 import { InscriptionModule } from './modules/inscription/inscription.module';
-import { CommandeModule } from './modules/commande/commande.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -73,7 +72,6 @@ import { InvitationModule } from './modules/invitation/invitation.module';
       }
     }),
     InscriptionModule,
-    CommandeModule,
     InvitationModule,
    
   ],

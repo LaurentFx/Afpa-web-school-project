@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AnimationService } from '../../../service/animation.service';
 import { Router } from '@angular/router';
 import { AnimationDto } from '../../../model/animationDto';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-animation-add',
@@ -12,7 +13,9 @@ export class AnimationAddComponent implements OnInit {
  
   animation: AnimationDto;
 
-  constructor(private animationService: AnimationService, private router: Router) { }
+  constructor(private animationService: AnimationService,
+     private router: Router,
+     private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.animation = new AnimationDto();
@@ -20,10 +23,17 @@ export class AnimationAddComponent implements OnInit {
   }
 
   add(): void {
+    let nom = this.animation.label;
+
     this.animationService.add(this.animation).subscribe(
       res => {
+
         this.animationService.subjectMiseAJour.next(0);
-        console.log("Ajout Ok ");        
+         if (res) {
+          this.toastrService.error('L animation '+nom +' existe déjà', 'Ajout impossible')
+        } else {
+          this.toastrService.success('Nouvelle animation : ' +nom, 'Ajout Ok')
+        }     
         this.goHome();
       }
     );

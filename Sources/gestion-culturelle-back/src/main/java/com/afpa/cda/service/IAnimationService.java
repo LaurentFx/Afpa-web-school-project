@@ -9,7 +9,7 @@ public interface IAnimationService {
 	
 	List<AnimationDto> findAll();
 
-	AnimationDto add(AnimationDto anim);
+	boolean add(AnimationDto anim);
 
 	boolean update(AnimationDto anim, int id);
 
@@ -17,6 +17,6 @@ public interface IAnimationService {
 
 	AnimationDto findById(int id);
 
-	ManifestationDto calcul(ManifestationDto manifDto);
+	//ManifestationDto calcul(ManifestationDto manifDto);
 
 }

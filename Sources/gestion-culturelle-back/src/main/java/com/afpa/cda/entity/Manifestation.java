@@ -57,7 +57,7 @@ public class Manifestation {
 	private double cout;
 
 	@ManyToOne
-	@JoinColumn(name = "salle", nullable = false)
+	@JoinColumn(name = "salle")
 	private Salle salle;
 
 	@Column(precision=6,scale=2)
@@ -66,14 +66,11 @@ public class Manifestation {
 	private int reservationsVip;
 	private int rentabilite;
 
-//	@OneToOne
-//	private User annulateur;
-//
-//	@Temporal(TemporalType.DATE)
-//	private Date dateAnnulation;
+	@OneToOne
+	private User annulateur;
 
-	@OneToMany (mappedBy = "manifestation")
-	List<Commande> listCommandes;
+	@Temporal(TemporalType.DATE)
+	private Date dateAnnulation;
 
 	@ManyToMany
 	@JoinTable(name = "t_manifestation_vip",

@@ -28,10 +28,10 @@ export class LoginComponent implements OnInit {
   login(){
     this.authService.login(this.user).subscribe(res=>{
       if(res){
+  //   this.toastrService.success('Bienvenue '+this.user.username,'Connexion Ok');
         this.router.navigateByUrl('/public'); 
       } else {
-       this.toastrService.error('Connexion refusée'),
-        console.log('connexion NOk')
+   //    this.toastrService.error('Connexion refusée')
       }
     });
   }

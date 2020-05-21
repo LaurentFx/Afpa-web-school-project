@@ -53,7 +53,6 @@ export class AnimateurAddComponent implements OnInit {
   add(): void {
     this.animateurService.add(this.animateur).subscribe(
       res => {    
-        console.log("Ajout Ok ");
         this.goHome();
       }
     );

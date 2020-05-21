@@ -24,7 +24,6 @@ export class SalleShowComponent implements OnInit {
     this.salleService.getOne(id).subscribe(
       res => {
         this.salle = res;
-        console.log(res);
       }
     );
 

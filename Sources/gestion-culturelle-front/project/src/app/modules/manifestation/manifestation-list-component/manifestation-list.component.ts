@@ -74,7 +74,6 @@ export class ManifestationListComponent implements OnInit {
     this.manifestationService.delete(id).subscribe(
       res => {
         this.manifestationService.subjectMiseAJour.next(0);
-        console.log('delete Ok ');
       }
     )
   }

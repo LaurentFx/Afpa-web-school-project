@@ -47,7 +47,6 @@ export class AnimateurListComponent implements OnInit {
     this.animateurService.delete(id).subscribe(
       res=>{
         this.animateurService.subjectMiseAJour.next(0);
-        console.log('delete Ok ');
       }
     )
   }

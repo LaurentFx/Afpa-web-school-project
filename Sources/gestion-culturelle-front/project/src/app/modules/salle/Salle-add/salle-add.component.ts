@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SalleDto } from '../../../model/salleDto';
 import { TypeSalleDto } from '../../../model/typeSalleDto';
 import { TypeSalleService } from '../../../service/typeSalle.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-salle-add',
@@ -16,8 +17,8 @@ export class SalleAddComponent implements OnInit {
   typeSalles: TypeSalleDto[];
 
   constructor(private typeSalleService: TypeSalleService,
-     private salleService: SalleService,
-      private router: Router) { }
+    private salleService: SalleService, private router: Router,
+    private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.salle = new SalleDto();
@@ -43,9 +44,18 @@ export class SalleAddComponent implements OnInit {
   }
 
   add(): void {
+    let nom = this.salle.label;
+
     this.salleService.add(this.salle).subscribe(
       res => {
-        console.log("Ajout Ok");
+
+        this.salleService.subjectMiseAJour.next(0);
+        if (res) {
+          this.toastrService.error('La salle '+nom +' existe déjà', 'Ajout impossible')
+        } else {
+          this.toastrService.success('Nouvelle salle : ' +nom, 'Ajout Ok')
+        }
+
         this.goHome();
       }
 

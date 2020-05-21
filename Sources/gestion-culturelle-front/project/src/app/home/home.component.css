@@ -10,8 +10,12 @@ header,
     height: 100%;
 }
 
+h1 {
+color:rgb(77, 6, 49);
+
+}
 #intro {
-    background: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full%20page/img%20%283%29.jpg")no-repeat center center fixed;
+    background: url("http://www.mjc-montastruc.fr/s/img/emotionheader11467520_1.jpg?1523374293.898px.224px");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

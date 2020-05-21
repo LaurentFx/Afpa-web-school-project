@@ -107,8 +107,8 @@ export class NavebarComponent implements OnInit {
     this.router.navigateByUrl('/panier-show/' + id)
   }
 
-  redirectToProfil(): void {
-    this.router.navigateByUrl('/public/profil')
-  }
+  // redirectToProfil(): void {
+  //this.router.navigateByUrl('/public/profil')
+  //}
 
 }

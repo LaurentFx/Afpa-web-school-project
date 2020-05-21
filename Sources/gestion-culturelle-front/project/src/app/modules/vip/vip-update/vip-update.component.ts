@@ -57,7 +57,6 @@ export class VipUpdateComponent implements OnInit {
     let id = this.route.snapshot.params['id'];
     this.vipService.update(id, this.vip).subscribe(
       res=>{
-        console.log("Modification Ok");
         this.goHome()
       }
     );

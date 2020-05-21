@@ -45,7 +45,6 @@ export class AdminListComponent implements OnInit {
     this.adminService.delete(id).subscribe(
       res=>{
         this.adminService.subjectMiseAJour.next(0);
-        console.log('delete Ok ');
       }
     )
   }

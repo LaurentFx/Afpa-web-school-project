@@ -59,7 +59,6 @@ this.role = this.authService.getCurrentUser().role;
     this.vipService.delete(id).subscribe(
       res => {
         this.vipService.subjectMiseAJour.next(0)
-        console.log('delete ok');
       }
     )
   }

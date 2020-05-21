@@ -26,7 +26,6 @@ export class AnimateurShowComponent implements OnInit {
 this.animateurService.getOne(id).subscribe(
   res=> {
     this.animateur=res;
-    console.log(res);
   }
 );
 

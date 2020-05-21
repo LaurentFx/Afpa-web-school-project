@@ -47,9 +47,13 @@ export class RoleListComponent implements OnInit {
 
     this.roleService.getOne(id).subscribe(
       res=>{
+<<<<<<< HEAD
         this.role = res
         console.log(res);
         console.log('delete Ok ');
+=======
+        this.roleService.subjectMiseAJour.next(0);
+>>>>>>> dev
       }
     )
 
