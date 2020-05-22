@@ -5,20 +5,20 @@ import { Subject, Observable } from 'rxjs';
 import { AuthService } from '../../../service/auth.service';
 import { User } from '../../../model/user';
 import { UserService } from '../../../service/user.service';
-import { faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-profil',
-  templateUrl: './profil.component.html',
-  styleUrls: ['./profil.component.css']
+  selector: 'app-profil-show-component',
+  templateUrl: './profil-show.component.html',
+  styleUrls: ['./profil-show.component.css']
 })
-export class ProfilComponent implements OnInit {
-
+export class ProfilShowComponent implements OnInit {
+ 
+  isClient: boolean;
   id: number;
   user: User;
   faHome = faHome;
-  faPlusSquare = faPlusSquare;
-
+  faCheckSquare = faCheckSquare;
 
   constructor(private router: Router, private userService: UserService,
     private route: ActivatedRoute, private authService: AuthService) { }
@@ -26,7 +26,6 @@ export class ProfilComponent implements OnInit {
   ngOnInit() {
     this.user = new User();
 
-    /* this.user = this.authService.getCurrentUser().nom; */
     let id = this.authService.getCurrentUser().id;
 
     this.userService.getOne(id).subscribe(
@@ -35,23 +34,13 @@ export class ProfilComponent implements OnInit {
       }
     )
 
-  }
-
-  update(): void {
-    let id = this.authService.getCurrentUser().id;
-    this.userService.update(id, this.user).subscribe(
-      res => {
-        this.goHome();
+    if (this.authService.getCurrentUser()) {
+      const userCourant = this.authService.getCurrentUser();
+      this.isClient = userCourant.role.label === 'CLIENT';
       }
-    );
-  }
-  onSubmit() {
-    this.update();
-  }
-  goHome() {
-    this.router.navigate(['/public']);
-  }
 
-
+    }
+ 
 
 }
+

@@ -4,6 +4,7 @@ import { SalleDto } from '../../../model/salleDto';
 import { SalleService } from '../../../service/salle.service';
 import { TypeSalleDto } from '../../../model/typeSalleDto';
 import { TypeSalleService } from '../../../service/typeSalle.service';
+import { faHome, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-salle-update',
@@ -15,6 +16,9 @@ export class SalleUpdateComponent implements OnInit {
   id: number;
   salle: SalleDto;
   typeSalles: TypeSalleDto[];
+  faHome = faHome;
+  faCheckSquare = faCheckSquare;
+
 
   constructor(private route: ActivatedRoute, private typeSalleService: TypeSalleService,private salleService: SalleService, private router: Router) { }
 

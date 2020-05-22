@@ -8,7 +8,7 @@ import { PanierService } from '../../../service/panier.service';
 import { AuthService } from '../../../service/auth.service';
 import { UserService } from '../../../service/user.service';
 import { RoleDto } from '../../../model/roleDto';
-
+import { faHome, faCalendarPlus,faCalendarCheck,faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-panier-show',
@@ -26,7 +26,10 @@ export class PanierShowComponent implements OnInit {
   role: RoleDto;
   isClient: boolean;
   isConnected: boolean;
-  date = new Date ();
+  faHome = faHome;
+  faCalendarPlus = faCalendarPlus;
+  faCalendarCheck = faCalendarCheck;
+  faTrashAlt = faTrashAlt;
 
   constructor(private articleService: ArticleService,
     private panierService: PanierService, private route: ActivatedRoute,

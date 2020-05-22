@@ -1,100 +1,103 @@
-<p>Inviter des Vips</p>
+<div class="row justify-content-center align-items-center">
+    <div [hidden]="submitted" style="width: 500px;">
 
-<br>
+        <form>
+            <p>Inviter des Vips</p>
 
-<div [hidden]="submitted">
-    <form>
+            <br>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-3">
 
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-3">
+                        <div class="form-group">
+                            <label for="manifestation">Manifestation :</label>
+                            <input type="text" name="manifestation" class="form-control" id="manifestation"
+                                [(ngModel)]="manifestationDto.label" readonly>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="manifestation">Manifestation :</label>
-                        <input type="text" name="manifestation" class="form-control" id="manifestation"
-                            [(ngModel)]="manifestationDto.label" readonly>
-                    </div>
+                        <div class="form-group">
+                            <label for="dateDebut">Date de début :</label>
+                            <input type="text" name="dateDebut" class="form-control" id="dateDebut"
+                                [(ngModel)]="manifestationDto.dateDebut" readonly>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="dateDebut">Date de début :</label>
-                        <input type="text" name="dateDebut" class="form-control" id="dateDebut"
-                            [(ngModel)]="manifestationDto.dateDebut" readonly>
-                    </div>
+                        <div class="form-group">
+                            <label for="dateFin">Date de fin :</label>
+                            <input type="text" name="dateFin" class="form-control" id="dateFin"
+                                [(ngModel)]="manifestationDto.dateFin" readonly>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="dateFin">Date de fin :</label>
-                        <input type="text" name="dateFin" class="form-control" id="dateFin"
-                            [(ngModel)]="manifestationDto.dateFin" readonly>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="reservationsVip">Nbre de Vips à inviter :</label>
-                        <input type="text" name="reservationsVip" class="form-control" id="reservationsVip"
-                            [(ngModel)]="manifestationDto.reservationsVip" readonly>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-5">
-                    <div class="panel-body">
-                        <table class="table table-striped " >
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Nom</th>
-                                    <th>Prenom</th>
-                                    <th>Entreprise</th>
-                                    
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let vip of vips" style="border:1px solid black;">
-
-                                    <td>{{vip.nom}}</td>
-                                    <td>{{vip.prenom}}</td>
-                                    <td>{{vip.entreprise}}</td>
-                                    <td><button (click)="addVips(vip.id)" class="btn btn-secondary">Ajouter</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-          
-               
-
-                <div class="col-5">
-                    <div class="panel-body">
-                        <table class="table table-striped  " >
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Nom</th>
-                                    <th>Prenom</th>
-                                    <th>Entreprise</th>
-                                   
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let invit of invits" >
-
-                                    <td>{{invit.nom}}</td>
-                                    <td>{{invit.prenom}}</td>
-                                    <td>{{invit.entreprise}}</td>
-                                   <td> <button (click)="subVips(invit.id)" class="btn btn-secondary">Retirer</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="form-group">
+                            <label for="reservationsVip">Nbre de Vips à inviter :</label>
+                            <input type="text" name="reservationsVip" class="form-control" id="reservationsVip"
+                                [(ngModel)]="manifestationDto.reservationsVip" readonly>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-5">
+                        <div class="panel-body">
+                            <table class="table table-striped ">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Nom</th>
+                                        <th>Prenom</th>
+                                        <th>Entreprise</th>
 
-    </form>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let vip of vips" style="border:1px solid black;">
+
+                                        <td>{{vip.nom}}</td>
+                                        <td>{{vip.prenom}}</td>
+                                        <td>{{vip.entreprise}}</td>
+                                        <td><button (click)="addVips(vip.id)" class="btn btn-secondary"><fa-icon class="icon p-2" [icon]="faPlusSquare">Ajouter</fa-icon></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-5">
+                        <div class="panel-body">
+                            <table class="table table-striped  ">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Nom</th>
+                                        <th>Prenom</th>
+                                        <th>Entreprise</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let invit of invits">
+
+                                        <td>{{invit.nom}}</td>
+                                        <td>{{invit.prenom}}</td>
+                                        <td>{{invit.entreprise}}</td>
+                                        <td> <button (click)="subVips(invit.id)"
+                                                class="btn btn-secondary"><fa-icon class="icon p-2" [icon]="faMinusSquare">Retirer</fa-icon></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <a name="" id="" class="btn btn-secondary" href="#" role="button"
+                        [routerLink]="['/public/manifestation-list']" title="Annuler">
+                        <fa-icon class="icon p-2" [icon]="faHome" >Annuler</fa-icon>
+                    </a>
+                    &nbsp;
+                    <button class="btn btn-secondary" type="button" value="ajouter" (click)="add()"
+                        [disabled]="nom.length==0" title="Valider">
+                        <fa-icon class="icon p-2" [icon]="faCheckSquare">Valider</fa-icon>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
-
-
-
-<a name="" id="" class="btn btn-secondary" href="#" role="button"
-    [routerLink]="['/public/manifestation-list']">Annuler</a>

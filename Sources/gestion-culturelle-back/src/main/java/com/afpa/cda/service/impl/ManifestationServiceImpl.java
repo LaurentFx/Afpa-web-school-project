@@ -179,8 +179,6 @@ public class ManifestationServiceImpl implements IManifestationService {
 			manifestation.setSalle(salle);
 		}
 
-		manifestation.setRentabilite(0);
-
 		manifestation.setReservations(manifestationDto.getReservations());
 		manifestation.setReservationsVip(manifestationDto.getReservationsVip());
 		manifestation.setCout(manifestationDto.getCout());
@@ -222,8 +220,6 @@ public class ManifestationServiceImpl implements IManifestationService {
 				Salle salle = salleOp.get();
 				manifestation.setSalle(salle);
 			}
-
-			manifestation.setRentabilite(0);
 
 			manifestationDto=calcul(manifestationDto);
 			manifestation.setReservations(manifestationDto.getReservations());

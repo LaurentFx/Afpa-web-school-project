@@ -1,10 +1,24 @@
 #nav {
 
-    background-color: rgb(112, 106, 105);
+    background-color: rgb(128, 120, 119);
 }
+
+#login {
+       color:rgb(6, 73, 10);
+}
+
 
 #logout {
     cursor: pointer;
+    color:rgb(151, 24, 24);
+}
+
+#bienvenue {
+    color:rgb(51, 42, 99);
+}
+
+a,button{
+    font-weight: bold;
 }
 
 p {

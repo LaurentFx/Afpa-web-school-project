@@ -41,3 +41,8 @@ color:rgb(77, 6, 49);
       background-color: #24355C;
     }
   }
+
+  #new {
+    cursor: pointer;
+   
+}

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AnimationService } from '../../../service/animation.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AnimationDto } from '../../../model/animationDto';
+import { faHome, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-animation-update',
@@ -12,6 +13,9 @@ export class AnimationUpdateComponent implements OnInit {
 
   id: number;
   animation: AnimationDto;
+  faHome = faHome;
+  faCheckSquare = faCheckSquare;
+
 
   constructor(private route: ActivatedRoute, private animationService: AnimationService, private router: Router) { }
 

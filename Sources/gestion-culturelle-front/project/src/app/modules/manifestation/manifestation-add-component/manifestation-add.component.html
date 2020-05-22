@@ -52,7 +52,9 @@
                             [routerLink]="['/public/manifestation-list']"><fa-icon class="icon p-2" [icon]="faHome">Annuler</fa-icon></a>
                         &nbsp;
                         <button (click)="add()" class="btn btn-secondary"
-                            [disabled]="manifestation.length==0"><fa-icon class="icon p-2" [icon]="faPlusSquare">Ajouter</fa-icon></button>
+                            [disabled]="manifestation.length==0">
+                            <fa-icon class="icon p-2" [icon]="faPlusSquare">
+                                Ajouter</fa-icon></button>
                     </div>
                 </div>
             </div>

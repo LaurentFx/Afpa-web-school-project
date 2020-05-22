@@ -1,0 +1,49 @@
+<div class="row justify-content-center align-items-center">
+
+    <div [hidden]="submitted" style="width: 400px;">
+        <form>
+            <h2>Voir le profil</h2>
+            <br>
+
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-6">
+                       
+                        <div class="form-group">
+                            <label for="nom">Nom</label>
+                            <input type="text" [(ngModel)]="user.nom" name="nom" id="nom" class="form-control" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prenom">Prenom</label>
+                            <input type="text" [(ngModel)]="user.prenom" name="prenom" id="prenom" class="form-control"
+                                readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" [(ngModel)]="user.email" name="email" id="email" class="form-control" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="adresse">Adresse</label>
+                            <input type="text" [(ngModel)]="user.adresse" name="adresse" id="adresse"
+                                class="form-control" readonly>
+                        </div>
+
+                        <div  *ngIf="!isClient" class="form-group">
+                            <label for="entreprise">Entreprise</label>
+                            <input type="text" [(ngModel)]="user.entreprise" name="entreprise" id="entreprise"
+                                class="form-control">
+                        </div>
+
+                        <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public/']" title="Retour à l'accueil">
+                            <fa-icon class="icon p-2" [icon]="faHome">Retour à l'accueil</fa-icon>
+                        </a>
+                       
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

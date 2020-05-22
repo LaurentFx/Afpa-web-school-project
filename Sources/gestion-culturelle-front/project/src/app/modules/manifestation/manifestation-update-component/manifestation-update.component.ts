@@ -8,6 +8,7 @@ import { SalleService } from '../../../service/salle.service';
 import { AnimationService } from '../../../service/animation.service';
 import { User } from '../../../model/user';
 import { UserService } from '../../../service/user.service';
+import { faHome, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-manifestation-update',
@@ -23,7 +24,9 @@ export class ManifestationUpdateComponent implements OnInit {
   salle: SalleDto;
   salles: SalleDto[];
   users: User[];
- capacite: number;
+  faHome = faHome;
+  faCheckSquare = faCheckSquare;
+  capacite: number;
 
   constructor(
     private userService: UserService,
@@ -43,7 +46,7 @@ export class ManifestationUpdateComponent implements OnInit {
     this.manifestation.salle = new SalleDto();
     this.manifestation.animation = new AnimationDto();
     this.manifestation.validateur = new User();
-   //this.capacite = this.manifestation.salle.capacite;
+    //this.capacite = this.manifestation.salle.capacite;
 
     let id = this.route.snapshot.params['id'];
 
@@ -70,7 +73,7 @@ export class ManifestationUpdateComponent implements OnInit {
 
       }
     );
-
+/*
     this.salleService.subjectMiseAJour.subscribe(
       res => {
         this.salleService.getAll().subscribe(
@@ -108,7 +111,8 @@ export class ManifestationUpdateComponent implements OnInit {
       }
     );
 
-//console.log("capacite "+this.capacite);
+    //console.log("capacite "+this.capacite);
+*/
 
   }
 

@@ -5,6 +5,7 @@ import { ManifestationService } from '../../../service/manifestation.service';
 import { AnimationDto } from '../../../model/animationDto';
 import { SalleDto } from '../../../model/salleDto';
 import { User } from '../../../model/user';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-manifestation-show',
@@ -14,6 +15,7 @@ import { User } from '../../../model/user';
 export class ManifestationShowComponent implements OnInit {
 
   manifestation: ManifestationDto;
+  faHome = faHome;
 
   constructor(private route: ActivatedRoute, private manifestationService:ManifestationService, private router: Router) { }
 

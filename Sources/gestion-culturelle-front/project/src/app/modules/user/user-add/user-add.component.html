@@ -1,11 +1,10 @@
 <div class="row justify-content-center align-items-center">
 
   <div [hidden]="submitted" style="width: 500px;">
-    
     <form>
-      <h2>Ajouter un user</h2>
+      <br>
+      <h2>Ajouter un utilisateur</h2>
     <br>
-
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-6">
@@ -52,8 +51,9 @@
           <br>
           <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/user-list']"><fa-icon class="icon p-2" [icon]="faHome">Annuler</fa-icon></a>
           &nbsp;
-           <button class="btn btn-secondary" type="button" value="ajouter" (click)="add()"><fa-icon class="icon p-2" [icon]="faPlusSquare"></fa-icon> </button>
-          <!--[disabled]="nom.length==0"-->
+          <button (click)="add()" class="btn btn-secondary"    >
+          <fa-icon class="icon p-2" [icon]="faPlusSquare">
+              Ajouter</fa-icon></button>
         </div>
       </div>
     </form>

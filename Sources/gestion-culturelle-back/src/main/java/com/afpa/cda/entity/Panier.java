@@ -17,12 +17,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 @Builder
 @Table(
 		name="t_panier"
@@ -37,7 +39,6 @@ public class Panier {
 		
 	@OneToMany
 	List<Article> listArticles;
-	
 	
 	private double total;
 

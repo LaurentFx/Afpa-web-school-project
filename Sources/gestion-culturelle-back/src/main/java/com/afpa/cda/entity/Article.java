@@ -26,7 +26,7 @@ import lombok.Setter;
 public class Article {
 
 	@Id
-	@GeneratedValue(generator = "ARTICLE", strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator = "ARTICLE_SEQ", strategy = GenerationType.SEQUENCE)
 	private int id;
 	
 	@ManyToOne
@@ -36,7 +36,6 @@ public class Article {
 	@ManyToOne
 	@JoinColumn(name = "panier", nullable = false)
 	Panier panier;
-	
 	
 	int quantite;
 	

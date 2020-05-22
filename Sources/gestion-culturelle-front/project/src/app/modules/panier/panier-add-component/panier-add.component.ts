@@ -8,7 +8,7 @@ import { PanierService } from '../../../service/panier.service';
 import { ManifestationService } from '../../../service/manifestation.service';
 import { AuthService } from '../../../service/auth.service';
 import { UserService } from '../../../service/user.service';
-import { Observable } from 'rxjs';
+import { faHome, faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-panier-add',
@@ -24,8 +24,10 @@ export class PanierAddComponent implements OnInit {
   user: User;
   idUser: number;
   idManif: number;
+  faHome = faHome;
+  faCalendarPlus = faCalendarPlus;
 
- // dateValidation: Date;
+  // dateValidation: Date;
 
   constructor(private manifestationService: ManifestationService,
     private panierService: PanierService, private route: ActivatedRoute,
@@ -39,6 +41,7 @@ export class PanierAddComponent implements OnInit {
 
   ngOnInit() {
     this.reload();
+
   }
 
   reload() {
@@ -63,7 +66,7 @@ export class PanierAddComponent implements OnInit {
     this.article.manifestation = this.manifestationDto;
     this.article.panier = this.panierDto;
     this.article.quantite = this.quantite;
-    
+
     this.panierService.add(this.article).subscribe(
       res => {
         this.panierService.subjectMiseAJour.next(0);
@@ -74,10 +77,7 @@ export class PanierAddComponent implements OnInit {
   }
 
   goHome(id: number) {
-
-    this.router.navigateByUrl('/panier-show/'+ id)
-
+    this.router.navigateByUrl('/panier-show/' + id)
   }
-
 
 }

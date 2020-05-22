@@ -1,39 +1,44 @@
-<h3>Voir une animation</h3>
+<div class="row justify-content-center align-items-center">
 
-<div [hidden]="submitted" style="width: 400px;">
-    <form>
+    <div [hidden]="submitted">
+        <form>
+            <h3>Voir une animation</h3>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-10">
+                        <div class="form-group">
 
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-6">
-                    <div class="form-group">
+                            <label for="label">Label :</label>
+                            <input type="text" name="label" class="form-control" id="label"
+                                placeholder="{{animation.label}}" readonly>
 
-                        <label for="label">Label :</label>
-                        <input type="text" name="label" class="form-control" id="label"
-                         placeholder="{{animation.label}}" readonly>
+                            <label for="type">Type d'animation :</label>
+                            <input type="text" name="type" class="form-control" id="type"
+                                placeholder="{{animation.type}}" readonly>
 
-                        <label for="type">Type d'animation :</label>
-                        <input type="text" name="type" class="form-control" id="type"
-                        placeholder="{{animation.type}}" readonly>
+                            <label for="prix">Prix de l'animation :</label>
+                            <input type="text" name="prix" class="form-control" id="prix"
+                                placeholder="{{animation.prix}}" readonly>
 
-                        <label for="prix">Prix de l'animation :</label>
-                        <input type="text" name="prix" class="form-control" id="prix"
-                            placeholder="{{animation.prix}}" readonly>
+                            <label for=" nbreSpectateursPrevus">Prevision Spectateurs :</label>
+                            <input type="text" name="nbreSpectateursPrevus" class="form-control"
+                                id="nbreSpectateursPrevus" placeholder="{{animation.nbreSpectateursPrevus}}" readonly>
 
-                        <label for=" nbreSpectateursPrevus">Prevision Spectateurs :</label>
-                        <input type="text" name="nbreSpectateursPrevus" class="form-control" id="nbreSpectateursPrevus"
-                            placeholder="{{animation.nbreSpectateursPrevus}}" readonly>
 
+                        </div>
+                        <br>
+                        <br>
+                        <a name="" id="" class="btn btn-secondary" href="#" role="button"
+                            [routerLink]="['/public/animation-list']">
+                            <fa-icon class="icon p-2" [icon]="faHome">Retour à la
+                                liste</fa-icon>
+                        </a>
 
                     </div>
                 </div>
+
             </div>
 
-        </div>
-      
-    </form>
+        </form>
+    </div>
 </div>
-<br>
-<br>
-<a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public/animation-list']">Retour à la
-    liste</a>

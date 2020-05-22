@@ -1,4 +1,3 @@
-import { ManifestationDto } from './manifestationDto';
 import { ArticleDto } from './articleDto';
 
 export class PanierDto {

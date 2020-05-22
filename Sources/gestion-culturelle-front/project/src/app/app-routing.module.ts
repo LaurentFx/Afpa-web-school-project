@@ -33,7 +33,9 @@ import { UserAddComponent } from './modules/user/user-add/user-add.component';
 import { UserUpdateComponent } from './modules/user/user-update/user-update.component';
 import { UserShowComponent } from './modules/user/user-show/user-show.component';
 
-import { ProfilComponent } from './modules/profil/profil/profil.component';
+import { ProfilShowComponent } from './modules/profil//profil-show-component/profil-show.component';
+import { ProfilUpdateComponent } from './modules/profil//profil-update-component/profil-update.component';
+
 import { InscriptionComponent } from './modules/inscription/inscription/inscription.component';
 
 import { UserRoleListComponent } from './modules/user/user-role-list/user-role-list.component';
@@ -89,7 +91,8 @@ const routes: Routes = [
   { path: 'role-show/:id', component: RoleShowComponent },
 
   { path: 'invitation-ad/:id', component: InvitationAddComponent },
-  { path: 'public/profil', component: ProfilComponent },
+  { path: 'public/profil-update', component: ProfilUpdateComponent },
+  { path: 'public/profil-show', component: ProfilShowComponent },
   { path: 'public/inscription', component: InscriptionComponent }
 ];
 

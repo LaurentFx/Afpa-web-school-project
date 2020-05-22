@@ -3,6 +3,7 @@ import { SalleDto } from '../../../model/salleDto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SalleService } from '../../../service/salle.service';
 import { TypeSalleDto } from '../../../model/typeSalleDto';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-salle-show',
@@ -12,6 +13,7 @@ import { TypeSalleDto } from '../../../model/typeSalleDto';
 export class SalleShowComponent implements OnInit {
 
   salle: SalleDto;
+  faHome = faHome;
 
   constructor(private route: ActivatedRoute, private salleService:SalleService, private router: Router) { }
 

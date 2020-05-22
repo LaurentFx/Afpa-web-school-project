@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AnimationService } from '../../../service/animation.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AnimationDto } from '../../../model/animationDto';
+import { faHome, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { AnimationDto } from '../../../model/animationDto';
 export class AnimationShowComponent implements OnInit {
 
   animation: AnimationDto;
+  faHome = faHome;
 
   constructor(private route: ActivatedRoute, private animationService: AnimationService, private router: Router) { }
   

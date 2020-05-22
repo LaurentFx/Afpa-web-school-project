@@ -76,9 +76,7 @@ public class UserServiceImpl implements IUserService {
 		List <UserDto> listByRole = new ArrayList<UserDto> ();
 
 		for (User user : listUsers) {
-			if (user.getRole().getId()==id
-					//&& user.isInactif()
-					) {
+			if (user.getRole().getId()==id) {
 				UserDto userDto = this.modelMapper.map(user, UserDto.class);
 				userDto.setPassword(null);
 				userDto.setTokenSecret(null);
@@ -92,7 +90,6 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public boolean add(UserDto userDto) {
 		Optional <User> userOp = this.userRepository.findByNomAndPrenom(userDto.getNom(), userDto.getPrenom());
-		//	System.out.println(userOp.get().getNom()+" "+userOp.get().getPrenom());
 		if (!userOp.isPresent()) {
 			this.userRepository.save(this.modelMapper.map(userDto, User.class));
 			return false;
@@ -108,7 +105,7 @@ public class UserServiceImpl implements IUserService {
 		if (roleOp.isPresent()) {
 			user.setRole(roleOp.get());
 		}
-		user.setNumClient(userDto.getNom().substring(0,2)+"2020"+userDto.getPrenom().substring(0,2));
+		user.setNumClient(userDto.getNom().substring(0,1)+userDto.getId()+userDto.getPrenom().substring(0,1)+"2020");
 		Date dateDuJour = new Date();
 		user.setPanier(Panier.builder()
 				.dateValidation(dateDuJour)
@@ -145,6 +142,7 @@ public class UserServiceImpl implements IUserService {
 			if (user.getPanier()!=null) {
 				panierDto.setId(user.getPanier().getId());
 				panierDto.setDateValidation(user.getPanier().getDateValidation());
+				panierDto.setTotal(user.getPanier().getTotal());
 			}
 			userDto.setPanier(panierDto);
 			
@@ -194,6 +192,7 @@ public class UserServiceImpl implements IUserService {
 			if (user.getPanier()!=null) {
 				panierDto.setId(user.getPanier().getId());
 				panierDto.setDateValidation(user.getPanier().getDateValidation());
+				panierDto.setTotal(user.getPanier().getTotal());
 			}
 			userDto.setPanier(panierDto);
 
@@ -216,11 +215,10 @@ public class UserServiceImpl implements IUserService {
 
 			userE.setEmail(user.getEmail());
 			userE.setAdresse(user.getAdresse());
+			userE.setEntreprise(user.getEntreprise());
 
 			this.userRepository.save(userE);
 
-			// this.UserRepository.save(this.modelMapper.map(user,User.class));
-			System.err.println("user mis à jour");
 			return true;
 		}
 

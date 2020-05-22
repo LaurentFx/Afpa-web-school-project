@@ -19,11 +19,11 @@
         <td>{{user.role.label}}</td>
 
         <td>
-          <button (click)="redirectToShow(user.id)" class="btn btn-sm btn-success"><fa-icon class="icon p-0" [icon]="faInfoCircle">Show</fa-icon></button>
+          <button (click)="redirectToShow(user.id)" class="btn btn-sm btn-success" title="Afficher les détails"><fa-icon class="icon p-0" [icon]="faInfoCircle">Show</fa-icon></button>
           &nbsp;
-          <button (click)="redirectToUpdate(user.id)" class="btn btn-sm btn-warning"><fa-icon [icon]="faEdit">Update</fa-icon></button>
+          <button (click)="redirectToUpdate(user.id)" class="btn btn-sm btn-warning" title="Mettre à jour"><fa-icon [icon]="faEdit">Update</fa-icon></button>
           &nbsp;
-          <button (click)="delete(user.id)" class="btn btn-sm btn-danger"><fa-icon [icon]="faTrashAlt">Delete</fa-icon></button>
+          <button (click)="delete(user.id)" class="btn btn-sm btn-danger" title="Effacer"><fa-icon [icon]="faTrashAlt">Delete</fa-icon></button>
           &nbsp;
        <!--   <button (click)="redirectToRole(user.role.id)" class="btn btn-sm btn-primary">Role</button> -->
         </td>
@@ -36,9 +36,9 @@
 
   <br>
   &nbsp;
-  <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/user-ad']"><fa-icon class="icon p-2" [icon]="faPlusSquare">Ajouter</fa-icon></a>
+  <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/user-ad']" title="Ajouter un user"><fa-icon class="icon p-2" [icon]="faPlusSquare">Ajouter</fa-icon></a>
   &nbsp;
-  <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']"><fa-icon class="icon p-2" [icon]="faHome">Retour à l'accueil</fa-icon></a>
+  <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']" title="Retour à l'accueil"><fa-icon class="icon p-2" [icon]="faHome">Retour à l'accueil</fa-icon></a>
 
 
 

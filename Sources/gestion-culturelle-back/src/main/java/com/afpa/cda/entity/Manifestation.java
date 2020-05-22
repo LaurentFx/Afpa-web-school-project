@@ -63,7 +63,6 @@ public class Manifestation {
 	private double prixBillet;	
 	private int reservations;
 	private int reservationsVip;
-	private int rentabilite;
 
 	@ManyToMany
 	@JoinTable(name = "t_manifestation_vip",
