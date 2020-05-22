@@ -46,7 +46,7 @@
 
                         <label for="prixBillet">Prix du billet :</label>
                         <input type="text" name="prixBillet" class="form-control" id="prixBillet"
-                            placeholder="{{manifestation.prixBillet}}" readonly>
+                            placeholder="{{manifestation.prixBillet|number:'.0-2'}}" readonly>
 
                         <label for="reservations">Réservations :</label>
                         <input type="text" name="reservations" class="form-control" id="reservations"

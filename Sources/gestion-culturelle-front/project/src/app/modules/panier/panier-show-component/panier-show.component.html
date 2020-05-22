@@ -14,7 +14,7 @@
                     <div class="form-group">
 
                         <label for="numClient">N° Client :</label>
-                        <input type="numClient" name="date" class="form-control" id="numClient"
+                        <input type="text" name="numClient" class="form-control" id="numClient"
                             placeholder="{{userDto.numClient}}" readonly>
 
                         <label for="date">Date :</label>
@@ -49,11 +49,11 @@
                     </thead>
 
                     <tbody>
-                        <tr *ngFor="let commande of listCommandes">
-                            <td>{{commande.manifestation.label}}</td>
-                            <td>{{commande.manifestation.prixBillet|number:'.0-2'}}</td>
-                            <td> {{commande.quantite}}</td>
-                            <td> <button (click)="delete(commande.id)" class="btn btn-sm btn-danger">Delete</button>
+                        <tr *ngFor="let article of listArticles">
+                            <td>{{article.manifestation.label}}</td>
+                            <td>{{article.manifestation.prixBillet|number:'.0-2'}}</td>
+                            <td> {{article.quantite}}</td>
+                            <td> <button (click)="delete(article.id)" class="btn btn-sm btn-danger">Delete</button>
                             </td>
 
 

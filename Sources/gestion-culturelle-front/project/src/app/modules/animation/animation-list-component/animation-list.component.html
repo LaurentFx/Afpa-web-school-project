@@ -22,7 +22,7 @@
                 <td>{{animation.id}}</td>
                 <td>{{animation.label}}</td>
                 <td>{{animation.type}}</td>
-                <td>{{animation.prix|number:'.0-2'}}</td>
+                <td>{{animation.prix}}</td>
                 <td>{{animation.nbreSpectateursPrevus}}</td>
 
                 <td>
@@ -43,6 +43,6 @@
 
    
 
-    <a *ngIf="isAnim" name="" id="" class="btn btn-info" href="#" role="button" [routerLink]="['/animation-ad']"><fa-icon class="icon p-2" [icon]="faPlusSquare">+ Ajouter une animation</fa-icon></a>
+    <a *ngIf="isAnim" name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/animation-ad']"><fa-icon class="icon p-2" [icon]="faPlusSquare">+ Ajouter une animation</fa-icon></a>
     &nbsp;
-    <a name="" id="" class="btn btn-info" href="#" role="button" [routerLink]="['/public']"><fa-icon class="icon p-2" [icon]="faHome">Retour à l'accueil</fa-icon></a>
+    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']"><fa-icon class="icon p-2" [icon]="faHome">Retour à l'accueil</fa-icon></a>

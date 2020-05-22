@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ManifestationService } from '../../../service/manifestation.service';
 import { AuthService } from '../../../service/auth.service';
 import { RoleDto } from 'src/app/model/roleDto';
-import { faInfoCircle, faEdit, faTrashAlt, faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { faInfoCircle, faEdit, faTrashAlt, faHome, faPlusSquare, faEuroSign, faUserTie } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-manifestation-list',
@@ -18,6 +18,8 @@ export class ManifestationListComponent implements OnInit {
   faTrashAlt = faTrashAlt;
   faHome = faHome;
   faPlusSquare = faPlusSquare;
+  faEuroSign = faEuroSign;
+  faUserTie = faUserTie;
 
   isConnected: boolean;
   manifestations: ManifestationDto[];

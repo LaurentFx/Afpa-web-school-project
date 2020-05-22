@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.afpa.cda.dto.CommandeDto;
+import com.afpa.cda.dto.ArticleDto;
 import com.afpa.cda.dto.PanierDto;
 import com.afpa.cda.service.IPanierService;
 
@@ -37,8 +37,8 @@ public class PanierController {
 	}
 	
 	@PostMapping(path = "/panier")
-	public void add(@RequestBody CommandeDto commandeDto) {
-		this.panierService.addCommandePanier(commandeDto);
+	public void add(@RequestBody ArticleDto articleDto) {
+		this.panierService.addArticlePanier(articleDto);
 	}
 
 	@PutMapping(path = "/panier/{id}")
@@ -51,9 +51,9 @@ public class PanierController {
 		this.panierService.deletePanier(id);
 	}
 
-	@DeleteMapping(path = "/panier/commandes/{id}")
-	public void deleteCommandes(@PathVariable int id) {
-		this.panierService.deleteCommandes(id);
+	@DeleteMapping(path = "/panier/articles/{id}")
+	public void deleteArticles(@PathVariable int id) {
+		this.panierService.deleteArticles(id);
 	}
 	
 	

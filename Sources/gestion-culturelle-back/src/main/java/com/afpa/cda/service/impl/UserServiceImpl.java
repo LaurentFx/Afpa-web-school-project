@@ -13,9 +13,10 @@ import org.springframework.stereotype.Service;
 import com.afpa.cda.dao.PanierRepository;
 import com.afpa.cda.dao.RoleRepository;
 import com.afpa.cda.dao.UserRepository;
+import com.afpa.cda.dto.PanierDto;
 import com.afpa.cda.dto.RoleDto;
 import com.afpa.cda.dto.UserDto;
-import com.afpa.cda.entity.Commande;
+import com.afpa.cda.entity.Article;
 import com.afpa.cda.entity.Panier;
 import com.afpa.cda.entity.Role;
 import com.afpa.cda.entity.User;
@@ -38,37 +39,50 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public List<UserDto> findAll() {
-		
-		return this.userRepository.findAll().stream().map(me -> {
-			UserDto userDto = this.modelMapper.map(me, UserDto.class);
-			// solution temporaire
-			// ne pas remonter les mots de passe pour le service get
+
+		return this.userRepository.findAll().stream().map(user -> {
+			UserDto userDto = new UserDto();
+			userDto.setId(user.getId());
+			userDto.setNom(user.getNom());
+			userDto.setPrenom(user.getPrenom());
+			userDto.setEmail(user.getEmail());
 			userDto.setPassword(null);
 			userDto.setTokenSecret(null);
-			userDto.setRole(this.modelMapper.map(me.getRole(), RoleDto.class));
-			return userDto;
-		}).collect(Collectors.toList());
-		
-	}
+			userDto.setNumClient(null);
+			userDto.setPanier(null);
+			userDto.setAdresse(user.getAdresse());
+			userDto.setEntreprise(user.getEntreprise());
 
+
+			RoleDto roleDto = new RoleDto();
+			if (user.getRole()!=null) {
+				roleDto.setId(user.getRole().getId());
+				roleDto.setLabel(user.getRole().getLabel());
+			}
+			userDto.setRole(roleDto);
+
+			return userDto;
+		})
+				.collect(Collectors.toList());
+	}
 
 	@Override
 	public List<UserDto> findByRole(int id) {
 		// A tester
 		//	List<UserDto> listUsers = this.userRepository.findByRoleId(id);
-		
+
 		List <User> listUsers =  this.userRepository.findAll();
 
 		List <UserDto> listByRole = new ArrayList<UserDto> ();
 
 		for (User user : listUsers) {
 			if (user.getRole().getId()==id
-				//&& user.isInactif()
+					//&& user.isInactif()
 					) {
 				UserDto userDto = this.modelMapper.map(user, UserDto.class);
 				userDto.setPassword(null);
 				userDto.setTokenSecret(null);
-					userDto.setRole(this.modelMapper.map(user.getRole(), RoleDto.class));
+				userDto.setRole(this.modelMapper.map(user.getRole(), RoleDto.class));
 				listByRole.add(userDto);
 			}
 		}
@@ -78,17 +92,14 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public boolean add(UserDto userDto) {
 		Optional <User> userOp = this.userRepository.findByNomAndPrenom(userDto.getNom(), userDto.getPrenom());
-	//	System.out.println(userOp.get().getNom()+" "+userOp.get().getPrenom());
+		//	System.out.println(userOp.get().getNom()+" "+userOp.get().getPrenom());
 		if (!userOp.isPresent()) {
-			System.out.println("test2");
 			this.userRepository.save(this.modelMapper.map(userDto, User.class));
 			return false;
 		}
-		
+
 		return true;
 	}
-
-
 
 	@Override
 	public UserDto addClient(UserDto userDto) {
@@ -102,8 +113,8 @@ public class UserServiceImpl implements IUserService {
 		user.setPanier(Panier.builder()
 				.dateValidation(dateDuJour)
 				.total(0).build());
-		user.getPanier().setListCommandes(new ArrayList<Commande>());
-	//	user.setInactif(true);
+		user.getPanier().setListArticles(new ArrayList<Article>());
+		//	user.setInactif(true);
 
 		panierRepository.save(user.getPanier());
 		user.setPanier(Panier.builder().id(user.getPanier().getId()).build());
@@ -116,35 +127,83 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public Optional<UserDto> findById(Integer userId) {
-		Optional<User> userEnOpt = this.userRepository.findById(userId);
+	public Optional<UserDto> findByCurrentUser(Integer userId) {
+		Optional<User> userOpt = this.userRepository.findById(userId);
 		UserDto userDto = new UserDto();
-		if (userEnOpt.isPresent()) {
-			User me = userEnOpt.get();
-			userDto = this.modelMapper.map(me, UserDto.class);
-			// solution temporaire
-			// ne pas remonter les mots de passe pour le service get
+		if (userOpt.isPresent()) {
+			User user = userOpt.get();
+		
+			userDto.setId(user.getId());
+			userDto.setNom(user.getNom());
+			userDto.setPrenom(user.getPrenom());
+			userDto.setEmail(user.getEmail());
 			userDto.setPassword(null);
 			userDto.setTokenSecret(null);
-			userDto.setRole(this.modelMapper.map(me.getRole(), RoleDto.class));
+			userDto.setNumClient(user.getNumClient());
+			
+			PanierDto panierDto = new PanierDto();
+			if (user.getPanier()!=null) {
+				panierDto.setId(user.getPanier().getId());
+				panierDto.setDateValidation(user.getPanier().getDateValidation());
+			}
+			userDto.setPanier(panierDto);
+			
+			userDto.setAdresse(user.getAdresse());
+			userDto.setEntreprise(user.getEntreprise());
+
+
+			RoleDto roleDto = new RoleDto();
+			if (user.getRole()!=null) {
+				roleDto.setId(user.getRole().getId());
+				roleDto.setLabel(user.getRole().getLabel());
+			}
+			userDto.setRole(roleDto);
+
+//			userDto = this.modelMapper.map(me, UserDto.class);
+//			// solution temporaire
+//			// ne pas remonter les mots de passe pour le service get
+//			userDto.setPassword(null);
+//			userDto.setTokenSecret(null);
+//			userDto.setRole(this.modelMapper.map(me.getRole(), RoleDto.class));
+			
 			return Optional.of(userDto);
+		
 		}
 		return Optional.empty();
 	}
 
 	@Override
-	public UserDto findOne(Integer userId) {
-		Optional<User> userEnOpt = this.userRepository.findById(userId);
+	public UserDto findById(Integer userId) {
+		Optional<User> userOpt = this.userRepository.findById(userId);
 		UserDto userDto = new UserDto();
-		if (userEnOpt.isPresent()) {
-			User me = userEnOpt.get();
-			userDto = this.modelMapper.map(me, UserDto.class);
-			// solution temporaire
-			// ne pas remonter les mots de passe pour le service get
+		if (userOpt.isPresent()) {
+			User user = userOpt.get();
+		
+			userDto.setId(user.getId());
+			userDto.setNom(user.getNom());
+			userDto.setPrenom(user.getPrenom());
+			userDto.setEmail(user.getEmail());
 			userDto.setPassword(null);
 			userDto.setTokenSecret(null);
-			userDto.setRole(this.modelMapper.map(me.getRole(), RoleDto.class));
-		}
+			userDto.setNumClient(user.getNumClient());
+			
+			userDto.setAdresse(user.getAdresse());
+			userDto.setEntreprise(user.getEntreprise());
+
+			PanierDto panierDto = new PanierDto();
+			if (user.getPanier()!=null) {
+				panierDto.setId(user.getPanier().getId());
+				panierDto.setDateValidation(user.getPanier().getDateValidation());
+			}
+			userDto.setPanier(panierDto);
+
+			RoleDto roleDto = new RoleDto();
+			if (user.getRole()!=null) {
+				roleDto.setId(user.getRole().getId());
+				roleDto.setLabel(user.getRole().getLabel());
+			}
+			userDto.setRole(roleDto);
+	}
 		return userDto;
 	}
 
@@ -180,9 +239,5 @@ public class UserServiceImpl implements IUserService {
 
 	}
 
-
-
 }
-
-
 

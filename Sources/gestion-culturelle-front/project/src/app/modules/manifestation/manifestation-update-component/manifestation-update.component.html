@@ -56,6 +56,11 @@
                             placeholder="Entrer le nombre de reservations" [(ngModel)]="manifestation.reservations">
                     </div>
 
+                    <label for="capacite">Capacité :</label>
+                    <input type="text" name="capacite" class="form-control" id="capacite"
+                        placeholder="{{salle.capacite}}" readonly>
+
+
                     <div class="form-group">
                         <label for=" reservationsVip">Nombre de reservationsVip :</label>
                         <input type="text" name="reservationsVip" class="form-control" id="reservationsVip"
@@ -63,17 +68,6 @@
                             [(ngModel)]="manifestation.reservationsVip">
                     </div>
 
-                    <label for="salle">Nom de l'annulateur :</label>
-                    <select name="annulateur" id="annulateur" [(ngModel)]="manifestation.annulateur.id"
-                        class="form-control">
-                        <option *ngFor="let annulateur of admins" [value]="annulateur.id">{{annulateur.nom}}</option>
-                    </select>
-
-                    <div class="form-group">
-                        <label for="dateAnnulation">Date d'annulation :</label>
-                        <input type="date" name="dateAnnulation" class="form-control" id="dateAnnulation"
-                            placeholder="Entrer la date d'annulation " [(ngModel)]="manifestation.dateAnnulation">
-                    </div>
                 </div>
             </div>
         </div>

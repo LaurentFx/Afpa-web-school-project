@@ -2,7 +2,6 @@ package com.afpa.cda.service;
 
 import java.util.List;
 
-import com.afpa.cda.dto.ManifestationDto;
 import com.afpa.cda.dto.SalleDto;
 
 public interface ISalleService {

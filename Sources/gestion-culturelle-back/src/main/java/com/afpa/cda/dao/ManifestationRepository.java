@@ -7,9 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.afpa.cda.entity.Animation;
 import com.afpa.cda.entity.Manifestation;
-import com.afpa.cda.entity.TypeSalle;
 
 
 @Repository

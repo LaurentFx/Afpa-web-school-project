@@ -6,8 +6,8 @@ import { AnimationDto } from '../../../model/animationDto';
 import { SalleDto } from '../../../model/salleDto';
 import { SalleService } from '../../../service/salle.service';
 import { AnimationService } from '../../../service/animation.service';
-import { AdminService } from '../../../service/admin.service';
-import { AdminDto } from '../../../model/adminDto';
+import { User } from '../../../model/user';
+import { UserService } from '../../../service/user.service';
 
 @Component({
   selector: 'app-manifestation-update',
@@ -20,11 +20,13 @@ export class ManifestationUpdateComponent implements OnInit {
   manifestation: ManifestationDto;
   animation: AnimationDto;
   animations: AnimationDto[];
+  salle: SalleDto;
   salles: SalleDto[];
-  admins: AdminDto[];
+  users: User[];
+ capacite: number;
 
   constructor(
-    private adminService: AdminService,
+    private userService: UserService,
     private salleService: SalleService,
     private animationService: AnimationService,
     private route: ActivatedRoute,
@@ -36,12 +38,12 @@ export class ManifestationUpdateComponent implements OnInit {
     this.animation = new AnimationDto();
     this.salles = [];
     this.animations = [];
-    this.admins = [];
+    this.users = [];
 
     this.manifestation.salle = new SalleDto();
     this.manifestation.animation = new AnimationDto();
-    this.manifestation.validateur = new AdminDto();
-    this.manifestation.annulateur = new AdminDto();
+    this.manifestation.validateur = new User();
+   //this.capacite = this.manifestation.salle.capacite;
 
     let id = this.route.snapshot.params['id'];
 
@@ -74,7 +76,6 @@ export class ManifestationUpdateComponent implements OnInit {
         this.salleService.getAll().subscribe(
           donnees => {
             this.salles = donnees;
-
           }
         );
       }
@@ -85,27 +86,29 @@ export class ManifestationUpdateComponent implements OnInit {
         this.salles = resultat;
         this.salles.forEach(function (item, index, array) {
           console.log("salles " + item.capacite, index);
-  //        console.log("nbreSpectateursPrevus 2 " + this.animation.nbreSpectateursPrevus);
+          //        console.log("nbreSpectateursPrevus 2 " + this.animation.nbreSpectateursPrevus);
         });
       }
     );
 
 
-    this.adminService.subjectMiseAJour.subscribe(
+    this.userService.subjectMiseAJour.subscribe(
       res => {
-        this.adminService.getAll().subscribe(
+        this.userService.getAll().subscribe(
           donnees => {
-            this.admins = donnees;
+            this.users = donnees;
           }
         );
       }
     );
 
-    this.adminService.getAll().subscribe(
+    this.userService.getAll().subscribe(
       resultat => {
-        this.admins = resultat;
+        this.users = resultat;
       }
     );
+
+//console.log("capacite "+this.capacite);
 
   }
 

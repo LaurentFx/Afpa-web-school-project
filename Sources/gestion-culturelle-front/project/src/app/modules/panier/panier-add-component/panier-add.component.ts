@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CommandeDto } from '../../../model/commandeDto';
+import { ArticleDto } from '../../../model/articleDto';
 import { PanierDto } from '../../../model/panierDto';
 import { ManifestationDto } from '../../../model/manifestationDto';
 import { User } from '../../../model/user';
-import { CommandeService } from '../../../service/commande.service';
 import { PanierService } from '../../../service/panier.service';
 import { ManifestationService } from '../../../service/manifestation.service';
 import { AuthService } from '../../../service/auth.service';
@@ -17,7 +16,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./panier-add.component.css']
 })
 export class PanierAddComponent implements OnInit {
-  commande: CommandeDto;
+  article: ArticleDto;
   panierDto: PanierDto;
   userDto: User;
   manifestationDto: ManifestationDto;
@@ -25,7 +24,6 @@ export class PanierAddComponent implements OnInit {
   user: User;
   idUser: number;
   idManif: number;
-  commandetmp: CommandeDto;
 
  // dateValidation: Date;
 
@@ -36,7 +34,7 @@ export class PanierAddComponent implements OnInit {
     this.manifestationDto = new ManifestationDto();
     this.userDto = new User();
     this.panierDto = new PanierDto();
-    this.commandetmp = new CommandeDto();
+    this.article = new ArticleDto();
   }
 
   ngOnInit() {
@@ -62,11 +60,11 @@ export class PanierAddComponent implements OnInit {
 
   add(): void {
     this.reload();
-    this.commandetmp.manifestation = this.manifestationDto;
-    this.commandetmp.panier = this.panierDto;
-    this.commandetmp.quantite = this.quantite;
+    this.article.manifestation = this.manifestationDto;
+    this.article.panier = this.panierDto;
+    this.article.quantite = this.quantite;
     
-    this.panierService.add(this.commandetmp).subscribe(
+    this.panierService.add(this.article).subscribe(
       res => {
         this.panierService.subjectMiseAJour.next(0);
         this.goHome(this.panierDto.id);

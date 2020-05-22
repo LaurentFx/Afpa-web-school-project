@@ -11,9 +11,9 @@ public interface IUserService {
 
 	boolean add(UserDto user);
 
-	Optional<UserDto> findById(Integer userId);
+	Optional<UserDto> findByCurrentUser(Integer userId);
 
-	UserDto findOne(Integer userId);
+	UserDto findById(Integer userId);
 
 	boolean update(UserDto user, int id);
 

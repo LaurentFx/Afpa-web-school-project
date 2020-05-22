@@ -2,7 +2,7 @@ package com.afpa.cda.service;
 
 import java.util.List;
 
-import com.afpa.cda.dto.CommandeDto;
+import com.afpa.cda.dto.ArticleDto;
 import com.afpa.cda.dto.PanierDto;
 
 
@@ -19,12 +19,11 @@ public interface IPanierService {
 
 	PanierDto findByUser(int id);
 
-	void addCommandePanier(CommandeDto commandeDto);
-
+	void addArticlePanier(ArticleDto articleDto);
 
 	void deletePanier(int id);
 
-	void deleteCommandes(int id);
+	void deleteArticles(int id);
 
 
 }

@@ -1,6 +1,5 @@
 package com.afpa.cda.dto;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,8 +30,6 @@ public class ManifestationDto {
 	private int reservations;
 	private int reservationsVip;
 	private int rentabilite;
-	private UserDto annulateur;
-	private Date dateAnnulation;
 
 	private List <UserDto> listVips;
 }

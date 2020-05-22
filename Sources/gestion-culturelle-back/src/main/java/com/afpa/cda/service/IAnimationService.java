@@ -3,7 +3,6 @@ package com.afpa.cda.service;
 import java.util.List;
 
 import com.afpa.cda.dto.AnimationDto;
-import com.afpa.cda.dto.ManifestationDto;
 
 public interface IAnimationService {
 	

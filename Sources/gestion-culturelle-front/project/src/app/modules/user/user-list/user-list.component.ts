@@ -22,6 +22,7 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     this.users=[];
+    
     this.userService.getAll().subscribe(
       donnees =>{
         this.users = donnees; 
@@ -37,6 +38,7 @@ export class UserListComponent implements OnInit {
         );
       }
     );
+    
   }
 
   delete(id:number) {

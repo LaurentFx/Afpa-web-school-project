@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subject, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../../service/auth.service';
-import { ProfilService } from '../../../service/profil.service';
 import { User } from '../../../model/user';
+import { UserService } from '../../../service/user.service';
+import { faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-profil',
@@ -16,8 +16,11 @@ export class ProfilComponent implements OnInit {
 
   id: number;
   user: User;
+  faHome = faHome;
+  faPlusSquare = faPlusSquare;
 
-  constructor(private router: Router, private profilService: ProfilService,
+
+  constructor(private router: Router, private userService: UserService,
     private route: ActivatedRoute, private authService: AuthService) { }
 
   ngOnInit() {
@@ -26,7 +29,7 @@ export class ProfilComponent implements OnInit {
     /* this.user = this.authService.getCurrentUser().nom; */
     let id = this.authService.getCurrentUser().id;
 
-    this.profilService.getOne(id).subscribe(
+    this.userService.getOne(id).subscribe(
       res => {
         this.user = res;
       }
@@ -36,7 +39,7 @@ export class ProfilComponent implements OnInit {
 
   update(): void {
     let id = this.authService.getCurrentUser().id;
-    this.profilService.update(id, this.user).subscribe(
+    this.userService.update(id, this.user).subscribe(
       res => {
         this.goHome();
       }

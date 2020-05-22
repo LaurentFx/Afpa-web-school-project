@@ -39,9 +39,9 @@
                     &nbsp;
                     <button *ngIf="isRespAdmin" (click)="delete(manifestation.id)" class="btn btn-sm btn-danger"><fa-icon [icon]="faTrashAlt">Delete</fa-icon></button>
                     &nbsp;
-                    <button *ngIf="isClient" (click)="redirectToAddPanier(manifestation.id)" class="btn btn-sm btn-primary">Acheter</button>
+                    <button *ngIf="isClient" (click)="redirectToAddPanier(manifestation.id)" class="btn btn-sm btn-primary"><fa-icon [icon]="faEuroSign">Acheter</fa-icon></button>
                     &nbsp;
-                    <button *ngIf="isRespAdmin" (click)="redirectToInvit(manifestation.id)" class="btn btn-sm btn-primary">Inviter Vip</button>
+                    <button *ngIf="isAdmin" (click)="redirectToInvit(manifestation.id)" class="btn btn-sm btn-primary"><fa-icon [icon]="faUserTie">Inviter Vip</fa-icon></button>
                 </td>
 
             </tr>
@@ -49,6 +49,6 @@
         </tbody>
     </table>
     &nbsp;
-    <a *ngIf="isResp" name="" id="" class="btn btn-info" href="#" role="button" [routerLink]="['/manifestation-ad']"><fa-icon class="icon p-2" [icon]="faPlusSquare">+ Ajouter</fa-icon></a>
+    <a *ngIf="isResp" name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/manifestation-ad']"><fa-icon class="icon p-2" [icon]="faPlusSquare">+ Ajouter</fa-icon></a>
     &nbsp;
-    <a name="" id="" class="btn btn-info" href="#" role="button" [routerLink]="['/public']"><fa-icon class="icon p-2" [icon]="faHome">Retour à l'accueil</fa-icon></a>
+    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']"><fa-icon class="icon p-2" [icon]="faHome">Retour à l'accueil</fa-icon></a>

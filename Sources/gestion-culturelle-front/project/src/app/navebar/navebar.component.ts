@@ -92,7 +92,7 @@ export class NavebarComponent implements OnInit {
         }
       )
     }
-    this.panierService.deleteCommandes(this.panierDto.id).subscribe(
+    this.panierService.deleteArticles(this.panierDto.id).subscribe(
       res => {
 
       }

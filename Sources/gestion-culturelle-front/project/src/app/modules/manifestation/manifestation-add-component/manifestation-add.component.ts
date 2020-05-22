@@ -6,10 +6,10 @@ import { SalleDto } from '../../../model/salleDto';
 import { AnimationDto } from '../../../model/animationDto';
 import { AnimationService } from '../../../service/animation.service';
 import { SalleService } from '../../../service/salle.service';
-import { AdminDto } from '../../../model/adminDto';
-import { AdminService } from '../../../service/admin.service';
 import { User } from '../../../model/user';
 import { AuthService } from '../../../service/auth.service';
+import { UserService } from '../../../service/user.service';
+import { faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-manifestation-add',
@@ -21,26 +21,26 @@ export class ManifestationAddComponent implements OnInit {
   manifestation: ManifestationDto;
   salles: SalleDto[];
   animations: AnimationDto[];
-  admins: AdminDto[];
+  users: User[];
   salle: SalleDto;
   userCourant: User;
+  faHome = faHome;
+  faPlusSquare = faPlusSquare;
 
-  constructor(private adminService: AdminService, private salleService: SalleService,
+  constructor(private userService: UserService,   private salleService: SalleService,
     private animationService: AnimationService, private manifestationService: ManifestationService,
     private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    this.userCourant = this.authService.getCurrentUser();
     this.manifestation = new ManifestationDto();
     this.salle = new SalleDto();
     this.salles = [];
     this.animations = [];
-    this.admins = [];
+    this.users = [];
     this.manifestation.salle = new SalleDto();
     this.manifestation.animation = new AnimationDto();
-    this.manifestation.validateur = new AdminDto();
-    this.manifestation.annulateur = new AdminDto();
-   this.userCourant = this.authService.getCurrentUser();
-
+    this.manifestation.validateur = this.userCourant;
 
     this.animationService.subjectMiseAJour.subscribe(
       res => {
@@ -58,39 +58,24 @@ export class ManifestationAddComponent implements OnInit {
       }
     );
 
-    this.salleService.subjectMiseAJour.subscribe(
+    this.userService.subjectMiseAJour.subscribe(
       res => {
-        this.salleService.getAll().subscribe(
+        this.userService.getAll().subscribe(
           donnees => {
-            this.salles = donnees;
+            this.users = donnees;
           }
         );
       }
     );
 
-    this.salleService.getAll().subscribe(
+    this.userService.getAll().subscribe(
       resultat => {
-        this.salles = resultat;
-      }
-    );
-
-    this.adminService.subjectMiseAJour.subscribe(
-      res => {
-        this.adminService.getAll().subscribe(
-          donnees => {
-            this.admins = donnees;
-          }
-        );
-      }
-    );
-
-    this.adminService.getAll().subscribe(
-      resultat => {
-        this.admins = resultat;
+        this.users = resultat;
       }
     );
 
   }
+
 
   add(): void {
     this.manifestationService.add(this.manifestation).subscribe(
@@ -100,9 +85,8 @@ export class ManifestationAddComponent implements OnInit {
       }
     );
     this.manifestation = new ManifestationDto();
-    this.manifestation.validateur = new AdminDto();
+    this.manifestation.validateur = new User();
     this.manifestation.animation = new AnimationDto();
-    this.manifestation.annulateur = new AdminDto();
     this.manifestation.salle = new SalleDto();
 
   }

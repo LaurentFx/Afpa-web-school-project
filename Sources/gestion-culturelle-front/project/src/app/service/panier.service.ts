@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable, Subject } from 'rxjs';
-import { CommandeDto } from '../model/commandeDto';
+import { ArticleDto } from '../model/articleDto';
 
 
 @Injectable({
@@ -11,7 +11,7 @@ export class PanierService {
  
   monUrl= 'http://localhost:8080/panier'; 
 
-  commande: CommandeDto[]; 
+  article: ArticleDto[]; 
 
   subjectMiseAJour= new Subject<number>();
 
@@ -21,8 +21,8 @@ export class PanierService {
     return this.http.get(this.monUrl);
   }
   
-  add(commande: CommandeDto): Observable<object> {
-    return this.http.post(this.monUrl,commande);
+  add(article: ArticleDto): Observable<object> {
+    return this.http.post(this.monUrl,article);
   }
   
   getOne(id: number): Observable<any> {
@@ -37,8 +37,8 @@ export class PanierService {
     return this.http.put(`${this.monUrl}/${id}`, panier);
   }
  
- deleteCommandes(id: number): Observable<any> {
-    return this.http.delete(`${this.monUrl}/commandes/${id}`);
+ deleteArticles(id: number): Observable<any> {
+    return this.http.delete(`${this.monUrl}/articles/${id}`);
   }
 
   deletePanier(id: number): Observable<any> {
