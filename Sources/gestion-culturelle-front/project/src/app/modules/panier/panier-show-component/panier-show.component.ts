@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CommandeDto } from '../../../model/commandeDto';
+import { ArticleDto } from '../../../model/articleDto';
 import { PanierDto } from '../../../model/panierDto';
 import { User } from '../../../model/user';
-import { CommandeService } from '../../../service/commande.service';
+import { ArticleService } from '../../../service/article.service';
 import { PanierService } from '../../../service/panier.service';
 import { AuthService } from '../../../service/auth.service';
 import { UserService } from '../../../service/user.service';
 import { RoleDto } from '../../../model/roleDto';
-
+import { faHome, faCalendarPlus,faCalendarCheck,faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-panier-show',
@@ -17,7 +17,7 @@ import { RoleDto } from '../../../model/roleDto';
 })
 export class PanierShowComponent implements OnInit {
 
-  listCommandes: CommandeDto[];
+  listArticles: ArticleDto[];
   panierDto: PanierDto;
   userDto: User;
   id: number;
@@ -26,9 +26,12 @@ export class PanierShowComponent implements OnInit {
   role: RoleDto;
   isClient: boolean;
   isConnected: boolean;
-  date = new Date ();
+  faHome = faHome;
+  faCalendarPlus = faCalendarPlus;
+  faCalendarCheck = faCalendarCheck;
+  faTrashAlt = faTrashAlt;
 
-  constructor(private commandeService: CommandeService,
+  constructor(private articleService: ArticleService,
     private panierService: PanierService, private route: ActivatedRoute,
     private router: Router, private authService: AuthService, private userService: UserService,
   ) { this.userDto = new User(); this.panierDto = new PanierDto(); }
@@ -49,16 +52,16 @@ export class PanierShowComponent implements OnInit {
 
     this.userService.getOne(idUser).subscribe(
       res => {
-        this.panierDto = res.panier;
         this.userDto = res;
+        this.panierDto = res.panier;
         this.idPanier = res.panier.id;
       }
     );
 
     this.id = this.route.snapshot.params['id'];
-    this.commandeService.getCommandes(this.id).subscribe(
+    this.articleService.getArticles(this.id).subscribe(
       donnees => {
-        this.listCommandes = donnees;
+        this.listArticles = donnees;
 
       }
     );
@@ -69,7 +72,7 @@ export class PanierShowComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.panierService.deletePanier(id).subscribe(
       res => {
-        this.commandeService.subjectMiseAJour.next(0);
+        this.articleService.subjectMiseAJour.next(0);
         this.goHome()
       }
     )
@@ -78,9 +81,9 @@ export class PanierShowComponent implements OnInit {
 
   cancel(id: number) {
     this.id = this.route.snapshot.params['id'];
-    this.panierService.deleteCommandes(id).subscribe(
+    this.panierService.deleteArticles(id).subscribe(
       res => {
-        this.commandeService.subjectMiseAJour.next(0);
+        this.articleService.subjectMiseAJour.next(0);
         this.goHome()
       }
     )
@@ -88,9 +91,9 @@ export class PanierShowComponent implements OnInit {
 
   delete(id: number) {
     this.id = this.route.snapshot.params['id'];
-    this.commandeService.delete(id).subscribe(
+    this.articleService.delete(id).subscribe(
       res => {
-        this.commandeService.subjectMiseAJour.next(0);
+        this.articleService.subjectMiseAJour.next(0);
         this.reload()
       }
     )

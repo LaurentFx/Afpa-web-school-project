@@ -10,14 +10,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.afpa.cda.dao.CommandeRepository;
+import com.afpa.cda.dao.ArticleRepository;
 import com.afpa.cda.dao.ManifestationRepository;
 import com.afpa.cda.dao.PanierRepository;
 import com.afpa.cda.dao.UserRepository;
-import com.afpa.cda.dto.CommandeDto;
+import com.afpa.cda.dto.ArticleDto;
 import com.afpa.cda.dto.ManifestationDto;
 import com.afpa.cda.dto.PanierDto;
-import com.afpa.cda.entity.Commande;
+import com.afpa.cda.entity.Article;
 import com.afpa.cda.entity.Manifestation;
 import com.afpa.cda.entity.Panier;
 import com.afpa.cda.entity.User;
@@ -28,7 +28,7 @@ public class PanierServiceImpl implements IPanierService {
 	@Autowired
 	private PanierRepository panierRepository;
 	@Autowired
-	private CommandeRepository commandeRepository;
+	private ArticleRepository articleRepository;
 	@Autowired
 	private ManifestationRepository manifestationRepository;
 	@Autowired
@@ -48,11 +48,11 @@ public class PanierServiceImpl implements IPanierService {
 					panierDto.setDateValidation(p.getDateValidation());
 					panierDto.setTotal(p.getTotal());
 
-					panierDto.setListCommandes(new ArrayList<CommandeDto>());
+					panierDto.setListArticles(new ArrayList<ArticleDto>());
 
-					for (Commande m : p.getListCommandes()) {
-						panierDto.getListCommandes()
-						.add(CommandeDto
+					for (Article m : p.getListArticles()) {
+						panierDto.getListArticles()
+						.add(ArticleDto
 								.builder()
 								.id(m.getId())
 								.panier(PanierDto.builder()
@@ -73,10 +73,10 @@ public class PanierServiceImpl implements IPanierService {
 	}
 
 	@Override
-	public void addCommandePanier (CommandeDto commandeDto) {
+	public void addArticlePanier (ArticleDto articleDto) {
 
-		Optional <Panier> panierOp=panierRepository.findById(commandeDto.getPanier().getId());
-		Optional <Manifestation> manifestationOp=manifestationRepository.findById(commandeDto.getManifestation().getId());
+		Optional <Panier> panierOp=panierRepository.findById(articleDto.getPanier().getId());
+		Optional <Manifestation> manifestationOp=manifestationRepository.findById(articleDto.getManifestation().getId());
 		PanierDto panierDto = new PanierDto();
 		ManifestationDto manifestationDto = new ManifestationDto();
 
@@ -84,10 +84,10 @@ public class PanierServiceImpl implements IPanierService {
 			panierDto = modelMapper.map(panierOp.get(), PanierDto.class);
 			manifestationDto = modelMapper.map(manifestationOp.get(),ManifestationDto.class);
 
-			if (manifestationDto.getReservations() >= commandeDto.getQuantite()) {
-				this.commandeRepository.save(this.modelMapper.map(commandeDto, Commande.class));
-				panierDto.setTotal(panierDto.getTotal()+commandeDto.getQuantite()*manifestationDto.getPrixBillet());
-				manifestationDto.setReservations(manifestationDto.getReservations()-commandeDto.getQuantite());
+			if (manifestationDto.getReservations() >= articleDto.getQuantite()) {
+				this.articleRepository.save(this.modelMapper.map(articleDto, Article.class));
+				panierDto.setTotal(panierDto.getTotal()+articleDto.getQuantite()*manifestationDto.getPrixBillet());
+				manifestationDto.setReservations(manifestationDto.getReservations()-articleDto.getQuantite());
 				//				DateFormat df = new SimpleDateFormat("dd/MM/yy");
 				Date dateobj = new Date();
 				panierDto.setDateValidation(dateobj);
@@ -128,50 +128,50 @@ public class PanierServiceImpl implements IPanierService {
 		Optional<Panier> panierOp = this.panierRepository.findById(id);
 
 		if (panierOp.isPresent()) {
-			List<Commande> listCommandes = this.commandeRepository.findAll();
-			List<Commande> listCommandesByPanier = new ArrayList<Commande>();
-			for (Commande commande : listCommandes) {
-				if (commande.getPanier().getId()==id) {
-					listCommandesByPanier.add(commande);
+			List<Article> listArticles = this.articleRepository.findAll();
+			List<Article> listArticlesByPanier = new ArrayList<Article>();
+			for (Article article : listArticles) {
+				if (article.getPanier().getId()==id) {
+					listArticlesByPanier.add(article);
 				}
 			}
 
-			for (Commande commande : listCommandesByPanier) {
-				this.commandeRepository.deleteById(commande.getId());
+			for (Article article : listArticlesByPanier) {
+				this.articleRepository.deleteById(article.getId());
 			}
 
 			PanierDto panierDto = modelMapper.map(panierOp.get(),PanierDto.class);
-			panierDto.getListCommandes().clear();
+			panierDto.getListArticles().clear();
 			panierDto.setTotal(0);
 			panierRepository.save(this.modelMapper.map(panierDto,Panier.class));			
 		}
 	}
 
 	@Override
-	public void deleteCommandes(int id) {
+	public void deleteArticles(int id) {
 		Optional<Panier> panierOp =	this.panierRepository.findById(id);
 		if (panierOp.isPresent()) {
-			List<Commande> listCommandes = this.commandeRepository.findAll();
-			List<Commande> listCommandesByPanier = new ArrayList<Commande>();
-			for (Commande commande : listCommandes) {
-				if (commande.getPanier().getId()==id) {
-					listCommandesByPanier.add(commande);
+			List<Article> listArticles = this.articleRepository.findAll();
+			List<Article> listArticlesByPanier = new ArrayList<Article>();
+			for (Article article : listArticles) {
+				if (article.getPanier().getId()==id) {
+					listArticlesByPanier.add(article);
 				}
 			}
 
 			PanierDto panierDto = modelMapper.map(panierOp.get(),PanierDto.class);
-			CommandeDto commandeDto = new CommandeDto();
+			ArticleDto articleDto = new ArticleDto();
 			ManifestationDto manifestationDto = new ManifestationDto ();
 
-			for (Commande commande : listCommandesByPanier) {
-				commandeDto= modelMapper.map(commande,CommandeDto.class);
-				manifestationDto = commandeDto.getManifestation();
-				manifestationDto.setReservations(manifestationDto.getReservations()+commandeDto.getQuantite());
-				panierDto.setTotal(panierDto.getTotal()-(manifestationDto.getPrixBillet()*commandeDto.getQuantite()));
+			for (Article article : listArticlesByPanier) {
+				articleDto= modelMapper.map(article,ArticleDto.class);
+				manifestationDto = articleDto.getManifestation();
+				manifestationDto.setReservations(manifestationDto.getReservations()+articleDto.getQuantite());
+				panierDto.setTotal(panierDto.getTotal()-(manifestationDto.getPrixBillet()*articleDto.getQuantite()));
 				this.manifestationRepository.save(this.modelMapper.map(manifestationDto,Manifestation.class));
 				this.panierRepository.save(this.modelMapper.map(panierDto,Panier.class));
 			}
-			this.commandeRepository.deleteAll();
+			this.articleRepository.deleteAll();
 		}
 
 	}
@@ -191,11 +191,11 @@ public class PanierServiceImpl implements IPanierService {
 
 			PanierDto panierDto = new PanierDto();
 
-			panierDto.setListCommandes(new ArrayList<CommandeDto>());
+			panierDto.setListArticles(new ArrayList<ArticleDto>());
 
-			for (Commande m : pan.getListCommandes()) {
-				panierDto.getListCommandes()
-				.add(CommandeDto
+			for (Article m : pan.getListArticles()) {
+				panierDto.getListArticles()
+				.add(ArticleDto
 						.builder()
 						.id(m.getId())
 						.panier(PanierDto.builder()

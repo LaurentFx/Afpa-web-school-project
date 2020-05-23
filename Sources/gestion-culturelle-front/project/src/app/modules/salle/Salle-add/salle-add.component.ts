@@ -5,6 +5,7 @@ import { SalleDto } from '../../../model/salleDto';
 import { TypeSalleDto } from '../../../model/typeSalleDto';
 import { TypeSalleService } from '../../../service/typeSalle.service';
 import { ToastrService } from 'ngx-toastr';
+import { faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-salle-add',
@@ -15,6 +16,8 @@ export class SalleAddComponent implements OnInit {
 
   salle: SalleDto;
   typeSalles: TypeSalleDto[];
+  faHome = faHome;
+  faPlusSquare = faPlusSquare;
 
   constructor(private typeSalleService: TypeSalleService,
     private salleService: SalleService, private router: Router,

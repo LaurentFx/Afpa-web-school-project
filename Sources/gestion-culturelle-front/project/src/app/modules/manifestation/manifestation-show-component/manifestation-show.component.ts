@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ManifestationDto } from '../../../model/manifestationDto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ManifestationService } from '../../../service/manifestation.service';
-import { AdminDto } from '../../../model/adminDto';
 import { AnimationDto } from '../../../model/animationDto';
 import { SalleDto } from '../../../model/salleDto';
+import { User } from '../../../model/user';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-manifestation-show',
@@ -14,15 +15,15 @@ import { SalleDto } from '../../../model/salleDto';
 export class ManifestationShowComponent implements OnInit {
 
   manifestation: ManifestationDto;
+  faHome = faHome;
 
   constructor(private route: ActivatedRoute, private manifestationService:ManifestationService, private router: Router) { }
 
   ngOnInit() {
     this.manifestation = new ManifestationDto();
     this.manifestation.salle = new SalleDto();
-    this.manifestation.validateur = new AdminDto();
+    this.manifestation.validateur = new User();
     this.manifestation.animation = new AnimationDto();
-    this.manifestation.annulateur = new AdminDto ();
 
     let id = this.route.snapshot.params['id'];
 

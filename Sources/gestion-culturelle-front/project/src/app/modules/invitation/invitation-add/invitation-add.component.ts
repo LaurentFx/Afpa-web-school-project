@@ -5,8 +5,8 @@ import { User } from '../../../model/user';
 import { ManifestationService } from '../../../service/manifestation.service';
 import { AuthService } from '../../../service/auth.service';
 import { UserService } from '../../../service/user.service';
-import { Observable } from 'rxjs';
 import { InvitationService } from '../../../service/invitation.service';
+import { faHome, faPlusSquare,faMinusSquare,faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-invitation-add',
@@ -20,6 +20,10 @@ export class InvitationAddComponent implements OnInit {
   vips: User[];
   invits: User[];
   manifestationtmp: ManifestationDto;
+  faHome = faHome;
+  faPlusSquare = faPlusSquare;
+  faMinusSquare = faMinusSquare;
+  faCheckSquare = faCheckSquare;
 
   constructor(private manifestationService: ManifestationService,
     private route: ActivatedRoute, private router: Router,
@@ -88,7 +92,9 @@ export class InvitationAddComponent implements OnInit {
     this.reload();
   }
 
-
+  add() {
+    alert("A finir");
+  }
 
   goHome() {
 

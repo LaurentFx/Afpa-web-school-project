@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../../../model/user';
 import { RoleDto } from '../../../model/roleDto';
 import { RoleService } from '../../../service/role.service';
+import { faHome, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-update',
@@ -15,6 +16,8 @@ export class UserUpdateComponent implements OnInit {
   id: number;
   user: User;
   roles: RoleDto[];
+  faHome = faHome;
+  faCheckSquare = faCheckSquare;
 
   constructor(private route: ActivatedRoute,
     private userService: UserService,

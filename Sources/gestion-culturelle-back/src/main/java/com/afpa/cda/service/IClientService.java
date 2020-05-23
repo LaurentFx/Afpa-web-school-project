@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import com.afpa.cda.dto.ClientDto;
-import com.afpa.cda.dto.UserDto;
 
 public interface IClientService {
 	

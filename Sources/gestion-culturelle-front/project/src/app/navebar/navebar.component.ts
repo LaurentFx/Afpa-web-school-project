@@ -6,7 +6,7 @@ import { PanierDto } from '../model/panierDto';
 import { UserService } from '../service/user.service';
 import { User } from '../model/user';
 import { ToastrService } from 'ngx-toastr';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { PanierService } from '../service/panier.service';
 
@@ -16,13 +16,16 @@ import { PanierService } from '../service/panier.service';
   styleUrls: ['./navebar.component.css']
 })
 export class NavebarComponent implements OnInit {
-  faInfoCircle = faInfoCircle;
+  faSignInAlt = faSignInAlt;
+  faSignOutAlt = faSignOutAlt;
   isConnected: boolean;
   isResp: boolean;
   isClient: boolean;
+  isVip:boolean;
   isAnim: boolean;
   isAdmin: boolean;
   isRespAdmin: boolean;
+  isVipAdmin: boolean;
   user: String;
   userDto: User;
   role: RoleDto;
@@ -44,6 +47,7 @@ export class NavebarComponent implements OnInit {
         if (res == 0) {
           this.isResp = false;
           this.isClient = false;
+          this.isVip = false;
           this.isAnim = false;
           this.isAdmin = false;
           this.isRespAdmin = false;
@@ -64,9 +68,11 @@ export class NavebarComponent implements OnInit {
       const userCourant = this.authService.getCurrentUser();
       this.isResp = userCourant.role.label === 'RESP';
       this.isClient = userCourant.role.label === 'CLIENT';
+      this.isVip = userCourant.role.label === 'VIP';
       this.isAnim = userCourant.role.label === 'ANIM';
       this.isAdmin = userCourant.role.label === 'ADMIN';
       this.isRespAdmin = (userCourant.role.label === 'RESP') || (userCourant.role.label === 'ADMIN');
+      this.isVipAdmin = (userCourant.role.label === 'VIP') || (userCourant.role.label === 'ADMIN');
       this.userDto = userCourant;
       this.user = userCourant.nom;
       this.role = userCourant.role;
@@ -92,7 +98,7 @@ export class NavebarComponent implements OnInit {
         }
       )
     }
-    this.panierService.deleteCommandes(this.panierDto.id).subscribe(
+    this.panierService.deleteArticles(this.panierDto.id).subscribe(
       res => {
 
       }
@@ -107,8 +113,10 @@ export class NavebarComponent implements OnInit {
     this.router.navigateByUrl('/panier-show/' + id)
   }
 
-  // redirectToProfil(): void {
-  //this.router.navigateByUrl('/public/profil')
-  //}
+  redirectToShowVip (id: number)  {
+    this.router.navigateByUrl('/vip-show/' + id)
+  }
+
+  
 
 }

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../../model/user';
 import { UserService } from '../../../service/user.service';
 import { RoleDto } from '../../../model/roleDto';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-show',
@@ -12,6 +13,8 @@ import { RoleDto } from '../../../model/roleDto';
 export class UserShowComponent implements OnInit {
 
   user: User;
+  faHome = faHome;
+
     constructor(private userService: UserService, 
     private router: Router,private route: ActivatedRoute ) { }
 

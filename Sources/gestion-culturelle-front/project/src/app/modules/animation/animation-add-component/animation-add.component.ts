@@ -3,6 +3,7 @@ import { AnimationService } from '../../../service/animation.service';
 import { Router } from '@angular/router';
 import { AnimationDto } from '../../../model/animationDto';
 import { ToastrService } from 'ngx-toastr';
+import { faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-animation-add',
@@ -12,6 +13,8 @@ import { ToastrService } from 'ngx-toastr';
 export class AnimationAddComponent implements OnInit {
  
   animation: AnimationDto;
+  faHome = faHome;
+  faPlusSquare = faPlusSquare;
 
   constructor(private animationService: AnimationService,
      private router: Router,

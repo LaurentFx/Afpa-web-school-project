@@ -13,16 +13,11 @@ import com.afpa.cda.dao.AnimationRepository;
 import com.afpa.cda.dao.ManifestationRepository;
 import com.afpa.cda.dao.SalleRepository;
 import com.afpa.cda.dao.UserRepository;
-import com.afpa.cda.dto.AdminDto;
-import com.afpa.cda.dto.AnimateurDto;
 import com.afpa.cda.dto.AnimationDto;
-import com.afpa.cda.dto.CommandeDto;
 import com.afpa.cda.dto.ManifestationDto;
-import com.afpa.cda.dto.PanierDto;
 import com.afpa.cda.dto.SalleDto;
 import com.afpa.cda.dto.UserDto;
 import com.afpa.cda.entity.Animation;
-import com.afpa.cda.entity.Commande;
 import com.afpa.cda.entity.Manifestation;
 import com.afpa.cda.entity.Salle;
 import com.afpa.cda.entity.User;
@@ -50,8 +45,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 	public List<ManifestationDto> findAll() {
 
 		return this.manifestationRepository.findAll()
-				.stream()
-				.map(manif-> {
+				.stream()				.map(manif-> {
 					ManifestationDto manifestationDto = new ManifestationDto();
 					manifestationDto.setId(manif.getId());
 					manifestationDto.setLabel(manif.getLabel());
@@ -63,13 +57,6 @@ public class ManifestationServiceImpl implements IManifestationService {
 						userDto.setNom(manif.getValidateur().getNom());
 					}
 					manifestationDto.setValidateur(userDto);
-
-					userDto = new UserDto ();
-					if (manif.getAnnulateur()!=null) {
-						userDto.setId(manif.getAnnulateur().getId());
-						userDto.setNom(manif.getAnnulateur().getNom());
-					}
-					manifestationDto.setAnnulateur(userDto);
 
 					AnimationDto animationDto = new AnimationDto();
 					if (manif.getAnimation()!=null) {
@@ -93,8 +80,6 @@ public class ManifestationServiceImpl implements IManifestationService {
 					manifestationDto.setPrixBillet(manif.getPrixBillet());
 					manifestationDto.setReservations(manif.getReservations());
 					manifestationDto.setReservationsVip(manif.getReservationsVip());
-
-					manifestationDto.setDateAnnulation(manif.getDateAnnulation());
 
 					manifestationDto.setListVips(new ArrayList<UserDto>());
 					for (User u : manif.getListVips()) {
@@ -131,13 +116,6 @@ public class ManifestationServiceImpl implements IManifestationService {
 			}
 			manifestationDto.setValidateur(userDto);
 
-			userDto = new UserDto ();
-			if (manif.getAnnulateur()!=null) {
-				userDto.setId(manif.getAnnulateur().getId());
-				userDto.setNom(manif.getAnnulateur().getNom());
-			}
-			manifestationDto.setAnnulateur(userDto);
-
 			AnimationDto animationDto = new AnimationDto();
 			if (manif.getAnimation()!=null) {
 				animationDto.setId(manif.getAnimation().getId());
@@ -160,8 +138,6 @@ public class ManifestationServiceImpl implements IManifestationService {
 			manifestationDto.setPrixBillet(manif.getPrixBillet());
 			manifestationDto.setReservations(manif.getReservations());
 			manifestationDto.setReservationsVip(manif.getReservationsVip());
-
-			manifestationDto.setDateAnnulation(manif.getDateAnnulation());
 
 			manifestationDto.setListVips(new ArrayList<UserDto>());
 			for (User u : manif.getListVips()) {
@@ -203,26 +179,15 @@ public class ManifestationServiceImpl implements IManifestationService {
 			manifestation.setSalle(salle);
 		}
 
-		manifestation.setRentabilite(0);
-		manifestation.setDateAnnulation(manifestationDto.getDateAnnulation());
-
-		Optional <User> annulOp = this.userRepository.findById(manifestationDto.getAnnulateur().getId());
-		if (annulOp.isPresent()) {
-			User annul = annulOp.get();
-			manifestation.setAnnulateur(annul);
-		}
-
 		manifestation.setReservations(manifestationDto.getReservations());
 		manifestation.setReservationsVip(manifestationDto.getReservationsVip());
 		manifestation.setCout(manifestationDto.getCout());
 		manifestation.setPrixBillet(manifestationDto.getPrixBillet());
 
 		this.manifestationRepository.save(manifestation);
-
 		return manifestationDto;
 
 	}
-
 
 	@Override
 	public boolean updateManifestation(ManifestationDto manifestationDto,int id) {
@@ -254,15 +219,6 @@ public class ManifestationServiceImpl implements IManifestationService {
 			if (salleOp.isPresent()) {
 				Salle salle = salleOp.get();
 				manifestation.setSalle(salle);
-			}
-
-			manifestation.setRentabilite(0);
-			manifestation.setDateAnnulation(manifestationDto.getDateAnnulation());
-
-			Optional <User> annulOp = this.userRepository.findById(manifestationDto.getAnnulateur().getId());
-			if (annulOp.isPresent()) {
-				User annul = annulOp.get();
-				manifestation.setAnnulateur(annul);
 			}
 
 			manifestationDto=calcul(manifestationDto);
@@ -313,9 +269,5 @@ public class ManifestationServiceImpl implements IManifestationService {
 			return true;
 		}
 		return false;
-	}
-
-	public void annulation (AdminDto annulateur) {
-
 	}
 }

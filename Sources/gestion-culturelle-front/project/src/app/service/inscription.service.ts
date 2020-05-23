@@ -9,7 +9,7 @@ import { User } from '../model/user';
   providedIn: 'root'
 })
 export class InscriptionService {
-  monUrl= 'http://localhost:8080/newusers'; 
+  monUrl= 'http://localhost:8080/users/new'; 
 
   user: User [];
   subjectMiseAJour= new Subject<number>();

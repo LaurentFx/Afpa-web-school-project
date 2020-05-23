@@ -1,37 +1,4 @@
 
-<!-- <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-4">
-
-      <div class="row">
-        <label for="username">Login</label>
-        <input [(ngModel)]="user.username" type="text" name="username" id="username" class="form-control">
-        <div class="form-group">
-        </div>
-      </div>
-
-      <div class="row">
-        <label for="password">Password</label>
-        <input [(ngModel)]="user.password" type="password" name="password" id="password" class="form-control">
-        <div class="form-group">
-        </div>
-      </div>
-
-      <div class="row mt-1">
-        <button  (click)="login()" type="button" class="btn btn-secondary">
-          login
-        </button> -->
-       <!-- [disabled]='user.password.length==0 || user.username.length==0'88888888 -->
-<!-- 
-        <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/']">Annuler</a>
-
-      </div>
-    </div>
-
-  </div>
-</div> -->
-
-
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
@@ -53,7 +20,7 @@
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
-      <a routerLink='/public/inscription' class="underlineHover" routerLinkActive=active>Inscription</a>
+      <a routerLink='/public/inscription' class="underlineHover" routerLinkActive=active><fa-icon class="icon p-2" [icon]="faCaretSquareRight" title="Annuler"></fa-icon>Inscription</a>
     </div>
 
   </div>

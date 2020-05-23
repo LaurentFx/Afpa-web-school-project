@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { RoleService } from '../../../service/role.service';
 import { RoleDto } from '../../../model/roleDto';
+import { faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-add',
@@ -15,6 +16,8 @@ export class UserAddComponent implements OnInit {
 
   user: User;
   roles: RoleDto[];
+  faHome = faHome;
+  faPlusSquare = faPlusSquare;
   
   constructor(private userService: UserService, 
     private router: Router,

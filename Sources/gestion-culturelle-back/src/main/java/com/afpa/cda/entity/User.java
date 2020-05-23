@@ -51,14 +51,8 @@ public class User {
 	private Panier panier;
 	private String numClient;
 
-	// Pour un animateur
-	@OneToMany
-	private List <Animation> listAnimations;
-
 	// Pour un animateur et un VIP
 	private String entreprise;
-//	private String photo;
-//	private boolean inactif; 
 	
 	@ManyToMany
 	@JoinTable(name = "t_manifestation_vip",

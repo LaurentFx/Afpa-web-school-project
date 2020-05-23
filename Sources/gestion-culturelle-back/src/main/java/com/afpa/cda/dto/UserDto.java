@@ -38,9 +38,6 @@ public class UserDto {
 	
 	private String entreprise;
 	
-	private List <AnimationDto> listAnimations;
-	
-//	private boolean inactif;
 	
 	private List <ManifestationDto> listManifestations;
 

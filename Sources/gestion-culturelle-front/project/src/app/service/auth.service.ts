@@ -35,7 +35,6 @@ export class AuthService {
     return JSON.parse(userStr);
   }
 
-
   login(user: UserAuth): Observable<boolean> {
     return new Observable(observer => {
       this.http.post(this.url, user).subscribe(res => {

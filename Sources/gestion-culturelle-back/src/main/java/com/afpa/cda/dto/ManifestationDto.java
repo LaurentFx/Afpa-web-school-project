@@ -30,8 +30,6 @@ public class ManifestationDto {
 	private int reservations;
 	private int reservationsVip;
 	private int rentabilite;
-	private UserDto annulateur;
-	private Date dateAnnulation;
 
 	private List <UserDto> listVips;
 }

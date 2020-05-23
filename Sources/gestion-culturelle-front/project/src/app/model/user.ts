@@ -1,6 +1,5 @@
 import { RoleDto } from './roleDto';
 import { PanierDto } from './panierDto';
-import { AnimationDto } from './animationDto';
 import { ManifestationDto } from './manifestationDto';
 
 export class User {
@@ -13,14 +12,12 @@ export class User {
     panier: PanierDto;
     role: RoleDto;
     entreprise: string;
-    listAnimations: AnimationDto;
- //   inactif: Boolean;
+ 
     listManifestations: ManifestationDto;
 
     constructor(id?: number, nom?: string, prenom?: string, email?: string,
         adresse?: string, numClient?: string, role?: RoleDto, panier?: PanierDto,
-        entreprise?: string, listAnimations?: AnimationDto, 
-      //  inactif?: boolean,
+        entreprise?: string, 
          listManifestations?: ManifestationDto
 
     ) {
@@ -33,8 +30,7 @@ export class User {
         this.panier = panier;
         this.role = role;
         this.entreprise = entreprise;
-        this.listAnimations = listAnimations;
-    //    this.inactif = inactif;
+      
         this.listManifestations = listManifestations;
 
     }

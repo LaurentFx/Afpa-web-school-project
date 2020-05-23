@@ -1,6 +1,5 @@
 <div class="row justify-content-center align-items-center">
 
-
     <div [hidden]="submitted" style="width: 400px;">
         <form>
             <br>
@@ -9,7 +8,7 @@
 
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-12">
+                    <div class="col-8">
                         <div class="form-group">
 
                             <label for="label">Nouveau label :</label>
@@ -21,22 +20,25 @@
                             <label for="dateValidation">Date de validation :</label>
                             <input type="date" name="dateValidation" class="form-control" id="dateValidation"
                                 placeholder="Entrer la date de validation" [(ngModel)]="manifestation.dateValidation">
-
                         </div>
 
+                        <!--  
                         <label for="validateur">Nom du validateur :</label>
                         <select name="validateur" id="validateur" [(ngModel)]="manifestation.validateur.id"
                             class="form-control">
-                            <option *ngFor="let validateur of admins" [value]="validateur.id">{{validateur.nom}}
+                            <option *ngFor="let validateur of users" [value]="validateur.id">{{validateur.nom}}
                             </option>
                         </select>
-
-                      <div class="form-group">
+                    <div class="form-group">
                             <label for="validateur">Nom du validateur :</label>
                             <input type="text" name="validateur" class="form-control" id="validateur"
                                 [(ngModel)]="manifestation.validateur.id" [value]="userCourant.id" readonly>
                         </div>
+-->
 
+                        <label for="validateur">Nom du validateur :</label>
+                        <input type="text" name="validateur" class="form-control" id="validateur"
+                            placeholder="{{manifestation.validateur.nom}}" readonly>
 
                         <label for="animation">Nom de l'animation :</label>
                         <select name="animation" id="animation" [(ngModel)]="manifestation.animation.id"
@@ -44,52 +46,18 @@
                             <option *ngFor="let animation of animations" [value]="animation.id">{{animation.label}}
                             </option>
                         </select>
-                        <!--
-                    <div class="form-group">
-                        <label for="dateDebut">Date de debut :</label>
-                        <input type="date" name="dateDebut" class="form-control" id="dateDebut"
-                            placeholder="Entrer la date de debut " [(ngModel)]="manifestation.dateDebut">
-                    </div>
 
-                    <div class="form-group">
-                        <label for="dateFin">Date de fin :</label>
-                        <input type="date" name="dateFin" class="form-control" id="dateFin"
-                            placeholder="Entrer la date de fin " [(ngModel)]="manifestation.dateFin">
+                        <br>
+                        <a name="" id="" class="btn btn-secondary" href="#" role="button"
+                            [routerLink]="['/public/manifestation-list']"><fa-icon class="icon p-2" [icon]="faHome">Annuler</fa-icon></a>
+                        &nbsp;
+                        <button (click)="add()" class="btn btn-secondary"
+                            [disabled]="manifestation.length==0">
+                            <fa-icon class="icon p-2" [icon]="faPlusSquare">
+                                Ajouter</fa-icon></button>
                     </div>
-
-                    <label for="salle">Choix de salle :</label>
-                    <select name="salle" id="salle" [(ngModel)]="manifestation.salle.id" class="form-control">
-                        <option *ngFor="let salle of salles" [value]="salle.id">{{salle.label}}</option>
-                    </select>
-            
-                  <!-- <label for="salle">Nom de l'annulateur :</label>
-                    <select name="annulateur" id="annulateur" [(ngModel)]="manifestation.annulateur.id"
-                        class="form-control">
-                        <option *ngFor="let annulateur of admins" [value]="annulateur.id">{{annulateur.nom}}</option>
-                    </select> 
-
-                    <div class="form-group">
-                        <label for="dateAnnulation">Date d'annulation :</label>
-                        <input type="date" name="dateAnnulation" class="form-control" id="dateAnnulation"
-                            placeholder="Entrer la date d'annulation " [(ngModel)]="manifestation.dateAnnulation">
-<<<<<<< HEAD
-                    </div>  -->
-                 
-=======
-                    </div> 
-                 -->
-                    </div>
->>>>>>> dev
                 </div>
             </div>
-            <br>
-            &nbsp;
-            &nbsp;
-            <a name="" id="" class="btn btn-secondary" href="#" role="button"
-                [routerLink]="['/public/manifestation-list']">Annuler</a>
-            &nbsp;
-            <button (click)="add()" class="btn btn-secondary" [disabled]="manifestation.length==0">Ajouter</button>
-
         </form>
     </div>
 </div>

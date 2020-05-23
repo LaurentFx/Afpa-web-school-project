@@ -33,15 +33,15 @@
                 <td>{{manifestation.reservationsVip}}</td>
 
                 <td>
-                    <button (click)="redirectToShow(manifestation.id)" class="btn btn-sm btn-success"><fa-icon class="icon p-0" [icon]="faInfoCircle">Show</fa-icon></button>
+                    <button (click)="redirectToShow(manifestation.id)" class="btn btn-sm btn-success"><fa-icon class="icon p-0" [icon]="faInfoCircle" title="Afficher le détail">Show</fa-icon></button>
                     &nbsp;
-                    <button *ngIf="isRespAdmin" (click)="redirectToUpdate(manifestation.id)" class="btn btn-sm btn-warning"><fa-icon [icon]="faEdit">Update</fa-icon></button>
+                    <button *ngIf="isRespAdmin" (click)="redirectToUpdate(manifestation.id)" class="btn btn-sm btn-warning" title="Mettre à jour"><fa-icon [icon]="faEdit">Update</fa-icon></button>
                     &nbsp;
-                    <button *ngIf="isRespAdmin" (click)="delete(manifestation.id)" class="btn btn-sm btn-danger"><fa-icon [icon]="faTrashAlt">Delete</fa-icon></button>
+                    <button *ngIf="isRespAdmin" (click)="delete(manifestation.id)" class="btn btn-sm btn-danger" title="Effacer"><fa-icon [icon]="faTrashAlt">Delete</fa-icon></button>
                     &nbsp;
-                    <button *ngIf="isClient" (click)="redirectToAddPanier(manifestation.id)" class="btn btn-sm btn-primary">Acheter</button>
+                    <button *ngIf="isClient" (click)="redirectToAddPanier(manifestation.id)" class="btn btn-sm btn-primary" title="Réserver une manifestation"><fa-icon [icon]="faCalendarPlus">Acheter</fa-icon></button>
                     &nbsp;
-                    <button *ngIf="isRespAdmin" (click)="redirectToInvit(manifestation.id)" class="btn btn-sm btn-primary">Inviter Vip</button>
+                    <button *ngIf="isAdmin" (click)="redirectToInvit(manifestation.id)" class="btn btn-sm btn-primary" title="Inviter un Vip"><fa-icon [icon]="faUserTie">Inviter Vip</fa-icon></button>
                 </td>
 
             </tr>
@@ -49,6 +49,6 @@
         </tbody>
     </table>
     &nbsp;
-    <a *ngIf="isResp" name="" id="" class="btn btn-info" href="#" role="button" [routerLink]="['/manifestation-ad']"><fa-icon class="icon p-2" [icon]="faPlusSquare">+ Ajouter</fa-icon></a>
+    <a *ngIf="isResp" name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/manifestation-ad']" title="Ajouter une manifestation"><fa-icon class="icon p-2" [icon]="faPlusSquare">Ajouter</fa-icon></a>
     &nbsp;
-    <a name="" id="" class="btn btn-info" href="#" role="button" [routerLink]="['/public']"><fa-icon class="icon p-2" [icon]="faHome">Retour à l'accueil</fa-icon></a>
+    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']" title="Retour à l'accueil"><fa-icon class="icon p-2" [icon]="faHome">Retour à l'accueil</fa-icon></a>

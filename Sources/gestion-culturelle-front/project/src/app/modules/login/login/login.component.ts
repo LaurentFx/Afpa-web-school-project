@@ -3,6 +3,7 @@ import { AuthService } from '../../../service/auth.service';
 import { Router } from '@angular/router';
 import { UserAuth } from '../../../model/user-auth';
 import { ToastrService } from 'ngx-toastr';
+import { faCaretSquareRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginComponent implements OnInit {
 
   user: UserAuth;
+  faCaretSquareRight = faCaretSquareRight;
 
   constructor(
     private authService: AuthService, 

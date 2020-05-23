@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.afpa.cda.constant.AdminUserDefaultConf;
-import com.afpa.cda.dao.RoleRepository;
 import com.afpa.cda.dto.UserDto;
 import com.afpa.cda.service.IUserService;
 
@@ -29,14 +27,10 @@ public class UserController {
 	@Autowired
 	private IUserService userService;
 
-	@Autowired
-	private RoleRepository roleRepository;
 
 	@Autowired
 	private AdminUserDefaultConf adminUserDefaultConf;
 
-	@Autowired
-	private ModelMapper modelMapper;
 
 	@GetMapping(path = "/users")
 	public List<UserDto> getAll(){
@@ -45,7 +39,7 @@ public class UserController {
 
 	@GetMapping(path = "/users/{id}")
 	public UserDto getOne(@PathVariable int id){
-		return this.userService.findOne(id);
+		return this.userService.findById(id);
 	}
 
 	@PostMapping(path = "/users")
@@ -59,11 +53,11 @@ public class UserController {
 			return true;
 		} else {
 			return this.userService.add(user);
-			
+
 		}
 	}
 
-	@PostMapping(path = "/newusers")
+	@PostMapping(path = "/users/new")
 	public UserDto addClient(@RequestBody UserDto user, HttpServletResponse resp) throws IOException {
 		if(user.getNom().equalsIgnoreCase(adminUserDefaultConf.getNom()) 
 				|| user.getPrenom().equalsIgnoreCase(adminUserDefaultConf.getPrenom())) {
@@ -75,15 +69,13 @@ public class UserController {
 		}
 	}
 
-
-
+	// Pas utilisé
 	@GetMapping("/users/current")
 	public UserDto getCurrentUser(Principal currentUser) {
 		Integer userId = Integer.valueOf((String)((UsernamePasswordAuthenticationToken)currentUser).getPrincipal());
-		return this.userService.findById(userId).get();
+		return this.userService.findByCurrentUser(userId).get();
 
 	}
-
 
 	@PutMapping(path = "/users/{id}")
 	public void update(@RequestBody UserDto user,@PathVariable int id ) {
@@ -94,12 +86,12 @@ public class UserController {
 	public void delete(@PathVariable int id) {
 		this.userService.delete(id);
 	}
-	
-//	@GetMapping(path = "/user/role/{id}")
-//	public void findByRole(Integer role){
-//		
-//		this.userService.findByRole(role);
-//		
-//	}
+
+	//	@GetMapping(path = "/user/role/{id}")
+	//	public void findByRole(Integer role){
+	//		
+	//		this.userService.findByRole(role);
+	//		
+	//	}
 
 }

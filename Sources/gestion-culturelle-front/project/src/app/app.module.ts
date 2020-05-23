@@ -18,11 +18,8 @@ import { LoginModule } from './modules/login/login.module';
 import { ManifestationModule } from './modules/manifestation/manifestation.module';
 import { AnimationModule } from './modules/animation/animation.module';
 import { PanierModule } from './modules/panier/panier.module';
-import { AdminModule } from './modules/admin/admin.module';
-import { VipModule } from './modules/vip/vip.module';
 import { UserModule } from './modules/user/user.module';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
-import { AnimateurModule } from './modules/animateur/animateur.module';
 import { ProfilModule } from './modules/profil/profil.module';
 import { InscriptionModule } from './modules/inscription/inscription.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -51,9 +48,6 @@ import { InvitationModule } from './modules/invitation/invitation.module';
     ManifestationModule, 
     AnimationModule, 
     PanierModule, 
-    AdminModule,
-    AnimateurModule, 
-    VipModule,
     UserModule,
     ProfilModule,
     FontAwesomeModule,

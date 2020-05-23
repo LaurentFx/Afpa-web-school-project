@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { ProfilRoutingModule } from './profil-routing.module';
-import { ProfilComponent } from './profil/profil.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ProfilShowComponent } from './profil-show-component/profil-show.component';
+import { ProfilUpdateComponent } from './profil-update-component/profil-update.component';
 
 
 @NgModule({
   declarations: [
-    ProfilComponent
+    ProfilShowComponent,
+    ProfilUpdateComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FontAwesomeModule
   ],
   exports: [
-    ProfilComponent
+    ProfilShowComponent,
+    ProfilUpdateComponent
   ]
 })
 export class ProfilModule { }

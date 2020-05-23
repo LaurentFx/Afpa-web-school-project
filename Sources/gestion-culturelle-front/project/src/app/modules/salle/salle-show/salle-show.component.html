@@ -1,45 +1,52 @@
-<h2>Voir une salle</h2>
+<div class="row justify-content-center align-items-center">
 
-<div [hidden]="submitted" style="width: 400px;">
-    <form>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-6">
-                    <div class="form-group">
+    <div [hidden]="submitted" style="width: 400px;">
+        <form>
+            <br>
+            <h2>Voir une salle</h2>
+            <br>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-6">
+                        <div class="form-group">
 
-                        <label for="id">Id :</label>
-                        <input type="text" name="id" class="form-control" id="id"
-                            placeholder="{{salle.id}}" readonly>
+                            <label for="id">Id :</label>
+                            <input type="text" name="id" class="form-control" id="id" placeholder="{{salle.id}}"
+                                readonly>
 
-                        <label for="label">Label :</label>
-                        <input type="text" name="label" class="form-control" id="label"
-                            placeholder="{{salle.label}}" readonly>
+                            <label for="label">Label :</label>
+                            <input type="text" name="label" class="form-control" id="label"
+                                placeholder="{{salle.label}}" readonly>
 
-                        <label for="typesalle">Type de salle :</label>
-                        <input type="text" name="typesalle" class="form-control" id="typesalle"
-                            placeholder="{{salle.typeSalle.label}}" readonly>
+                            <label for="typesalle">Type de salle :</label>
+                            <input type="text" name="typesalle" class="form-control" id="typesalle"
+                                placeholder="{{salle.typeSalle.label}}" readonly>
 
-                        <label for="capacite">Capacite :</label>
-                        <input type="text" name="capacite" class="form-control" id="capacite"
-                            placeholder="{{salle.capacite}}" readonly>
+                            <label for="capacite">Capacite :</label>
+                            <input type="text" name="capacite" class="form-control" id="capacite"
+                                placeholder="{{salle.capacite}}" readonly>
 
-                        <label for="placesVip">Places reservees VIP :</label>
-                        <input type="text" name="placesVip" class="form-control" id="placesVip"
-                            placeholder="{{salle.placesVip}}" readonly>
+                            <label for="placesVip">Places reservees VIP :</label>
+                            <input type="text" name="placesVip" class="form-control" id="placesVip"
+                                placeholder="{{salle.placesVip}}" readonly>
 
-                        <label for="fraisJournalier">Frais journaliers :</label>
-                        <input type="text" name="fraisJournalier" class="form-control" id="fraisJournalier"
-                            placeholder="{{salle.fraisJournalier}}" readonly>
+                            <label for="fraisJournalier">Frais journaliers :</label>
+                            <input type="text" name="fraisJournalier" class="form-control" id="fraisJournalier"
+                                placeholder="{{salle.fraisJournalier}}" readonly>
+
+                        </div>
+                        <br>
+                        <a name="" id="" class="btn btn-secondary" href="#" role="button"
+                            [routerLink]="['/public/salle-list']">
+                            <fa-icon class="icon p-2" [icon]="faHome">Retour à la
+                                liste</fa-icon>
+                        </a>
 
                     </div>
+
                 </div>
             </div>
-        </div>
 
-    </form>
+        </form>
+    </div>
 </div>
-
-    <br>
-    <br>
-    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public/salle-list']">Retour à la
-        liste</a>

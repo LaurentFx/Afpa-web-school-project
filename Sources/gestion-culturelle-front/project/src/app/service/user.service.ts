@@ -26,8 +26,8 @@ export class UserService {
     return this.http.get(`${this.monUrl}/${id}`);
   } 
 
-  update(id: number, admin: Object): Observable<Object> {
-    return this.http.put(`${this.monUrl}/${id}`, admin);
+  update(id: number, user: Object): Observable<Object> {
+    return this.http.put(`${this.monUrl}/${id}`, user);
   }
 
  delete(id: number): Observable<any> {

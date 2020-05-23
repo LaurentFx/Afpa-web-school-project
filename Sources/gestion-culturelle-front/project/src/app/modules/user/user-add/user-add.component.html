@@ -1,48 +1,61 @@
-<h2>Ajouter un user</h2>
-<br>
+<div class="row justify-content-center align-items-center">
 
-<div [hidden]="submitted" style="width: 400px;">
-  <form>
+  <div [hidden]="submitted" style="width: 500px;">
+    <form>
+      <br>
+      <h2>Ajouter un utilisateur</h2>
+    <br>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-6">
+            <div class="form-group">
 
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-6">
-      <div class="form-group">
+              <label for="nom">Nom (login) *</label>
+              <input type="text" [(ngModel)]="user.nom" name="nom" id="nom" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="prenom">Prenom< */label>
+              <input type="text" [(ngModel)]="user.prenom" name="prenom" id="prenom" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="password">Mot de passe *</label>
+              <input type="password" [(ngModel)]="user.password" name="password" id="password" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="cpassword">Confirmez le mot de passe *</label>
+              <input type="password" name="cpassword" id="cpassword" class="form-control">
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" [(ngModel)]="user.email" name="email" id="email" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="adresse">Adresse *</label>
+              <input type="text" [(ngModel)]="user.adresse" name="adresse" id="adresse" class="form-control">
+            </div>
 
-        <label for="nom">Nom</label>
-        <input type="text" [(ngModel)]="user.nom" name="nom" id="nom" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="prenom">Prenom</label>
-        <input type="text" [(ngModel)]="user.prenom" name="prenom" id="prenom" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="password">Mot de passe</label>
-        <input type="password" [(ngModel)]="user.password" name="password" id="password" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="cpassword">Confirmez le mot de passe</label>
-        <input type="password" name="cpassword" id="cpassword" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" [(ngModel)]="user.email" name="email" id="email" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="adresse">Adresse</label>
-        <input type="text" [(ngModel)]="user.adresse" name="adresse" id="adresse" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="role">Role</label>
-        <select name="role" id="role" [(ngModel)]="user.role.id" class="form-control">
-          <option *ngFor="let role of roles" [value]="role.id">{{role.label}}</option>
-        </select>
-      </div>
+            <div class="form-group">
+              <label for="entreprise">Entreprise *</label>
+              <input type="text" [(ngModel)]="user.entreprise" name="entreprise" id="entreprise" class="form-control">
+            </div>
 
-      <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/user-list']">Annuler</a>
-
-      <input class="btn btn-secondary" type="button" value="ajouter"  (click)="add()">
-      <!--[disabled]="nom.length==0"-->
-    </div>
+            <div class="form-group">
+              <label for="role">Role *</label>
+              <select name="role" id="role" [(ngModel)]="user.role.id" class="form-control">
+                <option *ngFor="let role of roles" [value]="role.id">{{role.label}}</option>
+              </select>
+            </div>
+          </div>
+          <br>
+          <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/user-list']"><fa-icon class="icon p-2" [icon]="faHome">Annuler</fa-icon></a>
+          &nbsp;
+          <button (click)="add()" class="btn btn-secondary"    >
+          <fa-icon class="icon p-2" [icon]="faPlusSquare">
+              Ajouter</fa-icon></button>
+        </div>
+      </div>
+    </form>
   </div>
 </div>

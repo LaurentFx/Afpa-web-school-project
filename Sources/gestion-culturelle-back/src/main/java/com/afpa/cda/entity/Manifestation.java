@@ -12,7 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -64,13 +63,6 @@ public class Manifestation {
 	private double prixBillet;	
 	private int reservations;
 	private int reservationsVip;
-	private int rentabilite;
-
-	@OneToOne
-	private User annulateur;
-
-	@Temporal(TemporalType.DATE)
-	private Date dateAnnulation;
 
 	@ManyToMany
 	@JoinTable(name = "t_manifestation_vip",
