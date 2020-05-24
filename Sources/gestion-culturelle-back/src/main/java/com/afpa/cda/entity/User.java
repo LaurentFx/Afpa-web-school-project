@@ -54,11 +54,11 @@ public class User {
 	// Pour un animateur et un VIP
 	private String entreprise;
 	
-	@ManyToMany
-	@JoinTable(name = "t_manifestation_vip",
-	joinColumns = { @JoinColumn(name = "id_vip") },
-	inverseJoinColumns = { @JoinColumn(name = "id_manifestation") })
-	List<Manifestation> listManifestations;
+//	@ManyToMany
+//	@JoinTable(name = "t_manifestation_vip",
+//	joinColumns = { @JoinColumn(name = "id_vip") },
+//	inverseJoinColumns = { @JoinColumn(name = "id_manifestation") })
+//	List<Manifestation> listManifestations;
 
 
 }

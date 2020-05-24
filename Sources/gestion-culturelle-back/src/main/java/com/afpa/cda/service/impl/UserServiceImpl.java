@@ -110,7 +110,7 @@ public class UserServiceImpl implements IUserService {
 		user.setPanier(Panier.builder()
 				.dateValidation(dateDuJour)
 				.total(0).build());
-		user.getPanier().setListArticles(new ArrayList<Article>());
+	//	user.getPanier().setListArticles(new ArrayList<Article>());
 		//	user.setInactif(true);
 
 		panierRepository.save(user.getPanier());

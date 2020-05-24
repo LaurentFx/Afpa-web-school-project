@@ -50,23 +50,23 @@ public class PanierServiceImpl implements IPanierService {
 
 					panierDto.setListArticles(new ArrayList<ArticleDto>());
 
-					for (Article m : p.getListArticles()) {
-						panierDto.getListArticles()
-						.add(ArticleDto
-								.builder()
-								.id(m.getId())
-								.panier(PanierDto.builder()
-										.id(m.getPanier().getId())
-										.dateValidation(m.getPanier().getDateValidation())
-										.build())
-								.manifestation(ManifestationDto.builder()
-										.id(m.getManifestation().getId())
-										.label(m.getManifestation().getLabel())
-										.prixBillet(m.getManifestation().getPrixBillet())
-										.build())
-								.build());
-
-					}
+//					for (Article m : p.getListArticles()) {
+//						panierDto.getListArticles()
+//						.add(ArticleDto
+//								.builder()
+//								.id(m.getId())
+//								.panier(PanierDto.builder()
+//										.id(m.getPanier().getId())
+//										.dateValidation(m.getPanier().getDateValidation())
+//										.build())
+//								.manifestation(ManifestationDto.builder()
+//										.id(m.getManifestation().getId())
+//										.label(m.getManifestation().getLabel())
+//										.prixBillet(m.getManifestation().getPrixBillet())
+//										.build())
+//								.build());
+//
+//					}
 					return panierDto;
 				})
 				.collect(Collectors.toList());
@@ -193,23 +193,23 @@ public class PanierServiceImpl implements IPanierService {
 
 			panierDto.setListArticles(new ArrayList<ArticleDto>());
 
-			for (Article m : pan.getListArticles()) {
-				panierDto.getListArticles()
-				.add(ArticleDto
-						.builder()
-						.id(m.getId())
-						.panier(PanierDto.builder()
-								.id(m.getPanier().getId())
-								.dateValidation(m.getPanier().getDateValidation())
-								.build())
-						.manifestation(ManifestationDto.builder()
-								.id(m.getManifestation().getId())
-								.label(m.getManifestation().getLabel())
-								.prixBillet(m.getManifestation().getPrixBillet())
-								.build())
-						.build());
-
-			}
+//			for (Article m : pan.getListArticles()) {
+//				panierDto.getListArticles()
+//				.add(ArticleDto
+//						.builder()
+//						.id(m.getId())
+//						.panier(PanierDto.builder()
+//								.id(m.getPanier().getId())
+//								.dateValidation(m.getPanier().getDateValidation())
+//								.build())
+//						.manifestation(ManifestationDto.builder()
+//								.id(m.getManifestation().getId())
+//								.label(m.getManifestation().getLabel())
+//								.prixBillet(m.getManifestation().getPrixBillet())
+//								.build())
+//						.build());
+//
+//			}
 
 		}
 		return panDto;

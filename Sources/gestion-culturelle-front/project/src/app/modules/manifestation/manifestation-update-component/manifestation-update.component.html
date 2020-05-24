@@ -57,12 +57,12 @@
                             <input type="text" name="reservations" class="form-control" id="reservations"
                                 placeholder="Entrer le nombre de reservations" [(ngModel)]="manifestation.reservations">
                         </div>
-
+<!--
                         <label for="capacite">Capacité :</label>
                         <input type="text" name="capacite" class="form-control" id="capacite"
                             placeholder="{{salle.capacite}}" readonly>
 
-
+-->
                         <div class="form-group">
                             <label for=" reservationsVip">Nombre de reservationsVip :</label>
                             <input type="text" name="reservationsVip" class="form-control" id="reservationsVip"
@@ -76,7 +76,7 @@
                 <a name="" id="" class="btn btn-secondary" href="#" role="button"
                 [routerLink]="['/public/manifestation-list']"><fa-icon class="icon p-2" [icon]="faHome">Annuler</fa-icon></a>
                 &nbsp;
-            <button type="submit" class="btn btn-secondary"><fa-icon class="icon p-2" [icon]="faCheckSquare">Valider</fa-icon></button>
+            <button type="submit" class="btn btn-success"><fa-icon class="icon p-2" [icon]="faCheckSquare">Valider</fa-icon></button>
             </div>
         </form>
     </div>

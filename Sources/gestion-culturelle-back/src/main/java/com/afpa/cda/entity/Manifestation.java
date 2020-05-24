@@ -41,7 +41,8 @@ public class Manifestation {
 	private String label;
 	@Temporal(TemporalType.DATE)
 	private Date dateValidation;
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name = "validateur_id")
 	private User validateur;
 
 	@OneToOne
@@ -56,7 +57,7 @@ public class Manifestation {
 	private double cout;
 
 	@ManyToOne
-	@JoinColumn(name = "salle")
+	@JoinColumn(name = "salle_id")
 	private Salle salle;
 
 	@Column(precision=6,scale=2)

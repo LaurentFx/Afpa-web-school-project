@@ -1,5 +1,5 @@
 <div class="row justify-content-center align-items-center">
-    <div [hidden]="submitted" style="width: 500px;">
+    <div [hidden]="submitted" style="width: 400px;">
 
         <form>
             <p>Inviter des Vips</p>
@@ -7,7 +7,7 @@
             <br>
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-3">
+                    <div class="col-5">
 
                         <div class="form-group">
                             <label for="manifestation">Manifestation :</label>
@@ -55,7 +55,7 @@
                                         <td>{{vip.nom}}</td>
                                         <td>{{vip.prenom}}</td>
                                         <td>{{vip.entreprise}}</td>
-                                        <td><button (click)="addVips(vip.id)" class="btn btn-secondary"><fa-icon class="icon p-2" [icon]="faPlusSquare">Ajouter</fa-icon></button>
+                                        <td><button (click)="addVips(vip.id)" class="btn btn-primary"><fa-icon class="icon p-2" [icon]="faPlusSquare">Ajouter</fa-icon></button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -87,17 +87,17 @@
                             </table>
                         </div>
                     </div>
-                    <a name="" id="" class="btn btn-secondary" href="#" role="button"
-                        [routerLink]="['/public/manifestation-list']" title="Annuler">
-                        <fa-icon class="icon p-2" [icon]="faHome" >Annuler</fa-icon>
-                    </a>
-                    &nbsp;
-                    <button class="btn btn-secondary" type="button" value="ajouter" (click)="add()"
-                        [disabled]="nom.length==0" title="Valider">
-                        <fa-icon class="icon p-2" [icon]="faCheckSquare">Valider</fa-icon>
-                    </button>
+                   
                 </div>
             </div>
+            <a name="" id="" class="btn btn-secondary" href="#" role="button"
+            [routerLink]="['/public/manifestation-list']" title="Annuler">
+            <fa-icon class="icon p-2" [icon]="faHome" >Annuler</fa-icon>
+        </a>
+        &nbsp;
+        <button class="btn btn-success" type="button" value="ajouter" (click)="add()"   title="Valider">
+            <fa-icon class="icon p-2" [icon]="faCheckSquare">Valider</fa-icon>
+        </button>
         </form>
     </div>
 </div>
