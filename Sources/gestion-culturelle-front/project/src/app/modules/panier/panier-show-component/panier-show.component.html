@@ -71,7 +71,7 @@
                                 <div class="form-group">
                                     <label for="total">Total panier :</label>
                                     <input type="text" name="total" class="form-control" id="total"
-                                        placeholder="{{panierDto.total}}" readonly>
+                                        placeholder="{{panierDto.total|number:'.0-2'}}" readonly>
                                 </div>
                             </div>
                         </div>
@@ -91,11 +91,11 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <button (click)="cancel(panierDto.id)" class="btn btn-secondary"><fa-icon class="icon p-2" [icon]="faHome" title="Annuler la réservation">Annuler la réservation</fa-icon></button>
+        <button (click)="cancel(panierDto.id)" class="btn btn-secondary"><fa-icon class="icon p-2" [icon]="faHome" title="Annuler les réservations">Annuler les réservations</fa-icon></button>
         &nbsp;
         <a name="" id="" class="btn btn-primary" href="#" role="button"
-            [routerLink]="['/public/manifestation-list']" title="Reserver une autre manifestation"><fa-icon class="icon p-2" [icon]="faCalendarPlus">Reserver une place</fa-icon></a>
+            [routerLink]="['/public/manifestation-list']" title="Reserver une manifestation"><fa-icon class="icon p-2" [icon]="faCalendarPlus">Reserver une autre manifestation</fa-icon></a>
         &nbsp;
-        <button (click)="valid(panierDto.id)" class="btn btn-success" title="Valider la réservation"><fa-icon class="icon p-2" [icon]="faCalendarCheck">Valider</fa-icon></button>
+        <button (click)="valid(panierDto.id)" class="btn btn-success" title="Valider les réservations"><fa-icon class="icon p-2" [icon]="faCalendarCheck">Valider les réservations</fa-icon></button>
     </div>
 </div>

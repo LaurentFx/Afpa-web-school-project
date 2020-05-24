@@ -4,7 +4,7 @@
     <form>
       <br>
       <h2>Ajouter un utilisateur</h2>
-    <br>
+      <br>
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-6">
@@ -14,8 +14,8 @@
               <input type="text" [(ngModel)]="user.nom" name="nom" id="nom" class="form-control">
             </div>
             <div class="form-group">
-              <label for="prenom">Prenom< */label>
-              <input type="text" [(ngModel)]="user.prenom" name="prenom" id="prenom" class="form-control">
+              <label for="prenom">Prenom *</label>
+                  <input type="text" [(ngModel)]="user.prenom" name="prenom" id="prenom" class="form-control">
             </div>
             <div class="form-group">
               <label for="password">Mot de passe *</label>
@@ -49,11 +49,13 @@
             </div>
           </div>
           <br>
-          <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/user-list']"><fa-icon class="icon p-2" [icon]="faHome">Annuler</fa-icon></a>
+          <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/user-list']">
+            <fa-icon class="icon p-2" [icon]="faHome">Annuler</fa-icon>
+          </a>
           &nbsp;
-          <button (click)="add()" class="btn btn-secondary"    >
-          <fa-icon class="icon p-2" [icon]="faPlusSquare">
-              Ajouter</fa-icon></button>
+          <button (click)="add()" class="btn btn-primary">
+            <fa-icon class="icon p-2" [icon]="faPlusSquare">    Ajouter</fa-icon>
+          </button>
         </div>
       </div>
     </form>

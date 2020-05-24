@@ -73,7 +73,7 @@ export class ManifestationUpdateComponent implements OnInit {
 
       }
     );
-/*
+
     this.salleService.subjectMiseAJour.subscribe(
       res => {
         this.salleService.getAll().subscribe(
@@ -112,7 +112,7 @@ export class ManifestationUpdateComponent implements OnInit {
     );
 
     //console.log("capacite "+this.capacite);
-*/
+
 
   }
 

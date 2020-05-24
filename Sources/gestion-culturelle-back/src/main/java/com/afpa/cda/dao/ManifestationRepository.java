@@ -15,7 +15,7 @@ public interface ManifestationRepository extends CrudRepository<Manifestation, I
 
 	List<Manifestation> findAll();
 	
-	@Query(value = "SELECT * FROM t_manifestation m WHERE m.salle= :id", 
+	@Query(value = "SELECT * FROM t_manifestation m WHERE m.salle_id= :id", 
 			  nativeQuery = true)
 	public List<Manifestation> findManifestationBySalleId(Integer id);
 	
