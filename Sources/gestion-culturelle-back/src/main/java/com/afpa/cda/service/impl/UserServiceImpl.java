@@ -1,6 +1,5 @@
 package com.afpa.cda.service.impl;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +15,6 @@ import com.afpa.cda.dao.UserRepository;
 import com.afpa.cda.dto.PanierDto;
 import com.afpa.cda.dto.RoleDto;
 import com.afpa.cda.dto.UserDto;
-import com.afpa.cda.entity.Article;
 import com.afpa.cda.entity.Panier;
 import com.afpa.cda.entity.Role;
 import com.afpa.cda.entity.User;
@@ -69,21 +67,21 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public List<UserDto> findByRole(int id) {
 		// A tester
-		//	List<UserDto> listUsers = this.userRepository.findByRoleId(id);
+			List<UserDto> listByRole = this.userRepository.findByRoleId(id);
 
-		List <User> listUsers =  this.userRepository.findAll();
-
-		List <UserDto> listByRole = new ArrayList<UserDto> ();
-
-		for (User user : listUsers) {
-			if (user.getRole().getId()==id) {
-				UserDto userDto = this.modelMapper.map(user, UserDto.class);
-				userDto.setPassword(null);
-				userDto.setTokenSecret(null);
-				userDto.setRole(this.modelMapper.map(user.getRole(), RoleDto.class));
-				listByRole.add(userDto);
-			}
-		}
+//		List <User> listUsers =  this.userRepository.findAll();
+//
+//		List <UserDto> listByRole = new ArrayList<UserDto> ();
+//
+//		for (User user : listUsers) {
+//			if (user.getRole().getId()==id) {
+//				UserDto userDto = this.modelMapper.map(user, UserDto.class);
+//				userDto.setPassword(null);
+//				userDto.setTokenSecret(null);
+//				userDto.setRole(this.modelMapper.map(user.getRole(), RoleDto.class));
+//				listByRole.add(userDto);
+//			}
+//		}
 		return listByRole;
 	}
 

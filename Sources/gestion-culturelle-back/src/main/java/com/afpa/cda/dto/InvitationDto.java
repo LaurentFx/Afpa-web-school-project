@@ -1,5 +1,7 @@
 package com.afpa.cda.dto;
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,11 +15,14 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class AnimationDto {
+public class InvitationDto {
+
 	private int id;
-	private String label;
-	private String type;
-	private int prix;
-	private int nbreSpectateursPrevus;
-	private UserDto animateur;
+	
+	private ManifestationDto manifestation;
+	private UserDto vip;
+	
+	String reponse;
+	Date dateInvitation;
+	
 }

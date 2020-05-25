@@ -9,10 +9,12 @@ import org.springframework.stereotype.Service;
 
 import com.afpa.cda.dao.AnimationRepository;
 import com.afpa.cda.dao.ManifestationRepository;
+import com.afpa.cda.dao.UserRepository;
 import com.afpa.cda.dto.AnimationDto;
 import com.afpa.cda.dto.ManifestationDto;
 import com.afpa.cda.entity.Animation;
 import com.afpa.cda.entity.Manifestation;
+import com.afpa.cda.entity.User;
 import com.afpa.cda.service.IAnimationService;
 import com.afpa.cda.service.IManifestationService;
 @Service
@@ -28,6 +30,8 @@ public class AnimationServiceImpl implements IAnimationService {
 	@Autowired
 	private IManifestationService manifestationService;
 
+	@Autowired
+	private UserRepository userRepository;
 
 	@Override
 	public AnimationDto findById(int id) {
@@ -53,10 +57,22 @@ public class AnimationServiceImpl implements IAnimationService {
 
 	@Override
 	public boolean add(AnimationDto animationDto) {
-		Optional <Animation> animationOp = this.animationRepository.findByLabel(animationDto.getLabel());
+			Optional <Animation> animationOp = this.animationRepository.findByLabel(animationDto.getLabel());
 
 		if (!animationOp.isPresent()) {
-			this.animationRepository.save(this.modelMapper.map(animationDto,Animation.class));
+			Animation animation = new Animation();
+			
+			animation.setLabel(animationDto.getLabel());
+			animation.setType(animationDto.getType());
+			animation.setPrix(animationDto.getPrix());
+			animation.setNbreSpectateursPrevus(animationDto.getNbreSpectateursPrevus());
+			
+			Optional <User> animateurOp = this.userRepository.findById(animationDto.getAnimateur().getId());
+			if (animateurOp.isPresent()) {
+				User animateur = animateurOp.get();
+				animation.setAnimateur(animateur);
+			}
+			this.animationRepository.save(animation);
 			return false;
 		}
 
@@ -73,6 +89,13 @@ public class AnimationServiceImpl implements IAnimationService {
 			animation.setType(animationDto.getType());
 			animation.setPrix(animationDto.getPrix());
 			animation.setNbreSpectateursPrevus(animationDto.getNbreSpectateursPrevus());
+			
+			Optional <User> animateurOp = this.userRepository.findById(animationDto.getAnimateur().getId());
+			if (animateurOp.isPresent()) {
+				User animateur = animateurOp.get();
+				animation.setAnimateur(animateur);
+			}
+			
 			this.animationRepository.save(animation);
 
 			List<Manifestation> listManifestations = manifestationRepository.findManifestationByAnimationId(id);

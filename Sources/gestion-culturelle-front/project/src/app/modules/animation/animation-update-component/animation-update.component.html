@@ -20,8 +20,12 @@
                             [(ngModel)]="animation.type" name="type">
                     </div>
 
+                    <label for="animateur">Nom de l'animateur :</label>
+                    <input type="text" name="animateur" class="form-control" id="animateur"
+                        placeholder="{{animation.animateur.nom}}" readonly>
+
                     <div class="form-group">
-                        <label for="prix">Prix de l'animation(en €) :</label>
+                        <label for="prix">Prix de l'animation (en €) :</label>
                         <input type="text" class="form-control" id="prix" placeholder="Entrer le prix" required
                             [(ngModel)]="animation.prix" name="prix">
                     </div>

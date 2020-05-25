@@ -18,14 +18,17 @@ export class UserService {
     return this.http.get(this.monUrl);
   }
   
-  add(user: User): Observable<any> {
-    return this.http.post(this.monUrl,user);
-  }
+  getByRole(id: number): Observable<any> {
+    return this.http.get(`${this.monUrl}/role/${id}`);
+  } 
 
   getOne(id: number): Observable<any> {
     return this.http.get(`${this.monUrl}/${id}`);
   } 
 
+  add(user: User): Observable<any> {
+    return this.http.post(this.monUrl,user);
+  }
   update(id: number, user: Object): Observable<Object> {
     return this.http.put(`${this.monUrl}/${id}`, user);
   }

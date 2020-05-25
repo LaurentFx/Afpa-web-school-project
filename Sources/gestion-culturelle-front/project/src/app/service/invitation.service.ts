@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { Observable, Subject } from 'rxjs';
 import { User } from '../model/user';
 import { ManifestationDto } from '../model/manifestationDto';
+import { InvitationDto } from '../model/invitationDto';
 
 
 @Injectable({
@@ -13,7 +14,8 @@ export class InvitationService {
   monUrl= 'http://localhost:8080/invitation'; 
 
   user: User[]; 
-  manifestation : ManifestationDto [];
+  //manifestation : ManifestationDto [];
+  invitationDto : InvitationDto;
   subjectMiseAJour= new Subject<number>();
 
   constructor(private http: HttpClient) { }
@@ -22,17 +24,22 @@ export class InvitationService {
     return this.http.get(this.monUrl);
   }
   
-  add(user: User): Observable<object> {
-    return this.http.post(this.monUrl,user);
+  add(invitationDto: InvitationDto): Observable<object> {
+    return this.http.post(this.monUrl,invitationDto);
   }
   
+  /*
   getVips(id: number): Observable<any> {
     return this.http.get(`${this.monUrl}/${id}`);
-  } 
+  }  */
 
+  getByManifestation(id: number): Observable<any> {
+    return this.http.get(`${this.monUrl}/manifestation/${id}`);
+  } 
+/*
   getListVips(id: number): Observable<any> {
     return this.http.get(`${this.monUrl}/list/${id}`);
-  } 
+  } */
 
   getUser(id: number): Observable<any> {
     return this.http.get(`${this.monUrl}/user/${id}`);
@@ -48,6 +55,10 @@ export class InvitationService {
 
   delete(id: number): Observable<any> {
     return this.http.delete(`${this.monUrl}/${id}`);
+  }
+
+  deleteAll(id: number): Observable<any> {
+    return this.http.delete(`${this.monUrl}/manifestation/${id}`);
   }
 
 }

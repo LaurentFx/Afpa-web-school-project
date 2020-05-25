@@ -1,6 +1,7 @@
 
 package com.afpa.cda.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -79,7 +80,23 @@ public class SalleServiceImpl implements ISalleService {
 		}
 		return salleDto;
 	}
-
+	
+	@Override
+	public List<SalleDto> findAllByCapacity(int nbreSpectateursPrevus) {
+		
+		List <Salle> listSalles = this.salleRepository.findAll();
+		List <SalleDto> listSallesDto = new ArrayList<SalleDto>();
+		for (Salle salle : listSalles) {
+			if (salle.getCapacite()>=nbreSpectateursPrevus) {
+				SalleDto salleDto = this.modelMapper.map(salle,SalleDto.class);
+				listSallesDto.add(salleDto);
+			}
+		}
+		return listSallesDto;
+	}
+	
+	
+	
 	@Override
 	public boolean add(SalleDto salleDto) {
 

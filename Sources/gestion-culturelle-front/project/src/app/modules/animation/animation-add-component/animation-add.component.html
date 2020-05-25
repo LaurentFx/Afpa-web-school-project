@@ -11,11 +11,15 @@
 
                             <label for="label">Nouveau label :</label>
                             <input type="text" name="label" class="form-control" id="label"
-                                placeholder="Entrer votre label" [(ngModel)]="animation.label">
+                                placeholder="Entrer votre label" [(ngModel)]="animation.label" readonly>
 
                             <label for="type">Type d'animation :</label>
                             <input type="text" name="type" class="form-control" id="type"
                                 placeholder="Entrer le type d'animation" [(ngModel)]="animation.type">
+
+                            <label for="animateur">Nom de l'animateur :</label>
+                            <input type="text" name="animateur" class="form-control" id="animateur"
+                                placeholder="{{animation.animateur.nom}}" readonly>
 
                             <label for="prix">Prix de l'animation :</label>
                             <input type="text" name="prix" class="form-control" id="prix"

@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { AnimationDto } from '../../../model/animationDto';
 import { ToastrService } from 'ngx-toastr';
 import { faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from '../../../service/auth.service';
+import { User } from '../../../model/user';
 
 @Component({
   selector: 'app-animation-add',
@@ -13,16 +15,18 @@ import { faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 export class AnimationAddComponent implements OnInit {
  
   animation: AnimationDto;
+  userCourant: User;
   faHome = faHome;
   faPlusSquare = faPlusSquare;
 
   constructor(private animationService: AnimationService,
-     private router: Router,
+     private router: Router, private authService: AuthService,
      private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.animation = new AnimationDto();
-    
+    this.userCourant = this.authService.getCurrentUser();
+    this.animation.animateur=this.userCourant;
   }
 
   add(): void {

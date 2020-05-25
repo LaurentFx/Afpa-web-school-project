@@ -75,7 +75,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			foot.setFraisjournalier(300);
 			foot.setPlacesVip(6);
 			foot.setTypesalle(concert);
-			
+
 			Salle zenith = new Salle ();
 			zenith.setId(2);
 			zenith.setLabel("Terrain");
@@ -108,7 +108,6 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			admin1.setPassword(password);
 			admin1.setAdresse(adresse);
 			admin1.setEmail(mail);
-		//	admin1.setInactif(false);
 			admin1.setEntreprise(entreprise);
 			admin1.setRole(admin);
 
@@ -119,78 +118,93 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			anim1.setPassword(password);
 			anim1.setAdresse(adresse);
 			anim1.setEmail(mail);
-	//		anim1.setInactif(false);
 			anim1.setEntreprise(entreprise);
 			anim1.setRole(anim);
 
+			User anim2 = new User ();
+			anim2.setId(3);
+			anim2.setNom("anim2");
+			anim2.setPrenom("anim2");
+			anim2.setPassword(password);
+			anim2.setAdresse(adresse);
+			anim2.setEmail(mail);
+			anim2.setEntreprise(entreprise);
+			anim2.setRole(anim);
+
+			User anim3 = new User ();
+			anim3.setId(4);
+			anim3.setNom("anim3");
+			anim3.setPrenom("anim3");
+			anim3.setPassword(password);
+			anim3.setAdresse(adresse);
+			anim3.setEmail(mail);
+			anim3.setEntreprise(entreprise);
+			anim3.setRole(anim);
+
 			User vip1 = new User ();
-			vip1.setId(3);
+			vip1.setId(5);
 			vip1.setNom("vip1");
 			vip1.setPrenom("vip1");
 			vip1.setPassword(password);
 			vip1.setAdresse(adresse);
 			vip1.setEmail(mail);
-	//		vip1.setInactif(false);
 			vip1.setEntreprise(entreprise);
 			vip1.setRole(vip);
-			
+
 			User vip2 = new User ();
-			vip2.setId(3);
+			vip2.setId(6);
 			vip2.setNom("vip2");
 			vip2.setPrenom("vip2");
 			vip2.setPassword(password);
 			vip2.setAdresse(adresse);
 			vip2.setEmail(mail);
-	//		vip2.setInactif(false);
 			vip2.setEntreprise(entreprise);
 			vip2.setRole(vip);
-			
+
 			User vip3 = new User ();
-			vip3.setId(3);
+			vip3.setId(7);
 			vip3.setNom("vip3");
 			vip3.setPrenom("vip3");
 			vip3.setPassword(password);
 			vip3.setAdresse(adresse);
 			vip3.setEmail(mail);
-	//		vip3.setInactif(false);
 			vip3.setEntreprise(entreprise);
 			vip3.setRole(vip);
-			
+
 			User vip4 = new User ();
-			vip4.setId(3);
+			vip4.setId(8);
 			vip4.setNom("vip4");
 			vip4.setPrenom("vip4");
 			vip4.setPassword(password);
 			vip4.setAdresse(adresse);
 			vip4.setEmail(mail);
-		//	vip4.setInactif(false);
 			vip4.setEntreprise(entreprise);
 			vip4.setRole(vip);
-			
+
 			User vip5 = new User ();
-			vip5.setId(3);
+			vip5.setId(9);
 			vip5.setNom("vip5");
 			vip5.setPrenom("vip5");
 			vip5.setPassword(password);
 			vip5.setAdresse(adresse);
 			vip5.setEmail(mail);
-	//		vip5.setInactif(false);
 			vip5.setEntreprise(entreprise);
 			vip5.setRole(vip);
-			
+
 			User vip6 = new User ();
-			vip6.setId(3);
+			vip6.setId(10);
 			vip6.setNom("vip6");
 			vip6.setPrenom("vip6");
 			vip6.setPassword(password);
 			vip6.setAdresse(adresse);
 			vip6.setEmail(mail);
-	//		vip6.setInactif(false);
 			vip6.setEntreprise(entreprise);
 			vip6.setRole(vip);
 
 			initUser(userRepository,admin1);
 			initUser(userRepository,anim1);
+			initUser(userRepository,anim2);
+			initUser(userRepository,anim3);
 			initUser(userRepository,vip1);
 			initUser(userRepository,vip2);
 			initUser(userRepository,vip3);
@@ -204,6 +218,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			animat1.setType("Sport");
 			animat1.setPrix(7800);
 			animat1.setNbreSpectateursPrevus(1000);
+			animat1.setAnimateur(anim1);
 
 			Animation animat2 = new Animation ();
 			animat2.setId(2);
@@ -211,6 +226,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			animat2.setType("Musique");
 			animat2.setPrix(7500);
 			animat2.setNbreSpectateursPrevus(650);
+			animat2.setAnimateur(anim2);
 
 			Animation animat3 = new Animation ();
 			animat3.setId(3);
@@ -218,10 +234,11 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			animat3.setType("Art");
 			animat3.setPrix(1520);
 			animat3.setNbreSpectateursPrevus(300);
+			animat3.setAnimateur(anim3);
 
-			initAnimation(animationRepository,animat1);
-			initAnimation(animationRepository,animat2);
-			initAnimation(animationRepository,animat3);
+			initAnimation(animationRepository,userRepository,animat1);
+			initAnimation(animationRepository,userRepository,animat2);
+			initAnimation(animationRepository,userRepository,animat3);
 
 			// ne pas oublier de bloquer la création d'utilisateur avec le nom ou prenom admin
 			Optional<User> resp1 = userRepository.findByNom(adminUserConf.getNom());
@@ -232,7 +249,6 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 						.password(adminUserConf.getPassword())
 						.adresse(adresse)
 						.email(mail)
-				//		.inactif(false)
 						.entreprise(entreprise)
 
 						// H2
@@ -320,7 +336,6 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 					.password(user.getPassword())
 					.adresse(user.getAdresse())
 					.email(user.getEmail())
-				//	.inactif(user.isInactif())
 					.entreprise(user.getEntreprise())
 					.role(user.getRole())
 					.build());
@@ -328,7 +343,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 		}
 	}
 
-	private void initAnimation (AnimationRepository animationRepository, Animation animation) {
+	private void initAnimation (AnimationRepository animationRepository, UserRepository userRepository, Animation animation) {
 		Optional<Animation> animationBddOpt = animationRepository.findByLabel(animation.getLabel());
 		if( ! animationBddOpt.isPresent() ) {
 
@@ -339,10 +354,10 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 					.type(animation.getType())
 					.prix(animation.getPrix())
 					.nbreSpectateursPrevus(animation.getNbreSpectateursPrevus())
+					.animateur(userRepository.findByNom(animation.getAnimateur().getNom()).get())
 					.build());
 		}
 	}
-
 }
 
 

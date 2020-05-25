@@ -9,6 +9,8 @@ import com.afpa.cda.dto.ManifestationDto;
 public interface IManifestationService {
 	
 	List<ManifestationDto> findAll();
+	
+	public boolean findAvailability (ManifestationDto manifestationDto);
 
 	ManifestationDto add(ManifestationDto manif);
 

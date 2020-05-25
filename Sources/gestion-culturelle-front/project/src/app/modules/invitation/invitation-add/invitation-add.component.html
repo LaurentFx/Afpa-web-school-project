@@ -45,7 +45,7 @@
                                     <tr>
                                         <th>Nom</th>
                                         <th>Prenom</th>
-                                        <th>Entreprise</th>
+                                        <th>Email</th>
 
                                     </tr>
                                 </thead>
@@ -54,8 +54,8 @@
 
                                         <td>{{vip.nom}}</td>
                                         <td>{{vip.prenom}}</td>
-                                        <td>{{vip.entreprise}}</td>
-                                        <td><button (click)="addVips(vip.id)" class="btn btn-primary"><fa-icon class="icon p-2" [icon]="faPlusSquare">Ajouter</fa-icon></button>
+                                        <td>{{vip.email}}</td>
+                                        <td><button (click)="addInvitation(vip.id)" class="btn btn-primary"><fa-icon class="icon p-2" [icon]="faPlusSquare">Ajouter</fa-icon></button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -70,17 +70,17 @@
                                     <tr>
                                         <th>Nom</th>
                                         <th>Prenom</th>
-                                        <th>Entreprise</th>
+                                        <th>Email</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let invit of invits">
 
-                                        <td>{{invit.nom}}</td>
-                                        <td>{{invit.prenom}}</td>
-                                        <td>{{invit.entreprise}}</td>
-                                        <td> <button (click)="subVips(invit.id)"
+                                        <td>{{invit.vip.nom}}</td>
+                                        <td>{{invit.vip.prenom}}</td>
+                                        <td>{{invit.vip.email}}</td>
+                                        <td> <button (click)="subInvitation(invit.id)"
                                                 class="btn btn-secondary"><fa-icon class="icon p-2" [icon]="faMinusSquare">Retirer</fa-icon></button></td>
                                     </tr>
                                 </tbody>
@@ -90,12 +90,16 @@
                    
                 </div>
             </div>
-            <a name="" id="" class="btn btn-secondary" href="#" role="button"
+         <!--  <a name="" id="" class="btn btn-secondary" href="#" role="button"
             [routerLink]="['/public/manifestation-list']" title="Annuler">
             <fa-icon class="icon p-2" [icon]="faHome" >Annuler</fa-icon>
-        </a>
+        </a> -->
+        <button class="btn btn-secondary" type="button" value="Annuler" (click)="cancel()"   title="Annuler">
+            <fa-icon class="icon p-2" [icon]="faCheckSquare">Valider</fa-icon>
+        </button>
+
         &nbsp;
-        <button class="btn btn-success" type="button" value="ajouter" (click)="add()"   title="Valider">
+        <button class="btn btn-success" type="button" value="Valider" (click)="valid()"   title="Valider">
             <fa-icon class="icon p-2" [icon]="faCheckSquare">Valider</fa-icon>
         </button>
         </form>

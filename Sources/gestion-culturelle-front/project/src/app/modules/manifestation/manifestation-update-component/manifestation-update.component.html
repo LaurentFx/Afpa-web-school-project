@@ -20,12 +20,16 @@
                                 placeholder="Entrer la date de validation" required
                                 [(ngModel)]="manifestation.dateValidation" readonly>
                         </div>
-
+<!--
                         <div class="form-group">
                             <label for="validateur">Nom du validateur :</label>
                             <input type="text" name="validateur" class="form-control" id="validateur" required
                                 [(ngModel)]="manifestation.validateur.nom" readonly>
                         </div>
+-->
+                        <label for="validateur">Nom du validateur :</label>
+                        <input type="text" name="validateur" class="form-control" id="validateur"
+                            placeholder="{{manifestation.validateur.nom}}" readonly>
 
                         <div class="form-group">
                             <label for="animation">Label de l'animation :</label>

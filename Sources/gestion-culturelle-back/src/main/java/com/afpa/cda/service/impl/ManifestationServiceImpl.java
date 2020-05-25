@@ -97,6 +97,25 @@ public class ManifestationServiceImpl implements IManifestationService {
 	}
 
 	@Override
+	public boolean findAvailability (ManifestationDto newManifestationDto) {
+
+		List<Manifestation> listManifestations =this.manifestationRepository.findAll();
+
+		for (Manifestation oldManifestation : listManifestations) {
+			
+			if ((newManifestationDto.getSalle().getLabel().equalsIgnoreCase(oldManifestation.getSalle().getLabel()))
+					&& ((newManifestationDto.getDateDebut().getTime()>=oldManifestation.getDateDebut().getTime() &&
+							newManifestationDto.getDateDebut().getTime()<=oldManifestation.getDateFin().getTime())
+							|| (newManifestationDto.getDateFin().getTime()>=oldManifestation.getDateDebut().getTime() &&
+							newManifestationDto.getDateFin().getTime()<=oldManifestation.getDateFin().getTime())))	{
+				return false;
+			} else return true;
+		}
+		return true;
+	}
+
+
+	@Override
 	public ManifestationDto findById(int id) {
 		Optional<Manifestation> manifOp = this.manifestationRepository.findById(id);
 

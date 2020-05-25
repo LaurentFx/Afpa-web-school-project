@@ -87,11 +87,11 @@ public class UserController {
 		this.userService.delete(id);
 	}
 
-	//	@GetMapping(path = "/user/role/{id}")
-	//	public void findByRole(Integer role){
-	//		
-	//		this.userService.findByRole(role);
-	//		
-	//	}
+
+	@GetMapping(path = "/users/role/{id}")
+	public List<UserDto> findByRole(@PathVariable Integer id){
+		return this.userService.findByRole(id);
+
+	}
 
 }
