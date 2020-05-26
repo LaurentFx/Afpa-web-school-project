@@ -32,7 +32,16 @@ public class AnimationServiceImpl implements IAnimationService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Override
+	public List<AnimationDto> findAll() {
 
+		return this.animationRepository.findAll()
+				.stream()
+				.map(a-> this.modelMapper.map(a,AnimationDto.class))
+				.collect(Collectors.toList());
+	}  
+	
 	@Override
 	public AnimationDto findById(int id) {
 
@@ -44,16 +53,7 @@ public class AnimationServiceImpl implements IAnimationService {
 		}
 		return animationDto;
 	}
-
-
-	@Override
-	public List<AnimationDto> findAll() {
-
-		return this.animationRepository.findAll()
-				.stream()
-				.map(a-> this.modelMapper.map(a,AnimationDto.class))
-				.collect(Collectors.toList());
-	}   
+ 
 
 	@Override
 	public boolean add(AnimationDto animationDto) {

@@ -41,8 +41,8 @@ public class SalleController {
 	}
 	
 	@PutMapping(path = "/salle/{id}")
-	public void update(@RequestBody SalleDto sal,@PathVariable int id ) {
-		this.salleService.updateSalle(sal, id);
+	public boolean update(@RequestBody SalleDto sal,@PathVariable int id ) {
+		return this.salleService.updateSalle(sal, id);
 	}
 	
 	@DeleteMapping(path = "/salle/{id}")

@@ -46,8 +46,8 @@ public class ReservationController {
 	}
 
 	@PutMapping(path="/reservation/{id}")
-	public void update(@RequestBody ReservationDto reservationDto ,@PathVariable int id) {
-		this.reservationService.update(reservationDto, id);
+	public boolean update(@RequestBody ReservationDto reservationDto ,@PathVariable int id) {
+		return this.reservationService.update(reservationDto, id);
 	}
 	
 

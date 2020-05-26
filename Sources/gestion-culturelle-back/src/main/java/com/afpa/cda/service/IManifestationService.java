@@ -12,11 +12,11 @@ public interface IManifestationService {
 	
 	public boolean findAvailability (ManifestationDto manifestationDto);
 
-	ManifestationDto add(ManifestationDto manif);
+	boolean add(ManifestationDto manif);
 
-	boolean updateManifestation(ManifestationDto manif, int id);
+	boolean update(ManifestationDto manif, int id);
 
-	boolean deleteManifestation(int id);
+	boolean delete(int id);
 
 	ManifestationDto findById(int id);
 

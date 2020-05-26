@@ -80,23 +80,28 @@ public class SalleServiceImpl implements ISalleService {
 		}
 		return salleDto;
 	}
-	
+
 	@Override
-	public List<SalleDto> findAllByCapacity(int nbreSpectateursPrevus) {
-		
-		List <Salle> listSalles = this.salleRepository.findAll();
+	public List<SalleDto> findAllByCapacity(int id) {
+		Optional<Manifestation> manifOp = this.manifestationRepository.findById(id);
 		List <SalleDto> listSallesDto = new ArrayList<SalleDto>();
-		for (Salle salle : listSalles) {
-			if (salle.getCapacite()>=nbreSpectateursPrevus) {
-				SalleDto salleDto = this.modelMapper.map(salle,SalleDto.class);
-				listSallesDto.add(salleDto);
+
+		if (manifOp.isPresent()) {
+			Manifestation manifestation = manifOp.get();
+			int nbreSpectateursPrevus=manifestation.getAnimation().getNbreSpectateursPrevus();
+			List <Salle> listSalles = this.salleRepository.findAll();
+			for (Salle salle : listSalles) {
+				if (salle.getCapacite()>=nbreSpectateursPrevus) {
+					SalleDto salleDto = this.modelMapper.map(salle,SalleDto.class);
+					listSallesDto.add(salleDto);
+				}
 			}
 		}
 		return listSallesDto;
 	}
-	
-	
-	
+
+
+
 	@Override
 	public boolean add(SalleDto salleDto) {
 

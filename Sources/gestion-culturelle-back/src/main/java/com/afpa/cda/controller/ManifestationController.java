@@ -38,18 +38,18 @@ public class ManifestationController {
 	
 	//@PreAuthorize("hasAnyAuthority('RESP','ADMIN')")
 	@PostMapping(path = "/manifestation")
-	public ManifestationDto add(@RequestBody ManifestationDto manifestationDto) {
+	public boolean add(@RequestBody ManifestationDto manifestationDto) {
 		return this.manifesationService.add(manifestationDto);
 	}
 
 	@PutMapping(path = "/manifestation/{id}")
-	public void update(@RequestBody ManifestationDto manif, @PathVariable int id) {
-		this.manifesationService.updateManifestation(manif,id);
+	public boolean update(@RequestBody ManifestationDto manif, @PathVariable int id) {
+		return this.manifesationService.update(manif,id);
 	}
 
 	@DeleteMapping(path = "/manifestation/{id}")
 	public void delete(@PathVariable int id) {
-		this.manifesationService.deleteManifestation(id);
+		this.manifesationService.delete(id);
 	}
 
 }

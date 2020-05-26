@@ -38,8 +38,6 @@ import { ProfilUpdateComponent } from './modules/profil//profil-update-component
 
 import { InscriptionComponent } from './modules/inscription/inscription/inscription.component';
 
-import { UserRoleListComponent } from './modules/user/user-role-list/user-role-list.component';
-
 import { InvitationAddComponent } from './modules/invitation/invitation-add/invitation-add.component';
 
 
@@ -82,8 +80,6 @@ const routes: Routes = [
   { path: 'user-ad', component: UserAddComponent, canActivate: [AuthGuard] },
   { path: 'user-update/:id', component: UserUpdateComponent, canActivate: [AuthGuard] },
   { path: 'user-show/:id', component: UserShowComponent, canActivate: [AuthGuard] },
-  { path: 'user-role-list:id', component: UserRoleListComponent },
-
 
   { path: 'role-list', component: RoleListComponent },
   { path: 'role-ad', component: RoleAddComponent },

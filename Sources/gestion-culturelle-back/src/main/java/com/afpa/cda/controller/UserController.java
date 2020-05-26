@@ -58,13 +58,12 @@ public class UserController {
 	}
 
 	@PostMapping(path = "/users/new")
-	public UserDto addClient(@RequestBody UserDto user, HttpServletResponse resp) throws IOException {
+	public boolean addClient(@RequestBody UserDto user, HttpServletResponse resp) throws IOException {
 		if(user.getNom().equalsIgnoreCase(adminUserDefaultConf.getNom()) 
 				|| user.getPrenom().equalsIgnoreCase(adminUserDefaultConf.getPrenom())) {
 			resp.sendError(HttpStatus.NOT_ACCEPTABLE.value(),"prenom/nom 'admin' sont déjà pris");
-			return null;
+			return true;
 		} else {
-
 			return this.userService.addClient(user);
 		}
 	}

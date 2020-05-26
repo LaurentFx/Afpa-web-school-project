@@ -67,6 +67,10 @@ export class PanierAddComponent implements OnInit {
     this.article.panier = this.panierDto;
     this.article.quantite = this.quantite;
 
+console.log("this.article.manifestation "+this.article.manifestation );
+console.log("this.article.panier "+this.article.panier );
+console.log("this.article "+this.article );
+    
     this.panierService.add(this.article).subscribe(
       res => {
         this.panierService.subjectMiseAJour.next(0);

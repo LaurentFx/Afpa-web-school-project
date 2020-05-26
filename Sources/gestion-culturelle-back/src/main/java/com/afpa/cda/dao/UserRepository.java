@@ -22,7 +22,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	Optional<User> findByPrenom(String prenom);
 
-
 	@Query(value = "SELECT * FROM t_user u WHERE u.role_id = :id",  nativeQuery = true)
 	List <UserDto> findByRoleId(int id);
 

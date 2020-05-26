@@ -52,8 +52,8 @@ public class InvitationController {
 	}
 
 	@PutMapping(path="/invitation/{id}")
-	public void update(@RequestBody InvitationDto invitationDto ,@PathVariable int id) {
-		this.invitationService.update(invitationDto, id);
+	public boolean update(@RequestBody InvitationDto invitationDto ,@PathVariable int id) {
+		return this.invitationService.update(invitationDto, id);
 	}
 	
 //	@PutMapping(path="/invitation/add/{id}")

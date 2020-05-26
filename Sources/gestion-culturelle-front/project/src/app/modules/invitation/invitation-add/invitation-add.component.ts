@@ -18,10 +18,8 @@ export class InvitationAddComponent implements OnInit {
   manifestationDto: ManifestationDto;
   userDto: User;
   invitationDto: InvitationDto;
-  // vip: User;
   vips: User[];
   invits: User[];
-  //  manifestationtmp: ManifestationDto;
   faHome = faHome;
   faPlusSquare = faPlusSquare;
   faMinusSquare = faMinusSquare;
@@ -39,25 +37,26 @@ export class InvitationAddComponent implements OnInit {
     this.manifestationDto = new ManifestationDto();
     this.userDto = new User();
     this.invitationDto = new InvitationDto();
-    // this.manifestationtmp = new ManifestationDto();
     this.manifestationDto.listVips = new User();
 
     this.reload();
   }
 
   reload() {
-    //let manif = this.manifestationDto.id;
+
     this.manifestationService.getOne(this.route.snapshot.params['id']).subscribe(
       resu => {
         this.manifestationDto = resu;
+        this.manifestationService.subjectMiseAJour.next(0);
       }
     )
 
-    this.userService.getByRole(5).subscribe(
-      res => {
-        this.vips = res;
-      }
-    )
+        this.userService.getByRole(5).subscribe(
+          res => {
+            this.vips = res;
+            this.userService.subjectMiseAJour.next(0);
+          }
+        );
 
     /*  this.invitationService.getVips(this.route.snapshot.params['id']).subscribe(
         res => {
@@ -65,12 +64,19 @@ export class InvitationAddComponent implements OnInit {
         }
       ); */
 
-    this.invitationService.getByManifestation(this.route.snapshot.params['id']).subscribe(
-      res => {
-        this.invits = res;
-      }
-    );
+ //   this.invitationService.subjectMiseAJour.subscribe(/
+     // res => {
+        this.invitationService.getByManifestation(this.route.snapshot.params['id']).subscribe(
+          res => {
+            this.invits = res;
+            this.invitationService.subjectMiseAJour.next(0);
+          }
+        );
+   //   }
+  //  );
+
   }
+
 
   /*
   addVips(idVip: number): void {
@@ -98,49 +104,48 @@ export class InvitationAddComponent implements OnInit {
 
     this.invitationDto.manifestation = this.manifestationDto;
     this.invitationDto.vip = this.userDto;
-
     this.invitationService.add(this.invitationDto).subscribe(
       res => {
         this.invitationService.subjectMiseAJour.next(0);
       }
     );
+
     this.reload();
   }
 
- subInvitation(idInvitation:number) : void {
-  this.invitationService.delete(idInvitation).subscribe(
-    res => {
-      this.invitationService.subjectMiseAJour.next(0);
-    }
-  );
-  this.reload();
-
- }
-
- /*
-  subVips(idVip: number): void {
-    //   this.manifestationtmp = this.manifestationDto;
-    //  console.log('manifestationDto id 2 ' + this.manifestationtmp.id);
-    //   this.manifestationtmp.listVips.id = idVip;
-    console.log('ListVips id ' + idVip);
-
-    this.invitationService.updateSub(idVip, this.manifestationDto).subscribe(
+  subInvitation(idInvitation: number): void {
+    this.invitationService.delete(idInvitation).subscribe(
       res => {
         this.invitationService.subjectMiseAJour.next(0);
       }
     );
+
     this.reload();
-  } */
+  }
+
+  /*
+   subVips(idVip: number): void {
+     //   this.manifestationtmp = this.manifestationDto;
+     //  console.log('manifestationDto id 2 ' + this.manifestationtmp.id);
+     //   this.manifestationtmp.listVips.id = idVip;
+     console.log('ListVips id ' + idVip);
+ 
+     this.invitationService.updateSub(idVip, this.manifestationDto).subscribe(
+       res => {
+         this.invitationService.subjectMiseAJour.next(0);
+       }
+     );
+     this.reload();
+   } */
 
   valid() {
-  //  alert("A finir");
     this.router.navigateByUrl('/public')
   }
 
   cancel() {
     this.invitationService.deleteAll(this.route.snapshot.params['id']).subscribe(
-      res=> {
-// toaster
+      res => {
+        // toaster
       }
     );
     this.router.navigateByUrl('/public')

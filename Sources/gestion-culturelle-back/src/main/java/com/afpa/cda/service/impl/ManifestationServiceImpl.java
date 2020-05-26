@@ -102,13 +102,20 @@ public class ManifestationServiceImpl implements IManifestationService {
 		List<Manifestation> listManifestations =this.manifestationRepository.findAll();
 
 		for (Manifestation oldManifestation : listManifestations) {
-			
-			if ((newManifestationDto.getSalle().getLabel().equalsIgnoreCase(oldManifestation.getSalle().getLabel()))
-					&& ((newManifestationDto.getDateDebut().getTime()>=oldManifestation.getDateDebut().getTime() &&
+			if (newManifestationDto.getId()!=oldManifestation.getId()) {
+				if (newManifestationDto.getSalle()!=null && newManifestationDto.getSalle().getLabel().equalsIgnoreCase(oldManifestation.getSalle().getLabel())) {
+					if ((newManifestationDto.getDateDebut().getTime()>=oldManifestation.getDateDebut().getTime() &&
 							newManifestationDto.getDateDebut().getTime()<=oldManifestation.getDateFin().getTime())
 							|| (newManifestationDto.getDateFin().getTime()>=oldManifestation.getDateDebut().getTime() &&
-							newManifestationDto.getDateFin().getTime()<=oldManifestation.getDateFin().getTime())))	{
-				return false;
+							newManifestationDto.getDateFin().getTime()<=oldManifestation.getDateFin().getTime()))	{
+						System.out.println("newManifestationDto.getDateDebut() "+newManifestationDto.getDateDebut().getTime());
+						System.out.println("oldManifestation.getDateDebut() "+oldManifestation.getDateDebut().getTime());
+						System.out.println("newManifestationDto.getDateFin() "+newManifestationDto.getDateFin().getTime());
+						System.out.println("oldManifestation.getDateFin() "+oldManifestation.getDateFin().getTime());
+						
+						return false;
+					}
+				}
 			} else return true;
 		}
 		return true;
@@ -172,7 +179,10 @@ public class ManifestationServiceImpl implements IManifestationService {
 	}
 
 	@Override
-	public ManifestationDto add(ManifestationDto manifestationDto) {
+	public boolean add(ManifestationDto manifestationDto) {
+		Optional <Manifestation> manifestationOp = this.manifestationRepository.findByLabel(manifestationDto.getLabel());
+		if (!manifestationOp.isPresent()) {
+				
 		Manifestation manifestation = new Manifestation ();
 		manifestation.setLabel(manifestationDto.getLabel());
 		manifestation.setDateValidation(manifestationDto.getDateValidation());
@@ -204,12 +214,13 @@ public class ManifestationServiceImpl implements IManifestationService {
 		manifestation.setPrixBillet(manifestationDto.getPrixBillet());
 
 		this.manifestationRepository.save(manifestation);
-		return manifestationDto;
-
+		return false;
+		}
+		return true;
 	}
 
 	@Override
-	public boolean updateManifestation(ManifestationDto manifestationDto,int id) {
+	public boolean update(ManifestationDto manifestationDto,int id) {
 
 		Optional<Manifestation> manifOp = this.manifestationRepository.findById(id);
 
@@ -270,7 +281,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 			Salle salle = salleOp.get();
 			salleDto = modelMapper.map(salle,SalleDto.class);
 		}
-		manifDto.setReservations(salleDto.getCapacite()-salleDto.getPlacesVip());
+		manifDto.setReservations(animDto.getNbreSpectateursPrevus()-salleDto.getPlacesVip());
 		manifDto.setReservationsVip(salleDto.getPlacesVip());
 
 		manifDto.setCout( (animDto.getPrix()+(duree* salleDto.getFraisJournalier())));
@@ -280,7 +291,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 	}
 
 	@Override
-	public boolean deleteManifestation(int id) {
+	public boolean delete(int id) {
 
 		if (this.manifestationRepository.existsById(id)) {
 			this.manifestationRepository.deleteById(id);

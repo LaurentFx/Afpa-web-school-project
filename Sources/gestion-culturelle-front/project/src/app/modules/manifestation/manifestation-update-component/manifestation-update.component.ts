@@ -9,6 +9,7 @@ import { AnimationService } from '../../../service/animation.service';
 import { User } from '../../../model/user';
 import { UserService } from '../../../service/user.service';
 import { faHome, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manifestation-update',
@@ -23,17 +24,12 @@ export class ManifestationUpdateComponent implements OnInit {
   salles: SalleDto[];
   faHome = faHome;
   faCheckSquare = faCheckSquare;
-  nombre:number;
+  nombre: number;
 
   constructor(
-    private userService: UserService,
-    private salleService: SalleService,
-    private animationService: AnimationService,
-    private route: ActivatedRoute,
-    private manifestationService: ManifestationService,
-    private router: Router) { }
-
-  ngOnInit() {
+    private userService: UserService, private salleService: SalleService,
+    private route: ActivatedRoute, private manifestationService: ManifestationService,
+    private toastrService: ToastrService, private router: Router) {
     this.manifestation = new ManifestationDto();
     this.animation = new AnimationDto();
     this.salles = [];
@@ -41,29 +37,43 @@ export class ManifestationUpdateComponent implements OnInit {
     this.manifestation.salle = new SalleDto();
     this.manifestation.animation = new AnimationDto();
     this.manifestation.validateur = new User();
-   this.nombre = this.manifestation.animation.nbreSpectateursPrevus;
 
+  }
+
+  ngOnInit() {
+    this.reload();
+
+    /* this.manifestation = new ManifestationDto();
+     this.animation = new AnimationDto();
+     this.salles = [];
+ 
+     this.manifestation.salle = new SalleDto();
+     this.manifestation.animation = new AnimationDto();
+     this.manifestation.validateur = new User();
+    var nombre = this.manifestation.animation.nbreSpectateursPrevus;*/
+  }
+
+  reload() {
     let id = this.route.snapshot.params['id'];
 
     this.manifestationService.getOne(id).subscribe(
       res => {
         this.manifestation = res;
-       this.nombre= this.manifestation.animation.nbreSpectateursPrevus;
+        this.nombre = this.manifestation.animation.nbreSpectateursPrevus;
+
       }
     );
-    console.log("this.nombre"+this.nombre);
-    console.log("lolo"+this.manifestation.animation);
-    this.salleService.getByCapacity(1000).subscribe(
 
+    console.log("manifestation.animation.nbreSpectateursPrevus " + this.manifestation.animation.nbreSpectateursPrevus);
+    this.salleService.getByCapacity(id).subscribe(
       resultat => {
         this.salles = resultat;
-       
       }
     );
 
     this.salleService.subjectMiseAJour.subscribe(
       res => {
-        this.salleService.getByCapacity(1000).subscribe(
+        this.salleService.getByCapacity(id).subscribe(
           donnees => {
             this.salles = donnees;
           }
@@ -92,7 +102,7 @@ export class ManifestationUpdateComponent implements OnInit {
           }
         );
     */
-        }
+  }
 
   update(): void {
     let id = this.route.snapshot.params['id'];
@@ -102,6 +112,19 @@ export class ManifestationUpdateComponent implements OnInit {
         this.goHome();
       }
     );
+  }
+
+  checkAvalaibility(): void {
+    this.manifestationService.getAvalaibility(this.manifestation).subscribe(
+      res => {
+        if (res) {
+          this.toastrService.success('La salle ' + this.manifestation.salle.label + ' est libre.', 'Disponibilité Ok.')
+        } else {
+          this.toastrService.error('La salle ' +this.manifestation.salle.label + ' est occupée', 'Disponibilité NOk')
+        }
+      }
+    );
+    
   }
 
   onSubmit() {

@@ -2,12 +2,12 @@
     <div [hidden]="submitted" style="width: 400px;">
 
         <form>
-            <p>Inviter des Vips</p>
+            <h2>Inviter des Vips</h2>
 
             <br>
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-5">
+                    <div class="col-6">
 
                         <div class="form-group">
                             <label for="manifestation">Manifestation :</label>
@@ -46,7 +46,7 @@
                                         <th>Nom</th>
                                         <th>Prenom</th>
                                         <th>Email</th>
-
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -55,53 +55,61 @@
                                         <td>{{vip.nom}}</td>
                                         <td>{{vip.prenom}}</td>
                                         <td>{{vip.email}}</td>
-                                        <td><button (click)="addInvitation(vip.id)" class="btn btn-primary"><fa-icon class="icon p-2" [icon]="faPlusSquare">Ajouter</fa-icon></button>
+                                        <td><button (click)="addInvitation(vip.id)" class="btn btn-primary">
+                                                <fa-icon class="icon p-2" [icon]="faPlusSquare">Ajouter</fa-icon>
+                                            </button>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    <div class="container">
+                        <div class="row justify-content-center">
 
-                    <div class="col-5">
-                        <div class="panel-body">
-                            <table class="table table-striped  ">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th>Nom</th>
-                                        <th>Prenom</th>
-                                        <th>Email</th>
+                            <div class="col-5">
+                                <div class="panel-body">
+                                    <table class="table table-striped  ">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Nom</th>
+                                                <th>Prenom</th>
+                                                <th>Email</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let invit of invits"  style="border:1px solid black;">
 
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let invit of invits">
-
-                                        <td>{{invit.vip.nom}}</td>
-                                        <td>{{invit.vip.prenom}}</td>
-                                        <td>{{invit.vip.email}}</td>
-                                        <td> <button (click)="subInvitation(invit.id)"
-                                                class="btn btn-secondary"><fa-icon class="icon p-2" [icon]="faMinusSquare">Retirer</fa-icon></button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                                <td>{{invit.vip.nom}}</td>
+                                                <td>{{invit.vip.prenom}}</td>
+                                                <td>{{invit.vip.email}}</td>
+                                                <td> <button (click)="subInvitation(invit.id)"
+                                                        class="btn btn-secondary">
+                                                        <fa-icon class="icon p-2" [icon]="faMinusSquare">Retirer
+                                                        </fa-icon>
+                                                    </button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                   
                 </div>
             </div>
-         <!--  <a name="" id="" class="btn btn-secondary" href="#" role="button"
+            <!--  <a name="" id="" class="btn btn-secondary" href="#" role="button"
             [routerLink]="['/public/manifestation-list']" title="Annuler">
             <fa-icon class="icon p-2" [icon]="faHome" >Annuler</fa-icon>
         </a> -->
-        <button class="btn btn-secondary" type="button" value="Annuler" (click)="cancel()"   title="Annuler">
-            <fa-icon class="icon p-2" [icon]="faCheckSquare">Valider</fa-icon>
-        </button>
+            <button class="btn btn-secondary" type="button" value="Annuler" (click)="cancel()" title="Annuler">
+                <fa-icon class="icon p-2" [icon]="faHome">Valider</fa-icon>
+            </button>
 
-        &nbsp;
-        <button class="btn btn-success" type="button" value="Valider" (click)="valid()"   title="Valider">
-            <fa-icon class="icon p-2" [icon]="faCheckSquare">Valider</fa-icon>
-        </button>
+            &nbsp;
+            <button class="btn btn-success" type="button" value="Valider" (click)="valid()" title="Valider">
+                <fa-icon class="icon p-2" [icon]="faCheckSquare">Valider</fa-icon>
+            </button>
         </form>
     </div>
 </div>

@@ -1,11 +1,11 @@
 package com.afpa.cda.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,9 +31,6 @@ public class InvitationServiceImpl implements IInvitationService {
 
 	@Autowired
 	private InvitationRepository invitationRepository;
-
-	@Autowired
-	private ModelMapper modelMapper;
 
 	@Override
 	public List<InvitationDto> findAll() {
@@ -106,6 +103,7 @@ public class InvitationServiceImpl implements IInvitationService {
 					UserDto vipDto = new UserDto();
 					vipDto.setId(i.getVip().getId());
 					vipDto.setNom(i.getVip().getNom());
+					vipDto.setPrenom(i.getVip().getPrenom());
 					vipDto.setEmail(i.getVip().getEmail());
 					invitationDto.setVip(vipDto);
 
@@ -133,8 +131,6 @@ public class InvitationServiceImpl implements IInvitationService {
 	@Override
 	public List<InvitationDto> findInvitationByManifestationId(int id) {
 
-		System.out.println("test methode findManifestationByUser ");
-
 		List<InvitationDto> listInvitationByManifestation =this.invitationRepository
 				.findInvitationByManifestationId(id)
 				.stream().map(i-> {
@@ -150,6 +146,7 @@ public class InvitationServiceImpl implements IInvitationService {
 					UserDto vipDto = new UserDto();
 					vipDto.setId(i.getVip().getId());
 					vipDto.setNom(i.getVip().getNom());
+					vipDto.setPrenom(i.getVip().getPrenom());
 					vipDto.setEmail(i.getVip().getEmail());
 					invitationDto.setVip(vipDto);
 
@@ -162,30 +159,6 @@ public class InvitationServiceImpl implements IInvitationService {
 		return listInvitationByManifestation;
 	}
 
-	// inutile
-	//	@Override
-	//	public List<UserDto> findByRole(int id) {
-	//		// A tester
-	//		//	List<UserDto> listUsers = this.userRepository.findByRoleId(5);
-	//
-	//		List<User> listUsers = this.userRepository.findAll();
-	//		System.out.println("test methode findByRole ");
-	//		List<UserDto> listByRole = new ArrayList<UserDto>();
-	//
-	//		for (User user : listUsers) {
-	//			if (user.getRole().getId() == 5) {
-	//				System.out.println("test methode findByRole 2");
-	//				UserDto userDto = UserDto.builder().id(user.getId())
-	//						.nom(user.getNom()).prenom(user.getPrenom()).entreprise(user.getEntreprise()).build();
-	//				//				UserDto userDto = this.modelMapper.map(user, UserDto.class);
-	//				//				userDto.setPassword(null);
-	//				//				userDto.setTokenSecret(null);
-	//				//				userDto.setRole(this.modelMapper.map(user.getRole(), RoleDto.class));
-	//				listByRole.add(userDto);
-	//			}
-	//		}
-	//		return listByRole;
-	//	}
 
 	@Override
 	public boolean add(InvitationDto invitationDto) {
@@ -208,11 +181,12 @@ public class InvitationServiceImpl implements IInvitationService {
 				invitation.setVip(vip);
 			}
 
+		
 			invitation.setReponse("NC");
-			invitation.setDateInvitation(invitationDto.getDateInvitation());
+			invitation.setDateInvitation(new Date());
 
 			this.invitationRepository.save(invitation);
-
+			System.err.println("invitation ajoutée");
 			return false;
 		}
 		return true;
@@ -320,6 +294,7 @@ public class InvitationServiceImpl implements IInvitationService {
 					this.invitationRepository.deleteById(invitation.getId());
 				}
 			} 
+			System.err.println("invitation deleteAll");
 			return true;
 		}
 		return false;

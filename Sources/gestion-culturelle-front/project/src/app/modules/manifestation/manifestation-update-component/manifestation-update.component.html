@@ -20,13 +20,7 @@
                                 placeholder="Entrer la date de validation" required
                                 [(ngModel)]="manifestation.dateValidation" readonly>
                         </div>
-<!--
-                        <div class="form-group">
-                            <label for="validateur">Nom du validateur :</label>
-                            <input type="text" name="validateur" class="form-control" id="validateur" required
-                                [(ngModel)]="manifestation.validateur.nom" readonly>
-                        </div>
--->
+
                         <label for="validateur">Nom du validateur :</label>
                         <input type="text" name="validateur" class="form-control" id="validateur"
                             placeholder="{{manifestation.validateur.nom}}" readonly>
@@ -37,14 +31,22 @@
                                 [(ngModel)]="manifestation.animation.label" [value]="animation.id" readonly>
                         </div>
 
+                        <label for=" nbreSpectateursPrevus">Prevision Spectateurs :</label>
+                        <input type="text" name="nbreSpectateursPrevus" class="form-control" id="nbreSpectateursPrevus"
+                            placeholder="Entrer la prevision de Spectateurs"
+                            [(ngModel)]="manifestation.animation.nbreSpectateursPrevus">
+
+
+
+                    </div>
+                    <div class="col-6">
+
                         <div class="form-group">
                             <label for="dateDebut">Date de debut :</label>
                             <input type="date" name="dateDebut" class="form-control" id="dateDebut"
                                 placeholder="Entrer la date de debut " required [(ngModel)]="manifestation.dateDebut">
                         </div>
 
-                    </div>
-                    <div class="col-6">
                         <div class="form-group">
                             <label for="dateFin">Date de fin :</label>
                             <input type="date" name="dateFin" class="form-control" id="dateFin"
@@ -61,12 +63,7 @@
                             <input type="text" name="reservations" class="form-control" id="reservations"
                                 placeholder="Entrer le nombre de reservations" [(ngModel)]="manifestation.reservations">
                         </div>
-<!--
-                        <label for="capacite">Capacité :</label>
-                        <input type="text" name="capacite" class="form-control" id="capacite"
-                            placeholder="{{salle.capacite}}" readonly>
 
--->
                         <div class="form-group">
                             <label for=" reservationsVip">Nombre de reservationsVip :</label>
                             <input type="text" name="reservationsVip" class="form-control" id="reservationsVip"
@@ -74,13 +71,19 @@
                                 [(ngModel)]="manifestation.reservationsVip">
                         </div>
                     </div>
-                   
 
                 </div>
-                <a name="" id="" class="btn btn-secondary" href="#" role="button"
-                [routerLink]="['/public/manifestation-list']"><fa-icon class="icon p-2" [icon]="faHome">Annuler</fa-icon></a>
+                <br>
+                <button (click)="checkAvalaibility()" class="btn btn-secondary">Test dispo </button>
                 &nbsp;
-            <button type="submit" class="btn btn-success"><fa-icon class="icon p-2" [icon]="faCheckSquare">Valider</fa-icon></button>
+                <a name="" id="" class="btn btn-secondary" href="#" role="button"
+                    [routerLink]="['/public/manifestation-list']">
+                    <fa-icon class="icon p-2" [icon]="faHome">Annuler</fa-icon>
+                </a>
+                &nbsp;
+                <button type="submit" class="btn btn-success">
+                    <fa-icon class="icon p-2" [icon]="faCheckSquare">Valider</fa-icon>
+                </button>
             </div>
         </form>
     </div>

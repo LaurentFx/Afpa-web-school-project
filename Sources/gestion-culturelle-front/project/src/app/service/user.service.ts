@@ -29,6 +29,11 @@ export class UserService {
   add(user: User): Observable<any> {
     return this.http.post(this.monUrl,user);
   }
+  
+  addClient(user: User): Observable<any> {
+    return this.http.post(this.monUrl+"/new",user);
+  }
+
   update(id: number, user: Object): Observable<Object> {
     return this.http.put(`${this.monUrl}/${id}`, user);
   }

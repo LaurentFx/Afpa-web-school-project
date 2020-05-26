@@ -37,8 +37,8 @@ public class TypeSalleController {
 	}
 	
 	@PutMapping(path = "/typesalle/{id}")
-	public void update(@RequestBody TypeSalleDto typ,@PathVariable int id) {
-		this.typeSalleService.updateTypeSalle(typ, id);
+	public boolean update(@RequestBody TypeSalleDto typ,@PathVariable int id) {
+		return this.typeSalleService.updateTypeSalle(typ, id);
 		
 	}
 	

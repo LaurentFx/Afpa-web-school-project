@@ -1,5 +1,6 @@
 package com.afpa.cda.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -66,22 +67,22 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public List<UserDto> findByRole(int id) {
-		// A tester
-			List<UserDto> listByRole = this.userRepository.findByRoleId(id);
+		// A tester : Ne marche pas
+		//			List<UserDto> listByRole = this.userRepository.findByRoleId(5);
 
-//		List <User> listUsers =  this.userRepository.findAll();
-//
-//		List <UserDto> listByRole = new ArrayList<UserDto> ();
-//
-//		for (User user : listUsers) {
-//			if (user.getRole().getId()==id) {
-//				UserDto userDto = this.modelMapper.map(user, UserDto.class);
-//				userDto.setPassword(null);
-//				userDto.setTokenSecret(null);
-//				userDto.setRole(this.modelMapper.map(user.getRole(), RoleDto.class));
-//				listByRole.add(userDto);
-//			}
-//		}
+		List <User> listUsers =  this.userRepository.findAll();
+
+		List <UserDto> listByRole = new ArrayList<UserDto> ();
+
+		for (User user : listUsers) {
+			if (user.getRole().getId()==id) {
+				UserDto userDto = this.modelMapper.map(user, UserDto.class);
+				userDto.setPassword(null);
+				userDto.setTokenSecret(null);
+				userDto.setRole(this.modelMapper.map(user.getRole(), RoleDto.class));
+				listByRole.add(userDto);
+			}
+		}
 		return listByRole;
 	}
 
@@ -97,28 +98,32 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public UserDto addClient(UserDto userDto) {
-		User user = this.modelMapper.map(userDto,User.class);
-		Optional<Role> roleOp=roleRepository.findById(4);
-		if (roleOp.isPresent()) {
-			user.setRole(roleOp.get());
+	public boolean addClient(UserDto userDto) {
+		Optional <User> userOp = this.userRepository.findByNomAndPrenom(userDto.getNom(), userDto.getPrenom());
+		if (!userOp.isPresent()) {
+			User user = this.modelMapper.map(userDto,User.class);
+			Optional<Role> roleOp=roleRepository.findById(4);
+			if (roleOp.isPresent()) {
+				user.setRole(roleOp.get());
+			}
+			user.setNumClient(userDto.getNom().substring(0,1)+userDto.getId()+userDto.getPrenom().substring(0,1)+"2020");
+			Date dateDuJour = new Date();
+			user.setPanier(Panier.builder()
+					.dateValidation(dateDuJour)
+					.total(0).build());
+			//	user.getPanier().setListArticles(new ArrayList<Article>());
+			//	user.setInactif(true);
+
+			panierRepository.save(user.getPanier());
+			user.setPanier(Panier.builder().id(user.getPanier().getId()).build());
+
+			this.userRepository.save(user);
+			userDto = modelMapper.map(user, UserDto.class);
+			userDto.setId(user.getId());
+
+			return false;
 		}
-		user.setNumClient(userDto.getNom().substring(0,1)+userDto.getId()+userDto.getPrenom().substring(0,1)+"2020");
-		Date dateDuJour = new Date();
-		user.setPanier(Panier.builder()
-				.dateValidation(dateDuJour)
-				.total(0).build());
-	//	user.getPanier().setListArticles(new ArrayList<Article>());
-		//	user.setInactif(true);
-
-		panierRepository.save(user.getPanier());
-		user.setPanier(Panier.builder().id(user.getPanier().getId()).build());
-
-		this.userRepository.save(user);
-		userDto = modelMapper.map(user, UserDto.class);
-		userDto.setId(user.getId());
-
-		return userDto;
+		return true;
 	}
 
 	@Override
@@ -127,7 +132,7 @@ public class UserServiceImpl implements IUserService {
 		UserDto userDto = new UserDto();
 		if (userOpt.isPresent()) {
 			User user = userOpt.get();
-		
+
 			userDto.setId(user.getId());
 			userDto.setNom(user.getNom());
 			userDto.setPrenom(user.getPrenom());
@@ -135,7 +140,7 @@ public class UserServiceImpl implements IUserService {
 			userDto.setPassword(null);
 			userDto.setTokenSecret(null);
 			userDto.setNumClient(user.getNumClient());
-			
+
 			PanierDto panierDto = new PanierDto();
 			if (user.getPanier()!=null) {
 				panierDto.setId(user.getPanier().getId());
@@ -143,7 +148,7 @@ public class UserServiceImpl implements IUserService {
 				panierDto.setTotal(user.getPanier().getTotal());
 			}
 			userDto.setPanier(panierDto);
-			
+
 			userDto.setAdresse(user.getAdresse());
 			userDto.setEntreprise(user.getEntreprise());
 
@@ -155,15 +160,15 @@ public class UserServiceImpl implements IUserService {
 			}
 			userDto.setRole(roleDto);
 
-//			userDto = this.modelMapper.map(me, UserDto.class);
-//			// solution temporaire
-//			// ne pas remonter les mots de passe pour le service get
-//			userDto.setPassword(null);
-//			userDto.setTokenSecret(null);
-//			userDto.setRole(this.modelMapper.map(me.getRole(), RoleDto.class));
-			
+			//			userDto = this.modelMapper.map(me, UserDto.class);
+			//			// solution temporaire
+			//			// ne pas remonter les mots de passe pour le service get
+			//			userDto.setPassword(null);
+			//			userDto.setTokenSecret(null);
+			//			userDto.setRole(this.modelMapper.map(me.getRole(), RoleDto.class));
+
 			return Optional.of(userDto);
-		
+
 		}
 		return Optional.empty();
 	}
@@ -174,7 +179,7 @@ public class UserServiceImpl implements IUserService {
 		UserDto userDto = new UserDto();
 		if (userOpt.isPresent()) {
 			User user = userOpt.get();
-		
+
 			userDto.setId(user.getId());
 			userDto.setNom(user.getNom());
 			userDto.setPrenom(user.getPrenom());
@@ -182,7 +187,7 @@ public class UserServiceImpl implements IUserService {
 			userDto.setPassword(null);
 			userDto.setTokenSecret(null);
 			userDto.setNumClient(user.getNumClient());
-			
+
 			userDto.setAdresse(user.getAdresse());
 			userDto.setEntreprise(user.getEntreprise());
 
@@ -200,7 +205,7 @@ public class UserServiceImpl implements IUserService {
 				roleDto.setLabel(user.getRole().getLabel());
 			}
 			userDto.setRole(roleDto);
-	}
+		}
 		return userDto;
 	}
 

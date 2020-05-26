@@ -7,7 +7,6 @@ import { UserAddComponent } from './user-add/user-add.component';
 import { FormsModule } from '@angular/forms';
 import { UserShowComponent } from './user-show/user-show.component';
 import { UserUpdateComponent } from './user-update/user-update.component';
-import { UserRoleListComponent } from './user-role-list/user-role-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
@@ -17,7 +16,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     UserAddComponent,
     UserShowComponent,
     UserUpdateComponent,
-    UserRoleListComponent,
   ],
   imports: [
     CommonModule,

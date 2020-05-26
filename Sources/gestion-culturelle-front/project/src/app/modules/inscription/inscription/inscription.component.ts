@@ -6,8 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../../service/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { User } from '../../../model/user';
-import { InscriptionService } from '../../../service/inscription.service';
 import { faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { UserService } from '../../../service/user.service';
 
 @Component({
   selector: 'app-inscription',
@@ -21,8 +21,9 @@ export class InscriptionComponent implements OnInit {
   faPlusSquare = faPlusSquare;
 
 
-  constructor(private router: Router, private inscriptionService: InscriptionService,
-    private route: ActivatedRoute, private authService: AuthService,private toastrService: ToastrService) { }
+  constructor(private router: Router, private userService: UserService,
+    private route: ActivatedRoute, private authService: AuthService,
+    private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.user = new User();
@@ -30,7 +31,7 @@ export class InscriptionComponent implements OnInit {
   }
 
   add(): void {
-    this.inscriptionService.add(this.user).subscribe(
+    this.userService.addClient(this.user).subscribe(
       res => {
         this.toastrService.success('Bienvenue ' +this.user.nom, 'Inscription réussie !')
         this.goHome();

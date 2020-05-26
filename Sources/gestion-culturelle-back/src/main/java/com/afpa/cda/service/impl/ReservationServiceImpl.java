@@ -13,7 +13,6 @@ import com.afpa.cda.dao.UserRepository;
 import com.afpa.cda.dto.ManifestationDto;
 import com.afpa.cda.dto.ReservationDto;
 import com.afpa.cda.dto.UserDto;
-import com.afpa.cda.entity.Invitation;
 import com.afpa.cda.entity.Manifestation;
 import com.afpa.cda.entity.Reservation;
 import com.afpa.cda.entity.User;
