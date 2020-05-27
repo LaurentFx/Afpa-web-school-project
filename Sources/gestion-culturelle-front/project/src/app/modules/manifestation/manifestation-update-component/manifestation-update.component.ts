@@ -118,9 +118,11 @@ export class ManifestationUpdateComponent implements OnInit {
     this.manifestationService.getAvalaibility(this.manifestation).subscribe(
       res => {
         if (res) {
-          this.toastrService.success('La salle ' + this.manifestation.salle.label + ' est libre.', 'Disponibilité Ok.')
+          this.toastrService.success('La salle ' + this.manifestation.salle.label 
+          + ' est libre entre le'+this.manifestation.dateDebut+' et '+this.manifestation.dateFin, 'Disponibilité Ok.')
         } else {
-          this.toastrService.error('La salle ' +this.manifestation.salle.label + ' est occupée', 'Disponibilité NOk')
+          this.toastrService.error('La salle ' +this.manifestation.salle.label 
+          + ' est occupée entre le'+this.manifestation.dateDebut+' et '+this.manifestation.dateFin, 'Disponibilité NOk')
         }
       }
     );

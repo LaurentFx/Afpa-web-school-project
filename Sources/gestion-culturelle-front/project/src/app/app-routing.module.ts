@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
+//import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './modules/login/login/login.component';
-import { AuthGuard } from './guard/auth.guard';
-
+//import { AuthGuard } from './guard/auth.guard';
+import { AuthGuard } from './service/auth.guard';
 import { TypeSalleListComponent } from './modules/typesalle/typeSalle-list/typeSalle-list.component';
 import { TypeSalleAddComponent } from './modules/typesalle/typeSalle-add/typeSalle-add.component';
 import { TypeSalleUpdateComponent } from './modules/typesalle/typesalle-update/typesalle-update.component';

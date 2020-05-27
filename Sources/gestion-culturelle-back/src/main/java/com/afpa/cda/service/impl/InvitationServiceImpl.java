@@ -176,11 +176,12 @@ public class InvitationServiceImpl implements IInvitationService {
 			}
 
 			Optional <User> vipOp = this.userRepository.findById(invitationDto.getVip().getId());
+			System.out.println("vipOp "+vipOp);
 			if (vipOp.isPresent()) {
 				User vip = vipOp.get();
+				System.out.println("vip "+vip);
 				invitation.setVip(vip);
 			}
-
 		
 			invitation.setReponse("NC");
 			invitation.setDateInvitation(new Date());

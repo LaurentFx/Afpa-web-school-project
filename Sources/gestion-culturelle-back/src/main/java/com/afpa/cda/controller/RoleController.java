@@ -36,12 +36,12 @@ public class RoleController {
 
 	@PutMapping(path = "/role/{id}")
 	public void update(@RequestBody RoleDto rol, @PathVariable int id) {
-		this.roleService.updateRole(rol,id);
+		this.roleService.update(rol,id);
 	}
 
 	@DeleteMapping(path = "/role/{id}")
 	public void delete(@PathVariable int id) {
-		this.roleService.deleteRole(id);
+		this.roleService.delete(id);
 	}
 
 }

@@ -24,13 +24,12 @@ export class TypeSalleAddComponent implements OnInit {
     let nom = this.typeSalle.label;
     this.typeSalleService.add(this.typeSalle).subscribe(
       res => {
-        this.typeSalleService.subjectMiseAJour.next(0);
         if (res) {
           this.toastrService.error('Le type de salle '+nom +' existe déjà', 'Ajout impossible')
         } else {
           this.toastrService.success('Nouveau type de salle : ' +nom, 'Ajout Ok')
         }
-
+        this.typeSalleService.subjectMiseAJour.next(0);
         this.goHome();
       }
     );

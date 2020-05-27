@@ -34,9 +34,6 @@ public class Panier {
 	
 	@Temporal(TemporalType.DATE)
 	private Date dateValidation;
-		
-//	@OneToMany
-//	List<Article> listArticles;
 	
 	private double total;
 

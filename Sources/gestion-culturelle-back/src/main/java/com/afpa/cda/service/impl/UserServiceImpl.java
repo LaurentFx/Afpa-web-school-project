@@ -68,7 +68,7 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public List<UserDto> findByRole(int id) {
 		// A tester : Ne marche pas
-		//			List<UserDto> listByRole = this.userRepository.findByRoleId(5);
+		//			List<UserDto> listByRole = this.userRepository.findByRole(5);
 
 		List <User> listUsers =  this.userRepository.findAll();
 

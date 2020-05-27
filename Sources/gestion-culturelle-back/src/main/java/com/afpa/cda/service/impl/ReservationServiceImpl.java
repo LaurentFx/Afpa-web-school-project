@@ -227,12 +227,6 @@ public class ReservationServiceImpl implements IReservationService {
 	}
 
 	
-	// Tester si utile
-	@Override
-	public void addManifestationReservation(ManifestationDto manifestationDto) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	
 	

@@ -37,8 +37,8 @@ public class PanierController {
 	}
 	
 	@PostMapping(path = "/panier")
-	public void add(@RequestBody ArticleDto articleDto) {
-		this.panierService.addArticlePanier(articleDto);
+	public boolean add(@RequestBody ArticleDto articleDto) {
+		return this.panierService.addArticlePanier(articleDto);
 	}
 
 	@PutMapping(path = "/panier/{id}")

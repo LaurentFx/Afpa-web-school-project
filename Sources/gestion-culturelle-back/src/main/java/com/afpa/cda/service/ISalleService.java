@@ -8,7 +8,7 @@ public interface ISalleService {
 	
 	List<SalleDto> findAll();
 	
-	public List<SalleDto> findAllByCapacity(int nbreSpectateursPrevus);
+	public List<SalleDto> findAllByCapacity(int id);
 	
 	boolean add(SalleDto sal);
 	

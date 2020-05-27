@@ -34,13 +34,12 @@ export class AnimationAddComponent implements OnInit {
 
     this.animationService.add(this.animation).subscribe(
       res => {
-
-        this.animationService.subjectMiseAJour.next(0);
          if (res) {
           this.toastrService.error('L animation '+nom +' existe déjà', 'Ajout impossible')
         } else {
           this.toastrService.success('Nouvelle animation : ' +nom, 'Ajout Ok')
-        }     
+        }  
+        this.animationService.subjectMiseAJour.next(0);   
         this.goHome();
       }
     );

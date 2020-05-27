@@ -50,30 +50,13 @@ public class PanierServiceImpl implements IPanierService {
 
 					panierDto.setListArticles(new ArrayList<ArticleDto>());
 
-//					for (Article m : p.getListArticles()) {
-//						panierDto.getListArticles()
-//						.add(ArticleDto
-//								.builder()
-//								.id(m.getId())
-//								.panier(PanierDto.builder()
-//										.id(m.getPanier().getId())
-//										.dateValidation(m.getPanier().getDateValidation())
-//										.build())
-//								.manifestation(ManifestationDto.builder()
-//										.id(m.getManifestation().getId())
-//										.label(m.getManifestation().getLabel())
-//										.prixBillet(m.getManifestation().getPrixBillet())
-//										.build())
-//								.build());
-//
-//					}
 					return panierDto;
 				})
 				.collect(Collectors.toList());
 	}
 
 	@Override
-	public void addArticlePanier (ArticleDto articleDto) {
+	public boolean addArticlePanier (ArticleDto articleDto) {
 
 		Optional <Panier> panierOp=panierRepository.findById(articleDto.getPanier().getId());
 		Optional <Manifestation> manifestationOp=manifestationRepository.findById(articleDto.getManifestation().getId());
@@ -93,13 +76,16 @@ public class PanierServiceImpl implements IPanierService {
 				panierDto.setDateValidation(dateobj);
 				panierRepository.save(this.modelMapper.map(panierDto, Panier.class));
 				manifestationRepository.save(this.modelMapper.map(manifestationDto, Manifestation.class));
+				return false;
 			} else {
 				System.err.println("Pas assez de billets dispo"); }
+				return true;
 		}
+		return true;
 
 	}
 
-
+	// inutile
 	@Override
 	public PanierDto add(PanierDto panier) {
 		Panier panE = this.panierRepository.save(this.modelMapper.map(panier, Panier.class));
@@ -193,23 +179,23 @@ public class PanierServiceImpl implements IPanierService {
 
 			panierDto.setListArticles(new ArrayList<ArticleDto>());
 
-//			for (Article m : pan.getListArticles()) {
-//				panierDto.getListArticles()
-//				.add(ArticleDto
-//						.builder()
-//						.id(m.getId())
-//						.panier(PanierDto.builder()
-//								.id(m.getPanier().getId())
-//								.dateValidation(m.getPanier().getDateValidation())
-//								.build())
-//						.manifestation(ManifestationDto.builder()
-//								.id(m.getManifestation().getId())
-//								.label(m.getManifestation().getLabel())
-//								.prixBillet(m.getManifestation().getPrixBillet())
-//								.build())
-//						.build());
-//
-//			}
+			//			for (Article m : pan.getListArticles()) {
+			//				panierDto.getListArticles()
+			//				.add(ArticleDto
+			//						.builder()
+			//						.id(m.getId())
+			//						.panier(PanierDto.builder()
+			//								.id(m.getPanier().getId())
+			//								.dateValidation(m.getPanier().getDateValidation())
+			//								.build())
+			//						.manifestation(ManifestationDto.builder()
+			//								.id(m.getManifestation().getId())
+			//								.label(m.getManifestation().getLabel())
+			//								.prixBillet(m.getManifestation().getPrixBillet())
+			//								.build())
+			//						.build());
+			//
+			//			}
 
 		}
 		return panDto;

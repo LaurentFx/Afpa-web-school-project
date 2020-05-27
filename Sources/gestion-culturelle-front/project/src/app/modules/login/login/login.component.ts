@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService, 
     private router: Router,
-    private toastrService: ToastrService
+   private toastrService: ToastrService
     ) { }
 
   ngOnInit() {
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
   //   this.toastrService.success('Bienvenue '+this.user.username,'Connexion Ok');
         this.router.navigateByUrl('/public'); 
       } else {
-   //    this.toastrService.error('Connexion refusée')
+       this.toastrService.error('Connexion refusée')
       }
     });
   }

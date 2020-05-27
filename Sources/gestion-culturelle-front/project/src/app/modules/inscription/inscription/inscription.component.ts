@@ -33,7 +33,12 @@ export class InscriptionComponent implements OnInit {
   add(): void {
     this.userService.addClient(this.user).subscribe(
       res => {
-        this.toastrService.success('Bienvenue ' +this.user.nom, 'Inscription réussie !')
+        if (res) {
+          this.toastrService.error('Le user '+this.user.nom +' existe déjà', 'Inscription impossible')
+        } else {
+          this.toastrService.success('Bienvenue ' +this.user.nom, 'Inscription réussie !')
+        }
+        this.userService.subjectMiseAJour.next(0);
         this.goHome();
       }
     );

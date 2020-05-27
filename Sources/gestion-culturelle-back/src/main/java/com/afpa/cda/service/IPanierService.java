@@ -19,7 +19,7 @@ public interface IPanierService {
 
 	PanierDto findByUser(int id);
 
-	void addArticlePanier(ArticleDto articleDto);
+	boolean addArticlePanier(ArticleDto articleDto);
 
 	void deletePanier(int id);
 

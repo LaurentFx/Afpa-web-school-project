@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ManifestationDto } from '../../../model/manifestationDto';
 import { User } from '../../../model/user';
 import { InvitationDto } from '../../../model/invitationDto';
+import { ToastrService } from 'ngx-toastr';
 import { ManifestationService } from '../../../service/manifestation.service';
 import { AuthService } from '../../../service/auth.service';
 import { UserService } from '../../../service/user.service';
@@ -28,7 +29,7 @@ export class InvitationAddComponent implements OnInit {
   constructor(private manifestationService: ManifestationService,
     private route: ActivatedRoute, private router: Router,
     private authService: AuthService, private userService: UserService,
-    private invitationService: InvitationService,
+    private invitationService: InvitationService, private toastrService: ToastrService
   ) {
 
   }
@@ -106,7 +107,13 @@ export class InvitationAddComponent implements OnInit {
     this.invitationDto.vip = this.userDto;
     this.invitationService.add(this.invitationDto).subscribe(
       res => {
+        if (res) {
+          this.toastrService.error('L invitation existe déjà', 'Ajout impossible')
+        } else {
+          this.toastrService.success('Invitation ajoutée.', 'Ajout Ok')
+        }
         this.invitationService.subjectMiseAJour.next(0);
+
       }
     );
 
@@ -116,6 +123,11 @@ export class InvitationAddComponent implements OnInit {
   subInvitation(idInvitation: number): void {
     this.invitationService.delete(idInvitation).subscribe(
       res => {
+        if (res) {
+          this.toastrService.success('L invitation a été supprimée', 'Suppression Ok')
+        } else {
+          this.toastrService.error('L invitation n existe pas.', 'Suppression impossible')
+        }
         this.invitationService.subjectMiseAJour.next(0);
       }
     );
@@ -145,7 +157,12 @@ export class InvitationAddComponent implements OnInit {
   cancel() {
     this.invitationService.deleteAll(this.route.snapshot.params['id']).subscribe(
       res => {
-        // toaster
+        if (res) {
+          this.toastrService.success('Les invitations ont été annulées', 'Suppression Ok')
+        } else {
+          
+        }
+        this.invitationService.subjectMiseAJour.next(0);
       }
     );
     this.router.navigateByUrl('/public')

@@ -73,7 +73,7 @@ public class RoleServiceImpl implements IRoleService {
 	}
 
 	@Override
-	public boolean updateRole(RoleDto roleDto, int id) {
+	public boolean update(RoleDto roleDto, int id) {
 		Optional <Role> roleOp = this.roleRepository.findById(id);
 		if(roleOp.isPresent()) {
 			Role role = roleOp.get();
@@ -87,7 +87,7 @@ public class RoleServiceImpl implements IRoleService {
 	}
 
 	@Override
-	public boolean deleteRole(int id) {
+	public boolean delete(int id) {
 		List <User> listUsers = userRepository.findAll();
 		boolean userAvecRole = false;
 		

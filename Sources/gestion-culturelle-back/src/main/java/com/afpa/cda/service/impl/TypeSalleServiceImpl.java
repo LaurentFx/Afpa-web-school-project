@@ -68,7 +68,7 @@ public class TypeSalleServiceImpl implements ITypeSalleService {
 
 	@Override
 	public boolean deleteTypeSalle (int id) {
-		List <Salle> listSalles = salleRepository.findSalleByTypeSalleId(id);
+		List <Salle> listSalles = salleRepository.findSalleByTypeSalle(id);
 		
 		if (listSalles.isEmpty() && this.typeSalleRepository.existsById(id)) {
 			this.typeSalleRepository.deleteById(id);
