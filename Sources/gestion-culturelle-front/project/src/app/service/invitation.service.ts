@@ -28,18 +28,9 @@ export class InvitationService {
     return this.http.post(this.monUrl,invitationDto);
   }
   
-  /*
-  getVips(id: number): Observable<any> {
-    return this.http.get(`${this.monUrl}/${id}`);
-  }  */
-
   getByManifestation(id: number): Observable<any> {
     return this.http.get(`${this.monUrl}/manifestation/${id}`);
   } 
-/*
-  getListVips(id: number): Observable<any> {
-    return this.http.get(`${this.monUrl}/list/${id}`);
-  } */
 
   getUser(id: number): Observable<any> {
     return this.http.get(`${this.monUrl}/user/${id}`);

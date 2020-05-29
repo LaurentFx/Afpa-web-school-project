@@ -75,12 +75,13 @@ this.animationService.getOne(id).subscribe(
 
     this.animationService.delete(id).subscribe(
       res => {
-        this.animationService.subjectMiseAJour.next(0);
+       
         if (res) {
           this.toastrService.success(this.animation.label+' effacé.','Suppression Ok.')
         } else {
           this.toastrService.error('L animation '+ this.animation.label+' est associée à une manifestation','Suppression impossible')
         }
+         this.animationService.subjectMiseAJour.next(0);
       }
     )
   }

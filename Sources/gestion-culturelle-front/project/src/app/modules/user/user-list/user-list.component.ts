@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../../model/user';
 import { UserService } from '../../../service/user.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { faInfoCircle, faEdit, faTrashAlt, faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -16,9 +17,10 @@ export class UserListComponent implements OnInit {
   faTrashAlt = faTrashAlt;
   faHome = faHome;
   faPlusSquare = faPlusSquare;
+  user: User;
   users: User[];
 
-  constructor(private userService: UserService,private router: Router) { }
+  constructor(private userService: UserService,private router: Router, private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.users=[];
@@ -42,8 +44,21 @@ export class UserListComponent implements OnInit {
   }
 
   delete(id:number) {
+    this.user = new User ();
+
+    this.userService.getOne(id).subscribe(
+      res => {
+        this.user = res;
+      }
+    );
+
     this.userService.delete(id).subscribe(
       res=>{
+        if (res) {
+          this.toastrService.success(this.user.nom + ' effacé.', 'Suppression Ok.')
+        } else {
+          this.toastrService.error('L user ' + this.user.nom + ' est lié à une animation, invitation ou réservation.', 'Suppression impossible')
+        }
         this.userService.subjectMiseAJour.next(0);
       }
     )

@@ -13,5 +13,5 @@ public interface RoleRepository extends CrudRepository<Role, Integer> {
 
 	List<Role> findAll();
 	
-	Optional<Role> findByLabel(String label);
+	Optional<Role> findRoleByLabel(String label);
 }

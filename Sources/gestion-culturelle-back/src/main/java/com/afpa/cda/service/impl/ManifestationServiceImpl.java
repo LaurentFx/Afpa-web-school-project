@@ -180,7 +180,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 
 	@Override
 	public boolean add(ManifestationDto manifestationDto) {
-		Optional <Manifestation> manifestationOp = this.manifestationRepository.findByLabel(manifestationDto.getLabel());
+		Optional <Manifestation> manifestationOp = this.manifestationRepository.findManifestationByLabel(manifestationDto.getLabel());
 		if (!manifestationOp.isPresent()) {
 				
 		Manifestation manifestation = new Manifestation ();

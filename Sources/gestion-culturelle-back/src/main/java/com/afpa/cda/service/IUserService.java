@@ -22,5 +22,7 @@ public interface IUserService {
 	boolean addClient(UserDto userDto);
 
 	List<UserDto> findByRole(int id);
+	
+	public List<UserDto> findVipsAInviter(int id);
 
 }

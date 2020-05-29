@@ -241,7 +241,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			initAnimation(animationRepository,userRepository,animat3);
 
 			// ne pas oublier de bloquer la création d'utilisateur avec le nom ou prenom admin
-			Optional<User> resp1 = userRepository.findByNom(adminUserConf.getNom());
+			Optional<User> resp1 = userRepository.findUserByNom(adminUserConf.getNom());
 			if(! resp1.isPresent()) {
 				userRepository.save(User.builder()
 						.nom(adminUserConf.getNom())
@@ -264,7 +264,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 
 
 	private void initRole(RoleRepository roleRepository, Role role) {
-		Optional<Role> roleBddOpt = roleRepository.findByLabel(role.getLabel());
+		Optional<Role> roleBddOpt = roleRepository.findRoleByLabel(role.getLabel());
 		if( ! roleBddOpt.isPresent() ) {
 
 			// H2
@@ -285,7 +285,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 	}
 
 	private void initTypeSalle(TypeSalleRepository typeSalleRepository, TypeSalle typeSalle) {
-		Optional<TypeSalle> typeSalleBddOpt = typeSalleRepository.findByLabel(typeSalle.getLabel());
+		Optional<TypeSalle> typeSalleBddOpt = typeSalleRepository.findTypeSalleByLabel(typeSalle.getLabel());
 		if( ! typeSalleBddOpt.isPresent() ) {
 
 			// H2
@@ -307,7 +307,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 	}
 
 	private void initSalle(SalleRepository salleRepository, TypeSalleRepository typeSalleRepository,Salle salle) {
-		Optional<Salle> salleBddOpt = salleRepository.findByLabel(salle.getLabel());
+		Optional<Salle> salleBddOpt = salleRepository.findSalleByLabel(salle.getLabel());
 		if( ! salleBddOpt.isPresent() ) {
 
 			salle = salleRepository.save(
@@ -317,15 +317,15 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 					.capacite(salle.getCapacite())
 					.fraisjournalier(salle.getFraisjournalier())
 					.placesVip(salle.getPlacesVip())
-					.typesalle(typeSalleRepository.findByLabel(salle.getTypesalle().getLabel()).get())
+					.typesalle(typeSalleRepository.findTypeSalleByLabel(salle.getTypesalle().getLabel()).get())
 					.build());
 
 		}
 	}
 
 	private void initUser(UserRepository userRepository, User user) {
-		Optional<User> userNomBddOpt = userRepository.findByNom(user.getNom());
-		Optional<User> userPrenomBddOpt = userRepository.findByPrenom(user.getPrenom());
+		Optional<User> userNomBddOpt = userRepository.findUserByNom(user.getNom());
+		Optional<User> userPrenomBddOpt = userRepository.findUserByPrenom(user.getPrenom());
 		if( ! userNomBddOpt.isPresent() &&  ! userPrenomBddOpt.isPresent()) {
 
 			user = userRepository.save(
@@ -344,7 +344,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 	}
 
 	private void initAnimation (AnimationRepository animationRepository, UserRepository userRepository, Animation animation) {
-		Optional<Animation> animationBddOpt = animationRepository.findByLabel(animation.getLabel());
+		Optional<Animation> animationBddOpt = animationRepository.findAnimationByLabel(animation.getLabel());
 		if( ! animationBddOpt.isPresent() ) {
 
 			animation = animationRepository.save(
@@ -354,7 +354,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 					.type(animation.getType())
 					.prix(animation.getPrix())
 					.nbreSpectateursPrevus(animation.getNbreSpectateursPrevus())
-					.animateur(userRepository.findByNom(animation.getAnimateur().getNom()).get())
+					.animateur(userRepository.findUserByNom(animation.getAnimateur().getNom()).get())
 					.build());
 		}
 	}

@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-//import { HomeComponent } from './home/home.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './modules/login/login/login.component';
-//import { AuthGuard } from './guard/auth.guard';
 import { AuthGuard } from './service/auth.guard';
 import { TypeSalleListComponent } from './modules/typesalle/typeSalle-list/typeSalle-list.component';
 import { TypeSalleAddComponent } from './modules/typesalle/typeSalle-add/typeSalle-add.component';
@@ -24,6 +22,7 @@ import { ManifestationShowComponent } from './modules/manifestation/manifestatio
 import { ManifestationUpdateComponent } from './modules/manifestation/manifestation-update-component/manifestation-update.component';
 import { PanierAddComponent } from './modules/panier/panier-add-component/panier-add.component';
 import { PanierShowComponent } from './modules/panier/panier-show-component/panier-show.component';
+
 import { RoleAddComponent } from './modules/role/role-add/role-add.component';
 import { RoleUpdateComponent } from './modules/role/role-update/role-update.component';
 import { RoleShowComponent } from './modules/role/role-show/role-show.component';
@@ -40,7 +39,8 @@ import { ProfilUpdateComponent } from './modules/profil//profil-update-component
 import { InscriptionComponent } from './modules/inscription/inscription/inscription.component';
 
 import { InvitationAddComponent } from './modules/invitation/invitation-add/invitation-add.component';
-
+import { InvitationListComponent } from './modules/invitation/invitation-list/invitation-list.component';
+import { InvitationShowComponent } from './modules/invitation/invitation-show/invitation-show.component';
 
 
 const routes: Routes = [
@@ -72,6 +72,8 @@ const routes: Routes = [
   { path: 'panier-ad/:id', component: PanierAddComponent },
   { path: 'panier-show', component: PanierShowComponent },
 
+  { path: 'invitation-list', component: InvitationListComponent },
+  { path: 'invitation-show/:id', component: InvitationListComponent },
   { path: 'role-list', component: RoleListComponent, canActivate: [AuthGuard] },
   { path: 'role-ad', component: RoleAddComponent, canActivate: [AuthGuard] },
   { path: 'role-update/:id', component: RoleUpdateComponent, canActivate: [AuthGuard] },

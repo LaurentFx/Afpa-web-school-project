@@ -52,8 +52,8 @@ public class ReservationController {
 	
 
 	@DeleteMapping(path="/reservation/{id}")
-	public void delete(@PathVariable int id) {
-		this.reservationService.delete(id);
+	public boolean delete(@PathVariable int id) {
+		return this.reservationService.delete(id);
 	}
 
 

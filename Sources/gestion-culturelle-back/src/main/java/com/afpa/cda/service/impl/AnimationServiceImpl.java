@@ -57,7 +57,7 @@ public class AnimationServiceImpl implements IAnimationService {
 
 	@Override
 	public boolean add(AnimationDto animationDto) {
-			Optional <Animation> animationOp = this.animationRepository.findByLabel(animationDto.getLabel());
+			Optional <Animation> animationOp = this.animationRepository.findAnimationByLabel(animationDto.getLabel());
 
 		if (!animationOp.isPresent()) {
 			Animation animation = new Animation();
@@ -98,7 +98,7 @@ public class AnimationServiceImpl implements IAnimationService {
 			
 			this.animationRepository.save(animation);
 
-			List<Manifestation> listManifestations = manifestationRepository.findManifestationByAnimationId(id);
+			List<Manifestation> listManifestations = this.manifestationRepository.findManifestationByAnimation(id);
 			if (!listManifestations.isEmpty()) {
 				for (Manifestation manifestation : listManifestations) {
 					ManifestationDto manifestationDto = modelMapper.map(manifestation,ManifestationDto.class);
@@ -119,7 +119,7 @@ public class AnimationServiceImpl implements IAnimationService {
 
 	@Override
 	public boolean delete(int id) {
-		List <Manifestation> listManifestations = manifestationRepository.findManifestationByAnimationId(id);
+		List <Manifestation> listManifestations = this.manifestationRepository.findManifestationByAnimation(id);
 
 		if (listManifestations.isEmpty() && this.animationRepository.existsById(id))		 {
 			this.animationRepository.deleteById(id);

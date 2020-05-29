@@ -12,5 +12,5 @@ import com.afpa.cda.entity.TypeSalle;
 public interface TypeSalleRepository extends CrudRepository<TypeSalle, Integer> {
 	List<TypeSalle> findAll();
 
-	Optional<TypeSalle> findByLabel(String label);
+	Optional<TypeSalle> findTypeSalleByLabel(String label);
 }

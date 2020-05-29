@@ -45,7 +45,7 @@ public class InvitationController {
 	public List<InvitationDto> getAllByManifestation(@PathVariable int id) {
 		return this.invitationService.findInvitationByManifestationId(id);
 	}
-
+		
 	@PostMapping(path="/invitation")
 	public boolean add(@RequestBody InvitationDto invitationDto) {
 		return this.invitationService.add(invitationDto);
@@ -55,25 +55,15 @@ public class InvitationController {
 	public boolean update(@RequestBody InvitationDto invitationDto ,@PathVariable int id) {
 		return this.invitationService.update(invitationDto, id);
 	}
-	
-//	@PutMapping(path="/invitation/add/{id}")
-//	public void updateAdd(@RequestBody ManifestationDto manifestationDto ,@PathVariable int id) {
-//		this.invitationService.updateAdd(manifestationDto, id);
-//	}
-//
-//	@PutMapping(path="/invitation/sub/{id}")
-//	public void updateSub(@RequestBody ManifestationDto manifestationDto ,@PathVariable int id) {
-//		this.invitationService.updateSub(manifestationDto, id);
-//	}
 
 	@DeleteMapping(path="/invitation/{id}")
-	public void delete(@PathVariable int id) {
-		this.invitationService.delete(id);
+	public boolean delete(@PathVariable int id) {
+		return this.invitationService.delete(id);
 	}
 
 	@DeleteMapping(path="/invitation/manifestation/{id}")
-	public void deleteAll(@PathVariable int id) {
-		this.invitationService.deleteAll(id);
+	public boolean deleteAll(@PathVariable int id) {
+		return this.invitationService.deleteAll(id);
 	}
 
 

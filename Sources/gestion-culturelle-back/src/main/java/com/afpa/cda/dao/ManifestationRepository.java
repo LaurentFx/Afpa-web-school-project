@@ -17,12 +17,12 @@ public interface ManifestationRepository extends CrudRepository<Manifestation, I
 	
 	@Query(value = "SELECT * FROM t_manifestation m WHERE m.salle_id= :id", 
 			  nativeQuery = true)
-	public List<Manifestation> findManifestationBySalleId(Integer id);
+	public List<Manifestation> findManifestationBySalle(Integer id);
 	
 	@Query(value = "SELECT * FROM t_manifestation m WHERE m.animation_id= :id", 
 			  nativeQuery = true)
-	public List<Manifestation> findManifestationByAnimationId(Integer id);
+	public List<Manifestation> findManifestationByAnimation(Integer id);
 	
-	Optional<Manifestation> findByLabel(String label);
+	Optional<Manifestation> findManifestationByLabel(String label);
 	
 }

@@ -22,6 +22,10 @@ export class UserService {
     return this.http.get(`${this.monUrl}/role/${id}`);
   } 
 
+  getInvites(id: number): Observable<any> {
+    return this.http.get(`${this.monUrl}/invites/${id}`);
+  } 
+
   getOne(id: number): Observable<any> {
     return this.http.get(`${this.monUrl}/${id}`);
   } 

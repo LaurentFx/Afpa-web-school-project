@@ -92,7 +92,7 @@ public class ReservationServiceImpl implements IReservationService {
 		System.out.println("test methode findUserByManifestation ");
 
 		List<ReservationDto> listReservationByClient =this.reservationRepository
-				.findReservationByUserId(id)
+				.findReservationByUser(id)
 				.stream().map(r-> {
 					
 					ReservationDto reservationDto = new ReservationDto();
@@ -126,7 +126,7 @@ public class ReservationServiceImpl implements IReservationService {
 		System.out.println("test methode findManifestationByUser ");
 
 		List<ReservationDto> listReservationByManifestation =this.reservationRepository
-				.findReservationByManifestationId(id)
+				.findReservationByManifestation(id)
 				.stream().map(r-> {
 					
 					ReservationDto reservationDto = new ReservationDto();
@@ -157,7 +157,7 @@ public class ReservationServiceImpl implements IReservationService {
 	@Override
 	public boolean add(ReservationDto reservationDto) {
 		Optional <Reservation> reservationOp = this.reservationRepository
-				.findByUserAndManifestation(reservationDto.getClient().getId(), reservationDto.getManifestation().getId());
+				.findReservationByUserAndManifestation(reservationDto.getClient().getId(), reservationDto.getManifestation().getId());
 		if (!reservationOp.isPresent()) {
 		
 			Reservation reservation = new Reservation();

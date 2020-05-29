@@ -5,7 +5,6 @@ import { ManifestationService } from '../../../service/manifestation.service';
 import { AnimationDto } from '../../../model/animationDto';
 import { SalleDto } from '../../../model/salleDto';
 import { SalleService } from '../../../service/salle.service';
-import { AnimationService } from '../../../service/animation.service';
 import { User } from '../../../model/user';
 import { UserService } from '../../../service/user.service';
 import { faHome, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
@@ -22,9 +21,9 @@ export class ManifestationUpdateComponent implements OnInit {
   animation: AnimationDto;
   salle: SalleDto;
   salles: SalleDto[];
+  availability: any;
   faHome = faHome;
   faCheckSquare = faCheckSquare;
-  nombre: number;
 
   constructor(
     private userService: UserService, private salleService: SalleService,
@@ -59,12 +58,9 @@ export class ManifestationUpdateComponent implements OnInit {
     this.manifestationService.getOne(id).subscribe(
       res => {
         this.manifestation = res;
-        this.nombre = this.manifestation.animation.nbreSpectateursPrevus;
-
       }
     );
 
-    console.log("manifestation.animation.nbreSpectateursPrevus " + this.manifestation.animation.nbreSpectateursPrevus);
     this.salleService.getByCapacity(id).subscribe(
       resultat => {
         this.salles = resultat;
@@ -81,40 +77,30 @@ export class ManifestationUpdateComponent implements OnInit {
       }
     );
 
-    /*
-        this.salleService.subjectMiseAJour.subscribe(
-          res => {
-            this.salleService.getAll().subscribe(
-              donnees => {
-                this.salles = donnees;
-              }
-            );
-          }
-        );
-    
-        this.salleService.getAll().subscribe(
-          resultat => {
-            this.salles = resultat;
-            this.salles.forEach(function (item, index, array) {
-              console.log("salles " + item.capacite, index);
-              //        console.log("nbreSpectateursPrevus 2 " + this.animation.nbreSpectateursPrevus);
-            });
-          }
-        );
-    */
+  
   }
 
   update(): void {
     let id = this.route.snapshot.params['id'];
-    this.manifestationService.update(id, this.manifestation).subscribe(
+    console.log('this.availability 2'+this.availability);
+    this.availability=this.checkAvalaibility();
+    if (this.availability) {
+      this.manifestationService.update(id, this.manifestation).subscribe(
       res => {
-        console.log(this.manifestation);
+        this.toastrService.success('La manifestation a été mise à jour', 'Modification Ok.');
         this.goHome();
       }
     );
+    }else {
+      this.toastrService.error('La salle ' +this.manifestation.salle.label 
+      + ' est occupée entre le'+this.manifestation.dateDebut+' et '+this.manifestation.dateFin, 'Disponibilité NOk')
+      this.reload();
+    }
+    
   }
 
-  checkAvalaibility(): void {
+  checkAvalaibility(): any {
+   // let res:boolean;
     this.manifestationService.getAvalaibility(this.manifestation).subscribe(
       res => {
         if (res) {
@@ -124,14 +110,16 @@ export class ManifestationUpdateComponent implements OnInit {
           this.toastrService.error('La salle ' +this.manifestation.salle.label 
           + ' est occupée entre le'+this.manifestation.dateDebut+' et '+this.manifestation.dateFin, 'Disponibilité NOk')
         }
+        this.availability=res;
       }
     );
-    
+    console.log('this.availability '+this.availability);
+    return this.availability;
   }
 
-  onSubmit() {
+ /*  onSubmit() {
     this.update();
-  }
+  } */
 
   goHome() {
     this.router.navigate(['/public/manifestation-list']);

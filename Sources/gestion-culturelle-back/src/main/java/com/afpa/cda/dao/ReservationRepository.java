@@ -16,14 +16,14 @@ public interface ReservationRepository  extends CrudRepository<Reservation, Inte
 	
 	@Query(value = "SELECT * FROM t_reservation r WHERE r.client_id= :id", 
 			  nativeQuery = true)
-	public List<Reservation> findReservationByUserId(Integer id);
+	public List<Reservation> findReservationByUser(Integer id);
 	
 	@Query(value = "SELECT * FROM t_reservation r WHERE r.manifestation_id= :id", 
 			  nativeQuery = true)
-	public List<Reservation> findReservationByManifestationId(Integer id);
+	public List<Reservation> findReservationByManifestation(Integer id);
 	
 	@Query(value = "SELECT * FROM t_reservation r WHERE r.client_id= :userId and r.manifestation_id= :manifestationId",
 			nativeQuery = true)
-	Optional<Reservation> findByUserAndManifestation(Integer userId, Integer manifestationId);
+	Optional<Reservation> findReservationByUserAndManifestation(Integer userId, Integer manifestationId);
 
 }

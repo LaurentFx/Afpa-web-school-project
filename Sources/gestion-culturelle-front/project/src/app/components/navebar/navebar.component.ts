@@ -113,8 +113,8 @@ export class NavebarComponent implements OnInit {
     this.router.navigateByUrl('/panier-show/' + id)
   }
 
-  redirectToShowVip (id: number)  {
-    this.router.navigateByUrl('/vip-show/' + id)
+  redirectToShowInvitation (id: number)  {
+    this.router.navigateByUrl('/invitation-show/' + id)
   }
 
   

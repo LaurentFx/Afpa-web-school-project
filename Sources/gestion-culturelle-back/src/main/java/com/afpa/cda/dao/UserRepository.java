@@ -7,27 +7,21 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.afpa.cda.dto.UserDto;
 import com.afpa.cda.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 	List<User> findAll();
 
-	Optional<User> findByNom(String nom);
+	Optional<User> findUserByNom(String nom);
 
-	//	@Query("SELECT * FROM t_user u WHERE u.role = :roleStr", 
-	//	  nativeQuery = true))
-	//List<UserDto> findByRole(Integer roleStr);
-
-	Optional<User> findByPrenom(String prenom);
+	Optional<User> findUserByPrenom(String prenom);
 
 	@Query(value = "SELECT * FROM t_user u WHERE u.role_id = :id",  nativeQuery = true)
-	List <UserDto> findByRole(int id);
+	List <User> findUserByRole(Integer id);
 
 	@Query(value = "SELECT * FROM t_user u WHERE u.nom = :name and u.prenom = :fname",  nativeQuery = true)
-	Optional<User> findByNomAndPrenom(String name, String fname);
-
+	Optional<User> findUserByNomAndPrenom(String name, String fname);
 
 
 }

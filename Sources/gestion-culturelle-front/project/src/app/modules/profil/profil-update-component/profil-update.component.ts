@@ -5,6 +5,7 @@ import { Subject, Observable } from 'rxjs';
 import { AuthService } from '../../../service/auth.service';
 import { User } from '../../../model/user';
 import { UserService } from '../../../service/user.service';
+import { ToastrService } from 'ngx-toastr';
 import { faHome, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -21,7 +22,8 @@ export class ProfilUpdateComponent implements OnInit {
   faCheckSquare = faCheckSquare;
 
   constructor(private router: Router, private userService: UserService,
-    private route: ActivatedRoute, private authService: AuthService) { }
+    private route: ActivatedRoute, private authService: AuthService,
+    private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.user = new User();
@@ -46,6 +48,11 @@ export class ProfilUpdateComponent implements OnInit {
     let id = this.authService.getCurrentUser().id;
     this.userService.update(id, this.user).subscribe(
       res => {
+        if (res) {
+          this.toastrService.success(this.user.nom+' a été modifié.','Mise à jour Ok.')
+        } else {
+          this.toastrService.error(+this.user.nom+' n a pas été modifié','Mise à jour impossible.')
+        }
         this.goHome();
       }
     );

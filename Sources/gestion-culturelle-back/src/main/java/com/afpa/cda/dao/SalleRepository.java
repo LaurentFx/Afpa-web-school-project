@@ -13,7 +13,7 @@ import com.afpa.cda.entity.Salle;
 public interface SalleRepository extends CrudRepository<Salle, Integer> {
 	List<Salle> findAll();
 
-	Optional<Salle> findByLabel(String label);	
+	Optional<Salle> findSalleByLabel(String label);	
 	
 	@Query(value = "SELECT * FROM t_salle s WHERE s.typesalle_id= :id", 
 			  nativeQuery = true)

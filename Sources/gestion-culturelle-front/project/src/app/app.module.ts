@@ -8,12 +8,9 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-//import { NavebarComponent } from './navebar/navebar.component';
 import { NavebarComponent } from './components/navebar/navebar.component';
-//import { FooterComponent } from './footer/footer.component';
 import { FooterComponent } from './components/footer/footer.component';
 
-//import { HomeComponent } from './home/home.component';
 import { HomeComponent } from './components/home/home.component';
 import { TypeSalleModule } from './modules/typesalle/typesalle.module';
 import { RoleModule } from './modules/role/role.module';
@@ -23,7 +20,6 @@ import { ManifestationModule } from './modules/manifestation/manifestation.modul
 import { AnimationModule } from './modules/animation/animation.module';
 import { PanierModule } from './modules/panier/panier.module';
 import { UserModule } from './modules/user/user.module';
-//import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { AuthInterceptor } from './service/auth.interceptor';
 import { ProfilModule } from './modules/profil/profil.module';
 import { InscriptionModule } from './modules/inscription/inscription.module';

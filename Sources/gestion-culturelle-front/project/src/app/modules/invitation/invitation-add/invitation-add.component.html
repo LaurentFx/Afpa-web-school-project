@@ -50,12 +50,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let vip of vips" style="border:1px solid black;">
+                                    <tr *ngFor="let invite of invites" style="border:1px solid black;">
 
-                                        <td>{{vip.nom}}</td>
-                                        <td>{{vip.prenom}}</td>
-                                        <td>{{vip.email}}</td>
-                                        <td><button (click)="addInvitation(vip.id)" class="btn btn-primary">
+                                        <td>{{invite.nom}}</td>
+                                        <td>{{invite.prenom}}</td>
+                                        <td>{{invite.email}}</td>
+                                        <td><button (click)="addInvitation(invite.id)" class="btn btn-primary">
                                                 <fa-icon class="icon p-2" [icon]="faPlusSquare">Ajouter</fa-icon>
                                             </button>
                                         </td>
@@ -79,7 +79,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let invit of invits"  style="border:1px solid black;">
+                                            <tr *ngFor="let invit of invitations"  style="border:1px solid black;">
 
                                                 <td>{{invit.vip.nom}}</td>
                                                 <td>{{invit.vip.prenom}}</td>

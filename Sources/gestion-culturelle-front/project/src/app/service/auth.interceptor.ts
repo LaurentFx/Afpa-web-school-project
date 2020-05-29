@@ -15,24 +15,19 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
 
-   return next.handle(req).pipe(
-        tap(evt => {
-        }),
-        catchError((err: any) => {
-          if(err instanceof HttpErrorResponse && (err.status == 401 ) ) {
-            this.toastrService.error('Mauvais username/password','Connexion refusée')
-          } 
-          else if(err instanceof HttpErrorResponse && (err.status != 401 ) ) {
-            this.toastrService.info('Code ' +err.status,'Erreur http' )
-          } 
+    return next.handle(req).pipe(
+      tap(evt => {
+      }),
+      catchError((err: any) => {
           if(err instanceof HttpErrorResponse
-              && (err.status == 403 ||  err.status == 401 ) ) {
-               
-              this.authService.logout();      
-            }
-
-            return of(err);
-        }));
+            && (err.status == 403 ||  err.status == 401 ) ) {
+              if (err.status == 401) {
+                this.toastrService.error('Mauvais username/password','Connexion refusée' )
+              }
+            this.authService.logout();      
+          }
+          return of(err);
+      }));
 
   }
 

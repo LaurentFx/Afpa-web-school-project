@@ -105,7 +105,7 @@ public class SalleServiceImpl implements ISalleService {
 	@Override
 	public boolean add(SalleDto salleDto) {
 
-		Optional<Salle> salleOp = this.salleRepository.findByLabel(salleDto.getLabel());
+		Optional<Salle> salleOp = this.salleRepository.findSalleByLabel(salleDto.getLabel());
 		if (!salleOp.isPresent()) {
 			Salle salle = new Salle ();
 			salle.setLabel(salleDto.getLabel());
@@ -137,7 +137,7 @@ public class SalleServiceImpl implements ISalleService {
 			salle=this.modelMapper.map(salleDto,Salle.class);
 			this.salleRepository.save(salle);
 
-			List <Manifestation> listManifestations = manifestationRepository.findManifestationBySalleId(id);
+			List <Manifestation> listManifestations = manifestationRepository.findManifestationBySalle(id);
 			if (!listManifestations.isEmpty()) {
 				for (Manifestation manifestation : listManifestations) {
 					ManifestationDto manifestationDto = modelMapper.map(manifestation,ManifestationDto.class);
@@ -160,7 +160,7 @@ public class SalleServiceImpl implements ISalleService {
 
 	@Override
 	public boolean deleteSalle(int id) {
-		List <Manifestation> listManifestations = manifestationRepository.findManifestationBySalleId(id);
+		List <Manifestation> listManifestations = manifestationRepository.findManifestationBySalle(id);
 
 		if (listManifestations.isEmpty() && this.salleRepository.existsById(id)) {
 

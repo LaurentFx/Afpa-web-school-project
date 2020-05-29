@@ -3,7 +3,8 @@ import { ManifestationDto } from '../../../model/manifestationDto';
 import { Router } from '@angular/router';
 import { ManifestationService } from '../../../service/manifestation.service';
 import { AuthService } from '../../../service/auth.service';
-import { RoleDto } from 'src/app/model/roleDto';
+import { RoleDto } from '../../../model/roleDto';
+import { ToastrService } from 'ngx-toastr';
 import { faInfoCircle, faEdit, faTrashAlt, faHome, faPlusSquare, faCalendarPlus, faUserTie } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -22,6 +23,7 @@ export class ManifestationListComponent implements OnInit {
   faUserTie = faUserTie;
 
   isConnected: boolean;
+  manifestation: ManifestationDto;
   manifestations: ManifestationDto[];
   isResp: boolean;
   isAdmin:boolean;
@@ -31,7 +33,7 @@ export class ManifestationListComponent implements OnInit {
   role: RoleDto;
 
   constructor(private manifestationService: ManifestationService, private router: Router,
-    private authService: AuthService) { }
+    private authService: AuthService, private toastrService: ToastrService) { }
 
 
   ngOnInit() {
@@ -73,8 +75,21 @@ export class ManifestationListComponent implements OnInit {
   }
 
   delete(id: number) {
+    this.manifestation = new ManifestationDto();
+    this.manifestationService.getOne(id).subscribe(
+      res => {
+        this.manifestation = res;
+      }
+
+    );
+
     this.manifestationService.delete(id).subscribe(
       res => {
+        if (res) {
+          this.toastrService.success(this.manifestation.label + ' effacée.', 'Suppression Ok.')
+        } else {
+          this.toastrService.error('La manifestation ' + this.manifestation.label+ ' non effacée.', 'Suppression impossible')
+        }
         this.manifestationService.subjectMiseAJour.next(0);
       }
     )

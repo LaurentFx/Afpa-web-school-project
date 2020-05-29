@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TypeSalleService } from '../../../service/typeSalle.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TypeSalleDto } from '../../../model/typeSalleDto';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-typesalle-update',
@@ -13,7 +14,8 @@ export class TypeSalleUpdateComponent implements OnInit {
   id: number;
   typeSalle: TypeSalleDto;
 
-  constructor(private route: ActivatedRoute, private typeSalleService: TypeSalleService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private typeSalleService: TypeSalleService,
+     private router: Router,  private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.typeSalle = new TypeSalleDto();
@@ -31,6 +33,11 @@ export class TypeSalleUpdateComponent implements OnInit {
     let id = this.route.snapshot.params['id'];
     this.typeSalleService.update(id, this.typeSalle).subscribe(
       res => {
+        if (res) {
+          this.toastrService.success(this.typeSalle.label+' a été modifié.','Mise à jour Ok.')
+        } else {
+          this.toastrService.error(+this.typeSalle.label+' n a pas été modifié','Mise à jour impossible.')
+        }
         this.goHome();
       }
     );

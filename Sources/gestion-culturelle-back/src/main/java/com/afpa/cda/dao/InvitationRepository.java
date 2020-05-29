@@ -16,15 +16,15 @@ public interface InvitationRepository  extends CrudRepository<Invitation, Intege
 	
 	@Query(value = "SELECT * FROM t_invitation i WHERE i.vip_id= :id", 
 			  nativeQuery = true)
-	public List<Invitation> findInvitationByUserId(Integer id);
+	public List<Invitation> findInvitationByUser(Integer id);
 	
 	@Query(value = "SELECT * FROM t_invitation i WHERE i.manifestation_id= :id", 
 			  nativeQuery = true)
-	public List<Invitation> findInvitationByManifestationId(Integer id);
+	public List<Invitation> findInvitationByManifestation(Integer id);
 
 	@Query(value = "SELECT * FROM t_invitation i WHERE i.vip_id= :userId and i.manifestation_id= :manifestationId",
 			nativeQuery = true)
-	Optional<Invitation> findByUserAndManifestation(Integer userId, Integer manifestationId);
+	Optional<Invitation> findInvitationByUserAndManifestation(Integer userId, Integer manifestationId);
 	
 	
 }

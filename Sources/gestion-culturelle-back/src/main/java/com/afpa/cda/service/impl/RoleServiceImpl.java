@@ -88,19 +88,27 @@ public class RoleServiceImpl implements IRoleService {
 
 	@Override
 	public boolean delete(int id) {
-		List <User> listUsers = userRepository.findAll();
-		boolean userAvecRole = false;
 		
-		for (User user : listUsers) {
-			if(user.getRole().getId()==id) {
-				userAvecRole = true;
-			}
-		}
-		if(this.roleRepository.existsById(id) && !userAvecRole) {
-			this.roleRepository.deleteById(id);
-			System.err.println("role supprimé");
+		List <User> listUsers = this.userRepository.findUserByRole(id);
+		
+		if (listUsers.isEmpty() && this.roleRepository.existsById(id)) {
+		this.roleRepository.deleteById(id);
 			return true;
 		}
+		
+	//	List <User> listUsers = userRepository.findAll();
+//		boolean userAvecRole = false;
+//		
+//		for (User user : listUsers) {
+//			if(user.getRole().getId()==id) {
+//				userAvecRole = true;
+//			}
+//		}
+//		if(this.roleRepository.existsById(id) && !userAvecRole) {
+//			this.roleRepository.deleteById(id);
+//			System.err.println("role supprimé");
+//			return true;
+//		}
 		return false;
 	}
 }

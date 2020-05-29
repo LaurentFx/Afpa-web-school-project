@@ -45,7 +45,7 @@ public class TypeSalleServiceImpl implements ITypeSalleService {
 	@Override
 	public boolean add(TypeSalleDto typeSalleDto) {
 
-		Optional <TypeSalle> typeSalleOp = this.typeSalleRepository.findByLabel(typeSalleDto.getLabel());
+		Optional <TypeSalle> typeSalleOp = this.typeSalleRepository.findTypeSalleByLabel(typeSalleDto.getLabel());
 		if (!typeSalleOp.isPresent()) {
 			this.typeSalleRepository.save(this.modelMapper.map(typeSalleDto,TypeSalle.class));
 			return false;
