@@ -74,8 +74,8 @@ public class PanierServiceImpl implements IPanierService {
 				//				DateFormat df = new SimpleDateFormat("dd/MM/yy");
 				Date dateobj = new Date();
 				panierDto.setDateValidation(dateobj);
-				panierRepository.save(this.modelMapper.map(panierDto, Panier.class));
-				manifestationRepository.save(this.modelMapper.map(manifestationDto, Manifestation.class));
+				this.panierRepository.save(this.modelMapper.map(panierDto, Panier.class));
+				this.manifestationRepository.save(this.modelMapper.map(manifestationDto, Manifestation.class));
 				return false;
 			} else {
 				System.err.println("Pas assez de billets dispo"); }
@@ -109,8 +109,41 @@ public class PanierServiceImpl implements IPanierService {
 	}
 
 
+
 	@Override
-	public void deletePanier(int id) {
+	public PanierDto findById(int id) {
+		Optional<Panier> panE = this.panierRepository.findById(id);
+		PanierDto panDto = new PanierDto();
+
+		if (panE.isPresent()) {
+
+			Panier pan= panE.get();
+			panDto.setId(pan.getId());
+			panDto.setDateValidation(pan.getDateValidation());
+			panDto.setTotal(pan.getTotal());
+
+			PanierDto panierDto = new PanierDto();
+
+			panierDto.setListArticles(new ArrayList<ArticleDto>());
+
+		}
+		return panDto;
+	}
+
+	@Override
+	public PanierDto findByUser(int id) {
+		Optional <User> userOp=this.userRepository.findById(id);
+		PanierDto panierDto = new PanierDto ();
+		if (userOp.isPresent()) {
+			Panier panier = userOp.get().getPanier();
+			panierDto = modelMapper.map(panier,PanierDto.class);
+		}
+
+		return panierDto;
+	}
+
+	@Override
+	public boolean deletePanier(int id) {
 		Optional<Panier> panierOp = this.panierRepository.findById(id);
 
 		if (panierOp.isPresent()) {
@@ -127,14 +160,16 @@ public class PanierServiceImpl implements IPanierService {
 			}
 
 			PanierDto panierDto = modelMapper.map(panierOp.get(),PanierDto.class);
-			panierDto.getListArticles().clear();
+		//	panierDto.getListArticles().clear();
 			panierDto.setTotal(0);
-			panierRepository.save(this.modelMapper.map(panierDto,Panier.class));			
+			panierRepository.save(this.modelMapper.map(panierDto,Panier.class));	
+			return true;
 		}
+		return false;
 	}
 
 	@Override
-	public void deleteArticles(int id) {
+	public boolean deleteArticles(int id) {
 		Optional<Panier> panierOp =	this.panierRepository.findById(id);
 		if (panierOp.isPresent()) {
 			List<Article> listArticles = this.articleRepository.findAll();
@@ -158,59 +193,9 @@ public class PanierServiceImpl implements IPanierService {
 				this.panierRepository.save(this.modelMapper.map(panierDto,Panier.class));
 			}
 			this.articleRepository.deleteAll();
+			return true;
 		}
-
+return false;
 	}
-
-
-	@Override
-	public PanierDto findById(int id) {
-		Optional<Panier> panE = this.panierRepository.findById(id);
-		PanierDto panDto = new PanierDto();
-
-		if (panE.isPresent()) {
-
-			Panier pan= panE.get();
-			panDto.setId(pan.getId());
-			panDto.setDateValidation(pan.getDateValidation());
-			panDto.setTotal(pan.getTotal());
-
-			PanierDto panierDto = new PanierDto();
-
-			panierDto.setListArticles(new ArrayList<ArticleDto>());
-
-			//			for (Article m : pan.getListArticles()) {
-			//				panierDto.getListArticles()
-			//				.add(ArticleDto
-			//						.builder()
-			//						.id(m.getId())
-			//						.panier(PanierDto.builder()
-			//								.id(m.getPanier().getId())
-			//								.dateValidation(m.getPanier().getDateValidation())
-			//								.build())
-			//						.manifestation(ManifestationDto.builder()
-			//								.id(m.getManifestation().getId())
-			//								.label(m.getManifestation().getLabel())
-			//								.prixBillet(m.getManifestation().getPrixBillet())
-			//								.build())
-			//						.build());
-			//
-			//			}
-
-		}
-		return panDto;
-	}
-
-	@Override
-	public PanierDto findByUser(int id) {
-		Optional <User> userOp=this.userRepository.findById(id);
-		PanierDto panierDto = new PanierDto ();
-		if (userOp.isPresent()) {
-			Panier panier = userOp.get().getPanier();
-			panierDto = modelMapper.map(panier,PanierDto.class);
-		}
-
-		return panierDto;
-	}
-
+	
 }

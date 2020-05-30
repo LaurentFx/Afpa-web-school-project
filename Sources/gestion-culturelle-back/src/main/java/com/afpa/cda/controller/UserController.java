@@ -42,6 +42,11 @@ public class UserController {
 		return this.userService.findById(id);
 	}
 
+	@GetMapping(path = "/users/role/{id}")
+	public List<UserDto> findByRole(@PathVariable Integer id){
+		return this.userService.findByRole(id);
+	}
+	
 	@PostMapping(path = "/users")
 	public boolean add(@RequestBody UserDto user, HttpServletResponse resp) throws IOException {
 		if(user.getRole() == null) {
@@ -82,20 +87,15 @@ public class UserController {
 	}
 	
 	@PutMapping(path = "/users/{id}")
-	public void update(@RequestBody UserDto user,@PathVariable int id ) {
-		this.userService.update(user, id);
+	public boolean update(@RequestBody UserDto user,@PathVariable int id ) {
+		return this.userService.update(user, id);
 	}
 
 	@DeleteMapping(path = "/users/{id}")
-	public void delete(@PathVariable int id) {
-		this.userService.delete(id);
+	public boolean delete(@PathVariable int id) {
+		return this.userService.delete(id);
 	}
 
 
-	@GetMapping(path = "/users/role/{id}")
-	public List<UserDto> findByRole(@PathVariable Integer id){
-		return this.userService.findByRole(id);
-
-	}
 
 }

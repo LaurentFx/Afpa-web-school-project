@@ -29,8 +29,6 @@ export class ManifestationListComponent implements OnInit {
   isAdmin:boolean;
   isClient: boolean;
   isRespAdmin: boolean;
-  user: String;
-  role: RoleDto;
 
   constructor(private manifestationService: ManifestationService, private router: Router,
     private authService: AuthService, private toastrService: ToastrService) { }
@@ -44,8 +42,6 @@ export class ManifestationListComponent implements OnInit {
       this.isAdmin = this.authService.getCurrentUser().role.label === 'ADMIN';
       this.isRespAdmin = (this.authService.getCurrentUser().role.label === 'RESP') || (this.authService.getCurrentUser().role.label === 'ADMIN');
       this.isClient = this.authService.getCurrentUser().role.label === 'CLIENT';
-      this.user = this.authService.getCurrentUser().nom;
-      this.role = this.authService.getCurrentUser().role;
     }
 
     this.manifestationService.subjectMiseAJour.subscribe(
@@ -80,7 +76,6 @@ export class ManifestationListComponent implements OnInit {
       res => {
         this.manifestation = res;
       }
-
     );
 
     this.manifestationService.delete(id).subscribe(
@@ -88,7 +83,7 @@ export class ManifestationListComponent implements OnInit {
         if (res) {
           this.toastrService.success(this.manifestation.label + ' effacée.', 'Suppression Ok.')
         } else {
-          this.toastrService.error('La manifestation ' + this.manifestation.label+ ' non effacée.', 'Suppression impossible')
+          this.toastrService.error(this.manifestation.label+ ' non effacée.', 'Suppression impossible')
         }
         this.manifestationService.subjectMiseAJour.next(0);
       }

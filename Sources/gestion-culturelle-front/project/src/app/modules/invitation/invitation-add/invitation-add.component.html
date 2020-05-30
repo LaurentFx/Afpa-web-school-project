@@ -46,7 +46,7 @@
                                         <th>Nom</th>
                                         <th>Prenom</th>
                                         <th>Email</th>
-                                        <th>Action</th>
+                                        <th *ngIf="addInvites">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -55,7 +55,7 @@
                                         <td>{{invite.nom}}</td>
                                         <td>{{invite.prenom}}</td>
                                         <td>{{invite.email}}</td>
-                                        <td><button (click)="addInvitation(invite.id)" class="btn btn-primary">
+                                        <td *ngIf="addInvites"><button (click)="addInvitation(invite.id)" class="btn btn-primary">
                                                 <fa-icon class="icon p-2" [icon]="faPlusSquare">Ajouter</fa-icon>
                                             </button>
                                         </td>
@@ -69,7 +69,7 @@
 
                             <div class="col-5">
                                 <div class="panel-body">
-                                    <table class="table table-striped  ">
+                                    <table *ngIf="subInvites" class="table table-striped  ">
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>Nom</th>
@@ -84,6 +84,7 @@
                                                 <td>{{invit.vip.nom}}</td>
                                                 <td>{{invit.vip.prenom}}</td>
                                                 <td>{{invit.vip.email}}</td>
+                                                
                                                 <td> <button (click)="subInvitation(invit.id)"
                                                         class="btn btn-secondary">
                                                         <fa-icon class="icon p-2" [icon]="faMinusSquare">Retirer

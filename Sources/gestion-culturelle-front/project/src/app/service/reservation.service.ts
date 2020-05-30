@@ -2,19 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable, Subject } from 'rxjs';
 import { User } from '../model/user';
-import { InvitationDto } from '../model/invitationDto';
+import { ReservationDto } from '../model/reservationDto';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class InvitationService {
+export class ReservationService {
  
-  monUrl= 'http://localhost:8080/invitation'; 
+  monUrl= 'http://localhost:8080/reservation'; 
 
   user: User[]; 
-  //manifestation : ManifestationDto [];
-  invitationDto : InvitationDto;
+  reservationDto : ReservationDto;
   subjectMiseAJour= new Subject<number>();
 
   constructor(private http: HttpClient) { }
@@ -35,17 +34,17 @@ export class InvitationService {
     return this.http.get(`${this.monUrl}/user/${id}`);
   } 
   
-  add(invitationDto: InvitationDto): Observable<object> {
-    return this.http.post(this.monUrl,invitationDto);
+  add(reservationDto: ReservationDto): Observable<object> {
+    return this.http.post(this.monUrl,reservationDto);
   }
 
- update(id: number,invitationDto: InvitationDto): Observable<Object> {
-    return this.http.put(`${this.monUrl}/${id}`, invitationDto);
-  }  
+ /*  updateAdd(id: number,manifestation: ManifestationDto): Observable<Object> {
+    return this.http.put(`${this.monUrl}/add/${id}`, manifestation);
+  }
 
-  updateReponse(id: number,reponse: String): Observable<Object> {
-    return this.http.put(`${this.monUrl}/reponse/${id}`, reponse);
-  }  
+  updateSub(id: number,manifestation: ManifestationDto): Observable<Object> {
+    return this.http.put(`${this.monUrl}/sub/${id}`, manifestation);
+  } */
 
   delete(id: number): Observable<any> {
     return this.http.delete(`${this.monUrl}/${id}`);

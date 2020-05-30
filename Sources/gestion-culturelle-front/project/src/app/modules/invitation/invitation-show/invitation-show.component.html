@@ -1,1 +1,55 @@
-<p>invitation-show works!</p>
+<div class="container">
+    <div class="row justify-content-center">
+        <h3>Liste des invitations par Vip</h3>
+    </div>
+</div>
+<br>
+<div class="panel-body div-comp">
+
+    <table class="table table-striped table-bordered ">
+        <thead class="thead-dark">
+            <tr>
+                <th>N°</th>
+                <th>Label manifestation</th>
+                <th>Date de Debut</th>
+                <th>Date de Fin</th>
+                <th>Salle</th>
+                <th>Reservations Vip</th>
+                <th>Nom Vip</th>
+                <th>Email Vip</th>
+                <th>Date d'invitation</th>
+                <th>Reponse</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let invitation of invitations">
+                <td>{{invitation.id}}</td>
+                <td>{{invitation.manifestation.label}}</td>
+                <td>{{invitation.manifestation.dateDebut}}</td>
+                <td>{{invitation.manifestation.dateFin}}</td>
+                <td>{{invitation.manifestation.salle.label}}</td>
+                <td>{{invitation.manifestation.reservationsVip}}</td>
+                <td>{{invitation.vip.nom}}</td>
+                <td>{{invitation.vip.email}}</td>
+                <td>{{invitation.dateInvitation}}</td>
+                <td>{{invitation.reponse}}</td>
+
+                <td>
+                   
+                    <button (click)="oui(invitation.id)" class="btn btn-sm btn-success" title="Oui">
+                        <fa-icon [icon]="faCheckCircle">Oui</fa-icon></button>
+                    &nbsp;
+                    <button (click)="non(invitation.id)" class="btn btn-sm btn-danger" title="Non">
+                        <fa-icon [icon]="faTimesCircle">Non</fa-icon></button>
+                </td>
+
+            </tr>
+
+        </tbody>
+    </table>
+   
+    &nbsp;
+    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']" title="Retour à l'accueil">
+        <fa-icon class="icon p-2" [icon]="faHome">Retour à l'accueil</fa-icon></a>

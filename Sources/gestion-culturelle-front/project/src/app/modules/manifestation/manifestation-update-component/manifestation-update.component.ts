@@ -77,49 +77,38 @@ export class ManifestationUpdateComponent implements OnInit {
       }
     );
 
-  
+
   }
 
   update(): void {
     let id = this.route.snapshot.params['id'];
-    console.log('this.availability 2'+this.availability);
-    this.availability=this.checkAvalaibility();
-    if (this.availability) {
-      this.manifestationService.update(id, this.manifestation).subscribe(
+    this.manifestationService.update(id, this.manifestation).subscribe(
       res => {
         this.toastrService.success('La manifestation a été mise à jour', 'Modification Ok.');
         this.goHome();
       }
     );
-    }else {
-      this.toastrService.error('La salle ' +this.manifestation.salle.label 
-      + ' est occupée entre le'+this.manifestation.dateDebut+' et '+this.manifestation.dateFin, 'Disponibilité NOk')
-      this.reload();
-    }
-    
+  
   }
 
-  checkAvalaibility(): any {
-   // let res:boolean;
+  checkAvalaibility(): void {
     this.manifestationService.getAvalaibility(this.manifestation).subscribe(
       res => {
         if (res) {
-          this.toastrService.success('La salle ' + this.manifestation.salle.label 
-          + ' est libre entre le'+this.manifestation.dateDebut+' et '+this.manifestation.dateFin, 'Disponibilité Ok.')
+          this.toastrService.success('La salle '
+            + ' est libre entre le ' + this.manifestation.dateDebut + ' et ' + this.manifestation.dateFin, 'Disponibilité Ok.')
+          this.update();
         } else {
-          this.toastrService.error('La salle ' +this.manifestation.salle.label 
-          + ' est occupée entre le'+this.manifestation.dateDebut+' et '+this.manifestation.dateFin, 'Disponibilité NOk')
+          this.toastrService.error('La salle '
+            + ' est occupée entre le ' + this.manifestation.dateDebut + ' et ' + this.manifestation.dateFin +'. Changez de dates', 'Disponibilité NOk')
         }
-        this.availability=res;
       }
     );
-    console.log('this.availability '+this.availability);
-    return this.availability;
   }
 
- /*  onSubmit() {
-    this.update();
-  } */
+  onSubmit() {
+    this.checkAvalaibility();
+  }
 
   goHome() {
     this.router.navigate(['/public/manifestation-list']);

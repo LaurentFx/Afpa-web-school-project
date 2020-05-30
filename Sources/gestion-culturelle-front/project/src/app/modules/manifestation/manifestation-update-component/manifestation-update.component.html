@@ -1,7 +1,7 @@
 <div class="row justify-content-center align-items-center">
 
     <div [hidden]="submitted" style="width: 600px;">
-        <form>
+        <form (ngSubmit)="onSubmit()">
             <h2>Mettre à jour une manifestation</h2>
             <br>
             <div class="container">
@@ -35,8 +35,6 @@
                         <input type="text" name="nbreSpectateursPrevus" class="form-control" id="nbreSpectateursPrevus"
                             placeholder="Entrer la prevision de Spectateurs"
                             [(ngModel)]="manifestation.animation.nbreSpectateursPrevus">
-
-
 
                     </div>
                     <div class="col-6">
@@ -74,14 +72,16 @@
 
                 </div>
                 <br>
-                <button (click)="checkAvalaibility()" class="btn btn-secondary">Test dispo </button>
+              <!--
+                <button type="submit" (click)="checkAvalaibility()" class="btn btn-secondary">Test dispo </button>
                 &nbsp;
+                -->
                 <a name="" id="" class="btn btn-secondary" href="#" role="button"
                     [routerLink]="['/public/manifestation-list']">
                     <fa-icon class="icon p-2" [icon]="faHome">Annuler</fa-icon>
                 </a>
                 &nbsp;
-                <button (click)="update()" class="btn btn-success">
+                <button type="submit"  class="btn btn-success">
                     <fa-icon class="icon p-2" [icon]="faCheckSquare">Valider</fa-icon>
                 </button>
             </div>

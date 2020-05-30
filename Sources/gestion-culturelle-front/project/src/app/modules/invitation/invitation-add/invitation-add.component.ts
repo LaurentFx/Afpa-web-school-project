@@ -25,6 +25,8 @@ export class InvitationAddComponent implements OnInit {
   faPlusSquare = faPlusSquare;
   faMinusSquare = faMinusSquare;
   faCheckSquare = faCheckSquare;
+  addInvites: boolean;
+  subInvites:boolean;
 
   constructor(private manifestationService: ManifestationService,
     private route: ActivatedRoute, private router: Router,
@@ -40,14 +42,21 @@ export class InvitationAddComponent implements OnInit {
     this.invitationDto = new InvitationDto();
     this.invitationDto.manifestation = new ManifestationDto();
     this.invitationDto.vip = new User();
-
+    this.addInvites = false;
+    this.subInvites = true;
     this.reload();
   }
 
   reload() {
+    this.addInvites = false;
+    this.subInvites = true;
     this.manifestationService.getOne(this.route.snapshot.params['id']).subscribe(
       resu => {
         this.manifestationDto = resu;
+        this.manifestationDto.reservationsVip = resu.reservationsVip;
+        if (this.manifestationDto.reservationsVip > 0) {
+          this.addInvites = true;
+        }
         this.manifestationService.subjectMiseAJour.next(0);
       }
     )
@@ -58,42 +67,45 @@ export class InvitationAddComponent implements OnInit {
         this.userService.subjectMiseAJour.next(0);
       }
     );
-  
- 
+
+
     this.invitationService.getByManifestation(this.route.snapshot.params['id']).subscribe(
       res => {
         this.invitations = res;
         this.invitationService.subjectMiseAJour.next(0);
+        if (this.invitations.length === 0) {
+          this.subInvites = false;
+        }
       }
     );
 
   }
 
- 
+
   addInvitation(idVip: number): void {
     this.invitationDto.manifestation.id = this.route.snapshot.params['id'];
     this.invitationDto.vip.id = idVip;
 
-        this.invitationService.add(this.invitationDto).subscribe(
-          res => {
-            if (res) {
-              this.toastrService.error('L invitation existe déjà', 'Ajout impossible')
-            } else {
-              this.toastrService.success('Invitation ajoutée.', 'Ajout Ok')
-            }
-            this.invitationService.subjectMiseAJour.next(0);
+    this.invitationService.add(this.invitationDto).subscribe(
+      res => {
+        if (res) {
+          this.toastrService.error('L invitation existe déjà', 'Ajout impossible')
+        } else {
+          this.toastrService.success('Invitation ajoutée.', 'Ajout Ok')
+        }
+        this.invitationService.subjectMiseAJour.next(0);
 
-          }
-        );
+      }
+    );
     this.reload();
 
   }
 
-  subInvitation(idInvitation: number): void { 
+  subInvitation(idInvitation: number): void {
     this.invitationService.delete(idInvitation).subscribe(
       resp => {
         if (resp) {
-          this.toastrService.success('L invitation a été supprimée', 'Suppression Ok')
+          this.toastrService.success('Invitation effacée', 'Suppression Ok')
         } else {
           this.toastrService.error('L invitation n existe pas.', 'Suppression impossible')
         }
@@ -104,7 +116,7 @@ export class InvitationAddComponent implements OnInit {
     this.reload();
   }
 
-  
+
   valid() {
     this.router.navigateByUrl('/public')
   }

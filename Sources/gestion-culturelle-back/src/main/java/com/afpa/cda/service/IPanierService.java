@@ -21,9 +21,9 @@ public interface IPanierService {
 
 	boolean addArticlePanier(ArticleDto articleDto);
 
-	void deletePanier(int id);
+	boolean deletePanier(int id);
 
-	void deleteArticles(int id);
+	boolean deleteArticles(int id);
 
 
 }

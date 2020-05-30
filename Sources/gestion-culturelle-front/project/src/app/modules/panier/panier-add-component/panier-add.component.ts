@@ -74,7 +74,7 @@ export class PanierAddComponent implements OnInit {
         if (res) {
           this.toastrService.error('La manifestation '+this.article.manifestation.label+' est indisponible.' , 'Ajout impossible')
         } else {
-          this.toastrService.success('La manifestation ' +this.article.manifestation.label +'a été ajoutée au panier', 'Ajout Ok')
+          this.toastrService.success('La manifestation ' +this.article.manifestation.label +' a été ajoutée au panier', 'Ajout Ok')
         }
         this.goHome(this.panierDto.id);
       }

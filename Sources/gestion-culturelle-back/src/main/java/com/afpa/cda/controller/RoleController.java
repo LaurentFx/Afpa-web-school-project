@@ -35,13 +35,13 @@ public class RoleController {
 	}
 
 	@PutMapping(path = "/role/{id}")
-	public void update(@RequestBody RoleDto rol, @PathVariable int id) {
-		this.roleService.update(rol,id);
+	public boolean update(@RequestBody RoleDto rol, @PathVariable int id) {
+		return this.roleService.update(rol,id);
 	}
 
 	@DeleteMapping(path = "/role/{id}")
-	public void delete(@PathVariable int id) {
-		this.roleService.delete(id);
+	public boolean delete(@PathVariable int id) {
+		return this.roleService.delete(id);
 	}
 
 }

@@ -55,6 +55,11 @@ public class InvitationController {
 	public boolean update(@RequestBody InvitationDto invitationDto ,@PathVariable int id) {
 		return this.invitationService.update(invitationDto, id);
 	}
+	
+	@PutMapping(path="/invitation/reponse/{id}")
+	public boolean updateReponse(@RequestBody String reponse ,@PathVariable int id) {
+		return this.invitationService.updateReponse(reponse, id);
+	}
 
 	@DeleteMapping(path="/invitation/{id}")
 	public boolean delete(@PathVariable int id) {

@@ -39,7 +39,7 @@
                     &nbsp;
                     <button *ngIf="isRespAdmin" (click)="delete(manifestation.id)" class="btn btn-sm btn-danger" title="Effacer"><fa-icon [icon]="faTrashAlt">Delete</fa-icon></button>
                     &nbsp;
-                    <button *ngIf="isClient" (click)="redirectToAddPanier(manifestation.id)" class="btn btn-sm btn-primary" title="Réserver une manifestation"><fa-icon [icon]="faCalendarPlus">Acheter</fa-icon></button>
+                    <button *ngIf="isClient" (click)="redirectToAddPanier(manifestation.id)" class="btn btn-sm btn-primary" title="Réserver une manifestation"><fa-icon [icon]="faCalendarPlus">Reserver</fa-icon></button>
                     &nbsp;
                     <button *ngIf="isAdmin" (click)="redirectToInvit(manifestation.id)" class="btn btn-sm btn-primary" title="Inviter un Vip"><fa-icon [icon]="faUserTie">Inviter Vip</fa-icon></button>
                 </td>

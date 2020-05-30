@@ -3,30 +3,30 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
-
-
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
-import { NavebarComponent } from './components/navebar/navebar.component';
-import { FooterComponent } from './components/footer/footer.component';
-
-import { HomeComponent } from './components/home/home.component';
-import { TypeSalleModule } from './modules/typesalle/typesalle.module';
-import { RoleModule } from './modules/role/role.module';
-import { SalleModule } from './modules/salle/salle.module';
-import { LoginModule } from './modules/login/login.module';
-import { ManifestationModule } from './modules/manifestation/manifestation.module';
-import { AnimationModule } from './modules/animation/animation.module';
-import { PanierModule } from './modules/panier/panier.module';
-import { UserModule } from './modules/user/user.module';
-import { AuthInterceptor } from './service/auth.interceptor';
-import { ProfilModule } from './modules/profil/profil.module';
-import { InscriptionModule } from './modules/inscription/inscription.module';
+import { AppComponent } from './app-component/app.component';
+//import { NavebarComponent } from './../components/navebar/navebar.component';
+import { NavebarComponent } from './navebar/navebar.component';
+//import { FooterComponent } from './../components/footer/footer.component';
+import { FooterComponent } from './footer/footer.component';
+//import { HomeComponent } from './../components/home/home.component';
+import { HomeComponent } from './home/home.component';
+import { TypeSalleModule } from './../modules/typesalle/typesalle.module';
+import { RoleModule } from './../modules/role/role.module';
+import { SalleModule } from './../modules/salle/salle.module';
+import { LoginModule } from './../modules/login/login.module';
+import { ManifestationModule } from './../modules/manifestation/manifestation.module';
+import { AnimationModule } from './../modules/animation/animation.module';
+import { PanierModule } from './../modules/panier/panier.module';
+import { UserModule } from './../modules/user/user.module';
+import { AuthInterceptor } from './../service/auth.interceptor';
+import { ProfilModule } from './../modules/profil/profil.module';
+import { InscriptionModule } from './../modules/inscription/inscription.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { InvitationModule } from './modules/invitation/invitation.module';
+import { InvitationModule } from './../modules/invitation/invitation.module';
+import { ReservationModule } from './../modules/reservation/reservation.module';
 
 @NgModule({
   declarations: [
@@ -67,6 +67,7 @@ import { InvitationModule } from './modules/invitation/invitation.module';
     }),
     InscriptionModule,
     InvitationModule,
+    ReservationModule,
    
   ],
   providers: [

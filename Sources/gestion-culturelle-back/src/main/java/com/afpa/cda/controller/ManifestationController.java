@@ -48,8 +48,8 @@ public class ManifestationController {
 	}
 
 	@DeleteMapping(path = "/manifestation/{id}")
-	public void delete(@PathVariable int id) {
-		this.manifesationService.delete(id);
+	public boolean delete(@PathVariable int id) {
+	return this.manifesationService.delete(id);
 	}
 
 }

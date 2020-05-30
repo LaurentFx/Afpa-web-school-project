@@ -148,7 +148,11 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public List<UserDto> findVipsAInviter(int id) {
-
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		List <UserDto> listVips = findByRole(5);
 		List <Invitation> listInvitation = this.invitationRepository.findInvitationByManifestation(id);
 		List <UserDto> listVipsAInviter = new ArrayList <UserDto> (listVips);
@@ -160,6 +164,7 @@ public class UserServiceImpl implements IUserService {
 				}
 			}
 		}
+		
 		return listVipsAInviter;
 	}
 

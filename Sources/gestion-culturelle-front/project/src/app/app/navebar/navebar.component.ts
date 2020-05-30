@@ -21,11 +21,12 @@ export class NavebarComponent implements OnInit {
   isConnected: boolean;
   isResp: boolean;
   isClient: boolean;
-  isVip:boolean;
+  isVip: boolean;
   isAnim: boolean;
   isAdmin: boolean;
   isRespAdmin: boolean;
   isVipAdmin: boolean;
+  isRespAdminVip: boolean;
   user: String;
   userDto: User;
   role: RoleDto;
@@ -39,7 +40,6 @@ export class NavebarComponent implements OnInit {
 
   ngOnInit() {
     this.reload();
-
     this.authService.subjectConnexion.subscribe(
       res => {
         this.isConnected = this.authService.isConnected();
@@ -51,11 +51,12 @@ export class NavebarComponent implements OnInit {
           this.isAnim = false;
           this.isAdmin = false;
           this.isRespAdmin = false;
+          this.isVipAdmin = false;
+          this.isRespAdminVip = false;
           this.user = '';
           this.role = null;
         } else {
           this.reload();
-
         }
       }
     );
@@ -73,6 +74,7 @@ export class NavebarComponent implements OnInit {
       this.isAdmin = userCourant.role.label === 'ADMIN';
       this.isRespAdmin = (userCourant.role.label === 'RESP') || (userCourant.role.label === 'ADMIN');
       this.isVipAdmin = (userCourant.role.label === 'VIP') || (userCourant.role.label === 'ADMIN');
+      this.isRespAdminVip = (userCourant.role.label === 'RESP') || (userCourant.role.label === 'VIP') || (userCourant.role.label === 'ADMIN');
       this.userDto = userCourant;
       this.user = userCourant.nom;
       this.role = userCourant.role;
@@ -82,7 +84,6 @@ export class NavebarComponent implements OnInit {
           res => {
             this.panierDto = res.panier;
           }
-
         );
       }
     }
@@ -113,10 +114,10 @@ export class NavebarComponent implements OnInit {
     this.router.navigateByUrl('/panier-show/' + id)
   }
 
-  redirectToShowInvitation (id: number)  {
+  redirectToShowInvitation(id: number) {
     this.router.navigateByUrl('/invitation-show/' + id)
   }
 
-  
+
 
 }

@@ -23,4 +23,6 @@ public interface IInvitationService {
 	boolean delete(int id);
 
 	boolean deleteAll(int id);
+
+	boolean updateReponse(String reponse, int id);
 }

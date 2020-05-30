@@ -8,6 +8,7 @@ import { PanierService } from '../../../service/panier.service';
 import { AuthService } from '../../../service/auth.service';
 import { UserService } from '../../../service/user.service';
 import { RoleDto } from '../../../model/roleDto';
+import { ToastrService } from 'ngx-toastr';
 import { faHome, faCalendarPlus,faCalendarCheck,faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -31,7 +32,7 @@ export class PanierShowComponent implements OnInit {
   faCalendarCheck = faCalendarCheck;
   faTrashAlt = faTrashAlt;
 
-  constructor(private articleService: ArticleService,
+  constructor(private articleService: ArticleService, private toastrService: ToastrService,
     private panierService: PanierService, private route: ActivatedRoute,
     private router: Router, private authService: AuthService, private userService: UserService,
   ) { this.userDto = new User(); this.panierDto = new PanierDto(); }
@@ -72,7 +73,12 @@ export class PanierShowComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.panierService.deletePanier(id).subscribe(
       res => {
-        this.articleService.subjectMiseAJour.next(0);
+        if (res) {
+          this.toastrService.success('La réservation a été validée', 'Validation Ok')
+        } else {
+          this.toastrService.error('La réservation n a pas été validée', 'Validation NOk')
+        }
+        this.panierService.subjectMiseAJour.next(0);
         this.goHome()
       }
     )
@@ -83,7 +89,12 @@ export class PanierShowComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.panierService.deleteArticles(id).subscribe(
       res => {
-        this.articleService.subjectMiseAJour.next(0);
+        if (res) {
+          this.toastrService.success('Les réservations ont été annulées', 'Annulation Ok')
+        } else {
+          this.toastrService.error('Les réservations n ont pas été annulées', 'Annulation NOk')
+        }
+        this.panierService.subjectMiseAJour.next(0);
         this.goHome()
       }
     )
@@ -93,6 +104,12 @@ export class PanierShowComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.articleService.delete(id).subscribe(
       res => {
+        if (res) {
+          this.toastrService.success('La réservation a été annulée', 'Annulation Ok')
+        } else {
+          this.toastrService.error('La réservation n a pas été annulée', 'Annulation NOk')
+        }
+        
         this.articleService.subjectMiseAJour.next(0);
         this.reload()
       }

@@ -8,6 +8,6 @@ public interface IArticleService {
 
 	List<ArticleDto> findByPanierId(int id);
 
-	void delete(int id);
+	boolean delete(int id);
 
 }

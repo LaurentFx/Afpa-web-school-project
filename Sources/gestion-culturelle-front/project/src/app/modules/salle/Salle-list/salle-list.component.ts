@@ -78,7 +78,7 @@ export class SalleListComponent implements OnInit {
         if (res) {
           this.toastrService.success(this.salle.label + ' effacée.', 'Suppression Ok.')
         } else {
-          this.toastrService.error('La salle ' + this.salle.label + ' est associée à une manifestation', 'Suppression impossible')
+          this.toastrService.error(this.salle.label + ' est associée à une manifestation', 'Suppression impossible')
         }
         this.salleService.subjectMiseAJour.next(0);
       }
