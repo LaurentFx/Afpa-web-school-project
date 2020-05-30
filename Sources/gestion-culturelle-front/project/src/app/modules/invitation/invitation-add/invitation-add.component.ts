@@ -5,7 +5,7 @@ import { User } from '../../../model/user';
 import { InvitationDto } from '../../../model/invitationDto';
 import { ToastrService } from 'ngx-toastr';
 import { ManifestationService } from '../../../service/manifestation.service';
-import { AuthService } from '../../../service/auth.service';
+import { AuthService } from '../../../security/auth.service';
 import { UserService } from '../../../service/user.service';
 import { InvitationService } from '../../../service/invitation.service';
 import { faHome, faPlusSquare, faMinusSquare, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
@@ -57,6 +57,9 @@ export class InvitationAddComponent implements OnInit {
         if (this.manifestationDto.reservationsVip > 0) {
           this.addInvites = true;
         }
+        if (this.manifestationDto.reservationsVip === 0) {
+          this.toastrService.info('Nombre d invitations Max atteint', 'Information');
+        }
         this.manifestationService.subjectMiseAJour.next(0);
       }
     )
@@ -68,7 +71,6 @@ export class InvitationAddComponent implements OnInit {
       }
     );
 
-
     this.invitationService.getByManifestation(this.route.snapshot.params['id']).subscribe(
       res => {
         this.invitations = res;
@@ -78,9 +80,7 @@ export class InvitationAddComponent implements OnInit {
         }
       }
     );
-
   }
-
 
   addInvitation(idVip: number): void {
     this.invitationDto.manifestation.id = this.route.snapshot.params['id'];

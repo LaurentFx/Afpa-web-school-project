@@ -25,4 +25,6 @@ public interface IInvitationService {
 	boolean deleteAll(int id);
 
 	boolean updateReponse(String reponse, int id);
+
+	List<InvitationDto> findNewInvitationByUserId(int id);
 }

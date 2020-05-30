@@ -9,11 +9,11 @@ import { InvitationDto } from '../../../model/invitationDto';
 import { User } from '../../../model/user';
 
 @Component({
-  selector: 'app-invitation-show',
-  templateUrl: './invitation-show.component.html',
-  styleUrls: ['./invitation-show.component.css']
+  selector: 'app-invitation-answer',
+  templateUrl: './invitation-answer.component.html',
+  styleUrls: ['./invitation-answer.component.css']
 })
-export class InvitationShowComponent implements OnInit {
+export class InvitationAnswerComponent implements OnInit {
   faTrashAlt = faTrashAlt;
   faHome = faHome;
   faCheckCircle = faCheckCircle;
@@ -35,18 +35,25 @@ export class InvitationShowComponent implements OnInit {
 
     this.invitationService.subjectMiseAJour.subscribe(
       res => {
-        this.invitationService.getByUser(userCourant.id).subscribe(
+        this.invitationService.getNewByUser(userCourant.id).subscribe(
           donnees => {
             this.invitations = donnees;
-         
+            if (this.invitations.length===0) {
+              this.toastrService.info('Liste vide : vous avez répondu à toutes vos invitations.', 'Information');
+              this.router.navigate(['/invitation-show/'+userCourant.id]);
+            }
           }
         );
       }
     );
 
-    this.invitationService.getByUser(userCourant.id).subscribe(
+    this.invitationService.getNewByUser(userCourant.id).subscribe(
       resultat => {
         this.invitations = resultat;
+        if (this.invitations.length===0) {
+          this.toastrService.info('Liste vide : Vous avez répondu à toutes vos invitations.', 'Information');
+          this.router.navigate(['/invitation-show/'+userCourant.id]);
+        }
       }
     );
 
@@ -58,9 +65,9 @@ export class InvitationShowComponent implements OnInit {
     this.invitationService.updateReponse(id, 'Oui').subscribe(
       res => {
         if (res) {
-          this.toastrService.success('La réponse à l invitation N°'+id + ' a été modifiée.', 'Réponse Ok.')
+          this.toastrService.success('La réponse à l invitation N°'+id + ' a été modifiée.', 'Réponse Ok')
         } else {
-          this.toastrService.error('La réponse à l invitation N°'+id +  ' n a pas été modifiée', 'Réponse NOk.')
+          this.toastrService.error('La réponse à l invitation N°'+id +  ' n a pas été modifiée', 'Réponse NOk')
         }
       }
     );
@@ -84,4 +91,5 @@ export class InvitationShowComponent implements OnInit {
 
 
 }
+
 

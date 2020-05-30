@@ -10,9 +10,9 @@
                 <th>Animation</th>
                 <th>Date de Debut</th>
                 <th>Date de Fin</th>
-                <th>Coût(en €)</th>
+                <th>Coût (en €)</th>
                 <th>Salle</th>
-                <th>Prix du billet(en €)</th>
+                <th>Prix du billet (en €)</th>
                 <th>Reservations</th>
                 <th>Reservations Vip</th>
                 <th>Actions</th>
@@ -49,6 +49,8 @@
         </tbody>
     </table>
     &nbsp;
-    <a *ngIf="isResp" name="" id="" class="btn btn-primary" href="#" role="button" [routerLink]="['/manifestation-ad']" title="Ajouter une manifestation"><fa-icon class="icon p-2" [icon]="faPlusSquare">Ajouter</fa-icon></a>
+    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']" title="Retour à l'accueil">
+        <fa-icon class="icon p-2" [icon]="faHome">Retour à l'accueil</fa-icon></a>
     &nbsp;
-    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']" title="Retour à l'accueil"><fa-icon class="icon p-2" [icon]="faHome">Retour à l'accueil</fa-icon></a>
+    <a *ngIf="isResp" name="" id="" class="btn btn-primary" href="#" role="button" [routerLink]="['/manifestation-ad']" title="Ajouter une manifestation">
+        <fa-icon class="icon p-2" [icon]="faPlusSquare">Ajouter</fa-icon></a>

@@ -62,7 +62,8 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">Invitations</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <button *ngIf="isVip" (click)="redirectToShowInvitation(id)" class="dropdown-item">Voir</button>
+          <button *ngIf="isVip" (click)="redirectToShowInvitation(userDto.id)" class="dropdown-item">Voir</button>
+          <button *ngIf="isVip" (click)="redirectToAnswerInvitation(userDto.id)" class="dropdown-item">Répondre</button>
           <a *ngIf="isRespAdmin" routerLink='invitation-list' class="dropdown-item"
           routerLinkActive=active>Lister</a>
           <a *ngIf="isAdmin" routerLink='public/manifestation-list' class="dropdown-item"

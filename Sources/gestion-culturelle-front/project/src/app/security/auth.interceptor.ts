@@ -3,7 +3,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse, Htt
 import { Observable } from 'rxjs/internal/Observable';
 import { tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { AuthService } from '../service/auth.service';
+import { AuthService } from '../security/auth.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable()

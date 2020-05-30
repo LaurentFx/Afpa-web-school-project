@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ManifestationService } from '../../../service/manifestation.service';
-import { AuthService } from '../../../service/auth.service';
+import { AuthService } from '../../../security/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { faInfoCircle, faEdit, faTrashAlt, faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { InvitationService } from '../../../service/invitation.service';

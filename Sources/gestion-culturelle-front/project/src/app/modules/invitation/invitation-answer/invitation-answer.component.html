@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row justify-content-center">
-        <h3>Liste des invitations par Vip</h3>
+        <h3>Réponse aux invitations par Vip</h3>
     </div>
 </div>
 <br>
@@ -19,7 +19,7 @@
                 <th>Email Vip</th>
                 <th>Date d'invitation</th>
                 <th>Reponse</th>
-               
+                <th>Actions</th>
             </tr>
         </thead>
 
@@ -35,6 +35,15 @@
                 <td>{{invitation.vip.email}}</td>
                 <td>{{invitation.dateInvitation}}</td>
                 <td>{{invitation.reponse}}</td>
+
+                <td>
+                   
+                    <button (click)="oui(invitation.id)" class="btn btn-sm btn-success" title="Oui">
+                        <fa-icon [icon]="faCheckCircle">Oui</fa-icon></button>
+                    &nbsp;
+                    <button (click)="non(invitation.id)" class="btn btn-sm btn-danger" title="Non">
+                        <fa-icon [icon]="faTimesCircle">Non</fa-icon></button>
+                </td>
 
             </tr>
 

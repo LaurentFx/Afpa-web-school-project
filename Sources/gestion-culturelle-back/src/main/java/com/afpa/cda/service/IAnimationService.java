@@ -16,6 +16,6 @@ public interface IAnimationService {
 
 	AnimationDto findById(int id);
 
-	//ManifestationDto calcul(ManifestationDto manifDto);
+	List<AnimationDto> findAnimationsToPurpose();
 
 }

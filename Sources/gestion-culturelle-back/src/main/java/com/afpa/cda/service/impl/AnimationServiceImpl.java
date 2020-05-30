@@ -1,4 +1,5 @@
 package com.afpa.cda.service.impl;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -54,6 +55,27 @@ public class AnimationServiceImpl implements IAnimationService {
 		return animationDto;
 	}
  
+	@Override
+	public List<AnimationDto> findAnimationsToPurpose() {
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		List <AnimationDto> listAnimations = findAll();
+		List <ManifestationDto> listManifestations = this.manifestationService.findAll();
+		List <AnimationDto> listAnimationsToPurpose = new ArrayList<AnimationDto> (listAnimations);
+		
+		for (AnimationDto  animationDto : listAnimations) {
+			for (ManifestationDto manifestationDto : listManifestations) {
+				if (animationDto.getId()==manifestationDto.getAnimation().getId()) {
+					listAnimationsToPurpose.remove(animationDto);
+				}
+			}
+		}
+		return listAnimationsToPurpose;
+	}
 
 	@Override
 	public boolean add(AnimationDto animationDto) {

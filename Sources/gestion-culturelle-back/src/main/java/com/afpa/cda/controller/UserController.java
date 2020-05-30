@@ -83,7 +83,7 @@ public class UserController {
 
 	@GetMapping(path="/users/invites/{id}")
 	public List<UserDto> getInvites(@PathVariable int id) {
-		return this.userService.findVipsAInviter(id);
+		return this.userService.findVipsToInvite(id);
 	}
 	
 	@PutMapping(path = "/users/{id}")

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../../../service/auth.service';
+import { AuthService } from '../../../security/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { User } from '../../../model/user';
 import { faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';

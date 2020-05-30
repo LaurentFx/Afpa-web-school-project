@@ -16,6 +16,7 @@ import com.afpa.cda.dao.PanierRepository;
 import com.afpa.cda.dao.ReservationRepository;
 import com.afpa.cda.dao.RoleRepository;
 import com.afpa.cda.dao.UserRepository;
+import com.afpa.cda.dto.InvitationDto;
 import com.afpa.cda.dto.PanierDto;
 import com.afpa.cda.dto.RoleDto;
 import com.afpa.cda.dto.UserDto;
@@ -25,6 +26,7 @@ import com.afpa.cda.entity.Panier;
 import com.afpa.cda.entity.Reservation;
 import com.afpa.cda.entity.Role;
 import com.afpa.cda.entity.User;
+import com.afpa.cda.service.IInvitationService;
 import com.afpa.cda.service.IUserService;
 
 @Service
@@ -47,7 +49,9 @@ public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	private InvitationRepository invitationRepository;
-
+	
+	@Autowired
+	private IInvitationService invitationService;
 
 	@Autowired
 	private PanierRepository panierRepository;
@@ -147,25 +151,25 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public List<UserDto> findVipsAInviter(int id) {
+	public List<UserDto> findVipsToInvite(int id) {
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		List <UserDto> listVips = findByRole(5);
-		List <Invitation> listInvitation = this.invitationRepository.findInvitationByManifestation(id);
-		List <UserDto> listVipsAInviter = new ArrayList <UserDto> (listVips);
+		List <InvitationDto> listInvitation= invitationService.findInvitationByManifestationId(id);
+		List <UserDto> listVipsVipsToInvite = new ArrayList <UserDto> (listVips);
 
 		for (UserDto userDto : listVips) {
-			for (Invitation invitation : listInvitation) {
-				if (userDto.getId()==invitation.getVip().getId()) {
-					listVipsAInviter.remove(userDto);
+			for (InvitationDto invitationDto : listInvitation) {
+				if (userDto.getId()==invitationDto.getVip().getId()) {
+					listVipsVipsToInvite.remove(userDto);
 				}
 			}
 		}
 		
-		return listVipsAInviter;
+		return listVipsVipsToInvite;
 	}
 
 	@Override

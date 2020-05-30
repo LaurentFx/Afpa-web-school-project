@@ -5,7 +5,7 @@ import { PanierDto } from '../../../model/panierDto';
 import { User } from '../../../model/user';
 import { ArticleService } from '../../../service/article.service';
 import { PanierService } from '../../../service/panier.service';
-import { AuthService } from '../../../service/auth.service';
+import { AuthService } from '../../../security/auth.service';
 import { UserService } from '../../../service/user.service';
 import { RoleDto } from '../../../model/roleDto';
 import { ToastrService } from 'ngx-toastr';
@@ -22,11 +22,6 @@ export class PanierShowComponent implements OnInit {
   panierDto: PanierDto;
   userDto: User;
   id: number;
-  idPanier: number;
-  user: String;
-  role: RoleDto;
-  isClient: boolean;
-  isConnected: boolean;
   faHome = faHome;
   faCalendarPlus = faCalendarPlus;
   faCalendarCheck = faCalendarCheck;
@@ -39,12 +34,6 @@ export class PanierShowComponent implements OnInit {
 
 
   ngOnInit() {
-    this.isConnected = this.authService.isConnected();
-    if (this.authService.getCurrentUser()) {
-      this.isClient = this.authService.getCurrentUser().role.label === 'CLIENT';
-      this.user = this.authService.getCurrentUser().nom;
-      this.role = this.authService.getCurrentUser().role;
-    }
     this.reload();
   }
 
@@ -55,7 +44,6 @@ export class PanierShowComponent implements OnInit {
       res => {
         this.userDto = res;
         this.panierDto = res.panier;
-        this.idPanier = res.panier.id;
       }
     );
 
@@ -82,7 +70,6 @@ export class PanierShowComponent implements OnInit {
         this.goHome()
       }
     )
-
   }
 
   cancel(id: number) {
@@ -109,7 +96,6 @@ export class PanierShowComponent implements OnInit {
         } else {
           this.toastrService.error('La réservation n a pas été annulée', 'Annulation NOk')
         }
-        
         this.articleService.subjectMiseAJour.next(0);
         this.reload()
       }
@@ -117,11 +103,7 @@ export class PanierShowComponent implements OnInit {
   }
 
   goHome() {
-
     this.router.navigateByUrl('/public')
-
   }
-
-
 
 }

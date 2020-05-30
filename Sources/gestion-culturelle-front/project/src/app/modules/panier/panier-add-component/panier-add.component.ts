@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { User } from '../../../model/user';
 import { PanierService } from '../../../service/panier.service';
 import { ManifestationService } from '../../../service/manifestation.service';
-import { AuthService } from '../../../service/auth.service';
+import { AuthService } from '../../../security/auth.service';
 import { UserService } from '../../../service/user.service';
 import { faHome, faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
 

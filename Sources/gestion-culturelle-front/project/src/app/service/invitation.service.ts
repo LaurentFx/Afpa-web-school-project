@@ -35,6 +35,10 @@ export class InvitationService {
     return this.http.get(`${this.monUrl}/user/${id}`);
   } 
   
+  getNewByUser(id: number): Observable<any> {
+    return this.http.get(`${this.monUrl}/new/${id}`);
+  } 
+
   add(invitationDto: InvitationDto): Observable<object> {
     return this.http.post(this.monUrl,invitationDto);
   }

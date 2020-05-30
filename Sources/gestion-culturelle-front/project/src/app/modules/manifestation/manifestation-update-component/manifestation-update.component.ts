@@ -32,11 +32,9 @@ export class ManifestationUpdateComponent implements OnInit {
     this.manifestation = new ManifestationDto();
     this.animation = new AnimationDto();
     this.salles = [];
-
     this.manifestation.salle = new SalleDto();
     this.manifestation.animation = new AnimationDto();
     this.manifestation.validateur = new User();
-
   }
 
   ngOnInit() {
@@ -48,12 +46,12 @@ export class ManifestationUpdateComponent implements OnInit {
  
      this.manifestation.salle = new SalleDto();
      this.manifestation.animation = new AnimationDto();
-     this.manifestation.validateur = new User();
-    var nombre = this.manifestation.animation.nbreSpectateursPrevus;*/
+     this.manifestation.validateur = new User();  */
   }
 
   reload() {
     let id = this.route.snapshot.params['id'];
+    
 
     this.manifestationService.getOne(id).subscribe(
       res => {
@@ -76,8 +74,6 @@ export class ManifestationUpdateComponent implements OnInit {
         );
       }
     );
-
-
   }
 
   update(): void {
@@ -88,7 +84,6 @@ export class ManifestationUpdateComponent implements OnInit {
         this.goHome();
       }
     );
-  
   }
 
   checkAvalaibility(): void {

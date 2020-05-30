@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AnimationDto } from '../../../model/animationDto';
 import { ToastrService } from 'ngx-toastr';
 import { faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
-import { AuthService } from '../../../service/auth.service';
+import { AuthService } from '../../../security/auth.service';
 import { User } from '../../../model/user';
 
 @Component({

@@ -25,12 +25,6 @@ public class InvitationController {
 		return this.invitationService.findAll();
 	}
 
-	// inutile
-	//	@GetMapping(path="/invitation/{id}")
-	//	public List<UserDto> getOne(@PathVariable int id) {
-	//		return this.invitationService.findByRole(id);
-	//	}
-
 	@GetMapping(path="/invitation/{id}")
 	public InvitationDto getOne(@PathVariable int id) {
 		return this.invitationService.findById(id);
@@ -39,6 +33,11 @@ public class InvitationController {
 	@GetMapping(path="/invitation/user/{id}")
 	public List<InvitationDto> getAllByVip(@PathVariable int id) {
 		return this.invitationService.findInvitationByUserId(id);
+	}
+	
+	@GetMapping(path="/invitation/new/{id}")
+	public List<InvitationDto> getNewByVip(@PathVariable int id) {
+		return this.invitationService.findNewInvitationByUserId(id);
 	}
 
 	@GetMapping(path="/invitation/manifestation/{id}")

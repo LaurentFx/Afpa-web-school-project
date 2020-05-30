@@ -1,5 +1,6 @@
 package com.afpa.cda.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -105,7 +106,7 @@ public class InvitationServiceImpl implements IInvitationService {
 
 	@Override
 	public List<InvitationDto> findInvitationByUserId(int id) {
-	
+
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
@@ -123,12 +124,12 @@ public class InvitationServiceImpl implements IInvitationService {
 					manifestationDto.setDateDebut(i.getManifestation().getDateDebut());
 					manifestationDto.setDateFin(i.getManifestation().getDateFin());
 					manifestationDto.setReservationsVip(i.getManifestation().getReservationsVip());
-					
+
 					SalleDto salleDto = new SalleDto();
 					salleDto.setId(i.getManifestation().getSalle().getId());
 					salleDto.setLabel(i.getManifestation().getSalle().getLabel());
 					manifestationDto.setSalle(salleDto);
-					
+
 					invitationDto.setManifestation(manifestationDto);
 
 					UserDto vipDto = new UserDto();
@@ -144,20 +145,23 @@ public class InvitationServiceImpl implements IInvitationService {
 					return invitationDto;
 				}).collect(Collectors.toList());
 
-		//		Optional<Manifestation> manifOp = this.manifestationRepository.findById(id);
-		//		List<UserDto> listVipsByManifestation = new ArrayList<UserDto>();
-		//		if (manifOp.isPresent()) {
-		//			Manifestation manifestation = manifOp.get();
-		//			for (User user : manifestation.getListVips()) {
-		//				System.out.println("test methode findAllVipsByManifestation 2");
-		//				listVipsByManifestation.add(UserDto.builder().id(user.getId())
-		//						.nom(user.getNom()).prenom(user.getPrenom())
-		//						.entreprise(user.getEntreprise()).email(user.getEmail()).build());
-		//			}
-		//		}
-
 		return listInvitationByVip;
 	}
+
+	@Override
+	public List<InvitationDto> findNewInvitationByUserId(int id) {
+
+		List<InvitationDto> listInvitations= findInvitationByUserId(id);
+		List<InvitationDto> listNewInvitations= new ArrayList<InvitationDto>();
+		
+		for (InvitationDto invitationDto : listInvitations) {
+			if (invitationDto.getReponse().equalsIgnoreCase("NC")) {
+				listNewInvitations.add(invitationDto);
+			}
+		}
+		return listNewInvitations;
+	}
+
 
 	@Override
 	public List<InvitationDto> findInvitationByManifestationId(int id) {
@@ -215,13 +219,11 @@ public class InvitationServiceImpl implements IInvitationService {
 					this.manifestationRepository.save(manifestation);
 					invitation.setManifestation(manifestation);
 
-
 					Optional <User> vipOp = this.userRepository.findById(invitationDto.getVip().getId());
 					if (vipOp.isPresent()) {
 						User vip = vipOp.get();
 						invitation.setVip(vip);
 					}
-
 					invitation.setReponse("NC");
 					invitation.setDateInvitation(new Date());
 
@@ -231,15 +233,12 @@ public class InvitationServiceImpl implements IInvitationService {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-
-					System.err.println("invitation ajoutée");
 					return false;
 				}
 			}
 		}
 		return true;
 	}
-
 
 
 	@Override
@@ -289,7 +288,7 @@ public class InvitationServiceImpl implements IInvitationService {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public boolean delete(int id) {
 		if (this.invitationRepository.existsById(id)) {
@@ -311,7 +310,6 @@ public class InvitationServiceImpl implements IInvitationService {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			System.err.println("invitation supprimée");
 			return true;
 		}
 		return false;
@@ -335,13 +333,9 @@ public class InvitationServiceImpl implements IInvitationService {
 				manifestation.setReservationsVip(manifestation.getReservationsVip()+i);
 				this.manifestationRepository.save(manifestation);
 			}
-
-			System.err.println("invitation deleteAll");
 			return true;
 		}
 		return false;
 	}
-
-	
 
 }

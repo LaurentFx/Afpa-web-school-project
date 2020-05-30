@@ -7,7 +7,6 @@ import { User } from '../model/user';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { RoleDto } from '../model/roleDto';
 import { ToastrService } from 'ngx-toastr';
-import { PanierService } from './panier.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +19,7 @@ export class AuthService {
   subjectMiseAJour: Subject<number>;
 
   constructor(private router: Router, private http: HttpClient,
-    private toastrService: ToastrService, private panierService : PanierService,
-    private authService: AuthService) {
+    private toastrService: ToastrService,     private authService: AuthService) {
     this.url = 'http://localhost:8080/public/login';
     this.subjectConnexion = new Subject<number>();
   }

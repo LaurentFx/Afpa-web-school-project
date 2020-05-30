@@ -7,16 +7,17 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { InvitationAddComponent } from './invitation-add/invitation-add.component';
 import { InvitationListComponent } from './invitation-list/invitation-list.component';
 import { InvitationShowComponent } from './invitation-show/invitation-show.component';
+import { InvitationAnswerComponent } from './invitation-answer/invitation-answer.component';
 
 @NgModule({
-  declarations: [InvitationAddComponent, InvitationListComponent, InvitationShowComponent],
+  declarations: [InvitationAddComponent, InvitationListComponent, InvitationShowComponent, InvitationAnswerComponent],
   imports: [
     CommonModule,
     InvitationRoutingModule,
     FormsModule,
     FontAwesomeModule
   ],exports :[
-    InvitationAddComponent, InvitationListComponent, InvitationShowComponent
+    InvitationAddComponent, InvitationListComponent, InvitationShowComponent,  InvitationAnswerComponent
   ]
 })
 export class InvitationModule { }

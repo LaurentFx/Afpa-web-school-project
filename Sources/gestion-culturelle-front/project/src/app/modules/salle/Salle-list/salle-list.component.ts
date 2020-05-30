@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SalleDto } from '../../../model/salleDto';
 import { Router } from '@angular/router';
 import { SalleService } from '../../../service/salle.service';
-import { AuthService } from '../../../service/auth.service';
+import { AuthService } from '../../../security/auth.service';
 import { RoleDto } from '../../../model/roleDto';
 import { ToastrService } from 'ngx-toastr';
 import { faInfoCircle, faEdit, faTrashAlt, faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';

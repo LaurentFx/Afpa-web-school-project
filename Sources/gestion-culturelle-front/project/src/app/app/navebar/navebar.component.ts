@@ -1,6 +1,6 @@
 import { Component, OnInit, ɵɵsanitizeUrlOrResourceUrl } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../service/auth.service';
+import { AuthService } from '../../security/auth.service';
 import { RoleDto } from '../../model/roleDto';
 import { PanierDto } from '../../model/panierDto';
 import { UserService } from '../../service/user.service';
@@ -86,6 +86,7 @@ export class NavebarComponent implements OnInit {
           }
         );
       }
+      
     }
   }
 
@@ -104,7 +105,7 @@ export class NavebarComponent implements OnInit {
 
       }
     )
-    this.toastrService.info('A bientôt', 'Deconnexion');
+    this.toastrService.info('A bientôt ...', 'Deconnexion');
     this.authService.logout();
     this.router.navigateByUrl('/public/login');
     this.isConnected = false;
@@ -113,11 +114,13 @@ export class NavebarComponent implements OnInit {
   redirectToShowPanier(id: number) {
     this.router.navigateByUrl('/panier-show/' + id)
   }
-
+  
   redirectToShowInvitation(id: number) {
     this.router.navigateByUrl('/invitation-show/' + id)
   }
 
-
+  redirectToAnswerInvitation(id: number) {
+    this.router.navigateByUrl('/invitation-answer/' + id)
+  }
 
 }

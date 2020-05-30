@@ -30,8 +30,13 @@ public class AnimationController {
 		return this.animationService.findById(id);
 	}
 	
+	@GetMapping(path = "/animation/purpose")
+	public List<AnimationDto> getAnimations() {
+		return this.animationService.findAnimationsToPurpose();
+	}
+	
 	//@PreAuthorize("hasAnyAuthority('ANIM')")
-	@PostMapping(path = "animation")
+	@PostMapping(path = "/animation")
 	public boolean add(@RequestBody AnimationDto anim) {
 		return this.animationService.add(anim);
 	}

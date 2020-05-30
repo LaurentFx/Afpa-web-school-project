@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-//import { HomeComponent } from './../components/home/home.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './../modules/login/login/login.component';
-import { AuthGuard } from './../service/auth.guard';
+import { AuthGuard } from './../security/auth.guard';
 import { TypeSalleListComponent } from './../modules/typesalle/typeSalle-list/typeSalle-list.component';
 import { TypeSalleAddComponent } from './../modules/typesalle/typeSalle-add/typeSalle-add.component';
 import { TypeSalleUpdateComponent } from './../modules/typesalle/typesalle-update/typesalle-update.component';
@@ -42,58 +40,58 @@ import { InscriptionComponent } from './../modules/inscription/inscription/inscr
 import { InvitationAddComponent } from './../modules/invitation/invitation-add/invitation-add.component';
 import { InvitationListComponent } from './../modules/invitation/invitation-list/invitation-list.component';
 import { InvitationShowComponent } from './../modules/invitation/invitation-show/invitation-show.component';
+import { InvitationAnswerComponent } from './../modules/invitation/invitation-answer/invitation-answer.component';
 
 
 const routes: Routes = [
   { path: 'public', pathMatch: 'full', component: HomeComponent },
   { path: 'public/login', component: LoginComponent },
 
-  { path: 'typesalle-list', component: TypeSalleListComponent },
-  { path: 'typesalle-ad', component: TypeSalleAddComponent },
-  { path: 'typesalle-update/:id', component: TypeSalleUpdateComponent },
-  { path: 'typesalle-show/:id', component: TypeSalleShowComponent },
+  { path: 'public/profil-update', component: ProfilUpdateComponent, canActivate: [AuthGuard] },
+  { path: 'public/profil-show', component: ProfilShowComponent, canActivate: [AuthGuard] },
+  { path: 'public/inscription', component: InscriptionComponent },
+
+  { path: 'typesalle-list', component: TypeSalleListComponent , canActivate: [AuthGuard] },
+  { path: 'typesalle-ad', component: TypeSalleAddComponent, canActivate: [AuthGuard] },
+  { path: 'typesalle-update/:id', component: TypeSalleUpdateComponent , canActivate: [AuthGuard] },
+  { path: 'typesalle-show/:id', component: TypeSalleShowComponent, canActivate: [AuthGuard] },
 
   { path: 'public/salle-list', component: SalleListComponent },
-  { path: 'salle-ad', component: SalleAddComponent },
-  { path: 'salle-update/:id', component: SalleUpdateComponent },
-  { path: 'salle-show/:id', component: SalleShowComponent },
+  { path: 'salle-ad', component: SalleAddComponent, canActivate: [AuthGuard] },
+  { path: 'salle-update/:id', component: SalleUpdateComponent, canActivate: [AuthGuard] },
+  { path: 'salle-show/:id', component: SalleShowComponent, canActivate: [AuthGuard] },
 
   { path: 'public/manifestation-list', component: ManifestationListComponent },
-  { path: 'manifestation-ad', component: ManifestationAddComponent },
-  { path: 'manifestation-update/:id', component: ManifestationUpdateComponent },
-  { path: 'manifestation-show/:id', component: ManifestationShowComponent },
+  { path: 'manifestation-ad', component: ManifestationAddComponent, canActivate: [AuthGuard] },
+  { path: 'manifestation-update/:id', component: ManifestationUpdateComponent, canActivate: [AuthGuard] },
+  { path: 'manifestation-show/:id', component: ManifestationShowComponent, canActivate: [AuthGuard] },
 
   { path: 'public/animation-list', component: AnimationListComponent },
-  { path: 'animation-ad', component: AnimationAddComponent },
-  { path: 'animation-update/:id', component: AnimationUpdateComponent },
-  { path: 'animation-show/:id', component: AnimationShowComponent },
+  { path: 'animation-ad', component: AnimationAddComponent, canActivate: [AuthGuard] },
+  { path: 'animation-update/:id', component: AnimationUpdateComponent, canActivate: [AuthGuard] },
+  { path: 'animation-show/:id', component: AnimationShowComponent, canActivate: [AuthGuard] },
 
-  { path: 'panier-ad', component: PanierAddComponent },
-  { path: 'panier-show/:id', component: PanierShowComponent },
-  { path: 'panier-ad/:id', component: PanierAddComponent },
-  { path: 'panier-show', component: PanierShowComponent },
+  { path: 'panier-ad', component: PanierAddComponent , canActivate: [AuthGuard] },
+  { path: 'panier-show/:id', component: PanierShowComponent , canActivate: [AuthGuard] },
+  { path: 'panier-ad/:id', component: PanierAddComponent, canActivate: [AuthGuard] },
+  { path: 'panier-show', component: PanierShowComponent, canActivate: [AuthGuard] },
 
-  { path: 'invitation-list', component: InvitationListComponent },
-  { path: 'invitation-show/:id', component: InvitationShowComponent },
+  { path: 'invitation-ad/:id', component: InvitationAddComponent, canActivate: [AuthGuard] },
+  { path: 'invitation-list', component: InvitationListComponent, canActivate: [AuthGuard] },
+  { path: 'invitation-show/:id', component: InvitationShowComponent, canActivate: [AuthGuard] },
+  { path: 'invitation-answer/:id', component: InvitationAnswerComponent, canActivate: [AuthGuard] },
+  
   { path: 'role-list', component: RoleListComponent, canActivate: [AuthGuard] },
   { path: 'role-ad', component: RoleAddComponent, canActivate: [AuthGuard] },
   { path: 'role-update/:id', component: RoleUpdateComponent, canActivate: [AuthGuard] },
   { path: 'role-show/:id', component: RoleShowComponent, canActivate: [AuthGuard] },
 
-  { path: 'user-list', component: UserListComponent },
+  { path: 'user-list', component: UserListComponent, canActivate: [AuthGuard] },
   { path: 'user-ad', component: UserAddComponent, canActivate: [AuthGuard] },
   { path: 'user-update/:id', component: UserUpdateComponent, canActivate: [AuthGuard] },
   { path: 'user-show/:id', component: UserShowComponent, canActivate: [AuthGuard] },
 
-  { path: 'role-list', component: RoleListComponent },
-  { path: 'role-ad', component: RoleAddComponent },
-  { path: 'role-update/:id', component: RoleUpdateComponent },
-  { path: 'role-show/:id', component: RoleShowComponent },
-
-  { path: 'invitation-ad/:id', component: InvitationAddComponent },
-  { path: 'public/profil-update', component: ProfilUpdateComponent },
-  { path: 'public/profil-show', component: ProfilShowComponent },
-  { path: 'public/inscription', component: InscriptionComponent }
+ 
 ];
 
 @NgModule({

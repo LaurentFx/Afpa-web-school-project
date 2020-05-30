@@ -23,6 +23,6 @@ public interface IUserService {
 
 	List<UserDto> findByRole(int id);
 	
-	public List<UserDto> findVipsAInviter(int id);
+	List<UserDto> findVipsToInvite(int id);
 
 }

@@ -29,6 +29,10 @@ export class AnimationService {
     return this.http.get(`${this.monUrl2}/${id}`);
   } 
 
+  getAnimations(): Observable<any> {
+    return this.http.get(`${this.monUrl2}/purpose`);
+  } 
+
   update(id: number, animation: Object): Observable<Object> {
     return this.http.put(`${this.monUrl2}/${id}`, animation);
   }

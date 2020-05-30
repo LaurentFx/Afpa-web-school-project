@@ -8,7 +8,7 @@ import { AnimationDto } from '../../../model/animationDto';
 import { AnimationService } from '../../../service/animation.service';
 import { SalleService } from '../../../service/salle.service';
 import { User } from '../../../model/user';
-import { AuthService } from '../../../service/auth.service';
+import { AuthService } from '../../../security/auth.service';
 import { UserService } from '../../../service/user.service';
 import { faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
@@ -45,7 +45,7 @@ export class ManifestationAddComponent implements OnInit {
 
     this.animationService.subjectMiseAJour.subscribe(
       res => {
-        this.animationService.getAll().subscribe(
+        this.animationService.getAnimations().subscribe(
           donnees => {
             this.animations = donnees;
           }
@@ -53,7 +53,7 @@ export class ManifestationAddComponent implements OnInit {
       }
     );
 
-    this.animationService.getAll().subscribe(
+    this.animationService.getAnimations().subscribe(
       resultat => {
         this.animations = resultat;
       }

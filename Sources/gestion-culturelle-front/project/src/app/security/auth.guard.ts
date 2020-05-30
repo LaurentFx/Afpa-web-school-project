@@ -22,12 +22,12 @@ export class AuthGuard implements CanActivate {
       localStorage.removeItem('isConnected');
       localStorage.removeItem('access_token');
       localStorage.removeItem('current_user');
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/public/login');
       return false;
     } else if (Boolean(localStorage.getItem('isConnected'))) {
       return true;
     } else {
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/public/login');
       return false;
     }
   }
