@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AnimationService } from '../../../service/animation.service';
 import { Router } from '@angular/router';
 import { AnimationDto } from '../../../model/animationDto';
-import { AuthService } from '../../../service/auth.service';
+import { AuthService } from '../../../security/auth.service';
 import { RoleDto } from '../../../model/roleDto';
 import { ToastrService } from 'ngx-toastr';
 import { faInfoCircle, faEdit, faTrashAlt, faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
@@ -75,12 +75,13 @@ this.animationService.getOne(id).subscribe(
 
     this.animationService.delete(id).subscribe(
       res => {
-        this.animationService.subjectMiseAJour.next(0);
+       
         if (res) {
           this.toastrService.success(this.animation.label+' effacé.','Suppression Ok.')
         } else {
           this.toastrService.error('L animation '+ this.animation.label+' est associée à une manifestation','Suppression impossible')
         }
+         this.animationService.subjectMiseAJour.next(0);
       }
     )
   }

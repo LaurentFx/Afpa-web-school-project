@@ -32,11 +32,10 @@ public class AuthenticationController {
 			if(authentication != null && authentication.isAuthenticated()) {
 				JwtTokens tokens = jwtTokenService.createTokens(authentication);
 				return ResponseEntity.ok().body(tokens);
-			} 
-		} catch (Exception e)
-		{
-			e.printStackTrace();
-			
+			}
+		} catch (Exception e) {
+			System.err.println("Erreur authentification");
+		//	e.printStackTrace();
 		}
 		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(HttpStatus.UNAUTHORIZED.getReasonPhrase());
 	}

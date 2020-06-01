@@ -1,6 +1,7 @@
 
 package com.afpa.cda.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -81,9 +82,30 @@ public class SalleServiceImpl implements ISalleService {
 	}
 
 	@Override
+	public List<SalleDto> findAllByCapacity(int id) {
+		Optional<Manifestation> manifOp = this.manifestationRepository.findById(id);
+		List <SalleDto> listSallesDto = new ArrayList<SalleDto>();
+
+		if (manifOp.isPresent()) {
+			Manifestation manifestation = manifOp.get();
+			int nbreSpectateursPrevus=manifestation.getAnimation().getNbreSpectateursPrevus();
+			List <Salle> listSalles = this.salleRepository.findAll();
+			for (Salle salle : listSalles) {
+				if (salle.getCapacite()>=nbreSpectateursPrevus) {
+					SalleDto salleDto = this.modelMapper.map(salle,SalleDto.class);
+					listSallesDto.add(salleDto);
+				}
+			}
+		}
+		return listSallesDto;
+	}
+
+
+
+	@Override
 	public boolean add(SalleDto salleDto) {
 
-		Optional<Salle> salleOp = this.salleRepository.findByLabel(salleDto.getLabel());
+		Optional<Salle> salleOp = this.salleRepository.findSalleByLabel(salleDto.getLabel());
 		if (!salleOp.isPresent()) {
 			Salle salle = new Salle ();
 			salle.setLabel(salleDto.getLabel());
@@ -115,7 +137,7 @@ public class SalleServiceImpl implements ISalleService {
 			salle=this.modelMapper.map(salleDto,Salle.class);
 			this.salleRepository.save(salle);
 
-			List <Manifestation> listManifestations = manifestationRepository.findManifestationBySalleId(id);
+			List <Manifestation> listManifestations = manifestationRepository.findManifestationBySalle(id);
 			if (!listManifestations.isEmpty()) {
 				for (Manifestation manifestation : listManifestations) {
 					ManifestationDto manifestationDto = modelMapper.map(manifestation,ManifestationDto.class);
@@ -138,7 +160,7 @@ public class SalleServiceImpl implements ISalleService {
 
 	@Override
 	public boolean deleteSalle(int id) {
-		List <Manifestation> listManifestations = manifestationRepository.findManifestationBySalleId(id);
+		List <Manifestation> listManifestations = manifestationRepository.findManifestationBySalle(id);
 
 		if (listManifestations.isEmpty() && this.salleRepository.existsById(id)) {
 

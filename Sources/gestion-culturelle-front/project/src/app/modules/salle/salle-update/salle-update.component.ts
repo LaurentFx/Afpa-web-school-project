@@ -4,6 +4,7 @@ import { SalleDto } from '../../../model/salleDto';
 import { SalleService } from '../../../service/salle.service';
 import { TypeSalleDto } from '../../../model/typeSalleDto';
 import { TypeSalleService } from '../../../service/typeSalle.service';
+import { ToastrService } from 'ngx-toastr';
 import { faHome, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -20,7 +21,8 @@ export class SalleUpdateComponent implements OnInit {
   faCheckSquare = faCheckSquare;
 
 
-  constructor(private route: ActivatedRoute, private typeSalleService: TypeSalleService,private salleService: SalleService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private typeSalleService: TypeSalleService,
+    private salleService: SalleService, private router: Router,   private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.typeSalles = [];
@@ -58,6 +60,11 @@ export class SalleUpdateComponent implements OnInit {
     let id = this.route.snapshot.params['id'];
     this.salleService.update(id, this.salle).subscribe(
       res => {
+        if (res) {
+          this.toastrService.success(this.salle.label+' a été modifié.','Mise à jour Ok.')
+        } else {
+          this.toastrService.error(+this.salle.label+' n a pas été modifié','Mise à jour impossible.')
+        }
         this.goHome();
       }
     );

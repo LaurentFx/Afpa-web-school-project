@@ -11,50 +11,64 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.afpa.cda.dto.ManifestationDto;
-import com.afpa.cda.dto.UserDto;
+import com.afpa.cda.dto.InvitationDto;
 import com.afpa.cda.service.IInvitationService;
 
 @RestController
 public class InvitationController {
-	
+
 	@Autowired
 	private IInvitationService invitationService;
-	
+
 	@GetMapping(path="/invitation")
-	public List<UserDto> getAll(){
+	public List<InvitationDto> getAll(){
 		return this.invitationService.findAll();
 	}
-	
+
 	@GetMapping(path="/invitation/{id}")
-	public List<UserDto> getOne(@PathVariable int id) {
-		return this.invitationService.findByRole(id);
+	public InvitationDto getOne(@PathVariable int id) {
+		return this.invitationService.findById(id);
+	}
+
+	@GetMapping(path="/invitation/user/{id}")
+	public List<InvitationDto> getAllByVip(@PathVariable int id) {
+		return this.invitationService.findInvitationByUserId(id);
 	}
 	
-	@GetMapping(path="/invitation/list/{id}")
-	public List<UserDto> getListVips(@PathVariable int id) {
-		return this.invitationService.findAllVipsByManifestation(id);
+	@GetMapping(path="/invitation/new/{id}")
+	public List<InvitationDto> getNewByVip(@PathVariable int id) {
+		return this.invitationService.findNewInvitationByUserId(id);
 	}
-	
+
+	@GetMapping(path="/invitation/manifestation/{id}")
+	public List<InvitationDto> getAllByManifestation(@PathVariable int id) {
+		return this.invitationService.findInvitationByManifestationId(id);
+	}
+		
 	@PostMapping(path="/invitation")
-	public UserDto add(@RequestBody UserDto invitation) {
-		return this.invitationService.add(invitation);
+	public boolean add(@RequestBody InvitationDto invitationDto) {
+		return this.invitationService.add(invitationDto);
+	}
+
+	@PutMapping(path="/invitation/{id}")
+	public boolean update(@RequestBody InvitationDto invitationDto ,@PathVariable int id) {
+		return this.invitationService.update(invitationDto, id);
 	}
 	
-	@PutMapping(path="/invitation/add/{id}")
-	public void updateAdd(@RequestBody ManifestationDto manifestation ,@PathVariable int id) {
-		this.invitationService.updateAdd(manifestation, id);
+	@PutMapping(path="/invitation/reponse/{id}")
+	public boolean updateReponse(@RequestBody String reponse ,@PathVariable int id) {
+		return this.invitationService.updateReponse(reponse, id);
 	}
-	
-	@PutMapping(path="/invitation/sub/{id}")
-	public void updateSub(@RequestBody ManifestationDto manifestation ,@PathVariable int id) {
-		this.invitationService.updateSub(manifestation, id);
-	}
-	
+
 	@DeleteMapping(path="/invitation/{id}")
-	public void delete(@PathVariable int id) {
-		this.invitationService.delete(id);
+	public boolean delete(@PathVariable int id) {
+		return this.invitationService.delete(id);
 	}
-	
+
+	@DeleteMapping(path="/invitation/manifestation/{id}")
+	public boolean deleteAll(@PathVariable int id) {
+		return this.invitationService.deleteAll(id);
+	}
+
 
 }

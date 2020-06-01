@@ -37,23 +37,23 @@ public class PanierController {
 	}
 	
 	@PostMapping(path = "/panier")
-	public void add(@RequestBody ArticleDto articleDto) {
-		this.panierService.addArticlePanier(articleDto);
+	public boolean add(@RequestBody ArticleDto articleDto) {
+		return this.panierService.addArticlePanier(articleDto);
 	}
 
 	@PutMapping(path = "/panier/{id}")
-	public void update(@RequestBody PanierDto panier, @PathVariable int id) {
-		this.panierService.updatePanier(panier, id);
+	public boolean update(@RequestBody PanierDto panier, @PathVariable int id) {
+		return this.panierService.updatePanier(panier, id);
 	}
 
 	@DeleteMapping(path = "/panier/{id}")
-	public void deletePanier(@PathVariable int id) {
-		this.panierService.deletePanier(id);
+	public boolean deletePanier(@PathVariable int id) {
+		return this.panierService.deletePanier(id);
 	}
 
 	@DeleteMapping(path = "/panier/articles/{id}")
-	public void deleteArticles(@PathVariable int id) {
-		this.panierService.deleteArticles(id);
+	public boolean deleteArticles(@PathVariable int id) {
+		return this.panierService.deleteArticles(id);
 	}
 	
 	

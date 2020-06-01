@@ -3,10 +3,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ArticleDto } from '../../../model/articleDto';
 import { PanierDto } from '../../../model/panierDto';
 import { ManifestationDto } from '../../../model/manifestationDto';
+import { ToastrService } from 'ngx-toastr';
 import { User } from '../../../model/user';
 import { PanierService } from '../../../service/panier.service';
 import { ManifestationService } from '../../../service/manifestation.service';
-import { AuthService } from '../../../service/auth.service';
+import { AuthService } from '../../../security/auth.service';
 import { UserService } from '../../../service/user.service';
 import { faHome, faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
 
@@ -32,7 +33,7 @@ export class PanierAddComponent implements OnInit {
   constructor(private manifestationService: ManifestationService,
     private panierService: PanierService, private route: ActivatedRoute,
     private router: Router, private authService: AuthService,
-    private userService: UserService, ) {
+    private userService: UserService,private toastrService: ToastrService ) {
     this.manifestationDto = new ManifestationDto();
     this.userDto = new User();
     this.panierDto = new PanierDto();
@@ -66,10 +67,15 @@ export class PanierAddComponent implements OnInit {
     this.article.manifestation = this.manifestationDto;
     this.article.panier = this.panierDto;
     this.article.quantite = this.quantite;
-
+    
     this.panierService.add(this.article).subscribe(
       res => {
         this.panierService.subjectMiseAJour.next(0);
+        if (res) {
+          this.toastrService.error('La manifestation '+this.article.manifestation.label+' est indisponible.' , 'Ajout impossible')
+        } else {
+          this.toastrService.success('La manifestation ' +this.article.manifestation.label +' a été ajoutée au panier', 'Ajout Ok')
+        }
         this.goHome(this.panierDto.id);
       }
     );

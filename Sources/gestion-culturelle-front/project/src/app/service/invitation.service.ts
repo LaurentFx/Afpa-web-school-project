@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable, Subject } from 'rxjs';
 import { User } from '../model/user';
-import { ManifestationDto } from '../model/manifestationDto';
+import { InvitationDto } from '../model/invitationDto';
 
 
 @Injectable({
@@ -13,7 +13,8 @@ export class InvitationService {
   monUrl= 'http://localhost:8080/invitation'; 
 
   user: User[]; 
-  manifestation : ManifestationDto [];
+  //manifestation : ManifestationDto [];
+  invitationDto : InvitationDto;
   subjectMiseAJour= new Subject<number>();
 
   constructor(private http: HttpClient) { }
@@ -22,32 +23,40 @@ export class InvitationService {
     return this.http.get(this.monUrl);
   }
   
-  add(user: User): Observable<object> {
-    return this.http.post(this.monUrl,user);
-  }
-  
-  getVips(id: number): Observable<any> {
+  getOne(id: number): Observable<any> {
     return this.http.get(`${this.monUrl}/${id}`);
   } 
-
-  getListVips(id: number): Observable<any> {
-    return this.http.get(`${this.monUrl}/list/${id}`);
+  
+  getByManifestation(id: number): Observable<any> {
+    return this.http.get(`${this.monUrl}/manifestation/${id}`);
   } 
 
-  getUser(id: number): Observable<any> {
+  getByUser(id: number): Observable<any> {
     return this.http.get(`${this.monUrl}/user/${id}`);
   } 
   
-  updateAdd(id: number,manifestation: ManifestationDto): Observable<Object> {
-    return this.http.put(`${this.monUrl}/add/${id}`, manifestation);
+  getNewByUser(id: number): Observable<any> {
+    return this.http.get(`${this.monUrl}/new/${id}`);
+  } 
+
+  add(invitationDto: InvitationDto): Observable<object> {
+    return this.http.post(this.monUrl,invitationDto);
   }
 
-  updateSub(id: number,manifestation: ManifestationDto): Observable<Object> {
-    return this.http.put(`${this.monUrl}/sub/${id}`, manifestation);
-  }
+ update(id: number,invitationDto: InvitationDto): Observable<Object> {
+    return this.http.put(`${this.monUrl}/${id}`, invitationDto);
+  }  
+
+  updateReponse(id: number,reponse: String): Observable<Object> {
+    return this.http.put(`${this.monUrl}/reponse/${id}`, reponse);
+  }  
 
   delete(id: number): Observable<any> {
     return this.http.delete(`${this.monUrl}/${id}`);
+  }
+
+  deleteAll(id: number): Observable<any> {
+    return this.http.delete(`${this.monUrl}/manifestation/${id}`);
   }
 
 }

@@ -19,8 +19,10 @@ public interface IUserService {
 
 	boolean delete(int id);
 
-	UserDto addClient(UserDto userDto);
+	boolean addClient(UserDto userDto);
 
 	List<UserDto> findByRole(int id);
+	
+	List<UserDto> findVipsToInvite(int id);
 
 }

@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../../../model/user';
 import { RoleDto } from '../../../model/roleDto';
 import { RoleService } from '../../../service/role.service';
+import { ToastrService } from 'ngx-toastr';
 import { faHome, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -19,10 +20,9 @@ export class UserUpdateComponent implements OnInit {
   faHome = faHome;
   faCheckSquare = faCheckSquare;
 
-  constructor(private route: ActivatedRoute,
-    private userService: UserService,
-    private router: Router,
-    private roleService: RoleService) { }
+  constructor(private route: ActivatedRoute, private userService: UserService,
+    private router: Router, private roleService: RoleService,
+    private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.roles = [];
@@ -59,6 +59,11 @@ export class UserUpdateComponent implements OnInit {
     let id = this.route.snapshot.params['id'];
     this.userService.update(id, this.user).subscribe(
       res => {
+        if (res) {
+          this.toastrService.success(this.user.nom+' a été modifié.','Mise à jour Ok.')
+        } else {
+          this.toastrService.error(+this.user.nom+' n a pas été modifié','Mise à jour impossible.')
+        }
         this.goHome();
       }
     );

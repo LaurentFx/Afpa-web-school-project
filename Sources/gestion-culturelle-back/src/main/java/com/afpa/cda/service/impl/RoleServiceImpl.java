@@ -73,7 +73,7 @@ public class RoleServiceImpl implements IRoleService {
 	}
 
 	@Override
-	public boolean updateRole(RoleDto roleDto, int id) {
+	public boolean update(RoleDto roleDto, int id) {
 		Optional <Role> roleOp = this.roleRepository.findById(id);
 		if(roleOp.isPresent()) {
 			Role role = roleOp.get();
@@ -87,22 +87,16 @@ public class RoleServiceImpl implements IRoleService {
 	}
 
 	@Override
-	public boolean deleteRole(int id) {
-
-		List <User> listUsers = userRepository.findAll();
-		boolean userAvecRole = false;
+	public boolean delete(int id) {
 		
-		for (User user : listUsers) {
-			if(user.getRole().getId()==id) {
-				userAvecRole = true;
+		List <User> listUsers = this.userRepository.findUserByRole(id);
+		
+		if (listUsers.isEmpty() && this.roleRepository.existsById(id)) {
+		this.roleRepository.deleteById(id);
 
-			}
-		}
-		if(this.roleRepository.existsById(id) && !userAvecRole) {
-			this.roleRepository.deleteById(id);
-			System.err.println("role supprimé");
 			return true;
 		}
+		
 		return false;
 	}
 }

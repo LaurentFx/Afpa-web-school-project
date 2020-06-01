@@ -5,9 +5,10 @@ import { PanierDto } from '../../../model/panierDto';
 import { User } from '../../../model/user';
 import { ArticleService } from '../../../service/article.service';
 import { PanierService } from '../../../service/panier.service';
-import { AuthService } from '../../../service/auth.service';
+import { AuthService } from '../../../security/auth.service';
 import { UserService } from '../../../service/user.service';
 import { RoleDto } from '../../../model/roleDto';
+import { ToastrService } from 'ngx-toastr';
 import { faHome, faCalendarPlus,faCalendarCheck,faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -21,29 +22,18 @@ export class PanierShowComponent implements OnInit {
   panierDto: PanierDto;
   userDto: User;
   id: number;
-  idPanier: number;
-  user: String;
-  role: RoleDto;
-  isClient: boolean;
-  isConnected: boolean;
   faHome = faHome;
   faCalendarPlus = faCalendarPlus;
   faCalendarCheck = faCalendarCheck;
   faTrashAlt = faTrashAlt;
 
-  constructor(private articleService: ArticleService,
+  constructor(private articleService: ArticleService, private toastrService: ToastrService,
     private panierService: PanierService, private route: ActivatedRoute,
     private router: Router, private authService: AuthService, private userService: UserService,
   ) { this.userDto = new User(); this.panierDto = new PanierDto(); }
 
 
   ngOnInit() {
-    this.isConnected = this.authService.isConnected();
-    if (this.authService.getCurrentUser()) {
-      this.isClient = this.authService.getCurrentUser().role.label === 'CLIENT';
-      this.user = this.authService.getCurrentUser().nom;
-      this.role = this.authService.getCurrentUser().role;
-    }
     this.reload();
   }
 
@@ -54,7 +44,6 @@ export class PanierShowComponent implements OnInit {
       res => {
         this.userDto = res;
         this.panierDto = res.panier;
-        this.idPanier = res.panier.id;
       }
     );
 
@@ -72,18 +61,27 @@ export class PanierShowComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.panierService.deletePanier(id).subscribe(
       res => {
-        this.articleService.subjectMiseAJour.next(0);
+        if (res) {
+          this.toastrService.success('La réservation a été validée', 'Validation Ok')
+        } else {
+          this.toastrService.error('La réservation n a pas été validée', 'Validation NOk')
+        }
+        this.panierService.subjectMiseAJour.next(0);
         this.goHome()
       }
     )
-
   }
 
   cancel(id: number) {
     this.id = this.route.snapshot.params['id'];
     this.panierService.deleteArticles(id).subscribe(
       res => {
-        this.articleService.subjectMiseAJour.next(0);
+        if (res) {
+          this.toastrService.success('Les réservations ont été annulées', 'Annulation Ok')
+        } else {
+          this.toastrService.error('Les réservations n ont pas été annulées', 'Annulation NOk')
+        }
+        this.panierService.subjectMiseAJour.next(0);
         this.goHome()
       }
     )
@@ -93,6 +91,11 @@ export class PanierShowComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.articleService.delete(id).subscribe(
       res => {
+        if (res) {
+          this.toastrService.success('La réservation a été annulée', 'Annulation Ok')
+        } else {
+          this.toastrService.error('La réservation n a pas été annulée', 'Annulation NOk')
+        }
         this.articleService.subjectMiseAJour.next(0);
         this.reload()
       }
@@ -100,11 +103,7 @@ export class PanierShowComponent implements OnInit {
   }
 
   goHome() {
-
     this.router.navigateByUrl('/public')
-
   }
-
-
 
 }

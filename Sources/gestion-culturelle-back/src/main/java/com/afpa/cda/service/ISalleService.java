@@ -8,6 +8,8 @@ public interface ISalleService {
 	
 	List<SalleDto> findAll();
 	
+	public List<SalleDto> findAllByCapacity(int id);
+	
 	boolean add(SalleDto sal);
 	
 	boolean updateSalle(SalleDto sal, int id);

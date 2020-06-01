@@ -42,6 +42,11 @@ public class UserController {
 		return this.userService.findById(id);
 	}
 
+	@GetMapping(path = "/users/role/{id}")
+	public List<UserDto> findByRole(@PathVariable Integer id){
+		return this.userService.findByRole(id);
+	}
+	
 	@PostMapping(path = "/users")
 	public boolean add(@RequestBody UserDto user, HttpServletResponse resp) throws IOException {
 		if(user.getRole() == null) {
@@ -58,13 +63,12 @@ public class UserController {
 	}
 
 	@PostMapping(path = "/users/new")
-	public UserDto addClient(@RequestBody UserDto user, HttpServletResponse resp) throws IOException {
+	public boolean addClient(@RequestBody UserDto user, HttpServletResponse resp) throws IOException {
 		if(user.getNom().equalsIgnoreCase(adminUserDefaultConf.getNom()) 
 				|| user.getPrenom().equalsIgnoreCase(adminUserDefaultConf.getPrenom())) {
 			resp.sendError(HttpStatus.NOT_ACCEPTABLE.value(),"prenom/nom 'admin' sont déjà pris");
-			return null;
+			return true;
 		} else {
-
 			return this.userService.addClient(user);
 		}
 	}
@@ -77,21 +81,21 @@ public class UserController {
 
 	}
 
+	@GetMapping(path="/users/invites/{id}")
+	public List<UserDto> getInvites(@PathVariable int id) {
+		return this.userService.findVipsToInvite(id);
+	}
+	
 	@PutMapping(path = "/users/{id}")
-	public void update(@RequestBody UserDto user,@PathVariable int id ) {
-		this.userService.update(user, id);
+	public boolean update(@RequestBody UserDto user,@PathVariable int id ) {
+		return this.userService.update(user, id);
 	}
 
 	@DeleteMapping(path = "/users/{id}")
-	public void delete(@PathVariable int id) {
-		this.userService.delete(id);
+	public boolean delete(@PathVariable int id) {
+		return this.userService.delete(id);
 	}
 
-	//	@GetMapping(path = "/user/role/{id}")
-	//	public void findByRole(Integer role){
-	//		
-	//		this.userService.findByRole(role);
-	//		
-	//	}
+
 
 }

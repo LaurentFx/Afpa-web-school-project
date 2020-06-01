@@ -5,10 +5,10 @@ import { ManifestationService } from '../../../service/manifestation.service';
 import { AnimationDto } from '../../../model/animationDto';
 import { SalleDto } from '../../../model/salleDto';
 import { SalleService } from '../../../service/salle.service';
-import { AnimationService } from '../../../service/animation.service';
 import { User } from '../../../model/user';
 import { UserService } from '../../../service/user.service';
 import { faHome, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manifestation-update',
@@ -17,118 +17,92 @@ import { faHome, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 })
 export class ManifestationUpdateComponent implements OnInit {
 
-  id: number;
   manifestation: ManifestationDto;
   animation: AnimationDto;
-  animations: AnimationDto[];
   salle: SalleDto;
   salles: SalleDto[];
-  users: User[];
+  availability: any;
   faHome = faHome;
   faCheckSquare = faCheckSquare;
-  capacite: number;
 
   constructor(
-    private userService: UserService,
-    private salleService: SalleService,
-    private animationService: AnimationService,
-    private route: ActivatedRoute,
-    private manifestationService: ManifestationService,
-    private router: Router) { }
-
-  ngOnInit() {
+    private userService: UserService, private salleService: SalleService,
+    private route: ActivatedRoute, private manifestationService: ManifestationService,
+    private toastrService: ToastrService, private router: Router) {
     this.manifestation = new ManifestationDto();
     this.animation = new AnimationDto();
     this.salles = [];
-    this.animations = [];
-    this.users = [];
-
     this.manifestation.salle = new SalleDto();
     this.manifestation.animation = new AnimationDto();
     this.manifestation.validateur = new User();
-    //this.capacite = this.manifestation.salle.capacite;
+  }
 
+  ngOnInit() {
+    this.reload();
+
+    /* this.manifestation = new ManifestationDto();
+     this.animation = new AnimationDto();
+     this.salles = [];
+ 
+     this.manifestation.salle = new SalleDto();
+     this.manifestation.animation = new AnimationDto();
+     this.manifestation.validateur = new User();  */
+  }
+
+  reload() {
     let id = this.route.snapshot.params['id'];
+    
 
     this.manifestationService.getOne(id).subscribe(
       res => {
         this.manifestation = res;
-        this.animation = this.manifestation.animation;
       }
     );
 
-    this.animationService.subjectMiseAJour.subscribe(
-      res => {
-        this.animationService.getAll().subscribe(
-          donnees => {
-            this.animations = donnees;
-          }
-        );
-      }
-    );
-
-    this.animationService.getAll().subscribe(
+    this.salleService.getByCapacity(id).subscribe(
       resultat => {
-        this.animations = resultat;
-
+        this.salles = resultat;
       }
     );
 
     this.salleService.subjectMiseAJour.subscribe(
       res => {
-        this.salleService.getAll().subscribe(
+        this.salleService.getByCapacity(id).subscribe(
           donnees => {
             this.salles = donnees;
           }
         );
       }
     );
-
-    this.salleService.getAll().subscribe(
-      resultat => {
-        this.salles = resultat;
-        this.salles.forEach(function (item, index, array) {
-          console.log("salles " + item.capacite, index);
-          //        console.log("nbreSpectateursPrevus 2 " + this.animation.nbreSpectateursPrevus);
-        });
-      }
-    );
-
-
-    this.userService.subjectMiseAJour.subscribe(
-      res => {
-        this.userService.getAll().subscribe(
-          donnees => {
-            this.users = donnees;
-          }
-        );
-      }
-    );
-
-    this.userService.getAll().subscribe(
-      resultat => {
-        this.users = resultat;
-      }
-    );
-
-    //console.log("capacite "+this.capacite);
-
-
   }
-
 
   update(): void {
     let id = this.route.snapshot.params['id'];
     this.manifestationService.update(id, this.manifestation).subscribe(
       res => {
-        console.log(this.manifestation);
+        this.toastrService.success('La manifestation a été mise à jour', 'Modification Ok.');
         this.goHome();
       }
     );
   }
 
+  checkAvalaibility(): void {
+    this.manifestationService.getAvalaibility(this.manifestation).subscribe(
+      res => {
+        if (res) {
+          this.toastrService.success('La salle '
+            + ' est libre entre le ' + this.manifestation.dateDebut + ' et ' + this.manifestation.dateFin, 'Disponibilité Ok.')
+          this.update();
+        } else {
+          this.toastrService.error('La salle '
+            + ' est occupée entre le ' + this.manifestation.dateDebut + ' et ' + this.manifestation.dateFin +'. Changez de dates', 'Disponibilité NOk')
+        }
+      }
+    );
+  }
+
   onSubmit() {
-    this.update();
+    this.checkAvalaibility();
   }
 
   goHome() {

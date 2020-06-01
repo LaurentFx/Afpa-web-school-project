@@ -3,6 +3,7 @@ import { AnimationService } from '../../../service/animation.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AnimationDto } from '../../../model/animationDto';
 import { faHome, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
+import { User } from '../../../model/user';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class AnimationShowComponent implements OnInit {
   
   ngOnInit() {
     this.animation = new AnimationDto();
+    this.animation.animateur = new User();
 
     let id = this.route.snapshot.params['id'];
 

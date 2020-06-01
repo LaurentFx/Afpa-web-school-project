@@ -48,12 +48,12 @@ export class TypeSalleListComponent implements OnInit {
 
     this.typeSalleService.delete(id).subscribe(
       res => {
-        this.typeSalleService.subjectMiseAJour.next(0);
         if (res) {
           this.toastrService.success(this.typeSalle.label+' effacé.','Suppression Ok.')
         } else {
-          this.toastrService.error('Le type de salle '+ this.typeSalle.label+' est associé à une salle','Suppression impossible')
+          this.toastrService.error(this.typeSalle.label+' est associé à une salle','Suppression impossible')
         }
+        this.typeSalleService.subjectMiseAJour.next(0);
       }
     )
   }

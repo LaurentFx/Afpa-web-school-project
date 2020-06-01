@@ -11,9 +11,9 @@ public interface IRoleService {
 
 	boolean add(RoleDto rol);
 
-	boolean updateRole(RoleDto rol, int id);
+	boolean update(RoleDto rol, int id);
 
-	boolean deleteRole(int id);
+	boolean delete(int id);
 
 	RoleDto findById(int id);
 

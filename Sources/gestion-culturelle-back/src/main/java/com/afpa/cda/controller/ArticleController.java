@@ -23,8 +23,8 @@ public class ArticleController {
 	}
 
 	@DeleteMapping(path = "/article/{id}")
-	public void delete(@PathVariable int id) {
-		this.articleService.delete(id);
+	public boolean delete(@PathVariable int id) {
+		return this.articleService.delete(id);
 	}
 
 }

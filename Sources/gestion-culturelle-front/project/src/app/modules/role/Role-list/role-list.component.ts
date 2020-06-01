@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { RoleDto } from "../../../model/roleDto";
 import { Router } from "@angular/router";
 import { RoleService } from "../../../service/role.service";
+import { ToastrService } from 'ngx-toastr';
 import { faInfoCircle, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 
@@ -14,9 +15,10 @@ export class RoleListComponent implements OnInit {
   faInfoCircle =faInfoCircle;
   faEdit = faEdit;
   faTrashAlt = faTrashAlt;
+  role:RoleDto;
   roles: RoleDto[];
   
-  constructor(private roleService: RoleService,private router: Router) { }
+  constructor(private roleService: RoleService,private router: Router, private toastrService: ToastrService) { }
 
   ngOnInit() {
 
@@ -38,8 +40,21 @@ export class RoleListComponent implements OnInit {
   }
 
   delete(id:number) {
+    this.role = new RoleDto();
+    this.roleService.getOne(id).subscribe(
+      res => {
+        this.role = res;
+      }
+    );
+
     this.roleService.delete(id).subscribe(
       res=>{
+        if (res) {
+          this.toastrService.success(this.role.label + ' effacé.', 'Suppression Ok.')
+        } else {
+          this.toastrService.error('Le rôle ' + this.role.label+ ' est lié à un user.', 'Suppression impossible')
+        }
+
         this.roleService.subjectMiseAJour.next(0);
       }
     )

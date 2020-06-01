@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SalleDto } from '../../../model/salleDto';
 import { Router } from '@angular/router';
 import { SalleService } from '../../../service/salle.service';
-import { AuthService } from '../../../service/auth.service';
+import { AuthService } from '../../../security/auth.service';
 import { RoleDto } from '../../../model/roleDto';
 import { ToastrService } from 'ngx-toastr';
 import { faInfoCircle, faEdit, faTrashAlt, faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
@@ -67,22 +67,20 @@ export class SalleListComponent implements OnInit {
 
   delete(id: number) {
     this.salle = new SalleDto();
-
     this.salleService.getOne(id).subscribe(
       res => {
         this.salle = res;
       }
-
     );
 
     this.salleService.delete(id).subscribe(
       res => {
-        this.salleService.subjectMiseAJour.next(0);
         if (res) {
-          this.toastrService.success(this.salle.label + ' effacé.', 'Suppression Ok.')
+          this.toastrService.success(this.salle.label + ' effacée.', 'Suppression Ok.')
         } else {
-          this.toastrService.error('La salle ' + this.salle.label + ' est associée à une manifestation', 'Suppression impossible')
+          this.toastrService.error(this.salle.label + ' est associée à une manifestation', 'Suppression impossible')
         }
+        this.salleService.subjectMiseAJour.next(0);
       }
     );
   }

@@ -26,7 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	public UserSecDto loadUserByUsername(String username){
 
 		Objects.requireNonNull(username);
-		User userE = userRepository.findByNom(username)
+		User userE = userRepository.findUserByNom(username)
 				.orElseThrow(()-> new UsernameNotFoundException("User not found"));
 		
         Collection<GrantedAuthority> authorities = new ArrayList<>();

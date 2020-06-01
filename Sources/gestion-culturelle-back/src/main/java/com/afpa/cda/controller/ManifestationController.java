@@ -26,6 +26,11 @@ public class ManifestationController {
 		return this.manifesationService.findAll();
 	}
 
+	@PostMapping(path = "/manifestation/availability")
+	public boolean getAvailability(@RequestBody ManifestationDto manifestationDto) {
+		return this.manifesationService.findAvailability(manifestationDto);
+	}
+	
 	@GetMapping(path = "/manifestation/{id}")
 	public ManifestationDto getOne(@PathVariable int id){
 		return this.manifesationService.findById(id);
@@ -33,18 +38,18 @@ public class ManifestationController {
 	
 	//@PreAuthorize("hasAnyAuthority('RESP','ADMIN')")
 	@PostMapping(path = "/manifestation")
-	public ManifestationDto add(@RequestBody ManifestationDto manif) {
-		return this.manifesationService.add(manif);
+	public boolean add(@RequestBody ManifestationDto manifestationDto) {
+		return this.manifesationService.add(manifestationDto);
 	}
 
 	@PutMapping(path = "/manifestation/{id}")
-	public void update(@RequestBody ManifestationDto manif, @PathVariable int id) {
-		this.manifesationService.updateManifestation(manif,id);
+	public boolean update(@RequestBody ManifestationDto manif, @PathVariable int id) {
+		return this.manifesationService.update(manif,id);
 	}
 
 	@DeleteMapping(path = "/manifestation/{id}")
-	public void delete(@PathVariable int id) {
-		this.manifesationService.deleteManifestation(id);
+	public boolean delete(@PathVariable int id) {
+	return this.manifesationService.delete(id);
 	}
 
 }

@@ -21,6 +21,10 @@ export class SalleService {
     return this.http.get(this.monUrl1);
   }
   
+  getByCapacity(capacity: number): Observable<any> {
+    return this.http.get(`${this.monUrl2}/capacity/${capacity}`);
+  } 
+
   add(salle: SalleDto): Observable<object> {
     return this.http.post(this.monUrl2,salle);
   }

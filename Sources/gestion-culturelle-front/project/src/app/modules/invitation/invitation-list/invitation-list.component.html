@@ -1,0 +1,57 @@
+<h3>Liste des invitations</h3>
+<br>
+<div class="panel-body div-comp">
+
+    <table class="table table-striped table-bordered ">
+        <thead class="thead-dark">
+            <tr>
+                <th>N°</th>
+                <th>Label manifestation</th>
+                <th>Date de Debut</th>
+                <th>Date de Fin</th>
+                <th>Salle</th>
+                <th>Reservations Vip</th>
+                <th>Nom Vip</th>
+                <th>Email Vip</th>
+                <th>Date d'invitation</th>
+                <th>Reponse</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let invitation of invitations">
+                <td>{{invitation.id}}</td>
+                <td>{{invitation.manifestation.label}}</td>
+                <td>{{invitation.manifestation.dateDebut}}</td>
+                <td>{{invitation.manifestation.dateFin}}</td>
+                <td>{{invitation.manifestation.salle.label}}</td>
+                <td>{{invitation.manifestation.reservationsVip}}</td>
+                <td>{{invitation.vip.nom}}</td>
+                <td>{{invitation.vip.email}}</td>
+                <td>{{invitation.dateInvitation}}</td>
+                <td>{{invitation.reponse}}</td>
+
+                <td>
+                    <!--
+                   
+                    <button *ngIf="isRespAdmin" (click)="redirectToUpdate(invitation.id)" class="btn btn-sm btn-warning" title="Mettre à jour">
+                        <fa-icon [icon]="faEdit">Update</fa-icon></button>
+                    &nbsp;
+                    -->
+                    <button *ngIf="isRespAdmin" (click)="delete(invitation.id)" class="btn btn-sm btn-danger" title="Effacer">
+                        <fa-icon [icon]="faTrashAlt">Delete</fa-icon></button>
+                    &nbsp;
+                   
+                </td>
+
+            </tr>
+
+        </tbody>
+    </table>
+    &nbsp;
+    <a *ngIf="isRespAdmin" name="" id="" class="btn btn-primary" href="#" role="button" [routerLink]="['/public/manifestation-list']" title="Ajouter une invitation">
+        <fa-icon class="icon p-2" [icon]="faPlusSquare">Inviter</fa-icon></a>
+    &nbsp;
+    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']" title="Retour à l'accueil">
+        <fa-icon class="icon p-2" [icon]="faHome">Retour à l'accueil</fa-icon></a>

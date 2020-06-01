@@ -25,6 +25,10 @@ export class ManifestationService {
     return this.http.post(this.monUrl2,manifestation);
   }
   
+  getAvalaibility(manifestation: ManifestationDto): Observable<object> {
+    return this.http.post(this.monUrl2+"/availability",manifestation);
+  }
+
   getOne(id: number): Observable<any> {
     return this.http.get(`${this.monUrl2}/${id}`);
   } 

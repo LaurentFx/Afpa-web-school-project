@@ -63,7 +63,7 @@ public class ArticleServiceImpl implements IArticleService {
 	}
 
 	@Override
-	public void delete(int id) {
+	public boolean delete(int id) {
 		Optional<Article> articleOp =	this.articleRepository.findById(id);
 		if(this.articleRepository.existsById(id)) {
 
@@ -80,8 +80,10 @@ public class ArticleServiceImpl implements IArticleService {
 			this.panierRepository.save(this.modelMapper.map(panierDto,Panier.class));
 
 			this.articleRepository.deleteById(id);
+			return true;
 
 		}
+		return false;
 
 	}
 

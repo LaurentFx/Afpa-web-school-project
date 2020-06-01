@@ -1,4 +1,5 @@
 package com.afpa.cda.service.impl;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -9,10 +10,12 @@ import org.springframework.stereotype.Service;
 
 import com.afpa.cda.dao.AnimationRepository;
 import com.afpa.cda.dao.ManifestationRepository;
+import com.afpa.cda.dao.UserRepository;
 import com.afpa.cda.dto.AnimationDto;
 import com.afpa.cda.dto.ManifestationDto;
 import com.afpa.cda.entity.Animation;
 import com.afpa.cda.entity.Manifestation;
+import com.afpa.cda.entity.User;
 import com.afpa.cda.service.IAnimationService;
 import com.afpa.cda.service.IManifestationService;
 @Service
@@ -28,7 +31,18 @@ public class AnimationServiceImpl implements IAnimationService {
 	@Autowired
 	private IManifestationService manifestationService;
 
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Override
+	public List<AnimationDto> findAll() {
 
+		return this.animationRepository.findAll()
+				.stream()
+				.map(a-> this.modelMapper.map(a,AnimationDto.class))
+				.collect(Collectors.toList());
+	}  
+	
 	@Override
 	public AnimationDto findById(int id) {
 
@@ -40,23 +54,47 @@ public class AnimationServiceImpl implements IAnimationService {
 		}
 		return animationDto;
 	}
-
-
+ 
 	@Override
-	public List<AnimationDto> findAll() {
-
-		return this.animationRepository.findAll()
-				.stream()
-				.map(a-> this.modelMapper.map(a,AnimationDto.class))
-				.collect(Collectors.toList());
-	}   
+	public List<AnimationDto> findAnimationsToPurpose() {
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		List <AnimationDto> listAnimations = findAll();
+		List <ManifestationDto> listManifestations = this.manifestationService.findAll();
+		List <AnimationDto> listAnimationsToPurpose = new ArrayList<AnimationDto> (listAnimations);
+		
+		for (AnimationDto  animationDto : listAnimations) {
+			for (ManifestationDto manifestationDto : listManifestations) {
+				if (animationDto.getId()==manifestationDto.getAnimation().getId()) {
+					listAnimationsToPurpose.remove(animationDto);
+				}
+			}
+		}
+		return listAnimationsToPurpose;
+	}
 
 	@Override
 	public boolean add(AnimationDto animationDto) {
-		Optional <Animation> animationOp = this.animationRepository.findByLabel(animationDto.getLabel());
+			Optional <Animation> animationOp = this.animationRepository.findAnimationByLabel(animationDto.getLabel());
 
 		if (!animationOp.isPresent()) {
-			this.animationRepository.save(this.modelMapper.map(animationDto,Animation.class));
+			Animation animation = new Animation();
+			
+			animation.setLabel(animationDto.getLabel());
+			animation.setType(animationDto.getType());
+			animation.setPrix(animationDto.getPrix());
+			animation.setNbreSpectateursPrevus(animationDto.getNbreSpectateursPrevus());
+			
+			Optional <User> animateurOp = this.userRepository.findById(animationDto.getAnimateur().getId());
+			if (animateurOp.isPresent()) {
+				User animateur = animateurOp.get();
+				animation.setAnimateur(animateur);
+			}
+			this.animationRepository.save(animation);
 			return false;
 		}
 
@@ -73,9 +111,16 @@ public class AnimationServiceImpl implements IAnimationService {
 			animation.setType(animationDto.getType());
 			animation.setPrix(animationDto.getPrix());
 			animation.setNbreSpectateursPrevus(animationDto.getNbreSpectateursPrevus());
+			
+			Optional <User> animateurOp = this.userRepository.findById(animationDto.getAnimateur().getId());
+			if (animateurOp.isPresent()) {
+				User animateur = animateurOp.get();
+				animation.setAnimateur(animateur);
+			}
+			
 			this.animationRepository.save(animation);
 
-			List<Manifestation> listManifestations = manifestationRepository.findManifestationByAnimationId(id);
+			List<Manifestation> listManifestations = this.manifestationRepository.findManifestationByAnimation(id);
 			if (!listManifestations.isEmpty()) {
 				for (Manifestation manifestation : listManifestations) {
 					ManifestationDto manifestationDto = modelMapper.map(manifestation,ManifestationDto.class);
@@ -96,7 +141,7 @@ public class AnimationServiceImpl implements IAnimationService {
 
 	@Override
 	public boolean delete(int id) {
-		List <Manifestation> listManifestations = manifestationRepository.findManifestationByAnimationId(id);
+		List <Manifestation> listManifestations = this.manifestationRepository.findManifestationByAnimation(id);
 
 		if (listManifestations.isEmpty() && this.animationRepository.existsById(id))		 {
 			this.animationRepository.deleteById(id);

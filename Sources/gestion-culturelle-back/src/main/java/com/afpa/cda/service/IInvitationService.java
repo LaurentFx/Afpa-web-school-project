@@ -2,26 +2,29 @@ package com.afpa.cda.service;
 
 import java.util.List;
 
-import com.afpa.cda.dto.ManifestationDto;
-import com.afpa.cda.dto.UserDto;
+import com.afpa.cda.dto.InvitationDto;
 
 
 public interface IInvitationService {
 
-	List<UserDto> findAll();
+	List<InvitationDto> findAll();
 
-	UserDto add(UserDto userDto);
+	//@Transactional
+	boolean add(InvitationDto invitationDto);
 
-	UserDto findById(int id);
+	InvitationDto findById(int id);
+
+	List<InvitationDto> findInvitationByUserId(int id);
+
+	List<InvitationDto> findInvitationByManifestationId(int id);
+
+	boolean update(InvitationDto invitationDto, int id);
 
 	boolean delete(int id);
 
-	List<UserDto> findByRole(int id);
+	boolean deleteAll(int id);
 
-	List<UserDto> findAllVipsByManifestation(int id);
+	boolean updateReponse(String reponse, int id);
 
-	boolean updateAdd(ManifestationDto manifestationDto, int id);
-
-	boolean updateSub(ManifestationDto manifestationDto, int id);
-	
+	List<InvitationDto> findNewInvitationByUserId(int id);
 }

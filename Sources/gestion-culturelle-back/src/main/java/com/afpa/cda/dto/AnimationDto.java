@@ -19,4 +19,5 @@ public class AnimationDto {
 	private String type;
 	private int prix;
 	private int nbreSpectateursPrevus;
+	private UserDto animateur;
 }

@@ -9,6 +9,7 @@
                 <th>Id</th>
                 <th>Label</th>
                 <th>Type</th>
+                <th>Animateur</th>
                 <th>Prix</th>
                 <th>Nombre de spectateurs prévus</th>
                 <th>Actions</th>
@@ -22,6 +23,7 @@
                 <td>{{animation.id}}</td>
                 <td>{{animation.label}}</td>
                 <td>{{animation.type}}</td>
+                <td>{{animation.animateur.nom}}</td>
                 <td>{{animation.prix}}</td>
                 <td>{{animation.nbreSpectateursPrevus}}</td>
 
@@ -38,7 +40,7 @@
 
         </tbody>
     </table>
-
+    &nbsp;
     <a *ngIf="isAnim" name="" id="" class="btn btn-primary" href="#" role="button" [routerLink]="['/animation-ad']" title="Ajouter une animation"><fa-icon class="icon p-2" [icon]="faPlusSquare">Ajouter une animation</fa-icon></a>
     &nbsp;
     <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']"  title="Retour à l'accueil"><fa-icon class="icon p-2" [icon]="faHome">Retour à l'accueil</fa-icon></a>

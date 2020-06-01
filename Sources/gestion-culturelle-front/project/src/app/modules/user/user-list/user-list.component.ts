@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../../model/user';
 import { UserService } from '../../../service/user.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { faInfoCircle, faEdit, faTrashAlt, faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { RoleDto } from '../../../model/roleDto';
 
 @Component({
   selector: 'app-user-list',
@@ -10,93 +12,84 @@ import { faInfoCircle, faEdit, faTrashAlt, faHome, faPlusSquare } from '@fortawe
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  
-  faInfoCircle =faInfoCircle;
+
+  faInfoCircle = faInfoCircle;
   faEdit = faEdit;
   faTrashAlt = faTrashAlt;
   faHome = faHome;
   faPlusSquare = faPlusSquare;
-  
+
+  user: User;
   users: User[];
   rolee: string;
 
-  constructor(private userService: UserService,private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private toastrService: ToastrService) { }
 
   ngOnInit() {
-    this.users=[];
-    
-    this.userService.getAll().subscribe(
-      donnees =>{
-        // this.users = donnees; 
-        for (let index = 0; index < donnees.length; index++) {
-          console.log(donnees[index].role)
-          if(donnees[index].role.label === this.rolee){
-            this.users.push(donnees[index]);
-          }
-           
+    this.users = [];
 
-          
-        }
+    this.userService.getAll().subscribe(
+
+      donnees => {
+        this.users = donnees;
       }
     );
 
     this.userService.subjectMiseAJour.subscribe(
-      res=>{
+      res => {
         this.userService.getAll().subscribe(
-          donnees =>{
-            this.users = donnees; 
+          donnees => {
+            this.users = donnees;
           }
         );
       }
     );
-    
+
   }
 
-  test(){
-    console.log(this.rolee)
-    // this.router.navigateByUrl('')
-    this.userService.getAll().subscribe(
-      donnees =>{
-        // this.users = donnees; 
-        for (let index = 0; index < donnees.length; index++) {
-          console.log(donnees[index].role)
-          if(donnees[index].role.label === this.rolee){
-            this.users= [];
-            this.users.push(donnees[index]);
-          }
-        }
-      }
-    );
-    this.userService.subjectMiseAJour.subscribe(
-      res=>{
-        this.userService.getAll().subscribe(
-          donnees =>{
-            this.users = donnees; 
-          }
-        );
-      }
-    );
-  }
+  delete(id: number) {
+    this.user = new User();
+    this.user.role = new RoleDto();
 
-  delete(id:number) {
+    this.userService.getOne(id).subscribe(
+      res => {
+        this.user = res;
+      }
+    );
+
     this.userService.delete(id).subscribe(
-      res=>{
+      res => {
+        if (res) {
+          this.toastrService.success(this.user.nom + ' effacé.', 'Suppression Ok.')
+        } else {
+          if (this.user.role.label === 'ANIM') {
+            this.toastrService.error(this.user.nom + ' est lié à une animation.', 'Suppression impossible')
+          }
+         else if (this.user.role.label === 'CLIENT') {
+            this.toastrService.error(this.user.nom + ' est lié à une réservation.', 'Suppression impossible')
+          }
+         else if (this.user.role.label === 'VIP') {
+            this.toastrService.error(this.user.nom + ' est lié à une invitation.', 'Suppression impossible')
+          } else {
+            this.toastrService.error(this.user.nom + ' est lié à une animation, invitation ou réservation.', 'Suppression impossible')
+          }
+        }
         this.userService.subjectMiseAJour.next(0);
       }
     )
   }
-  
-  redirectToUpdate(id:number){
-    this.router.navigateByUrl('/user-update/'+id)
-  }
-   
 
-  redirectToShow(id:number) {
-    this.router.navigateByUrl('/user-show/'+id)
+  redirectToUpdate(id: number) {
+    this.router.navigateByUrl('/user-update/' + id)
   }
 
-  redirectToRole(id:number){
-    this.router.navigateByUrl('user-role-list'+id)
+
+  redirectToShow(id: number) {
+    this.router.navigateByUrl('/user-show/' + id)
+  }
+
+  redirectToRole(id: number) {
+    this.router.navigateByUrl('user-role-list' + id)
   }
 
 

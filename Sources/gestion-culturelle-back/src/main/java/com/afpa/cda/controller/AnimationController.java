@@ -25,20 +25,25 @@ public class AnimationController {
 		return this.animationService.findAll();
 	}
 	
-	//@PreAuthorize("hasAnyAuthority('ANIM')")
-	@PostMapping(path = "animation")
-	public boolean add(@RequestBody AnimationDto anim) {
-		return this.animationService.add(anim);
-	}
-	
 	@GetMapping(path = "/animation/{id}")
 	public AnimationDto getOne(@PathVariable int id) {
 		return this.animationService.findById(id);
 	}
 	
+	@GetMapping(path = "/animation/purpose")
+	public List<AnimationDto> getAnimations() {
+		return this.animationService.findAnimationsToPurpose();
+	}
+	
+	//@PreAuthorize("hasAnyAuthority('ANIM')")
+	@PostMapping(path = "/animation")
+	public boolean add(@RequestBody AnimationDto anim) {
+		return this.animationService.add(anim);
+	}
+	
 	@PutMapping(path="/animation/{id}")
-	public void update(@RequestBody AnimationDto anim, @PathVariable int id) {
-		this.animationService.update(anim,id);
+	public boolean update(@RequestBody AnimationDto anim, @PathVariable int id) {
+		return this.animationService.update(anim,id);
 	}
 	
 	@DeleteMapping(path="/animation/{id}")

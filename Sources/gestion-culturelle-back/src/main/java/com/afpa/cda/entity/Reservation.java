@@ -39,6 +39,7 @@ public class Reservation {
 	@JoinColumn(name = "client_id", nullable = false)
 	User client;
 	
+	String numClient;
 	int quantite;
 	
 	Date dateReservation;

@@ -1,14 +1,14 @@
 import { Component, OnInit, ɵɵsanitizeUrlOrResourceUrl } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../service/auth.service';
-import { RoleDto } from '../model/roleDto';
-import { PanierDto } from '../model/panierDto';
-import { UserService } from '../service/user.service';
-import { User } from '../model/user';
+import { AuthService } from '../../security/auth.service';
+import { RoleDto } from '../../model/roleDto';
+import { PanierDto } from '../../model/panierDto';
+import { UserService } from '../../service/user.service';
+import { User } from '../../model/user';
 import { ToastrService } from 'ngx-toastr';
 import { faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { CompileShallowModuleMetadata } from '@angular/compiler';
-import { PanierService } from '../service/panier.service';
+import { PanierService } from '../../service/panier.service';
 
 @Component({
   selector: 'app-navebar',
@@ -21,11 +21,12 @@ export class NavebarComponent implements OnInit {
   isConnected: boolean;
   isResp: boolean;
   isClient: boolean;
-  isVip:boolean;
+  isVip: boolean;
   isAnim: boolean;
   isAdmin: boolean;
   isRespAdmin: boolean;
   isVipAdmin: boolean;
+  isRespAdminVip: boolean;
   user: String;
   userDto: User;
   role: RoleDto;
@@ -39,7 +40,6 @@ export class NavebarComponent implements OnInit {
 
   ngOnInit() {
     this.reload();
-
     this.authService.subjectConnexion.subscribe(
       res => {
         this.isConnected = this.authService.isConnected();
@@ -51,11 +51,12 @@ export class NavebarComponent implements OnInit {
           this.isAnim = false;
           this.isAdmin = false;
           this.isRespAdmin = false;
+          this.isVipAdmin = false;
+          this.isRespAdminVip = false;
           this.user = '';
           this.role = null;
         } else {
           this.reload();
-
         }
       }
     );
@@ -73,6 +74,7 @@ export class NavebarComponent implements OnInit {
       this.isAdmin = userCourant.role.label === 'ADMIN';
       this.isRespAdmin = (userCourant.role.label === 'RESP') || (userCourant.role.label === 'ADMIN');
       this.isVipAdmin = (userCourant.role.label === 'VIP') || (userCourant.role.label === 'ADMIN');
+      this.isRespAdminVip = (userCourant.role.label === 'RESP') || (userCourant.role.label === 'VIP') || (userCourant.role.label === 'ADMIN');
       this.userDto = userCourant;
       this.user = userCourant.nom;
       this.role = userCourant.role;
@@ -82,9 +84,9 @@ export class NavebarComponent implements OnInit {
           res => {
             this.panierDto = res.panier;
           }
-
         );
       }
+      
     }
   }
 
@@ -103,7 +105,7 @@ export class NavebarComponent implements OnInit {
 
       }
     )
-    this.toastrService.info('A bientôt', 'Deconnexion');
+    this.toastrService.info('A bientôt ...', 'Deconnexion');
     this.authService.logout();
     this.router.navigateByUrl('/public/login');
     this.isConnected = false;
@@ -112,11 +114,13 @@ export class NavebarComponent implements OnInit {
   redirectToShowPanier(id: number) {
     this.router.navigateByUrl('/panier-show/' + id)
   }
-
-  redirectToShowVip (id: number)  {
-    this.router.navigateByUrl('/vip-show/' + id)
+  
+  redirectToShowInvitation(id: number) {
+    this.router.navigateByUrl('/invitation-show/' + id)
   }
 
-  
+  redirectToAnswerInvitation(id: number) {
+    this.router.navigateByUrl('/invitation-answer/' + id)
+  }
 
 }

@@ -9,8 +9,15 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-8">
-                        <div class="form-group">
 
+                        <label for="animation">Nom de l'animation :</label>
+                        <select name="animation" id="animation" [(ngModel)]="manifestation.animation.id"
+                            class="form-control">
+                            <option *ngFor="let animation of animations" [value]="animation.id">{{animation.label}}
+                            </option>
+                        </select>
+
+                        <div class="form-group">
                             <label for="label">Nouveau label :</label>
                             <input type="text" name="label" class="form-control" id="label"
                                 placeholder="Entrer votre label" [(ngModel)]="manifestation.label">
@@ -39,14 +46,7 @@
                         <label for="validateur">Nom du validateur :</label>
                         <input type="text" name="validateur" class="form-control" id="validateur"
                             placeholder="{{manifestation.validateur.nom}}" readonly>
-
-                        <label for="animation">Nom de l'animation :</label>
-                        <select name="animation" id="animation" [(ngModel)]="manifestation.animation.id"
-                            class="form-control">
-                            <option *ngFor="let animation of animations" [value]="animation.id">{{animation.label}}
-                            </option>
-                        </select>
-
+                       
                         <br>
                         <a name="" id="" class="btn btn-secondary" href="#" role="button"
                             [routerLink]="['/public/manifestation-list']"><fa-icon class="icon p-2" [icon]="faHome">Annuler</fa-icon></a>

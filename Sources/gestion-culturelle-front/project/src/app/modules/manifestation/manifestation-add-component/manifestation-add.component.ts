@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ManifestationDto } from '../../../model/manifestationDto';
 import { ManifestationService } from '../../../service/manifestation.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { SalleDto } from '../../../model/salleDto';
 import { AnimationDto } from '../../../model/animationDto';
 import { AnimationService } from '../../../service/animation.service';
 import { SalleService } from '../../../service/salle.service';
 import { User } from '../../../model/user';
-import { AuthService } from '../../../service/auth.service';
+import { AuthService } from '../../../security/auth.service';
 import { UserService } from '../../../service/user.service';
 import { faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
@@ -29,7 +30,7 @@ export class ManifestationAddComponent implements OnInit {
 
   constructor(private userService: UserService,   private salleService: SalleService,
     private animationService: AnimationService, private manifestationService: ManifestationService,
-    private authService: AuthService, private router: Router) { }
+    private authService: AuthService, private router: Router,private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.userCourant = this.authService.getCurrentUser();
@@ -44,7 +45,7 @@ export class ManifestationAddComponent implements OnInit {
 
     this.animationService.subjectMiseAJour.subscribe(
       res => {
-        this.animationService.getAll().subscribe(
+        this.animationService.getAnimations().subscribe(
           donnees => {
             this.animations = donnees;
           }
@@ -52,7 +53,7 @@ export class ManifestationAddComponent implements OnInit {
       }
     );
 
-    this.animationService.getAll().subscribe(
+    this.animationService.getAnimations().subscribe(
       resultat => {
         this.animations = resultat;
       }
@@ -78,8 +79,14 @@ export class ManifestationAddComponent implements OnInit {
 
 
   add(): void {
+    let nom = this.manifestation.label;
     this.manifestationService.add(this.manifestation).subscribe(
       res => {
+        if (res) {
+          this.toastrService.error('La manifestation '+nom +' existe déjà', 'Ajout impossible')
+        } else {
+          this.toastrService.success('Nouvelle manifestation : ' +nom, 'Ajout Ok')
+        }
         this.manifestationService.subjectMiseAJour.next(0);
         this.goHome();
       }

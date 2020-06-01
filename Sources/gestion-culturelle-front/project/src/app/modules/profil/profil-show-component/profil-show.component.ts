@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subject, Observable } from 'rxjs';
-import { AuthService } from '../../../service/auth.service';
+import { AuthService } from '../../../security/auth.service';
 import { User } from '../../../model/user';
 import { UserService } from '../../../service/user.service';
 import { faHome, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
