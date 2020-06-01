@@ -29,7 +29,6 @@ public class ManifestationDto {
 	private double prixBillet;
 	private int reservations;
 	private int reservationsVip;
-	private int rentabilite;
 
-	private List <UserDto> listVips;
+//	private List <UserDto> listVips;
 }

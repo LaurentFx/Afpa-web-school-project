@@ -26,7 +26,7 @@ public class RoleServiceImpl implements IRoleService {
 
 	@Autowired
 	private ModelMapper modelMapper;
-
+	
 	@Override
 	public List<RoleDto> findAll() {
 		return this.roleRepository.findAll()
@@ -79,6 +79,7 @@ public class RoleServiceImpl implements IRoleService {
 			Role role = roleOp.get();
 			role.setLabel(roleDto.getLabel());
 			this.roleRepository.save(role);
+			System.out.println("role "+role);
 			System.err.println("role mise à jour");
 			return true;
 		}
@@ -93,6 +94,7 @@ public class RoleServiceImpl implements IRoleService {
 		
 		if (listUsers.isEmpty() && this.roleRepository.existsById(id)) {
 		this.roleRepository.deleteById(id);
+		System.err.println("role supprimé");
 			return true;
 		}
 		

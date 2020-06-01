@@ -45,6 +45,7 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 		registry.addMapping("/**").allowedMethods("GET", "PUT", "POST", "DELETE", "PATCH");
 	}
 
+	@SuppressWarnings("deprecation")
 	@Bean
 	public CommandLineRunner init(RoleRepository roleRepository, UserRepository userRepository,
 			AdminUserDefaultConf adminUserConf, TypeSalleRepository typeSalleRepository,
@@ -296,11 +297,11 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			Manifestation manif1 = new Manifestation ();
 			manif1.setId(1);
 			manif1.setLabel("Lille-Valenciennes");
-			manif1.setDateValidation(new Date());
+			manif1.setDateValidation(new Date(120, 05, 01));
 			manif1.setValidateur(resp2);
 			manif1.setAnimation(animat1);
-			manif1.setDateDebut(new Date());
-			manif1.setDateFin(new Date());
+			manif1.setDateDebut(new Date(120,05,07));
+			manif1.setDateFin(new Date(120,05,07));
 			manif1.setCout(8000);
 			manif1.setSalle(foot);
 			manif1.setPrixBillet(10);
@@ -310,11 +311,11 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			Manifestation manif2 = new Manifestation ();
 			manif2.setId(2);
 			manif2.setLabel("U2 - 2020");
-			manif2.setDateValidation(new Date());
+			manif2.setDateValidation(new Date(120, 05, 01));
 			manif2.setValidateur(resp2);
 			manif2.setAnimation(animat2);
-			manif2.setDateDebut(new Date());
-			manif2.setDateFin(new Date());
+			manif2.setDateDebut(new Date(120,05,13));
+			manif2.setDateFin(new Date(120,05,14));
 			manif2.setCout(6000);
 			manif2.setSalle(zenith);
 			manif2.setPrixBillet(8);
@@ -324,11 +325,11 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			Manifestation manif3 = new Manifestation ();
 			manif3.setId(3);
 			manif3.setLabel("Moliere");
-			manif3.setDateValidation(new Date());
+			manif3.setDateValidation(new Date(120, 05, 01));
 			manif3.setValidateur(resp2);
 			manif3.setAnimation(animat3);
-			manif3.setDateDebut(new Date());
-			manif3.setDateFin(new Date());
+			manif3.setDateDebut(new Date(120,05,26));
+			manif3.setDateFin(new Date(120,05,28));
 			manif3.setCout(3000);
 			manif3.setSalle(colisee);
 			manif3.setPrixBillet(6);

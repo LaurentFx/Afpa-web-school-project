@@ -13,12 +13,12 @@ export class User {
     role: RoleDto;
     entreprise: string;
  
-    listManifestations: ManifestationDto;
+ //  listManifestations: ManifestationDto; 
 
     constructor(id?: number, nom?: string, prenom?: string, email?: string,
         adresse?: string, numClient?: string, role?: RoleDto, panier?: PanierDto,
         entreprise?: string, 
-         listManifestations?: ManifestationDto
+    //     listManifestations?: ManifestationDto
 
     ) {
         this.id = id;
@@ -31,7 +31,7 @@ export class User {
         this.role = role;
         this.entreprise = entreprise;
       
-        this.listManifestations = listManifestations;
+      //  this.listManifestations = listManifestations;
 
     }
 

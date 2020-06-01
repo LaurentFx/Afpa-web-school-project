@@ -91,15 +91,14 @@ public class ManifestationServiceImpl implements IManifestationService {
 					manifestationDto.setReservations(manif.getReservations());
 					manifestationDto.setReservationsVip(manif.getReservationsVip());
 
-					manifestationDto.setListVips(new ArrayList<UserDto>());
-					for (User u : manif.getListVips()) {
-						manifestationDto.getListVips()
-						.add(UserDto.builder()
-								.id(u.getId())
-								.nom(u.getNom())
-								.build());
-
-					}
+					//					manifestationDto.setListVips(new ArrayList<UserDto>());
+					//					for (User u : manif.getListVips()) {
+					//						manifestationDto.getListVips()
+					//						.add(UserDto.builder()
+					//								.id(u.getId())
+					//								.nom(u.getNom())
+					//								.build());
+					//	}
 
 					return manifestationDto;
 				})
@@ -183,14 +182,14 @@ public class ManifestationServiceImpl implements IManifestationService {
 			manifestationDto.setReservations(manif.getReservations());
 			manifestationDto.setReservationsVip(manif.getReservationsVip());
 
-			manifestationDto.setListVips(new ArrayList<UserDto>());
-			for (User u : manif.getListVips()) {
-				manifestationDto.getListVips()
-				.add(UserDto.builder()
-						.id(u.getId())
-						.nom(u.getNom())
-						.build());
-			}
+//			manifestationDto.setListVips(new ArrayList<UserDto>());
+//			for (User u : manif.getListVips()) {
+//				manifestationDto.getListVips()
+//				.add(UserDto.builder()
+//						.id(u.getId())
+//						.nom(u.getNom())
+//						.build());
+//			}
 
 		}
 		return manifestationDto;
@@ -198,6 +197,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 
 	@Override
 	public boolean add(ManifestationDto manifestationDto) {
+		System.err.println("add manifestationDto "+manifestationDto);
 		Optional <Manifestation> manifestationOp = this.manifestationRepository.findManifestationByLabel(manifestationDto.getLabel());
 		if (!manifestationOp.isPresent()) {
 
@@ -232,6 +232,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 			manifestation.setPrixBillet(manifestationDto.getPrixBillet());
 
 			this.manifestationRepository.save(manifestation);
+			System.err.println("Manifestation ajoutée ");
 			return false;
 		}
 		return true;
@@ -239,7 +240,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 
 	@Override
 	public boolean update(ManifestationDto manifestationDto,int id) {
-
+		System.err.println("add manifestationDto "+manifestationDto);
 		Optional<Manifestation> manifOp = this.manifestationRepository.findById(id);
 
 		if (manifOp.isPresent()) {
@@ -276,7 +277,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 			manifestation.setPrixBillet(manifestationDto.getPrixBillet());
 
 			this.manifestationRepository.save(manifestation);
-
+			System.err.println("Manifestation modifiée ");
 			return true;
 		}
 		return false;
@@ -315,6 +316,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 
 		if (listInvitations.isEmpty() && listReservations.isEmpty() && this.manifestationRepository.existsById(id)) {
 			this.manifestationRepository.deleteById(id);
+			System.err.println("Manifestation supprimée ");
 			return true;
 		}
 		return false;
