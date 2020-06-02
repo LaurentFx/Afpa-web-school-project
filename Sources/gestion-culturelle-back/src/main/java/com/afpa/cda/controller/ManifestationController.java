@@ -38,7 +38,7 @@ public class ManifestationController {
 	
 	//@PreAuthorize("hasAnyAuthority('RESP','ADMIN')")
 	@PostMapping(path = "/manifestation")
-	public boolean add(@RequestBody ManifestationDto manifestationDto) {
+	public int add(@RequestBody ManifestationDto manifestationDto) {
 		return this.manifesationService.add(manifestationDto);
 	}
 

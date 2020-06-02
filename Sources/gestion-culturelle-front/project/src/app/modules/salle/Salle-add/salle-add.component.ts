@@ -51,7 +51,8 @@ export class SalleAddComponent implements OnInit {
 
     this.salleService.add(this.salle).subscribe(
       res => {
-        if (res) {
+        
+        if (res===0) {
           this.toastrService.error('La salle '+nom +' existe déjà', 'Ajout impossible')
         } else {
           this.toastrService.success('Nouvelle salle : ' +nom, 'Ajout Ok')

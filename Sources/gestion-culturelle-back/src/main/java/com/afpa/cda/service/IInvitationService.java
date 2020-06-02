@@ -9,8 +9,7 @@ public interface IInvitationService {
 
 	List<InvitationDto> findAll();
 
-	//@Transactional
-	boolean add(InvitationDto invitationDto);
+	int add(InvitationDto invitationDto);
 
 	InvitationDto findById(int id);
 

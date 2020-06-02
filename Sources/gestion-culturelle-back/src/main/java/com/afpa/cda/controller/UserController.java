@@ -48,14 +48,14 @@ public class UserController {
 	}
 	
 	@PostMapping(path = "/users")
-	public boolean add(@RequestBody UserDto user, HttpServletResponse resp) throws IOException {
+	public int add(@RequestBody UserDto user, HttpServletResponse resp) throws IOException {
 		if(user.getRole() == null) {
 			resp.sendError(HttpStatus.BAD_REQUEST.value(),"le role est obligatoire à la création de la personne");
-			return true;
+			return 0;
 		} else if(user.getNom().equalsIgnoreCase(adminUserDefaultConf.getNom()) 
 				|| user.getPrenom().equalsIgnoreCase(adminUserDefaultConf.getPrenom())) {
-			resp.sendError(HttpStatus.NOT_ACCEPTABLE.value(),"prenom/nom 'admin' sont déjà pris");
-			return true;
+			resp.sendError(HttpStatus.NOT_ACCEPTABLE.value(),"prenom/nom 'resp1' sont déjà pris");
+			return 0;
 		} else {
 			return this.userService.add(user);
 

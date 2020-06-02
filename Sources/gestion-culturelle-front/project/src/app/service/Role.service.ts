@@ -20,7 +20,7 @@ export class RoleService {
     return this.http.get(this.monUrl);
   }
   
-  add(role: RoleDto): Observable<object> {
+  add(role: RoleDto): Observable<any> {
     return this.http.post(this.monUrl,role);
   }
   

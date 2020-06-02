@@ -24,7 +24,7 @@ _
     add(): void {
       this.roleService.add(this.role).subscribe(
         res => {
-          if (res) {
+          if (res===0) {
             this.toastrService.error('Le role '+this.role.label +' existe déjà', 'Ajout impossible')
           } else {
             this.toastrService.success('Nouveau role : ' +this.role.label, 'Ajout Ok')

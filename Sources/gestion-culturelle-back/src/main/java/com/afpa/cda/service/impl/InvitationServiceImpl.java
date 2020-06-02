@@ -153,7 +153,7 @@ public class InvitationServiceImpl implements IInvitationService {
 
 		List<InvitationDto> listInvitations= findInvitationByUserId(id);
 		List<InvitationDto> listNewInvitations= new ArrayList<InvitationDto>();
-		
+
 		for (InvitationDto invitationDto : listInvitations) {
 			if (invitationDto.getReponse().equalsIgnoreCase("NC")) {
 				listNewInvitations.add(invitationDto);
@@ -203,8 +203,8 @@ public class InvitationServiceImpl implements IInvitationService {
 
 
 	@Override
-	public boolean add(InvitationDto invitationDto) {
-
+	public int add(InvitationDto invitationDto) {
+		int id=0;
 		Optional <Invitation> invitationOp = this.invitationRepository
 				.findInvitationByUserAndManifestation(invitationDto.getVip().getId(), invitationDto.getManifestation().getId());
 		if (!invitationOp.isPresent()) {
@@ -227,17 +227,17 @@ public class InvitationServiceImpl implements IInvitationService {
 					invitation.setReponse("NC");
 					invitation.setDateInvitation(new Date());
 
-					this.invitationRepository.save(invitation);
+					id=this.invitationRepository.save(invitation).getId();
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					return false;
+					return id;
 				}
 			}
 		}
-		return true;
+		return id;
 	}
 
 

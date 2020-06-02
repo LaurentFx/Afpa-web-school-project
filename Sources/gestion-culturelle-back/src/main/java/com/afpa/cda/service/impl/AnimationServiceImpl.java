@@ -33,7 +33,7 @@ public class AnimationServiceImpl implements IAnimationService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Override
 	public List<AnimationDto> findAll() {
 
@@ -42,7 +42,7 @@ public class AnimationServiceImpl implements IAnimationService {
 				.map(a-> this.modelMapper.map(a,AnimationDto.class))
 				.collect(Collectors.toList());
 	}  
-	
+
 	@Override
 	public AnimationDto findById(int id) {
 
@@ -54,7 +54,7 @@ public class AnimationServiceImpl implements IAnimationService {
 		}
 		return animationDto;
 	}
- 
+
 	@Override
 	public List<AnimationDto> findAnimationsToPurpose() {
 		try {
@@ -62,11 +62,11 @@ public class AnimationServiceImpl implements IAnimationService {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
+
 		List <AnimationDto> listAnimations = findAll();
 		List <ManifestationDto> listManifestations = this.manifestationService.findAll();
 		List <AnimationDto> listAnimationsToPurpose = new ArrayList<AnimationDto> (listAnimations);
-		
+
 		for (AnimationDto  animationDto : listAnimations) {
 			for (ManifestationDto manifestationDto : listManifestations) {
 				if (animationDto.getId()==manifestationDto.getAnimation().getId()) {
@@ -78,27 +78,28 @@ public class AnimationServiceImpl implements IAnimationService {
 	}
 
 	@Override
-	public boolean add(AnimationDto animationDto) {
-			Optional <Animation> animationOp = this.animationRepository.findAnimationByLabel(animationDto.getLabel());
+	public int add(AnimationDto animationDto) {
+		int id=0;
+		Optional <Animation> animationOp = this.animationRepository.findAnimationByLabel(animationDto.getLabel());
 
 		if (!animationOp.isPresent()) {
 			Animation animation = new Animation();
-			
+
 			animation.setLabel(animationDto.getLabel());
 			animation.setType(animationDto.getType());
 			animation.setPrix(animationDto.getPrix());
 			animation.setNbreSpectateursPrevus(animationDto.getNbreSpectateursPrevus());
-			
+
 			Optional <User> animateurOp = this.userRepository.findById(animationDto.getAnimateur().getId());
 			if (animateurOp.isPresent()) {
 				User animateur = animateurOp.get();
 				animation.setAnimateur(animateur);
 			}
-			this.animationRepository.save(animation);
-			return false;
+			id=this.animationRepository.save(animation).getId();
+			return id;
 		}
 
-		return true;
+		return id;
 	}
 
 
@@ -111,13 +112,13 @@ public class AnimationServiceImpl implements IAnimationService {
 			animation.setType(animationDto.getType());
 			animation.setPrix(animationDto.getPrix());
 			animation.setNbreSpectateursPrevus(animationDto.getNbreSpectateursPrevus());
-			
+
 			Optional <User> animateurOp = this.userRepository.findById(animationDto.getAnimateur().getId());
 			if (animateurOp.isPresent()) {
 				User animateur = animateurOp.get();
 				animation.setAnimateur(animateur);
 			}
-			
+
 			this.animationRepository.save(animation);
 
 			List<Manifestation> listManifestations = this.manifestationRepository.findManifestationByAnimation(id);

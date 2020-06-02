@@ -36,17 +36,17 @@ public class SalleController {
 	}
 	
 	@PostMapping(path = "/salle")
-	public boolean add(@RequestBody SalleDto sal) {
+	public int add(@RequestBody SalleDto sal) {
 		return this.salleService.add(sal);
 	}
 	
 	@PutMapping(path = "/salle/{id}")
 	public boolean update(@RequestBody SalleDto sal,@PathVariable int id ) {
-		return this.salleService.updateSalle(sal, id);
+		return this.salleService.update(sal, id);
 	}
 	
 	@DeleteMapping(path = "/salle/{id}")
 	public boolean delete(@PathVariable int id) {
-		return this.salleService.deleteSalle(id);
+		return this.salleService.delete(id);
 	}
 }

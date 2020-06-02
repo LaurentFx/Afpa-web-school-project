@@ -11,7 +11,7 @@ public interface IPanierService {
 	
 	List<PanierDto> findAll();
 
-	PanierDto add(PanierDto panier);
+	//PanierDto add(PanierDto panier);
 
 	boolean updatePanier(PanierDto panier, int id);
 

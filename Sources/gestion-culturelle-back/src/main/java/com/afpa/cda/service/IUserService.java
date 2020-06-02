@@ -9,7 +9,7 @@ public interface IUserService {
 
 	List<UserDto> findAll();
 
-	boolean add(UserDto user);
+	int add(UserDto user);
 
 	Optional<UserDto> findByCurrentUser(Integer userId);
 

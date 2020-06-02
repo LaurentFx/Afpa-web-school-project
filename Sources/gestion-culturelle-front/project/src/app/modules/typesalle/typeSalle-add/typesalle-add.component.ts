@@ -24,7 +24,7 @@ export class TypeSalleAddComponent implements OnInit {
     let nom = this.typeSalle.label;
     this.typeSalleService.add(this.typeSalle).subscribe(
       res => {
-        if (res) {
+        if (res===0) {
           this.toastrService.error('Le type de salle '+nom +' existe déjà', 'Ajout impossible')
         } else {
           this.toastrService.success('Nouveau type de salle : ' +nom, 'Ajout Ok')

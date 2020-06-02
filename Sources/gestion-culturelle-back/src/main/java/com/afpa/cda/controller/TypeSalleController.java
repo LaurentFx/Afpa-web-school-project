@@ -32,19 +32,19 @@ public class TypeSalleController {
 	
 	//@PreAuthorize("hasAnyAuthority('RESP','ADMIN')")
 	@PostMapping(path = "/typesalle")
-	public boolean add(@RequestBody TypeSalleDto typeSalleDto) {
+	public int add(@RequestBody TypeSalleDto typeSalleDto) {
 		return this.typeSalleService.add(typeSalleDto);
 	}
 	
 	@PutMapping(path = "/typesalle/{id}")
 	public boolean update(@RequestBody TypeSalleDto typ,@PathVariable int id) {
-		return this.typeSalleService.updateTypeSalle(typ, id);
+		return this.typeSalleService.update(typ, id);
 		
 	}
 	
 	@DeleteMapping(path = "/typesalle/{id}")
 	public boolean delete(@PathVariable int id) {
-		return this.typeSalleService.deleteTypeSalle(id);
+		return this.typeSalleService.delete(id);
 	}
 	
 	

@@ -41,7 +41,7 @@ public class ReservationController {
 	}
 
 	@PostMapping(path="/reservation")
-	public boolean add(@RequestBody ReservationDto reservationDto) {
+	public int add(@RequestBody ReservationDto reservationDto) {
 		return this.reservationService.add(reservationDto);
 	}
 

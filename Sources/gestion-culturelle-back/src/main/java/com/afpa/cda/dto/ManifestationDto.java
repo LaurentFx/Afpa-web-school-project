@@ -1,7 +1,6 @@
 package com.afpa.cda.dto;
 
 import java.util.Date;
-import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,5 +29,4 @@ public class ManifestationDto {
 	private int reservations;
 	private int reservationsVip;
 
-//	private List <UserDto> listVips;
 }

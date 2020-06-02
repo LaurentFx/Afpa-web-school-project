@@ -34,7 +34,7 @@ export class ReservationService {
     return this.http.get(`${this.monUrl}/user/${id}`);
   } 
   
-  add(reservationDto: ReservationDto): Observable<object> {
+  add(reservationDto: ReservationDto): Observable<any> {
     return this.http.post(this.monUrl,reservationDto);
   }
 

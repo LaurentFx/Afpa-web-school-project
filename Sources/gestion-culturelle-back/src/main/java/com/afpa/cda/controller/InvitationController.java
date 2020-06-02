@@ -46,7 +46,7 @@ public class InvitationController {
 	}
 		
 	@PostMapping(path="/invitation")
-	public boolean add(@RequestBody InvitationDto invitationDto) {
+	public int add(@RequestBody InvitationDto invitationDto) {
 		return this.invitationService.add(invitationDto);
 	}
 

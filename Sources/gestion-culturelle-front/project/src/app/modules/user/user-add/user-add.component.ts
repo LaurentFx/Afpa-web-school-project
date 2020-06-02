@@ -39,7 +39,7 @@ export class UserAddComponent implements OnInit {
     let nom = this.user.nom;
     this.userService.add(this.user).subscribe(
         res => {
-          if (res) {
+          if (res===0) {
             this.toastrService.error('Le user '+nom +' existe déjà', 'Ajout impossible')
           } else {
             this.toastrService.success('Nouveau user : ' +nom, 'Ajout Ok')

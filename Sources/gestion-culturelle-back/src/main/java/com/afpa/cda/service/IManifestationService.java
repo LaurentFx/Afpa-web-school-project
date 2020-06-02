@@ -14,7 +14,7 @@ public interface IManifestationService {
 	
 	public boolean findAvailability (ManifestationDto manifestationDto);
 
-	boolean add(ManifestationDto manifestationDto);
+	int add(ManifestationDto manifestationDto);
 
 	boolean update(ManifestationDto manifestationDto, int id);
 

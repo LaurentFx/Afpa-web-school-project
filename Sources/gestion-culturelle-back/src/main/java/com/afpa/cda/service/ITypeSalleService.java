@@ -9,11 +9,11 @@ public interface ITypeSalleService {
 
 	List<TypeSalleDto> findAll();
 
-	boolean add(TypeSalleDto typ);
+	int add(TypeSalleDto typ);
 
-	boolean updateTypeSalle(TypeSalleDto typ, int id);
+	boolean update(TypeSalleDto typ, int id);
 
-	boolean deleteTypeSalle(int id);
+	boolean delete(int id);
 
 	TypeSalleDto findById(int id);
 	

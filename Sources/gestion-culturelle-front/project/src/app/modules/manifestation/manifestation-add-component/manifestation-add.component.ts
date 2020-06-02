@@ -82,7 +82,7 @@ export class ManifestationAddComponent implements OnInit {
     let nom = this.manifestation.label;
     this.manifestationService.add(this.manifestation).subscribe(
       res => {
-        if (res) {
+        if (res===0) {
           this.toastrService.error('La manifestation '+nom +' existe déjà', 'Ajout impossible')
         } else {
           this.toastrService.success('Nouvelle manifestation : ' +nom, 'Ajout Ok')

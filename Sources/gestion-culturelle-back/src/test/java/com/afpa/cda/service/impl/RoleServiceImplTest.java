@@ -24,7 +24,7 @@ class RoleServiceImplTest {
 	@Autowired
 	IRoleService roleService;
 
-	RoleDto roleDtoTest = new RoleDto (10,"ROLETEST");
+	static RoleDto roleDtoTest = new RoleDto (10,"ROLETEST");
 
 
 	@BeforeAll
@@ -64,10 +64,11 @@ class RoleServiceImplTest {
 	void testAdd() {
 		int size1 =  this.roleService.findAll().size();
 
-		boolean result = true;
-		assertTrue(result);
-		result = this.roleService.add(roleDtoTest);
-		assertFalse (result);
+		int id= 0;
+		assertEquals(0,id);
+		id=this.roleService.add(roleDtoTest);
+		roleDtoTest.setId(id);
+		assertNotEquals(0,id);
 
 		int size2 = this.roleService.findAll().size();
 		assertTrue(size2>size1);
@@ -85,7 +86,7 @@ class RoleServiceImplTest {
 		roleDto = this.roleService.findById(roleDtoTest.getId());
 
 		assertNotNull(roleDto);
-	//	assertEquals(roleDto.getId(), roleDtoTest.getId());
+		assertEquals(roleDto.getId(), roleDtoTest.getId());
 		assertEquals(roleDto.getLabel(),roleDtoTest.getLabel());
 
 		System.out.println("Test this.roleService.findById(roleDtoTest.getId()) => "+roleDto);
@@ -95,7 +96,6 @@ class RoleServiceImplTest {
 	@Test
 	@Order(4)  
 	void testUpdate() {
-		roleDtoTest = this.roleService.findById(roleDtoTest.getId());
 
 		RoleDto roleDto = new RoleDto (roleDtoTest.getId(),"ROLEUPDATED");
 

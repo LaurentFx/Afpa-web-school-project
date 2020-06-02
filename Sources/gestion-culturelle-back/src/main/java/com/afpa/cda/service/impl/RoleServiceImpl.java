@@ -56,20 +56,29 @@ public class RoleServiceImpl implements IRoleService {
 
 
 	@Override
-	public boolean add(RoleDto roleDto) {
-	List <Role> listRoles = this.roleRepository.findAll();
-	boolean roleExistant = false;
-	for (Role role : listRoles) {
-		if (role.getLabel().equalsIgnoreCase(roleDto.getLabel())) {
-			roleExistant=true;
+	public int add(RoleDto roleDto) {
+		int id=0;
+		
+		Optional<Role> roleOp = this.roleRepository.findRoleByLabel(roleDto.getLabel());
+		if (!roleOp.isPresent()) {
+			id=this.roleRepository.save(this.modelMapper.map(roleDto,Role.class)).getId();
+			return id;
 		}
-	}
-		if (!roleExistant) {
-			this.roleRepository.save(this.modelMapper.map(roleDto,Role.class));
-			System.err.println("role ajouté");
-			return roleExistant;
-		}
-		return roleExistant;
+		
+//	List <Role> listRoles = this.roleRepository.findAll();
+//	boolean roleExistant = false;
+//	for (Role role : listRoles) {
+//		if (role.getLabel().equalsIgnoreCase(roleDto.getLabel())) {
+//			roleExistant=true;
+//		}
+//	}
+//		if (!roleExistant) {
+//			this.roleRepository.save(this.modelMapper.map(roleDto,Role.class));
+//			System.err.println("role ajouté");
+//			return roleExistant;
+//		}
+		
+		return id;
 	}
 
 	@Override

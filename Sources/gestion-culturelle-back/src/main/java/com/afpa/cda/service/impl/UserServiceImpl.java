@@ -173,14 +173,15 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public boolean add(UserDto userDto) {
+	public int add(UserDto userDto) {
+		int id=0;
 		Optional <User> userOp = this.userRepository.findUserByNomAndPrenom(userDto.getNom(), userDto.getPrenom());
 		if (!userOp.isPresent()) {
-			this.userRepository.save(this.modelMapper.map(userDto, User.class));
-			return false;
+			id=this.userRepository.save(this.modelMapper.map(userDto, User.class)).getId();
+			return id;
 		}
 
-		return true;
+		return id;
 	}
 
 	@Override
@@ -268,7 +269,6 @@ public class UserServiceImpl implements IUserService {
 			user.setEmail(userDto.getEmail());
 			user.setAdresse(userDto.getAdresse());
 			user.setEntreprise(userDto.getEntreprise());
-
 			this.userRepository.save(user);
 
 			return true;
@@ -304,7 +304,6 @@ public class UserServiceImpl implements IUserService {
 		}
 		if (this.userRepository.existsById(id)) {
 			this.userRepository.deleteById(id);
-			System.err.println("user supprimé");
 			return true;
 		}
 		return false;

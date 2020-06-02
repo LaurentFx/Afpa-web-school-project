@@ -22,7 +22,7 @@ public class TypeSalleServiceImpl implements ITypeSalleService {
 	private SalleRepository salleRepository;
 	@Autowired
 	private ModelMapper modelMapper;
-	
+
 	@Override
 	public List<TypeSalleDto> findAll() {
 		return this.typeSalleRepository.findAll()
@@ -43,18 +43,18 @@ public class TypeSalleServiceImpl implements ITypeSalleService {
 	}
 
 	@Override
-	public boolean add(TypeSalleDto typeSalleDto) {
-
+	public int add(TypeSalleDto typeSalleDto) {
+		int id=0;
 		Optional <TypeSalle> typeSalleOp = this.typeSalleRepository.findTypeSalleByLabel(typeSalleDto.getLabel());
 		if (!typeSalleOp.isPresent()) {
-			this.typeSalleRepository.save(this.modelMapper.map(typeSalleDto,TypeSalle.class));
-			return false;
+			id=this.typeSalleRepository.save(this.modelMapper.map(typeSalleDto,TypeSalle.class)).getId();
+			return id;
 		}
-		return true;
+		return id;
 	}
 
 	@Override
-	public boolean updateTypeSalle (TypeSalleDto typ, int id) {
+	public boolean update (TypeSalleDto typ, int id) {
 		Optional <TypeSalle> typeSalleOp = this.typeSalleRepository.findById(id);
 		if(typeSalleOp.isPresent()) {
 			TypeSalle typeSalle = typeSalleOp.get();
@@ -67,9 +67,9 @@ public class TypeSalleServiceImpl implements ITypeSalleService {
 	}
 
 	@Override
-	public boolean deleteTypeSalle (int id) {
+	public boolean delete(int id) {
 		List <Salle> listSalles = salleRepository.findSalleByTypeSalle(id);
-		
+
 		if (listSalles.isEmpty() && this.typeSalleRepository.existsById(id)) {
 			this.typeSalleRepository.deleteById(id);
 			return true;

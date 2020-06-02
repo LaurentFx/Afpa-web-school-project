@@ -21,7 +21,7 @@ export class AnimationService {
     return this.http.get(this.monUrl1);
   }
   
-  add(animation: AnimationDto): Observable<object> {
+  add(animation: AnimationDto): Observable<any> {
     return this.http.post(this.monUrl2,animation);
   }
   
