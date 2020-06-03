@@ -62,14 +62,5 @@ public class Manifestation {
 	private int reservations;
 	private int reservationsVip;
 
-//	@ManyToMany
-//	@JoinTable(name = "t_manifestation_vip",
-//	joinColumns = { @JoinColumn(name = "id_manifestation") },
-//	inverseJoinColumns = { @JoinColumn(name = "id_vip") })
-//	List<User> listVips;
-
-
-
-
 
 }

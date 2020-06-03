@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { faInfoCircle, faEdit, faTrashAlt, faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { RoleDto } from '../../../model/roleDto';
+import { AuthService } from '../../../security/auth.service';
 
 @Component({
   selector: 'app-user-list',
@@ -18,12 +19,16 @@ export class UserListComponent implements OnInit {
   faTrashAlt = faTrashAlt;
   faHome = faHome;
   faPlusSquare = faPlusSquare;
+  isResp:boolean;
   user: User;
   users: User[];
 
-  constructor(private userService: UserService, private router: Router, private toastrService: ToastrService) { }
+  constructor(private userService: UserService, private router: Router,
+      private authService: AuthService, private toastrService: ToastrService) { }
 
   ngOnInit() {
+    const userCourant = this.authService.getCurrentUser();
+      this.isResp = userCourant.role.label === 'RESP';
     this.users = [];
 
     this.userService.getAll().subscribe(

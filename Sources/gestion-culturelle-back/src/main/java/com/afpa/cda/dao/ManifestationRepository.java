@@ -23,6 +23,8 @@ public interface ManifestationRepository extends CrudRepository<Manifestation, I
 			  nativeQuery = true)
 	public List<Manifestation> findManifestationByAnimation(Integer id);
 	
+	@Query(value = "SELECT * FROM t_manifestation m WHERE m.label= :label", 
+			  nativeQuery = true)
 	Optional<Manifestation> findManifestationByLabel(String label);
 	
 }
