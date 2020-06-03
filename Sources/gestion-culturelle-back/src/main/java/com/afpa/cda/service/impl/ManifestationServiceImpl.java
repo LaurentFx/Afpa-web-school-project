@@ -104,18 +104,19 @@ public class ManifestationServiceImpl implements IManifestationService {
 		long jourEnMs = 86400000;
 
 		if (listManifestations.size()>1) {
+			System.out.println("listManifestations "+listManifestations);
 			for (Manifestation oldManifestation : listManifestations) {
 				if (newManifestationDto.getId()!=oldManifestation.getId()) {
 					if (newManifestationDto.getSalle().getId()!=0 && newManifestationDto.getSalle().getId()==oldManifestation.getSalle().getId()) {
-						if ((((newManifestationDto.getDateDebut().getTime()/jourEnMs-1)>=oldManifestation.getDateDebut().getTime()/jourEnMs &&
-								(newManifestationDto.getDateDebut().getTime()/jourEnMs-1)<=oldManifestation.getDateFin().getTime()/jourEnMs)
-								|| ((newManifestationDto.getDateFin().getTime()/jourEnMs-1)>=oldManifestation.getDateDebut().getTime()/jourEnMs &&
-								(newManifestationDto.getDateFin().getTime()/jourEnMs-1)<=oldManifestation.getDateFin().getTime()/jourEnMs)) ||
+						if ((((newManifestationDto.getDateDebut().getTime()/jourEnMs)>=oldManifestation.getDateDebut().getTime()/jourEnMs &&
+								(newManifestationDto.getDateDebut().getTime()/jourEnMs)<=oldManifestation.getDateFin().getTime()/jourEnMs)
+								|| ((newManifestationDto.getDateFin().getTime()/jourEnMs)>=oldManifestation.getDateDebut().getTime()/jourEnMs &&
+								(newManifestationDto.getDateFin().getTime()/jourEnMs)<=oldManifestation.getDateFin().getTime()/jourEnMs)) ||
 
-								((oldManifestation.getDateDebut().getTime()/jourEnMs-1)>=newManifestationDto.getDateDebut().getTime()/jourEnMs &&
-								(oldManifestation.getDateDebut().getTime()/jourEnMs-1)<=newManifestationDto.getDateFin().getTime()/jourEnMs)
-								|| ((oldManifestation.getDateFin().getTime()/jourEnMs-1)>=newManifestationDto.getDateDebut().getTime()/jourEnMs &&
-								(oldManifestation.getDateFin().getTime()/jourEnMs-1)<=newManifestationDto.getDateFin().getTime()/jourEnMs))
+								((oldManifestation.getDateDebut().getTime()/jourEnMs)>=newManifestationDto.getDateDebut().getTime()/jourEnMs &&
+								(oldManifestation.getDateDebut().getTime()/jourEnMs)<=newManifestationDto.getDateFin().getTime()/jourEnMs)
+								|| ((oldManifestation.getDateFin().getTime()/jourEnMs)>=newManifestationDto.getDateDebut().getTime()/jourEnMs &&
+								(oldManifestation.getDateFin().getTime()/jourEnMs)<=newManifestationDto.getDateFin().getTime()/jourEnMs))
 						{
 							return false;
 						}

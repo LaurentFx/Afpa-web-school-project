@@ -12,9 +12,9 @@ import lombok.ToString;
 @Builder
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class ManifestationDto {
 	private int id;
 	private String label;
@@ -28,5 +28,5 @@ public class ManifestationDto {
 	private double prixBillet;
 	private int reservations;
 	private int reservationsVip;
-
+	
 }
