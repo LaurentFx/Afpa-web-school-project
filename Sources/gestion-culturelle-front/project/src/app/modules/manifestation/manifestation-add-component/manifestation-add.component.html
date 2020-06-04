@@ -28,21 +28,7 @@
                             <input type="date" name="dateValidation" class="form-control" id="dateValidation"
                                 placeholder="Entrer la date de validation" [(ngModel)]="manifestation.dateValidation">
                         </div>
-
-                        <!--  
-                        <label for="validateur">Nom du validateur :</label>
-                        <select name="validateur" id="validateur" [(ngModel)]="manifestation.validateur.id"
-                            class="form-control">
-                            <option *ngFor="let validateur of users" [value]="validateur.id">{{validateur.nom}}
-                            </option>
-                        </select>
-                    <div class="form-group">
-                            <label for="validateur">Nom du validateur :</label>
-                            <input type="text" name="validateur" class="form-control" id="validateur"
-                                [(ngModel)]="manifestation.validateur.id" [value]="userCourant.id" readonly>
-                        </div>
--->
-
+  
                         <label for="validateur">Nom du validateur :</label>
                         <input type="text" name="validateur" class="form-control" id="validateur"
                             placeholder="{{manifestation.validateur.nom}}" readonly>

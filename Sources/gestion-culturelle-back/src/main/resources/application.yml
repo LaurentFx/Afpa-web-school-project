@@ -30,6 +30,7 @@ cda:
 
 logging:
   level:
+    root: 
     org:
       springframework:
         web: ERROR

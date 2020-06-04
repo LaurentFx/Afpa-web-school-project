@@ -1,6 +1,5 @@
 package com.afpa.cda.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -72,6 +71,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 					if (manif.getAnimation()!=null) {
 						animationDto.setId(manif.getAnimation().getId());
 						animationDto.setLabel(manif.getAnimation().getLabel());
+						animationDto.setPrix(manif.getAnimation().getPrix());
 						animationDto.setNbreSpectateursPrevus(manif.getAnimation().getNbreSpectateursPrevus());
 					}
 					manifestationDto.setAnimation(animationDto);
@@ -84,22 +84,14 @@ public class ManifestationServiceImpl implements IManifestationService {
 					if (manif.getSalle()!=null) {
 						salleDto.setId(manif.getSalle().getId());
 						salleDto.setLabel(manif.getSalle().getLabel());
+						salleDto.setFraisJournalier(manif.getSalle().getFraisjournalier());
+						salleDto.setPlacesVip(manif.getSalle().getPlacesVip());
 					}
 					manifestationDto.setSalle(salleDto);
 
 					manifestationDto.setPrixBillet(manif.getPrixBillet());
 					manifestationDto.setReservations(manif.getReservations());
 					manifestationDto.setReservationsVip(manif.getReservationsVip());
-
-					manifestationDto.setListVips(new ArrayList<UserDto>());
-					for (User u : manif.getListVips()) {
-						manifestationDto.getListVips()
-						.add(UserDto.builder()
-								.id(u.getId())
-								.nom(u.getNom())
-								.build());
-
-					}
 
 					return manifestationDto;
 				})
@@ -112,18 +104,19 @@ public class ManifestationServiceImpl implements IManifestationService {
 		long jourEnMs = 86400000;
 
 		if (listManifestations.size()>1) {
+			System.out.println("listManifestations "+listManifestations);
 			for (Manifestation oldManifestation : listManifestations) {
 				if (newManifestationDto.getId()!=oldManifestation.getId()) {
 					if (newManifestationDto.getSalle().getId()!=0 && newManifestationDto.getSalle().getId()==oldManifestation.getSalle().getId()) {
-						if ((((newManifestationDto.getDateDebut().getTime()/jourEnMs-1)>=oldManifestation.getDateDebut().getTime()/jourEnMs &&
-								(newManifestationDto.getDateDebut().getTime()/jourEnMs-1)<=oldManifestation.getDateFin().getTime()/jourEnMs)
-								|| ((newManifestationDto.getDateFin().getTime()/jourEnMs-1)>=oldManifestation.getDateDebut().getTime()/jourEnMs &&
-								(newManifestationDto.getDateFin().getTime()/jourEnMs-1)<=oldManifestation.getDateFin().getTime()/jourEnMs)) ||
+						if ((((newManifestationDto.getDateDebut().getTime()/jourEnMs)>=oldManifestation.getDateDebut().getTime()/jourEnMs &&
+								(newManifestationDto.getDateDebut().getTime()/jourEnMs)<=oldManifestation.getDateFin().getTime()/jourEnMs)
+								|| ((newManifestationDto.getDateFin().getTime()/jourEnMs)>=oldManifestation.getDateDebut().getTime()/jourEnMs &&
+								(newManifestationDto.getDateFin().getTime()/jourEnMs)<=oldManifestation.getDateFin().getTime()/jourEnMs)) ||
 
-								((oldManifestation.getDateDebut().getTime()/jourEnMs-1)>=newManifestationDto.getDateDebut().getTime()/jourEnMs &&
-								(oldManifestation.getDateDebut().getTime()/jourEnMs-1)<=newManifestationDto.getDateFin().getTime()/jourEnMs)
-								|| ((oldManifestation.getDateFin().getTime()/jourEnMs-1)>=newManifestationDto.getDateDebut().getTime()/jourEnMs &&
-								(oldManifestation.getDateFin().getTime()/jourEnMs-1)<=newManifestationDto.getDateFin().getTime()/jourEnMs))
+								((oldManifestation.getDateDebut().getTime()/jourEnMs)>=newManifestationDto.getDateDebut().getTime()/jourEnMs &&
+								(oldManifestation.getDateDebut().getTime()/jourEnMs)<=newManifestationDto.getDateFin().getTime()/jourEnMs)
+								|| ((oldManifestation.getDateFin().getTime()/jourEnMs)>=newManifestationDto.getDateDebut().getTime()/jourEnMs &&
+								(oldManifestation.getDateFin().getTime()/jourEnMs)<=newManifestationDto.getDateFin().getTime()/jourEnMs))
 						{
 							return false;
 						}
@@ -143,12 +136,11 @@ public class ManifestationServiceImpl implements IManifestationService {
 			e.printStackTrace();
 		}
 		Optional<Manifestation> manifOp = this.manifestationRepository.findById(id);
-
 		ManifestationDto manifestationDto = new ManifestationDto();
 
 		if (manifOp.isPresent()) {
 			Manifestation manif = manifOp.get();
-
+			
 			manifestationDto.setId(manif.getId());
 			manifestationDto.setLabel(manif.getLabel());
 			manifestationDto.setDateValidation(manif.getDateValidation());
@@ -164,6 +156,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 			if (manif.getAnimation()!=null) {
 				animationDto.setId(manif.getAnimation().getId());
 				animationDto.setLabel(manif.getAnimation().getLabel());
+				animationDto.setPrix(manif.getAnimation().getPrix());
 				animationDto.setNbreSpectateursPrevus(manif.getAnimation().getNbreSpectateursPrevus());
 			}
 			manifestationDto.setAnimation(animationDto);
@@ -176,31 +169,25 @@ public class ManifestationServiceImpl implements IManifestationService {
 			if (manif.getSalle()!=null) {
 				salleDto.setId(manif.getSalle().getId());
 				salleDto.setLabel(manif.getSalle().getLabel());
+				salleDto.setFraisJournalier(manif.getSalle().getFraisjournalier());
+				salleDto.setPlacesVip(manif.getSalle().getPlacesVip());
 			}
 			manifestationDto.setSalle(salleDto);
 
 			manifestationDto.setPrixBillet(manif.getPrixBillet());
+			
 			manifestationDto.setReservations(manif.getReservations());
 			manifestationDto.setReservationsVip(manif.getReservationsVip());
-
-			manifestationDto.setListVips(new ArrayList<UserDto>());
-			for (User u : manif.getListVips()) {
-				manifestationDto.getListVips()
-				.add(UserDto.builder()
-						.id(u.getId())
-						.nom(u.getNom())
-						.build());
-			}
 
 		}
 		return manifestationDto;
 	}
 
 	@Override
-	public boolean add(ManifestationDto manifestationDto) {
+	public int add(ManifestationDto manifestationDto) {
+		int id=0;
 		Optional <Manifestation> manifestationOp = this.manifestationRepository.findManifestationByLabel(manifestationDto.getLabel());
 		if (!manifestationOp.isPresent()) {
-
 			Manifestation manifestation = new Manifestation ();
 			manifestation.setLabel(manifestationDto.getLabel());
 			manifestation.setDateValidation(manifestationDto.getDateValidation());
@@ -230,16 +217,15 @@ public class ManifestationServiceImpl implements IManifestationService {
 			manifestation.setReservationsVip(manifestationDto.getReservationsVip());
 			manifestation.setCout(manifestationDto.getCout());
 			manifestation.setPrixBillet(manifestationDto.getPrixBillet());
-
-			this.manifestationRepository.save(manifestation);
-			return false;
+			id=this.manifestationRepository.save(manifestation).getId();
+			System.err.println("Manifestation ajoutée ");
+			return id;
 		}
-		return true;
+		return id;
 	}
 
 	@Override
 	public boolean update(ManifestationDto manifestationDto,int id) {
-
 		Optional<Manifestation> manifOp = this.manifestationRepository.findById(id);
 
 		if (manifOp.isPresent()) {
@@ -268,7 +254,6 @@ public class ManifestationServiceImpl implements IManifestationService {
 				Salle salle = salleOp.get();
 				manifestation.setSalle(salle);
 			}
-
 			manifestationDto=calcul(manifestationDto);
 			manifestation.setReservations(manifestationDto.getReservations());
 			manifestation.setReservationsVip(manifestationDto.getReservationsVip());
@@ -276,7 +261,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 			manifestation.setPrixBillet(manifestationDto.getPrixBillet());
 
 			this.manifestationRepository.save(manifestation);
-
+			System.err.println("Manifestation modifiée ");
 			return true;
 		}
 		return false;
@@ -315,6 +300,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 
 		if (listInvitations.isEmpty() && listReservations.isEmpty() && this.manifestationRepository.existsById(id)) {
 			this.manifestationRepository.deleteById(id);
+			System.err.println("Manifestation supprimée ");
 			return true;
 		}
 		return false;

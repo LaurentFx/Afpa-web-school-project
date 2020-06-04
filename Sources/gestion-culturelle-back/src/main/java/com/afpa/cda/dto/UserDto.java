@@ -3,7 +3,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -39,7 +38,7 @@ public class UserDto {
 	private String entreprise;
 	
 	
-	private List <ManifestationDto> listManifestations;
+	//private List <ManifestationDto> listManifestations;
 
 	
 

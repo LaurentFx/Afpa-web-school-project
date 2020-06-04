@@ -21,7 +21,7 @@ export class ManifestationService {
     return this.http.get(this.monUrl1);
   }
   
-  add(manifestation: ManifestationDto): Observable<object> {
+  add(manifestation: ManifestationDto): Observable<any> {
     return this.http.post(this.monUrl2,manifestation);
   }
   

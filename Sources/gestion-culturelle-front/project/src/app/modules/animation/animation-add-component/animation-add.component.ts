@@ -34,7 +34,7 @@ export class AnimationAddComponent implements OnInit {
 
     this.animationService.add(this.animation).subscribe(
       res => {
-         if (res) {
+         if (res===0) {
           this.toastrService.error('L animation '+nom +' existe déjà', 'Ajout impossible')
         } else {
           this.toastrService.success('Nouvelle animation : ' +nom, 'Ajout Ok')

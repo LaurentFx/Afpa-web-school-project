@@ -10,17 +10,13 @@ public interface ISalleService {
 	
 	public List<SalleDto> findAllByCapacity(int id);
 	
-	boolean add(SalleDto sal);
+	int add(SalleDto sal);
 	
-	boolean updateSalle(SalleDto sal, int id);
+	boolean update(SalleDto sal, int id);
 	
-	boolean deleteSalle (int id);
+	boolean delete (int id);
 
 	SalleDto findById(int id);
-
-	//ManifestationDto calcul(ManifestationDto manifDto);
-
-
 	
 
 }

@@ -30,7 +30,7 @@ public class RoleController {
 		return this.roleService.findById(id);
 	}
 	@PostMapping(path = "/role")
-	public boolean add(@RequestBody RoleDto rol) {
+	public int add(@RequestBody RoleDto rol) {
 		return this.roleService.add(rol);
 	}
 

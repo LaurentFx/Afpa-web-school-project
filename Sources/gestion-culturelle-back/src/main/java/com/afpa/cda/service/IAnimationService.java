@@ -8,7 +8,7 @@ public interface IAnimationService {
 	
 	List<AnimationDto> findAll();
 
-	boolean add(AnimationDto anim);
+	int add(AnimationDto anim);
 
 	boolean update(AnimationDto anim, int id);
 

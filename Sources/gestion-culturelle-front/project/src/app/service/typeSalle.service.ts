@@ -24,7 +24,7 @@ export class TypeSalleService {
     return this.http.get(`${this.monUrl}/${id}`);
   }
 
-  add(typeSalle: TypeSalleDto): Observable<object> {
+  add(typeSalle: TypeSalleDto): Observable<any> {
     return this.http.post(this.monUrl, typeSalle);
   }
 

@@ -86,23 +86,18 @@ public class PanierServiceImpl implements IPanierService {
 	}
 
 	// inutile
-	@Override
-	public PanierDto add(PanierDto panier) {
-		Panier panE = this.panierRepository.save(this.modelMapper.map(panier, Panier.class));
-		panier.setId(panE.getId());
-		return panier;
-	}
+//	@Override
+//	public PanierDto add(PanierDto panier) {
+//		Panier panE = this.panierRepository.save(this.modelMapper.map(panier, Panier.class));
+//		panier.setId(panE.getId());
+//		return panier;
+//	}
 
 	@Override
 	public boolean updatePanier(PanierDto panier, int id) {
 		Optional<Panier> panUp = this.panierRepository.findById(id);
 		if (panUp.isPresent()) {
 			this.panierRepository.save(this.modelMapper.map(panier, Panier.class));
-
-			// Panier pr= panUp.get();
-			// pr.setNbreBillets(panier.getNbreBillets());
-			// pr.setNumClient(panier.getNumClient());
-			// this.panierRepository.save(pr);
 			return true;
 		}
 		return false;
@@ -121,10 +116,6 @@ public class PanierServiceImpl implements IPanierService {
 			panDto.setId(pan.getId());
 			panDto.setDateValidation(pan.getDateValidation());
 			panDto.setTotal(pan.getTotal());
-
-			PanierDto panierDto = new PanierDto();
-
-			panierDto.setListArticles(new ArrayList<ArticleDto>());
 
 		}
 		return panDto;
@@ -160,7 +151,6 @@ public class PanierServiceImpl implements IPanierService {
 			}
 
 			PanierDto panierDto = modelMapper.map(panierOp.get(),PanierDto.class);
-		//	panierDto.getListArticles().clear();
 			panierDto.setTotal(0);
 			panierRepository.save(this.modelMapper.map(panierDto,Panier.class));	
 			return true;

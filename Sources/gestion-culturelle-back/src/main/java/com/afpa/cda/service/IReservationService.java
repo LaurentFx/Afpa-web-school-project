@@ -9,7 +9,7 @@ public interface IReservationService {
 
 	List<ReservationDto> findAll();
 
-	boolean add(ReservationDto reservationDto);
+	int add(ReservationDto reservationDto);
 
 	ReservationDto findById(int id);
 

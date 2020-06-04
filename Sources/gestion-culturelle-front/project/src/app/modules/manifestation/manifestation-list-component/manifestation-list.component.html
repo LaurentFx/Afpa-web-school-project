@@ -33,7 +33,7 @@
                 <td>{{manifestation.reservationsVip}}</td>
 
                 <td>
-                    <button (click)="redirectToShow(manifestation.id)" class="btn btn-sm btn-success"><fa-icon class="icon p-0" [icon]="faInfoCircle" title="Afficher le détail">Show</fa-icon></button>
+                    <button *ngIf="isConnected" (click)="redirectToShow(manifestation.id)" class="btn btn-sm btn-success"><fa-icon class="icon p-0" [icon]="faInfoCircle" title="Afficher le détail">Show</fa-icon></button>
                     &nbsp;
                     <button *ngIf="isRespAdmin" (click)="redirectToUpdate(manifestation.id)" class="btn btn-sm btn-warning" title="Planifier / Modifier"><fa-icon [icon]="faEdit">Planifier / Modifier</fa-icon></button>
                     &nbsp;

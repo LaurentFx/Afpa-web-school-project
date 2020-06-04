@@ -155,7 +155,8 @@ public class ReservationServiceImpl implements IReservationService {
 	}
 	
 	@Override
-	public boolean add(ReservationDto reservationDto) {
+	public int add(ReservationDto reservationDto) {
+		int id=0;
 		Optional <Reservation> reservationOp = this.reservationRepository
 				.findReservationByUserAndManifestation(reservationDto.getClient().getId(), reservationDto.getManifestation().getId());
 		if (!reservationOp.isPresent()) {
@@ -178,11 +179,11 @@ public class ReservationServiceImpl implements IReservationService {
 			reservation.setQuantite(reservationDto.getQuantite());
 			reservation.setDateReservation(reservationDto.getDateReservation());
 			
-			this.reservationRepository.save(reservation);
+			id=this.reservationRepository.save(reservation).getId();
 			
-			return false;
+			return id;
 		}
-		return true;
+		return id;
 	}
 
 	@Override

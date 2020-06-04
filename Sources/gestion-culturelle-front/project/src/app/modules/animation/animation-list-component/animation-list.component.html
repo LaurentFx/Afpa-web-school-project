@@ -28,7 +28,7 @@
                 <td>{{animation.nbreSpectateursPrevus}}</td>
 
                 <td>
-                    <button (click)="redirectToShow(animation.id)" class="btn btn-sm btn-success" title="Afficher les détails"><fa-icon class="icon p-0" [icon]="faInfoCircle">Show</fa-icon></button>
+                    <button *ngIf="isConnected" (click)="redirectToShow(animation.id)" class="btn btn-sm btn-success" title="Afficher les détails"><fa-icon class="icon p-0" [icon]="faInfoCircle">Show</fa-icon></button>
                     &nbsp;
                     <button *ngIf="isAnim" (click)="redirectToUpdate(animation.id)" class="btn btn-sm btn-warning" title="Mettre à jour"><fa-icon [icon]="faEdit">Update</fa-icon></button>
                     &nbsp;

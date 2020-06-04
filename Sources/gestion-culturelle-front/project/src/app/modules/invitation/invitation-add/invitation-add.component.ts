@@ -88,7 +88,7 @@ export class InvitationAddComponent implements OnInit {
 
     this.invitationService.add(this.invitationDto).subscribe(
       res => {
-        if (res) {
+        if (res===0) {
           this.toastrService.error('L invitation existe déjà', 'Ajout impossible')
         } else {
           this.toastrService.success('Invitation ajoutée.', 'Ajout Ok')

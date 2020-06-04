@@ -39,7 +39,7 @@ export class InvitationService {
     return this.http.get(`${this.monUrl}/new/${id}`);
   } 
 
-  add(invitationDto: InvitationDto): Observable<object> {
+  add(invitationDto: InvitationDto): Observable<any> {
     return this.http.post(this.monUrl,invitationDto);
   }
 
