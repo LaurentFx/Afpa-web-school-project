@@ -19,11 +19,8 @@ export class UserListComponent implements OnInit {
   faTrashAlt = faTrashAlt;
   faHome = faHome;
   faPlusSquare = faPlusSquare;
-<<<<<<< HEAD
 
-=======
   isResp:boolean;
->>>>>>> dev
   user: User;
   users: User[];
   rolee: string;
