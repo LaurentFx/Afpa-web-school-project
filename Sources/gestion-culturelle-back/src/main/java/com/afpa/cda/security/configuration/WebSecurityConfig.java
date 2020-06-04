@@ -47,7 +47,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-
+		
+		http.csrf().disable();
+		http.headers().frameOptions().disable();
+		//      http.headers().frameOptions().sameOrigin();
+		
 		String[] swaggerUrls = {
 				"/v2/api-docs",
 				"/swagger-resources", "/swagger-resources/**", "/configuration/ui",
@@ -67,14 +71,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		String[] AllUrls = {"/commande","/newusers","/role","/public/inscription", "/public/login","public/profil",
 				"/public/animation","/public/manifestation","/public/salle","/public","/invitation","/invitation/**" };
 
-		http.csrf().disable();
-
-		http.headers().frameOptions().disable();
-		//        http.headers().frameOptions().sameOrigin();
-
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
 		.antMatchers(HttpMethod.OPTIONS).permitAll()
-
 		.antMatchers("/**").permitAll()
 		.antMatchers("/*").permitAll()
 //		.antMatchers(AllUrls).permitAll()
