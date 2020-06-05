@@ -3,6 +3,7 @@ package com.afpa.cda.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,26 +21,32 @@ public class RoleController {
 	@Autowired
 	private IRoleService roleService;
 
-	@GetMapping(path = "/role")
+	@PreAuthorize("hasAnyAuthority('RESP')")
+	@GetMapping(path = "/role/list")
 	public List<RoleDto> getAll(){
 		return this.roleService.findAll();
 	}
 
-	@GetMapping(path = "/role/{id}")
+	@PreAuthorize("hasAnyAuthority('RESP')")
+	@GetMapping(path = "/role/show/{id}")
 	public RoleDto getOne(@PathVariable int id){
 		return this.roleService.findById(id);
 	}
-	@PostMapping(path = "/role")
+	
+	@PreAuthorize("hasAnyAuthority('RESP')")
+	@PostMapping(path = "/role/add")
 	public int add(@RequestBody RoleDto rol) {
 		return this.roleService.add(rol);
 	}
-
-	@PutMapping(path = "/role/{id}")
+	
+	@PreAuthorize("hasAnyAuthority('RESP')")
+	@PutMapping(path = "/role/update/{id}")
 	public boolean update(@RequestBody RoleDto rol, @PathVariable int id) {
 		return this.roleService.update(rol,id);
 	}
 
-	@DeleteMapping(path = "/role/{id}")
+	@PreAuthorize("hasAnyAuthority('RESP')")
+	@DeleteMapping(path = "/role/delete/{id}")
 	public boolean delete(@PathVariable int id) {
 		return this.roleService.delete(id);
 	}

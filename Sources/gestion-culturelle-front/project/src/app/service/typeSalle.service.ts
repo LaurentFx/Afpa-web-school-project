@@ -17,23 +17,23 @@ export class TypeSalleService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<any> {
-    return this.http.get(this.monUrl);
+    return this.http.get(`${this.monUrl}/list`);
   }
 
   getOne(id: number): Observable<any> {
-    return this.http.get(`${this.monUrl}/${id}`);
+    return this.http.get(`${this.monUrl}/show/${id}`);
   }
 
   add(typeSalle: TypeSalleDto): Observable<any> {
-    return this.http.post(this.monUrl, typeSalle);
+    return this.http.post(`${this.monUrl}/add`, typeSalle);
   }
 
   update(id: number, typeSalle: Object): Observable<Object> {
-    return this.http.put(`${this.monUrl}/${id}`, typeSalle);
+    return this.http.put(`${this.monUrl}/update/${id}`, typeSalle);
   }
 
   delete(id: number): Observable<any> {
-    return this.http.delete(`${this.monUrl}/${id}`);
+    return this.http.delete(`${this.monUrl}/delete/${id}`);
   }
 
 }

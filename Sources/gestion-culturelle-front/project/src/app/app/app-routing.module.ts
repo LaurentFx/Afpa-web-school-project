@@ -53,8 +53,8 @@ const routes: Routes = [
   { path: 'public', pathMatch: 'full', component: HomeComponent },
   { path: 'public/login', component: LoginComponent },
 
-  { path: 'public/profil-update', component: ProfilUpdateComponent, canActivate: [AuthGuard] },
-  { path: 'public/profil-show', component: ProfilShowComponent, canActivate: [AuthGuard] },
+  { path: 'profil-update', component: ProfilUpdateComponent, canActivate: [AuthGuard] },
+  { path: 'profil-show', component: ProfilShowComponent, canActivate: [AuthGuard] },
   { path: 'public/inscription', component: InscriptionComponent },
 
   { path: 'typesalle-list', component: TypeSalleListComponent , canActivate: [AuthGuard] },
@@ -82,7 +82,7 @@ const routes: Routes = [
   { path: 'panier-ad/:id', component: PanierAddComponent, canActivate: [ClientGuard] },
   { path: 'panier-show', component: PanierShowComponent, canActivate: [ClientGuard] },
 
-  { path: 'invitation-ad/:id', component: InvitationAddComponent, canActivate: [RespadminGuard] },
+  { path: 'invitation-ad/:id', component: InvitationAddComponent, canActivate: [AdminGuard] },
   { path: 'invitation-list', component: InvitationListComponent, canActivate: [RespadminGuard] },
   { path: 'invitation-show/:id', component: InvitationShowComponent, canActivate: [VipGuard] },
   { path: 'invitation-answer/:id', component: InvitationAnswerComponent, canActivate: [VipGuard] },

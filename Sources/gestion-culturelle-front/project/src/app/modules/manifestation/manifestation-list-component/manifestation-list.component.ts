@@ -3,7 +3,6 @@ import { ManifestationDto } from '../../../model/manifestationDto';
 import { Router } from '@angular/router';
 import { ManifestationService } from '../../../service/manifestation.service';
 import { AuthService } from '../../../security/auth.service';
-import { RoleDto } from '../../../model/roleDto';
 import { ToastrService } from 'ngx-toastr';
 import { faInfoCircle, faEdit, faTrashAlt, faHome, faPlusSquare, faCalendarPlus, faUserTie } from '@fortawesome/free-solid-svg-icons';
 

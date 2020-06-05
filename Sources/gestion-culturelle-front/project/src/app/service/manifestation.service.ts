@@ -18,11 +18,11 @@ export class ManifestationService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<any> {
-    return this.http.get(this.monUrl1);
+    return this.http.get(`${this.monUrl1}/list`);
   }
   
   add(manifestation: ManifestationDto): Observable<any> {
-    return this.http.post(this.monUrl2,manifestation);
+    return this.http.post(`${this.monUrl2}/add`,manifestation);
   }
   
   getAvalaibility(manifestation: ManifestationDto): Observable<object> {
@@ -30,15 +30,15 @@ export class ManifestationService {
   }
 
   getOne(id: number): Observable<any> {
-    return this.http.get(`${this.monUrl2}/${id}`);
+    return this.http.get(`${this.monUrl2}/show/${id}`);
   } 
 
   update(id: number, manifestation: Object): Observable<Object> {
-    return this.http.put(`${this.monUrl2}/${id}`, manifestation);
+    return this.http.put(`${this.monUrl2}/update/${id}`, manifestation);
   }
 
  delete(id: number): Observable<any> {
-    return this.http.delete(`${this.monUrl2}/${id}`);
+    return this.http.delete(`${this.monUrl2}/delete/${id}`);
   }
 
 }

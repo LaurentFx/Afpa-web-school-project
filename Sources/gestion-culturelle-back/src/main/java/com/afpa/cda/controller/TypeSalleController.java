@@ -3,6 +3,7 @@ package com.afpa.cda.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,29 +21,33 @@ public class TypeSalleController {
 	@Autowired
 	private ITypeSalleService typeSalleService;
 	
-	@GetMapping(path = "/typesalle")
+	@PreAuthorize("hasAnyAuthority('RESP','ADMIN','ANIM','VIP','CLIENT')")
+	@GetMapping(path = "/typesalle/list")
 	public List<TypeSalleDto> getAll(){
 		return this.typeSalleService.findAll();
 	}
 	
-	@GetMapping(path = "/typesalle/{id}")
+	@PreAuthorize("hasAnyAuthority('RESP')")
+	@GetMapping(path = "/typesalle/show/{id}")
 	public TypeSalleDto getOne(@PathVariable int id){
 		return this.typeSalleService.findById(id);
 	}
 	
-	//@PreAuthorize("hasAnyAuthority('RESP','ADMIN')")
-	@PostMapping(path = "/typesalle")
+	@PreAuthorize("hasAnyAuthority('RESP')")
+	@PostMapping(path = "/typesalle/add")
 	public int add(@RequestBody TypeSalleDto typeSalleDto) {
 		return this.typeSalleService.add(typeSalleDto);
 	}
 	
-	@PutMapping(path = "/typesalle/{id}")
+	@PreAuthorize("hasAnyAuthority('RESP')")
+	@PutMapping(path = "/typesalle/update/{id}")
 	public boolean update(@RequestBody TypeSalleDto typ,@PathVariable int id) {
 		return this.typeSalleService.update(typ, id);
 		
 	}
 	
-	@DeleteMapping(path = "/typesalle/{id}")
+	@PreAuthorize("hasAnyAuthority('RESP')")
+	@DeleteMapping(path = "/typesalle/delete/{id}")
 	public boolean delete(@PathVariable int id) {
 		return this.typeSalleService.delete(id);
 	}
