@@ -55,8 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		String[] swaggerUrls = {
 				"/v2/api-docs",
 				"/swagger-resources", "/swagger-resources/**", "/configuration/ui",
-				"/configuration/security", "/swagger-ui.html", "/webjars/**", "/error"
-		};
+				"/configuration/security", "/swagger-ui.html", "/webjars/**", "/error"};
 
 
 		String[] respUrls = { "/animation/purpose","/manifestation/add","role/*","/salle/add",
@@ -91,7 +90,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers(swaggerUrls).permitAll()
 		.antMatchers("/h2-console/**").permitAll()
 
-		// A tester
 		.antMatchers(respUrls).hasAnyAuthority(new String[]{"RESP"})
 		.antMatchers(respAdminUrls).hasAnyAuthority(new String[]{"RESP","ADMIN"})
 		.antMatchers(adminUrls).hasAnyAuthority(new String[]{"ADMIN"})
@@ -100,9 +98,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers(clientUrls).hasAnyAuthority(new String[]{"CLIENT"})
 		.antMatchers(allUrls).authenticated()
 		.antMatchers(publicUrls).permitAll();
-
-		//		.antMatchers("/**").permitAll()
-		//		.antMatchers("/*").permitAll()
+		
+		
+		
+//				.antMatchers("/**").permitAll()
+//				.antMatchers("/*").permitAll();
 
 		//	.anyRequest().authenticated();
 

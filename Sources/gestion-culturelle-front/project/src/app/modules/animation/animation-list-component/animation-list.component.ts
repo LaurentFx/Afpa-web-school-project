@@ -6,6 +6,7 @@ import { AuthService } from '../../../security/auth.service';
 import { RoleDto } from '../../../model/roleDto';
 import { ToastrService } from 'ngx-toastr';
 import { faInfoCircle, faEdit, faTrashAlt, faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { User } from '../../../model/user';
 
 @Component({
   selector: 'app-animation-list',
@@ -23,8 +24,8 @@ export class AnimationListComponent implements OnInit {
   isConnected: boolean;
   isAnim: boolean;
   isRespAdmin: boolean;
-  user: String;
-  role: RoleDto;
+ // user: String;
+ // role: RoleDto;
   animation: AnimationDto;
   animations: AnimationDto[];
 
@@ -32,12 +33,14 @@ export class AnimationListComponent implements OnInit {
     private authService: AuthService, private toastrService:ToastrService) { }
 
   ngOnInit() {
+    this.animation=new AnimationDto();
+    this.animation.animateur=new User();
     this.isConnected = this.authService.isConnected();
     if (this.authService.getCurrentUser()) {
       this.isAnim = this.authService.getCurrentUser().role.label === 'ANIM';
       this.isRespAdmin = (this.authService.getCurrentUser().role.label === 'RESP') || (this.authService.getCurrentUser().role.label === 'ADMIN');
-      this.user = this.authService.getCurrentUser().nom;
-      this.role = this.authService.getCurrentUser().role;
+    //  this.user = this.authService.getCurrentUser().nom;
+    //  this.role = this.authService.getCurrentUser().role;
     }
 
     this.animationService.subjectMiseAJour.subscribe(
