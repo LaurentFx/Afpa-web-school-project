@@ -121,6 +121,7 @@ class ManifestationServiceImplTest {
 		// Test de la liste entités avant ajout
 		int size1 =  this.manifestationService.findAll().size();
 		int id = 0;
+		assertNotEquals(0,size1);
 		assertEquals(0,id);
 
 		// Ajout objet test
