@@ -40,7 +40,10 @@ public class SalleServiceImpl implements ISalleService {
 	@Autowired
 	private IManifestationService manifestationService;
 
-
+	/**
+	 * @author mohamedakharroub
+	 * @return List salle
+	 */
 	@Override
 	public List<SalleDto> findAll() {
 		return this.salleRepository.findAll()

@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { RoleService } from "../../../service/role.service";
 import { ToastrService } from 'ngx-toastr';
 import { faInfoCircle, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-role-list',

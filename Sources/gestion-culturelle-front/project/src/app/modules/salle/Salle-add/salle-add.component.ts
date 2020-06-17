@@ -48,10 +48,8 @@ export class SalleAddComponent implements OnInit {
 
   add(): void {
     let nom = this.salle.label;
-
     this.salleService.add(this.salle).subscribe(
       res => {
-        
         if (res===0) {
           this.toastrService.error('La salle '+nom +' existe déjà', 'Ajout impossible')
         } else {

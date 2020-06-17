@@ -22,7 +22,11 @@ import lombok.Setter;
 		name="t_salle"
 )
 public class Salle {
-	
+	/**
+	 * Création de la table salle
+	 * @author mohamedakharroub
+	 * 
+	 */
 	@Id
 	@GeneratedValue(generator = "SALLE_SEQ", strategy = GenerationType.SEQUENCE)
 	private int id;
@@ -33,10 +37,10 @@ public class Salle {
 
 	@ManyToOne
 	private TypeSalle typesalle;
-	
+}	
 	
 //	@OneToMany (mappedBy = "salle")
 //	private List <Manifestation> manifestations;
 
 
-}
+

@@ -20,11 +20,7 @@ export class SalleService {
   getAll(): Observable<any> {
     return this.http.get(this.monUrl1);
   }
-  
-  getByCapacity(capacity: number): Observable<any> {
-    return this.http.get(`${this.monUrl2}/capacity/${capacity}`);
-  } 
-
+ 
   add(salle: SalleDto): Observable<any> {
     return this.http.post(this.monUrl2,salle);
   }
@@ -40,5 +36,10 @@ export class SalleService {
  delete(id: number): Observable<any> {
     return this.http.delete(`${this.monUrl2}/${id}`);
   }
+
+   
+  getByCapacity(capacity: number): Observable<any> {
+    return this.http.get(`${this.monUrl2}/capacity/${capacity}`);
+  } 
 
 }

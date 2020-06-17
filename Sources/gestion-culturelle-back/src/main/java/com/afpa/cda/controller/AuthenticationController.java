@@ -27,7 +27,8 @@ public class AuthenticationController {
 	@PostMapping(value = "/public/login", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
 		try {
-			UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(authenticationRequest.username, authenticationRequest.password);
+			UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = 
+					new UsernamePasswordAuthenticationToken(authenticationRequest.username, authenticationRequest.password);
 			Authentication authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
 			if(authentication != null && authentication.isAuthenticated()) {
 				JwtTokens tokens = jwtTokenService.createTokens(authentication);

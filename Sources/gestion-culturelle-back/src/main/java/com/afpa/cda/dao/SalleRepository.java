@@ -11,6 +11,7 @@ import com.afpa.cda.entity.Salle;
 
 @Repository
 public interface SalleRepository extends CrudRepository<Salle, Integer> {
+	
 	List<Salle> findAll();
 
 	Optional<Salle> findSalleByLabel(String label);	
