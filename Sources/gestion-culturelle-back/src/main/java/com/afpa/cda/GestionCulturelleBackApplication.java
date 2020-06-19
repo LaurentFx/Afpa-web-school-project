@@ -72,9 +72,9 @@ public class GestionCulturelleBackApplication  implements WebMvcConfigurer {
 			initTypeSalle(typeSalleRepository,stade);
 			initTypeSalle(typeSalleRepository,theatre);
 
-			Salle zenith = new Salle(1,"Zenith",800,300,4,concert);
-			Salle foot = new Salle (2,"Terrain",1200,200,6,stade);
-			Salle colisee = new Salle (3,"Colisée",400,400,2,theatre);
+			Salle zenith = new Salle(1,"Zenith",800,4,300,concert);
+			Salle foot = new Salle (2,"Terrain",1200,6,200,stade);
+			Salle colisee = new Salle (3,"Colisée",400,2,400,theatre);
 			initSalle(salleRepository, typeSalleRepository,zenith);
 			initSalle(salleRepository, typeSalleRepository, foot);
 			initSalle(salleRepository, typeSalleRepository,colisee);
