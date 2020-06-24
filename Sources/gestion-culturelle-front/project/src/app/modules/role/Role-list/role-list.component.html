@@ -1,4 +1,3 @@
-
 <h3>Liste des roles</h3>
 
 <br>
@@ -17,14 +16,18 @@
             <tr *ngFor="let role of roles">
 
                 <td>{{role.id}}</td>
-                <td>{{role.label}}</td>                
+                <td>{{role.label}}</td>
 
                 <td>
-                    <button *ngIf="isResp" (click)="redirectToShow(role.id)" class="btn btn-sm btn-success"><fa-icon class="icon p-0" [icon]="faInfoCircle">Show</fa-icon></button>
+                    <button *ngIf="isResp" (click)="redirectToShow(role.id)" class="btn btn-sm btn-success">
+                        <fa-icon class="icon p-0" [icon]="faInfoCircle">Show</fa-icon>
+                    </button>
                     &nbsp;
-                    <button *ngIf="isResp" (click)="redirectToUpdate(role.id)" class="btn btn-sm btn-warning"><fa-icon [icon]="faEdit">Update</fa-icon></button>
+                    <button *ngIf="isResp" (click)="redirectToUpdate(role.id)" class="btn btn-sm btn-warning">
+                        <fa-icon [icon]="faEdit">Update</fa-icon>
+                    </button>
                     &nbsp;
-            <button *ngIf="isResp" (click)="delete(role.id)" class="btn btn-sm btn-danger"><fa-icon [icon]="faTrashAlt">Delete</fa-icon></button>
+                   
                 </td>
 
             </tr>
@@ -32,7 +35,7 @@
         </tbody>
     </table>
 
-   <!-- <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/role-ad']">+ Ajouter un role
+    <!-- <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/role-ad']">+ Ajouter un role
     </a> -->
 
     <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/']">Retour à l'accueil </a>

@@ -64,7 +64,7 @@ public class InvitationController {
 	}
 	
 	@PreAuthorize("hasAnyAuthority('VIP')")
-	@PutMapping(path="/invitation/reponse/{id}")
+	@PutMapping(path="/invitation/answer/{id}")
 	public boolean updateReponse(@RequestBody String reponse ,@PathVariable int id) {
 		return this.invitationService.updateReponse(reponse, id);
 	}

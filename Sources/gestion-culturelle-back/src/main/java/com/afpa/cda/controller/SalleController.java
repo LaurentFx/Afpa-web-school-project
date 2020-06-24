@@ -17,39 +17,39 @@ import com.afpa.cda.service.ISalleService;
 
 @RestController
 public class SalleController {
-	
+
 	@Autowired
 	private ISalleService salleService;
-	
+
 	@GetMapping(path = "/public/salle/list")
 	public List<SalleDto> getAll(){
 		return this.salleService.findAll();
 	}
-	
+
 	@PreAuthorize("hasAnyAuthority('RESP','ADMIN')")
 	@GetMapping(path = "/salle/capacity/{nbreSpectateursPrevus}")
 	public List<SalleDto> getAllByCapacity(@PathVariable int nbreSpectateursPrevus){
 		return this.salleService.findAllByCapacity(nbreSpectateursPrevus);
 	}
-	
+
 	@PreAuthorize("hasAnyAuthority('RESP','ADMIN','ANIM','VIP','CLIENT')")
 	@GetMapping(path = "/salle/show/{id}")
 	public SalleDto getOne(@PathVariable int id){
 		return this.salleService.findById(id);
 	}
-	
+
 	@PreAuthorize("hasAnyAuthority('RESP')")
 	@PostMapping(path = "/salle/add")
 	public int add(@RequestBody SalleDto sal) {
 		return this.salleService.add(sal);
 	}
-	
+
 	@PreAuthorize("hasAnyAuthority('RESP')")
 	@PutMapping(path = "/salle/update/{id}")
 	public boolean update(@RequestBody SalleDto sal,@PathVariable int id ) {
 		return this.salleService.update(sal, id);
 	}
-	
+
 	@PreAuthorize("hasAnyAuthority('RESP')")
 	@DeleteMapping(path = "/salle/delete/{id}")
 	public boolean delete(@PathVariable int id) {

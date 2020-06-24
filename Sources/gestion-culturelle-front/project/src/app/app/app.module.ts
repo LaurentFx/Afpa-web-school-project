@@ -47,6 +47,9 @@ import { ReservationModule } from './../modules/reservation/reservation.module';
     PanierModule, 
     UserModule,
     ProfilModule,
+    InscriptionModule,
+    InvitationModule,
+    ReservationModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
@@ -62,9 +65,6 @@ import { ReservationModule } from './../modules/reservation/reservation.module';
         blacklistedRoutes: ['http://localhost:8080/public/login']
       }
     }),
-    InscriptionModule,
-    InvitationModule,
-    ReservationModule,
    
   ],
   providers: [

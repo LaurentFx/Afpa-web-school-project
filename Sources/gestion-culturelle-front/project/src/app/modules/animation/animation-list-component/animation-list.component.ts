@@ -24,8 +24,6 @@ export class AnimationListComponent implements OnInit {
   isConnected: boolean;
   isAnim: boolean;
   isRespAdmin: boolean;
- // user: String;
- // role: RoleDto;
   animation: AnimationDto;
   animations: AnimationDto[];
 
@@ -34,13 +32,11 @@ export class AnimationListComponent implements OnInit {
 
   ngOnInit() {
     this.animation=new AnimationDto();
-    this.animation.animateur=new User();
+  //  this.animation.animateur=new User();
     this.isConnected = this.authService.isConnected();
     if (this.authService.getCurrentUser()) {
       this.isAnim = this.authService.getCurrentUser().role.label === 'ANIM';
       this.isRespAdmin = (this.authService.getCurrentUser().role.label === 'RESP') || (this.authService.getCurrentUser().role.label === 'ADMIN');
-    //  this.user = this.authService.getCurrentUser().nom;
-    //  this.role = this.authService.getCurrentUser().role;
     }
 
     this.animationService.subjectMiseAJour.subscribe(
@@ -75,10 +71,8 @@ this.animationService.getOne(id).subscribe(
   }
 )
 
-
     this.animationService.delete(id).subscribe(
       res => {
-       
         if (res) {
           this.toastrService.success(this.animation.label+' effacé.','Suppression Ok.')
         } else {
@@ -92,7 +86,6 @@ this.animationService.getOne(id).subscribe(
   redirectToUpdate(id: number) {
     this.router.navigateByUrl('/animation-update/' + id)
   }
-
 
   redirectToShow(id: number) {
     this.router.navigateByUrl('/animation-show/' + id)

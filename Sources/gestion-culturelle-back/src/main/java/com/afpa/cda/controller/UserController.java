@@ -38,7 +38,7 @@ public class UserController {
 		return this.userService.findAll();
 	}
 
-	@PreAuthorize("hasAnyAuthority('RESP')")
+	@PreAuthorize("hasAnyAuthority('RESP','CLIENT')")
 	@GetMapping(path = "/users/show/{id}")
 	public UserDto getOne(@PathVariable int id){
 		return this.userService.findById(id);

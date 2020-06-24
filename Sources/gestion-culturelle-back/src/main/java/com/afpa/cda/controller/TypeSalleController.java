@@ -52,5 +52,4 @@ public class TypeSalleController {
 		return this.typeSalleService.delete(id);
 	}
 	
-	
 }

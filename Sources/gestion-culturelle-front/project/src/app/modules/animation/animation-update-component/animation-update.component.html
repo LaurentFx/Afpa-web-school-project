@@ -1,47 +1,53 @@
-<h2>Mettre à jour une Animation</h2>
-<br>
+<div class="row justify-content-center align-items-center">
 
-<div [hidden]="submitted" style="width: 400px;">
-    <form (ngSubmit)="onSubmit()">
+    <div [hidden]="submitted" style="width: 400px;">
+        <form (ngSubmit)="onSubmit()">
+            <h2>Mettre à jour une Animation</h2>
+            <br>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-6">
+                        <div class="form-group">
 
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-6">
-                    <div class="form-group">
+                            <label for="label">Nouveau label :</label>
+                            <input type="text" class="form-control" id="label" placeholder="Entrer votre label" required
+                                [(ngModel)]="animation.label" name="label">
+                        </div>
 
-                        <label for="label">Nouveau label :</label>
-                        <input type="text" class="form-control" id="label" placeholder="Entrer votre label" required
-                            [(ngModel)]="animation.label" name="label">
-                    </div>
+                        <div class="form-group">
+                            <label for="type">Type d'animation :</label>
+                            <input type="text" class="form-control" id="type" placeholder="Entrer le type" required
+                                [(ngModel)]="animation.type" name="type">
+                        </div>
 
-                    <div class="form-group">
-                        <label for="type">Type d'animation :</label>
-                        <input type="text" class="form-control" id="type" placeholder="Entrer le type" required
-                            [(ngModel)]="animation.type" name="type">
-                    </div>
+                        <label for="animateur">Nom de l'animateur :</label>
+                        <input type="text" name="animateur" class="form-control" id="animateur"
+                            placeholder="{{animation.animateur.nom}}" readonly>
 
-                    <label for="animateur">Nom de l'animateur :</label>
-                    <input type="text" name="animateur" class="form-control" id="animateur"
-                        placeholder="{{animation.animateur.nom}}" readonly>
+                        <div class="form-group">
+                            <label for="prix">Prix de l'animation (en €) :</label>
+                            <input type="text" class="form-control" id="prix" placeholder="Entrer le prix" required
+                                [(ngModel)]="animation.prix" name="prix">
+                        </div>
 
-                    <div class="form-group">
-                        <label for="prix">Prix de l'animation (en €) :</label>
-                        <input type="text" class="form-control" id="prix" placeholder="Entrer le prix" required
-                            [(ngModel)]="animation.prix" name="prix">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="nbreSpectateursPrevus">Nombre de spectateurs prévus :</label>
-                        <input type="text" class="form-control" id="nbreSpectateursPrevus"
-                            placeholder="Entrer le nom de places reservees Vip" required
-                            [(ngModel)]="animation.nbreSpectateursPrevus" name="placesVip">
+                        <div class="form-group">
+                            <label for="nbreSpectateursPrevus">Nombre de spectateurs prévus :</label>
+                            <input type="text" class="form-control" id="nbreSpectateursPrevus"
+                                placeholder="Entrer le nom de places reservees Vip" required
+                                [(ngModel)]="animation.nbreSpectateursPrevus" name="placesVip">
+                        </div>
                     </div>
                 </div>
+                <br>
+                <a name="" id="" class="btn btn-secondary" href="#" role="button"
+                    [routerLink]="['/public/animation-list']">
+                    <fa-icon class="icon p-2" [icon]="faHome">Annuler</fa-icon>
+                </a>
+                &nbsp;
+                <button type="submit" class="btn btn-success">
+                    <fa-icon class="icon p-2" [icon]="faCheckSquare">Valider</fa-icon>
+                </button>
             </div>
-        </div>
-        <a name="" id="" class="btn btn-secondary" href="#" role="button"
-            [routerLink]="['/public/animation-list']"><fa-icon class="icon p-2" [icon]="faHome">Annuler</fa-icon></a>
-            &nbsp;
-        <button type="submit" class="btn btn-success"><fa-icon class="icon p-2" [icon]="faCheckSquare">Valider</fa-icon></button>
-    </form>
+        </form>
+    </div>
 </div>

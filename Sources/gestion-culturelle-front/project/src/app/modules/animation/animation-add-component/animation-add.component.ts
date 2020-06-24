@@ -24,14 +24,13 @@ export class AnimationAddComponent implements OnInit {
     private toastrService: ToastrService) { }
 
   ngOnInit() {
-    this.userCourant = this.authService.getCurrentUser();
     this.animation = new AnimationDto();
     this.animation.animateur = new User();
+    this.userCourant = this.authService.getCurrentUser();
     this.animation.animateur = this.userCourant;
   }
 
   add(): void {
-    this.animation.animateur = new User();
     let nom = this.animation.label;
 
     this.animationService.add(this.animation).subscribe(

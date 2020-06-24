@@ -48,7 +48,7 @@ export class InvitationService {
   }  
 
   updateReponse(id: number,reponse: String): Observable<Object> {
-    return this.http.put(`${this.monUrl}/reponse/${id}`, reponse);
+    return this.http.put(`${this.monUrl}/answer/${id}`, reponse);
   }  
 
   delete(id: number): Observable<any> {
