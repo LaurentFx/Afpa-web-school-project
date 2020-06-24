@@ -13,20 +13,21 @@ import { User } from '../../../model/user';
   styleUrls: ['./animation-add.component.css']
 })
 export class AnimationAddComponent implements OnInit {
- 
+
   animation: AnimationDto;
   userCourant: User;
   faHome = faHome;
   faPlusSquare = faPlusSquare;
 
   constructor(private animationService: AnimationService,
-     private router: Router, private authService: AuthService,
-     private toastrService: ToastrService) { }
+    private router: Router, private authService: AuthService,
+    private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.animation = new AnimationDto();
+    this.animation.animateur = new User();
     this.userCourant = this.authService.getCurrentUser();
-    this.animation.animateur=this.userCourant;
+    this.animation.animateur = this.userCourant;
   }
 
   add(): void {
@@ -34,16 +35,17 @@ export class AnimationAddComponent implements OnInit {
 
     this.animationService.add(this.animation).subscribe(
       res => {
-         if (res===0) {
-          this.toastrService.error('L animation '+nom +' existe déjà', 'Ajout impossible')
+        if (res === 0) {
+          this.toastrService.error('L animation ' + nom + ' existe déjà', 'Ajout impossible')
         } else {
-          this.toastrService.success('Nouvelle animation : ' +nom, 'Ajout Ok')
-        }  
-        this.animationService.subjectMiseAJour.next(0);   
+          this.toastrService.success('Nouvelle animation : ' + nom, 'Ajout Ok')
+        }
+        this.animationService.subjectMiseAJour.next(0);
         this.goHome();
       }
     );
     this.animation = new AnimationDto();
+    this.animation.animateur = new User();
   }
 
   goHome() {

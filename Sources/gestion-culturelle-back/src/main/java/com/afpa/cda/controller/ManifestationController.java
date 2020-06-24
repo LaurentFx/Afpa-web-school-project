@@ -3,6 +3,7 @@ package com.afpa.cda.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,37 +20,41 @@ import com.afpa.cda.service.IManifestationService;
 public class ManifestationController {
 
 	@Autowired
-	private IManifestationService manifesationService;
+	private IManifestationService manifestationService;
 
-	@GetMapping(path = "/public/manifestation")
+	@GetMapping(path = "/public/manifestation/list")
 	public List<ManifestationDto> getAll(){
-		return this.manifesationService.findAll();
+		return this.manifestationService.findAll();
 	}
 
+	@PreAuthorize("hasAnyAuthority('RESP','ADMIN')")
 	@PostMapping(path = "/manifestation/availability")
 	public boolean getAvailability(@RequestBody ManifestationDto manifestationDto) {
-		return this.manifesationService.findAvailability(manifestationDto);
+		return this.manifestationService.findAvailability(manifestationDto);
 	}
 	
-	@GetMapping(path = "/manifestation/{id}")
+	@PreAuthorize("hasAnyAuthority('RESP','ADMIN','ANIM','VIP','CLIENT')")
+	@GetMapping(path = "/manifestation/show/{id}")
 	public ManifestationDto getOne(@PathVariable int id){
-		return this.manifesationService.findById(id);
+		return this.manifestationService.findById(id);
 	}
 	
-	//@PreAuthorize("hasAnyAuthority('RESP','ADMIN')")
-	@PostMapping(path = "/manifestation")
+	@PreAuthorize("hasAnyAuthority('RESP')")
+	@PostMapping(path = "/manifestation/add")
 	public int add(@RequestBody ManifestationDto manifestationDto) {
-		return this.manifesationService.add(manifestationDto);
+		return this.manifestationService.add(manifestationDto);
 	}
 
-	@PutMapping(path = "/manifestation/{id}")
+	@PreAuthorize("hasAnyAuthority('RESP','ADMIN')")
+	@PutMapping(path = "/manifestation/update/{id}")
 	public boolean update(@RequestBody ManifestationDto manif, @PathVariable int id) {
-		return this.manifesationService.update(manif,id);
+		return this.manifestationService.update(manif,id);
 	}
 
-	@DeleteMapping(path = "/manifestation/{id}")
+	@PreAuthorize("hasAnyAuthority('RESP','ADMIN')")
+	@DeleteMapping(path = "/manifestation/delete/{id}")
 	public boolean delete(@PathVariable int id) {
-	return this.manifesationService.delete(id);
+	return this.manifestationService.delete(id);
 	}
 
 }

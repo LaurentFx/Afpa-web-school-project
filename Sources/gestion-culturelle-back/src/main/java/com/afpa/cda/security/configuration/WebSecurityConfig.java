@@ -48,45 +48,51 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		String[] swaggerUrls = {
-				"/v2/api-docs",
-				"/swagger-resources", "/swagger-resources/**", "/configuration/ui",
-				"/configuration/security", "/swagger-ui.html", "/webjars/**", "/error"
-		};
+		String[] swaggerUrls = {"/v2/api-docs","/swagger-resources", "/swagger-resources/**",
+				"/configuration/ui","/configuration/security", "/swagger-ui.html", "/webjars/**","/error"};
 
-		String[] RespUrls = { "/admin","/role*" , "/typesalle"};
+		String[] respUrls = { "/animation/purpose","/manifestation/add","role/*","/salle/add","/salle/update/*",
+				"/salle/delete/*","/typesalle/show/*","typesalle/add","/typesalle/update/*","/typesalle/delete/*",
+				"/users/list","/users/show/*","/users/add","/users/update/*","/users/delete/*"};
 
-		String[] AdminUrls = { "/salle","/vip","/animateur","/client","/users","/manifestation","/invitation"};
+		String[] respAdminUrls = { "/animation/delete/*","/invitation/list","/invitation/update/*",
+				"/manifestation/availability","/manifestation/update/","/manifestation/delete/*","/salle/capacity/*"};
 
-		String[] ClientUrls = {"/panier"};
+		String[] adminUrls = {"/invitation/manifestation/*","/invitation/add","/invitation/delete/",
+				"/invitation/deleteAll/*","/users/invites/*"};
 
-		String[] AnimUrls = {"/animation"};
+		String[] vipUrls = {"/invitation/show/*","/invitation/user/*","/invitation/new/*","/invitation/answer/*"} ;
 
-		String [] VipUrls = {"/invitation*"} ;
+		String[] animUrls = {"/animation/add","/animation/update/*"};
 
-		String[] AllUrls = {"/commande","/newusers","/role","/public/inscription", "/public/login","public/profil",
-				"/public/animation","/public/manifestation","/public/salle","/public","/invitation","/invitation/**" };
+		String[] clientUrls = {"/article/*","/panier/*","/reservation/*","/users/show/*"};
+
+		String[] allUrls = {"/animation/show/*","/manifestation/show/*","/salle/show/*",
+				"/typesalle/list","/users/role/*","/users/current"};
+
+		String[] publicUrls =  {"/public/*","/users/new"};
 
 		http.csrf().disable();
-
 		http.headers().frameOptions().disable();
 		//        http.headers().frameOptions().sameOrigin();
-
-		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+		.authorizeRequests()
 		.antMatchers(HttpMethod.OPTIONS).permitAll()
 
-		.antMatchers("/**").permitAll()
-		.antMatchers("/*").permitAll()
-//		.antMatchers(AllUrls).permitAll()
-//		.antMatchers(ClientUrls).hasAnyAuthority(new String[]{"CLIENT","ADMIN","RESP"})
-//		.antMatchers(AdminUrls).hasAnyAuthority(new String[]{"ADMIN","RESP"})
-//		.antMatchers(VipUrls).hasAnyAuthority(new String[]{"VIP","RESP"})
-//		.antMatchers(AnimUrls).hasAnyAuthority(new String[]{"ANIM"})
-//		.antMatchers(RespUrls).hasAnyAuthority(new String[]{"RESP"})
+		.antMatchers(respUrls).hasAnyAuthority(new String[]{"RESP"})
+		.antMatchers(respAdminUrls).hasAnyAuthority(new String[]{"RESP","ADMIN"})
+		.antMatchers(adminUrls).hasAnyAuthority(new String[]{"ADMIN"})
+		.antMatchers(vipUrls).hasAnyAuthority(new String[]{"VIP"})
+		.antMatchers(animUrls).hasAnyAuthority(new String[]{"ANIM"})	
+		.antMatchers(clientUrls).hasAnyAuthority(new String[]{"CLIENT"})
+		.antMatchers(allUrls).authenticated()
+		.antMatchers(publicUrls).permitAll()
 
 		.antMatchers(swaggerUrls).permitAll()
-		.antMatchers("/h2-console/**").permitAll()
-		.anyRequest().authenticated();
+		//	.antMatchers("/h2-console/**").permitAll()
+		.antMatchers("/**").permitAll()
+		.antMatchers("/*").permitAll()
+		.anyRequest().permitAll();
 
 		http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
 

@@ -18,7 +18,7 @@ export class SalleService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<any> {
-    return this.http.get(this.monUrl1);
+    return this.http.get(`${this.monUrl1}/list`);
   }
   
   getByCapacity(capacity: number): Observable<any> {
@@ -26,19 +26,19 @@ export class SalleService {
   } 
 
   add(salle: SalleDto): Observable<any> {
-    return this.http.post(this.monUrl2,salle);
+    return this.http.post(`${this.monUrl2}/add`,salle);
   }
   
   getOne(id: number): Observable<any> {
-    return this.http.get(`${this.monUrl2}/${id}`);
+    return this.http.get(`${this.monUrl2}/show/${id}`);
   } 
 
   update(id: number, salle: Object): Observable<Object> {
-    return this.http.put(`${this.monUrl2}/${id}`, salle);
+    return this.http.put(`${this.monUrl2}/update/${id}`, salle);
   }
 
  delete(id: number): Observable<any> {
-    return this.http.delete(`${this.monUrl2}/${id}`);
+    return this.http.delete(`${this.monUrl2}/delete/${id}`);
   }
 
 }

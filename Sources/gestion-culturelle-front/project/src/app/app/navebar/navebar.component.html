@@ -85,13 +85,13 @@
       <ul class="navbar-nav mr-auto">
 
         <li *ngIf="!isConnected" class="nav-item">
-          <a id="login" routerLink='/public/login' class="nav-link" routerLinkActive=active title="Connexion / Inscription">Login
+          <a id="login" routerLink='/public/login' class="nav-link" routerLinkActive=active title="Connexion / Inscription">Connexion
             <fa-icon class="icon p-2" [icon]="faSignInAlt"></fa-icon>
           </a>
         </li>
         <li *ngIf="isConnected" class="nav-item">
           <div id="logout">
-            <a id="logout" (click)="logout()" class="nav-link" routerLinkActive=active title="Deconnexion">Logout<fa-icon class="icon p-2"
+            <a id="logout" (click)="logout()" class="nav-link" routerLinkActive=active title="Deconnexion">Deconnexion<fa-icon class="icon p-2"
                 [icon]="faSignOutAlt"></fa-icon></a>
           </div>
         </li>
@@ -100,8 +100,8 @@
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false"><i>Profil</i></a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a routerLink='public/profil-show' class="dropdown-item" routerLinkActive=active>Voir</a>
-            <a routerLink='public/profil-update' class="dropdown-item" routerLinkActive=active>Modifier</a>
+            <a routerLink='profil-show' class="dropdown-item" routerLinkActive=active>Voir</a>
+            <a routerLink='profil-update' class="dropdown-item" routerLinkActive=active>Modifier</a>
           </div>
         </li>
 

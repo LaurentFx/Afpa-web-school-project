@@ -19,11 +19,11 @@ export class ReservationService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<any> {
-    return this.http.get(this.monUrl);
+    return this.http.get(`${this.monUrl}/list`);
   }
   
   getOne(id: number): Observable<any> {
-    return this.http.get(`${this.monUrl}/${id}`);
+    return this.http.get(`${this.monUrl}/show/${id}`);
   } 
   
   getByManifestation(id: number): Observable<any> {
@@ -35,19 +35,15 @@ export class ReservationService {
   } 
   
   add(reservationDto: ReservationDto): Observable<any> {
-    return this.http.post(this.monUrl,reservationDto);
+    return this.http.post(`${this.monUrl}/add`,reservationDto);
   }
 
- /*  updateAdd(id: number,manifestation: ManifestationDto): Observable<Object> {
-    return this.http.put(`${this.monUrl}/add/${id}`, manifestation);
+  update(id: number, reservationDto: Object): Observable<Object> {
+    return this.http.put(`${this.monUrl}/update/${id}`, reservationDto);
   }
-
-  updateSub(id: number,manifestation: ManifestationDto): Observable<Object> {
-    return this.http.put(`${this.monUrl}/sub/${id}`, manifestation);
-  } */
 
   delete(id: number): Observable<any> {
-    return this.http.delete(`${this.monUrl}/${id}`);
+    return this.http.delete(`${this.monUrl}/delete/${id}`);
   }
 
   deleteAll(id: number): Observable<any> {

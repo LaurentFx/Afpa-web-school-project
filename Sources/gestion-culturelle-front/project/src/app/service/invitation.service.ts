@@ -20,11 +20,11 @@ export class InvitationService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<any> {
-    return this.http.get(this.monUrl);
+    return this.http.get(`${this.monUrl}/list`);
   }
   
   getOne(id: number): Observable<any> {
-    return this.http.get(`${this.monUrl}/${id}`);
+    return this.http.get(`${this.monUrl}/show/${id}`);
   } 
   
   getByManifestation(id: number): Observable<any> {
@@ -40,23 +40,23 @@ export class InvitationService {
   } 
 
   add(invitationDto: InvitationDto): Observable<any> {
-    return this.http.post(this.monUrl,invitationDto);
+    return this.http.post(`${this.monUrl}/add`,invitationDto);
   }
 
  update(id: number,invitationDto: InvitationDto): Observable<Object> {
-    return this.http.put(`${this.monUrl}/${id}`, invitationDto);
+    return this.http.put(`${this.monUrl}/update/${id}`, invitationDto);
   }  
 
   updateReponse(id: number,reponse: String): Observable<Object> {
-    return this.http.put(`${this.monUrl}/reponse/${id}`, reponse);
+    return this.http.put(`${this.monUrl}/answer/${id}`, reponse);
   }  
 
   delete(id: number): Observable<any> {
-    return this.http.delete(`${this.monUrl}/${id}`);
+    return this.http.delete(`${this.monUrl}/delete/${id}`);
   }
 
   deleteAll(id: number): Observable<any> {
-    return this.http.delete(`${this.monUrl}/manifestation/${id}`);
+    return this.http.delete(`${this.monUrl}/deleteAll/${id}`);
   }
 
 }

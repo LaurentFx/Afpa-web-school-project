@@ -19,7 +19,7 @@ export class InvitationListComponent implements OnInit {
   faHome = faHome;
   faPlusSquare = faPlusSquare;
   isConnected: boolean;
-  invitation: InvitationDto;
+ // invitation: InvitationDto;
   invitations: InvitationDto[];
   isResp: boolean;
   isAdmin:boolean;

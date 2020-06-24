@@ -3,7 +3,6 @@ import { ManifestationDto } from '../../../model/manifestationDto';
 import { Router } from '@angular/router';
 import { ManifestationService } from '../../../service/manifestation.service';
 import { AuthService } from '../../../security/auth.service';
-import { RoleDto } from '../../../model/roleDto';
 import { ToastrService } from 'ngx-toastr';
 import { faInfoCircle, faEdit, faTrashAlt, faHome, faPlusSquare, faCalendarPlus, faUserTie } from '@fortawesome/free-solid-svg-icons';
 
@@ -35,7 +34,7 @@ export class ManifestationListComponent implements OnInit {
 
 
   ngOnInit() {
-
+    this.manifestation = new ManifestationDto();
     this.isConnected = this.authService.isConnected();
     if (this.authService.getCurrentUser()) {
       this.isResp = this.authService.getCurrentUser().role.label === 'RESP';
@@ -77,11 +76,11 @@ export class ManifestationListComponent implements OnInit {
         this.manifestation = res;
       }
     );
-
+  // let nom = this.manifestation.label;
     this.manifestationService.delete(id).subscribe(
       res => {
         if (res) {
-          this.toastrService.success(this.manifestation.label + ' effacée.', 'Suppression Ok.')
+          this.toastrService.success(this.manifestation.label+ ' effacée.', 'Suppression Ok.')
         } else {
           this.toastrService.error(this.manifestation.label+ ' non effacée.', 'Suppression impossible')
         }

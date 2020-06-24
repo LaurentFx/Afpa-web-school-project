@@ -48,18 +48,20 @@ import { InvitationAddComponent } from './../modules/invitation/invitation-add/i
 import { InvitationListComponent } from './../modules/invitation/invitation-list/invitation-list.component';
 import { InvitationShowComponent } from './../modules/invitation/invitation-show/invitation-show.component';
 import { InvitationAnswerComponent } from './../modules/invitation/invitation-answer/invitation-answer.component';
+import { ReservationAddComponent } from '../modules/reservation/reservation-add-component/reservation-add-component.component';
+import { ReservationShowComponent } from '../modules/reservation/reservation-show-component/reservation-show-component.component';
 
 const routes: Routes = [
   { path: 'public', pathMatch: 'full', component: HomeComponent },
   { path: 'public/login', component: LoginComponent },
 
-  { path: 'public/profil-update', component: ProfilUpdateComponent, canActivate: [AuthGuard] },
-  { path: 'public/profil-show', component: ProfilShowComponent, canActivate: [AuthGuard] },
+  { path: 'profil-update', component: ProfilUpdateComponent, canActivate: [AuthGuard] },
+  { path: 'profil-show', component: ProfilShowComponent, canActivate: [AuthGuard] },
   { path: 'public/inscription', component: InscriptionComponent },
 
-  { path: 'typesalle-list', component: TypeSalleListComponent , canActivate: [AuthGuard] },
+  { path: 'typesalle-list', component: TypeSalleListComponent, canActivate: [AuthGuard] },
   { path: 'typesalle-ad', component: TypeSalleAddComponent, canActivate: [RespGuard] },
-  { path: 'typesalle-update/:id', component: TypeSalleUpdateComponent , canActivate: [RespGuard] },
+  { path: 'typesalle-update/:id', component: TypeSalleUpdateComponent, canActivate: [RespGuard] },
   { path: 'typesalle-show/:id', component: TypeSalleShowComponent, canActivate: [RespGuard] },
 
   { path: 'public/salle-list', component: SalleListComponent },
@@ -77,16 +79,21 @@ const routes: Routes = [
   { path: 'animation-update/:id', component: AnimationUpdateComponent, canActivate: [AnimGuard] },
   { path: 'animation-show/:id', component: AnimationShowComponent, canActivate: [AuthGuard] },
 
-  { path: 'panier-ad', component: PanierAddComponent , canActivate: [ClientGuard] },
-  { path: 'panier-show/:id', component: PanierShowComponent , canActivate: [ClientGuard] },
+  { path: 'panier-show/:id', component: PanierShowComponent, canActivate: [ClientGuard] },
   { path: 'panier-ad/:id', component: PanierAddComponent, canActivate: [ClientGuard] },
+
+  // Inutiles ? 
+  { path: 'panier-ad', component: PanierAddComponent, canActivate: [ClientGuard] },
   { path: 'panier-show', component: PanierShowComponent, canActivate: [ClientGuard] },
 
-  { path: 'invitation-ad/:id', component: InvitationAddComponent, canActivate: [RespadminGuard] },
+  { path: 'reservation-ad/:id', component: ReservationAddComponent, canActivate: [ClientGuard] },
+  { path: 'reservation-show/:id', component: ReservationShowComponent, canActivate: [ClientGuard] },
+
+  { path: 'invitation-ad/:id', component: InvitationAddComponent, canActivate: [AdminGuard] },
   { path: 'invitation-list', component: InvitationListComponent, canActivate: [RespadminGuard] },
   { path: 'invitation-show/:id', component: InvitationShowComponent, canActivate: [VipGuard] },
   { path: 'invitation-answer/:id', component: InvitationAnswerComponent, canActivate: [VipGuard] },
-  
+
   { path: 'role-list', component: RoleListComponent, canActivate: [RespGuard] },
   { path: 'role-ad', component: RoleAddComponent, canActivate: [RespGuard] },
   { path: 'role-update/:id', component: RoleUpdateComponent, canActivate: [RespGuard] },
@@ -97,7 +104,7 @@ const routes: Routes = [
   { path: 'user-update/:id', component: UserUpdateComponent, canActivate: [RespGuard] },
   { path: 'user-show/:id', component: UserShowComponent, canActivate: [RespGuard] },
 
- 
+
 ];
 
 @NgModule({

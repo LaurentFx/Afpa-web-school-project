@@ -38,7 +38,7 @@ export class ManifestationAddComponent implements OnInit {
     this.salle = new SalleDto();
     this.salles = [];
     this.animations = [];
-    this.users = [];
+  //  this.users = [];
     this.manifestation.salle = new SalleDto();
     this.manifestation.animation = new AnimationDto();
     this.manifestation.validateur = this.userCourant;
@@ -59,7 +59,7 @@ export class ManifestationAddComponent implements OnInit {
       }
     );
 
-    this.userService.subjectMiseAJour.subscribe(
+    /* this.userService.subjectMiseAJour.subscribe(
       res => {
         this.userService.getAll().subscribe(
           donnees => {
@@ -73,7 +73,7 @@ export class ManifestationAddComponent implements OnInit {
       resultat => {
         this.users = resultat;
       }
-    );
+    ); */
 
   }
 

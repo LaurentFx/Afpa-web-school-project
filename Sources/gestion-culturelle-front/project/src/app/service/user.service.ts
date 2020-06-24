@@ -15,7 +15,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<any> {
-    return this.http.get(this.monUrl);
+    return this.http.get(`${this.monUrl}/list`);
   }
   
   getByRole(id: number): Observable<any> {
@@ -27,11 +27,11 @@ export class UserService {
   } 
 
   getOne(id: number): Observable<any> {
-    return this.http.get(`${this.monUrl}/${id}`);
+    return this.http.get(`${this.monUrl}/show/${id}`);
   } 
 
   add(user: User): Observable<any> {
-    return this.http.post(this.monUrl,user);
+    return this.http.post(this.monUrl+"/add",user);
   }
   
   addClient(user: User): Observable<any> {
@@ -39,11 +39,11 @@ export class UserService {
   }
 
   update(id: number, user: Object): Observable<Object> {
-    return this.http.put(`${this.monUrl}/${id}`, user);
+    return this.http.put(`${this.monUrl}/update/${id}`, user);
   }
 
  delete(id: number): Observable<any> {
-    return this.http.delete(`${this.monUrl}/${id}`);
+    return this.http.delete(`${this.monUrl}/delete/${id}`);
   }
 
 }

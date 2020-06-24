@@ -18,15 +18,15 @@ export class AnimationService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<any> {
-    return this.http.get(this.monUrl1);
+    return this.http.get(`${this.monUrl1}/list`);
   }
   
   add(animation: AnimationDto): Observable<any> {
-    return this.http.post(this.monUrl2,animation);
+    return this.http.post(`${this.monUrl2}/add`,animation);
   }
   
   getOne(id: number): Observable<any> {
-    return this.http.get(`${this.monUrl2}/${id}`);
+    return this.http.get(`${this.monUrl2}/show/${id}`);
   } 
 
   getAnimations(): Observable<any> {
@@ -34,11 +34,11 @@ export class AnimationService {
   } 
 
   update(id: number, animation: Object): Observable<Object> {
-    return this.http.put(`${this.monUrl2}/${id}`, animation);
+    return this.http.put(`${this.monUrl2}/update/${id}`, animation);
   }
 
  delete(id: number): Observable<any> {
-    return this.http.delete(`${this.monUrl2}/${id}`);
+    return this.http.delete(`${this.monUrl2}/delete/${id}`);
   }
 
 }

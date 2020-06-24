@@ -18,15 +18,15 @@ export class PanierService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<any> {
-    return this.http.get(this.monUrl);
+    return this.http.get(`${this.monUrl}/list`);
   }
   
   add(article: ArticleDto): Observable<object> {
-    return this.http.post(this.monUrl,article);
+    return this.http.post(`${this.monUrl}/add`,article);
   }
   
   getOne(id: number): Observable<any> {
-    return this.http.get(`${this.monUrl}/${id}`);
+    return this.http.get(`${this.monUrl}/show/${id}`);
   } 
 
   getUser(id: number): Observable<any> {
@@ -34,15 +34,15 @@ export class PanierService {
   } 
   
   update(id: number, panier: Object): Observable<Object> {
-    return this.http.put(`${this.monUrl}/${id}`, panier);
+    return this.http.put(`${this.monUrl}/update/${id}`, panier);
   }
  
  deleteArticles(id: number): Observable<any> {
-    return this.http.delete(`${this.monUrl}/articles/${id}`);
+    return this.http.delete(`${this.monUrl}/deleteArticles/${id}`);
   }
 
   deletePanier(id: number): Observable<any> {
-    return this.http.delete(`${this.monUrl}/${id}`);
+    return this.http.delete(`${this.monUrl}/delete/${id}`);
   }
 
 }
