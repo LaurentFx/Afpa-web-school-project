@@ -207,19 +207,6 @@ public class ManifestationServiceImpl implements IManifestationService {
 				manifestation.setAnimation(animation);
 			}
 
-			//			manifestation.setDateDebut(manifestationDto.getDateDebut());		
-			//			manifestation.setDateFin(manifestationDto.getDateFin());
-			//
-			//			Optional <Salle> salleOp = this.salleRepository.findById(manifestationDto.getSalle().getId());
-			//			if (salleOp.isPresent()) {
-			//				Salle salle = salleOp.get();
-			//				manifestation.setSalle(salle);
-			//			}
-
-			//			manifestation.setReservations(manifestationDto.getReservations());
-			//			manifestation.setReservationsVip(manifestationDto.getReservationsVip());
-			//			manifestation.setCout(manifestationDto.getCout());
-			//			manifestation.setPrixBillet(manifestationDto.getPrixBillet());
 			id=this.manifestationRepository.save(manifestation).getId();
 			System.err.println("Manifestation ajoutée ");
 			return id;

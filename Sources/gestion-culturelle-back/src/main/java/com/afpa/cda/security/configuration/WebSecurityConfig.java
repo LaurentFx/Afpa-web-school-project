@@ -65,7 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		String[] animUrls = {"/animation/add","/animation/update/*"};
 
-		String[] clientUrls = {"/article/*","/panier/*","/reservation/show/*","/reservation/user/*","/reservation/manifestation/*",
+		String[] clientUrls = {"/reservation/show/*","/reservation/user/*","/reservation/manifestation/*",
 				"/reservation/add","/reservation/update/*","/reservation/delete/*"};
 
 		String[] allUrls = {"/animation/show/*","/manifestation/show/*","/salle/show/*",

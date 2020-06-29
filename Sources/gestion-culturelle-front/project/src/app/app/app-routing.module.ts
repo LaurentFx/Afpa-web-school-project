@@ -26,9 +26,6 @@ import { ManifestationListComponent } from '../modules/manifestation/manifestati
 import { ManifestationAddComponent } from '../modules/manifestation/manifestation-add/manifestation-add.component';
 import { ManifestationShowComponent } from '../modules/manifestation/manifestation-show/manifestation-show.component';
 import { ManifestationUpdateComponent } from '../modules/manifestation/manifestation-update/manifestation-update.component';
-/* import { PanierAddComponent } from './../modules/panier/panier-add-component/panier-add.component';
-import { PanierShowComponent } from './../modules/panier/panier-show-component/panier-show.component';
- */
 
 import { RoleAddComponent } from './../modules/role/role-add/role-add.component';
 import { RoleUpdateComponent } from './../modules/role/role-update/role-update.component';
@@ -81,11 +78,6 @@ const routes: Routes = [
   { path: 'animation-ad', component: AnimationAddComponent, canActivate: [AnimGuard] },
   { path: 'animation-update/:id', component: AnimationUpdateComponent, canActivate: [AnimGuard] },
   { path: 'animation-show/:id', component: AnimationShowComponent, canActivate: [AuthGuard] },
-
-  /* { path: 'panier-show/:id', component: PanierShowComponent, canActivate: [ClientGuard] },
-  { path: 'panier-ad/:id', component: PanierAddComponent, canActivate: [ClientGuard] },
-  { path: 'panier-ad', component: PanierAddComponent, canActivate: [ClientGuard] },
-  { path: 'panier-show', component: PanierShowComponent, canActivate: [ClientGuard] }, */
 
   { path: 'reservation-ad/:id', component: ReservationAddComponent, canActivate: [ClientGuard] },
   { path: 'reservation-show/:id', component: ReservationShowComponent, canActivate: [ClientGuard] },

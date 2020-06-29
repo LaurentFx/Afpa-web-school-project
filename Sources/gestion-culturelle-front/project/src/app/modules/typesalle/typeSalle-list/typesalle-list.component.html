@@ -21,8 +21,10 @@
                 <td>{{typesalle.label}}</td>
 
                 <td>
-                    <button *ngIf="isResp" (click)="redirectToShow(typesalle.id)" class="btn btn-sm btn-success">Show</button>
-                    <button *ngIf="isResp" (click)="redirectToUpdate(typesalle.id)" class="btn btn-sm btn-warning">Update</button>
+                    <button *ngIf="isResp" (click)="redirectToShow(typesalle.id)"
+                        class="btn btn-sm btn-success">Show</button>
+                    <button *ngIf="isResp" (click)="redirectToUpdate(typesalle.id)"
+                        class="btn btn-sm btn-warning">Update</button>
                     <button *ngIf="isResp" (click)="delete(typesalle.id)" class="btn btn-sm btn-danger">Delete</button>
                 </td>
 
@@ -32,6 +34,7 @@
     </table>
 
     <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/typesalle-ad']">+ Ajouter un type
-    </a> 
+    </a>
 
     <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']">Retour à l'accueil </a>
+</div>

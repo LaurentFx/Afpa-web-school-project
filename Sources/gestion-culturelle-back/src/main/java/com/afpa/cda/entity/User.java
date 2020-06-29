@@ -39,22 +39,12 @@ public class User {
 	private Role role;
 
 	private String adresse;
-
-	// A supprimer (Panier->reservation)
-	// Pour un client
-//	@OneToOne
-//	private Panier panier;
 	
+	// inutile
 	private String numClient;
 
-	// Pour un animateur et un VIP
 	private String entreprise;
 	
-//	@ManyToMany
-//	@JoinTable(name = "t_manifestation_vip",
-//	joinColumns = { @JoinColumn(name = "id_vip") },
-//	inverseJoinColumns = { @JoinColumn(name = "id_manifestation") })
-//	List<Manifestation> listManifestations;
 
 
 }

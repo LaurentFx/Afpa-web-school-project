@@ -98,10 +98,6 @@ export class ManifestationListComponent implements OnInit {
   redirectToShow(id: number) {
     this.router.navigateByUrl('/manifestation-show/' + id)
   }
-
-  /* redirectToAddPanier(id: number) {
-    this.router.navigateByUrl('/panier-ad/' + id)
-  } */
   
   redirectToAddReservation(id: number) {
     this.router.navigateByUrl('/reservation-ad/' + id)

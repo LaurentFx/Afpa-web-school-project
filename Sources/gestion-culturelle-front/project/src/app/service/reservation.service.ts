@@ -46,8 +46,4 @@ export class ReservationService {
     return this.http.delete(`${this.monUrl}/delete/${id}`);
   }
 
-/*   deleteAll(id: number): Observable<any> {
-    return this.http.delete(`${this.monUrl}/manifestation/${id}`);
-  } */
-
 }

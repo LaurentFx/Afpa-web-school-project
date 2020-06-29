@@ -50,9 +50,6 @@ public class UserServiceImpl implements IUserService {
 	@Autowired
 	private IInvitationService invitationService;
 
-//	@Autowired
-//	private PanierRepository panierRepository;
-
 	@Override
 	public List<UserDto> findAll() {
 
@@ -64,8 +61,7 @@ public class UserServiceImpl implements IUserService {
 			userDto.setEmail(user.getEmail());
 			userDto.setPassword(null);
 			userDto.setTokenSecret(null);
-			userDto.setNumClient(null);
-	//		userDto.setPanier(null);
+		//	userDto.setNumClient(null);
 			userDto.setAdresse(user.getAdresse());
 			userDto.setEntreprise(user.getEntreprise());
 
@@ -95,18 +91,10 @@ public class UserServiceImpl implements IUserService {
 			userDto.setEmail(user.getEmail());
 			userDto.setPassword(null);
 			userDto.setTokenSecret(null);
-			userDto.setNumClient(user.getNumClient());
+		//	userDto.setNumClient(user.getNumClient());
 
 			userDto.setAdresse(user.getAdresse());
 			userDto.setEntreprise(user.getEntreprise());
-
-//			PanierDto panierDto = new PanierDto();
-//			if (user.getPanier()!=null) {
-//				panierDto.setId(user.getPanier().getId());
-//				panierDto.setDateValidation(user.getPanier().getDateValidation());
-//				panierDto.setTotal(user.getPanier().getTotal());
-//			}
-//			userDto.setPanier(panierDto);
 
 			RoleDto roleDto = new RoleDto();
 			if (user.getRole()!=null) {
@@ -129,8 +117,7 @@ public class UserServiceImpl implements IUserService {
 			userDto.setEmail(user.getEmail());
 			userDto.setPassword(null);
 			userDto.setTokenSecret(null);
-			userDto.setNumClient(null);
-	//		userDto.setPanier(null);
+		//	userDto.setNumClient(null);
 			userDto.setAdresse(user.getAdresse());
 			userDto.setEntreprise(user.getEntreprise());
 
@@ -190,14 +177,7 @@ public class UserServiceImpl implements IUserService {
 			if (roleOp.isPresent()) {
 				user.setRole(roleOp.get());
 			}
-			user.setNumClient(userDto.getNom().substring(0,1)+userDto.getId()+userDto.getPrenom().substring(0,1)+"2020");
-			Date dateDuJour = new Date();
-//			user.setPanier(Panier.builder()
-//					.dateValidation(dateDuJour)
-//					.total(0).build());
-//
-//			panierRepository.save(user.getPanier());
-//			user.setPanier(Panier.builder().id(user.getPanier().getId()).build());
+		//	user.setNumClient(userDto.getNom().substring(0,1)+userDto.getId()+userDto.getPrenom().substring(0,1)+"2020");
 
 			this.userRepository.save(user);
 			userDto = modelMapper.map(user, UserDto.class);
@@ -221,15 +201,7 @@ public class UserServiceImpl implements IUserService {
 			userDto.setEmail(user.getEmail());
 			userDto.setPassword(null);
 			userDto.setTokenSecret(null);
-			userDto.setNumClient(user.getNumClient());
-
-//			PanierDto panierDto = new PanierDto();
-//			if (user.getPanier()!=null) {
-//				panierDto.setId(user.getPanier().getId());
-//				panierDto.setDateValidation(user.getPanier().getDateValidation());
-//				panierDto.setTotal(user.getPanier().getTotal());
-//			}
-//			userDto.setPanier(panierDto);
+		//	userDto.setNumClient(user.getNumClient());
 
 			userDto.setAdresse(user.getAdresse());
 			userDto.setEntreprise(user.getEntreprise());

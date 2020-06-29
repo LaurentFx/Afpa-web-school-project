@@ -6,10 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { faEdit, faTrashAlt, faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { ReservationService } from '../../../service/reservation.service';
 import { ReservationDto } from '../../../model/reservationDto';
-import { ManifestationDto } from '../../../model/manifestationDto';
 import { User } from '../../../model/user';
-import { AnimationDto } from '../../../model/animationDto';
-
 
 @Component({
   selector: 'app-reservation-list-component',
@@ -19,10 +16,6 @@ import { AnimationDto } from '../../../model/animationDto';
 export class ReservationListComponent implements OnInit {
   userDto: User;
   reservations: ReservationDto[];
- // reservationDto:ReservationDto;
-
- // manifestationDto: ManifestationDto;
- // animationDto:AnimationDto;
   faEdit = faEdit;
   faTrashAlt = faTrashAlt;
   faHome = faHome;
@@ -38,9 +31,6 @@ export class ReservationListComponent implements OnInit {
     private reservationService: ReservationService,  private authService: AuthService, private toastrService: ToastrService) { }
 
   ngOnInit() {
-    /* this.userDto = new User();
-    this.reservationDto.manifestation = new ManifestationDto();
-    this.manifestationDto.animation = new AnimationDto(); */
     this.reservations = [];
     this.isConnected = this.authService.isConnected();
     if (this.authService.getCurrentUser()) {
@@ -74,7 +64,6 @@ export class ReservationListComponent implements OnInit {
     );
 
   }
- 
 
 }
 

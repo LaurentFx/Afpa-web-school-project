@@ -30,19 +30,22 @@ export class ManifestationUpdateComponent implements OnInit {
     private route: ActivatedRoute, private manifestationService: ManifestationService,
     private toastrService: ToastrService, private router: Router) {
     this.manifestation = new ManifestationDto();
-    this.animation = new AnimationDto();
     this.salles = [];
+
+    // inutile ?
+    this.animation = new AnimationDto();
     this.manifestation.salle = new SalleDto();
     this.manifestation.animation = new AnimationDto();
     this.manifestation.validateur = new User();
   }
 
   ngOnInit() {
-    this.reload();
+    this.manifestation = new ManifestationDto();
+    this.salles = [];
 
-    /* this.manifestation = new ManifestationDto();
-     this.animation = new AnimationDto();
-     this.salles = [];
+    this.reload();
+    
+    /*this.animation = new AnimationDto();
  
      this.manifestation.salle = new SalleDto();
      this.manifestation.animation = new AnimationDto();

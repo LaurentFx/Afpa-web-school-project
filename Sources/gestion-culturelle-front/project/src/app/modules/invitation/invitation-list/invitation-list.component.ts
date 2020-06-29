@@ -20,9 +20,7 @@ export class InvitationListComponent implements OnInit {
   faPlusSquare = faPlusSquare;
   isConnected: boolean;
   invitations: InvitationDto[];
-  isResp: boolean;
   isAdmin:boolean;
-  isVip: boolean;
   isRespAdmin: boolean;
 
   constructor(private manifestationService: ManifestationService, private router: Router,
@@ -31,10 +29,8 @@ export class InvitationListComponent implements OnInit {
   ngOnInit() {
     this.isConnected = this.authService.isConnected();
     if (this.authService.getCurrentUser()) {
-      this.isResp = this.authService.getCurrentUser().role.label === 'RESP';
       this.isAdmin = this.authService.getCurrentUser().role.label === 'ADMIN';
       this.isRespAdmin = (this.authService.getCurrentUser().role.label === 'RESP') || (this.authService.getCurrentUser().role.label === 'ADMIN');
-      this.isVip = this.authService.getCurrentUser().role.label === 'VIP';
     }
 
     this.invitationService.subjectMiseAJour.subscribe(

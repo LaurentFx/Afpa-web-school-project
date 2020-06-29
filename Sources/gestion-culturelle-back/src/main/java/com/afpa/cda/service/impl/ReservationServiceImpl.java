@@ -220,7 +220,6 @@ public class ReservationServiceImpl implements IReservationService {
 				
 			}
 			
-			//reservation.setNumClient("2020");
 			reservation.setQuantite(reservationDto.getQuantite());
 			reservation.setDateReservation(reservationDto.getDateReservation());
 			

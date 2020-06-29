@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-//import { ArticleDto } from '../../../model/articleDto';
 import { User } from '../../../model/user';
 import { AuthService } from '../../../security/auth.service';
 import { UserService } from '../../../service/user.service';
@@ -22,9 +21,6 @@ export class ReservationShowComponent implements OnInit {
   userDto: User;
   id: number;
   total: number;
-
-  //listArticles: ArticleDto[];
- /*  panierDto: PanierDto; */
   faHome = faHome;
   faCalendarPlus = faCalendarPlus;
   faCalendarCheck = faCalendarCheck;
@@ -80,52 +76,12 @@ export class ReservationShowComponent implements OnInit {
     this.userService.getOne(idUser).subscribe(
       res => {
         this.userDto = res;
-      //  this.panierDto = res.panier;
       }
     );
-   /*  this.id = this.route.snapshot.params['id'];
-    this.articleService.getArticles(this.id).subscribe(
-      donnees => {
-        this.listArticles = donnees;
-
-      }
-    ); */
-
 
   }
-
-  /* valid(id: number) {
-  //  this.id = this.route.snapshot.params['id'];
-    this.reservationService.deletePanier(id).subscribe(
-      res => {
-        if (res) {
-          this.toastrService.success('La réservation a été validée', 'Validation Ok')
-        } else {
-          this.toastrService.error('La réservation n a pas été validée', 'Validation NOk')
-        }
-        this.reservationService.subjectMiseAJour.next(0);
-        this.goHome()
-      }
-    )
-  }
-
-  cancel(id: number) {
-  //  this.id = this.route.snapshot.params['id'];
-    this.reservationService.deleteArticles(id).subscribe(
-      res => {
-        if (res) {
-          this.toastrService.success('Les réservations ont été annulées', 'Annulation Ok')
-        } else {
-          this.toastrService.error('Les réservations n ont pas été annulées', 'Annulation NOk')
-        }
-        this.reservationService.subjectMiseAJour.next(0);
-        this.goHome()
-      }
-    )
-  } */
 
   delete(id: number) {
-    //  this.id = this.route.snapshot.params['id'];
     this.reservationService.delete(id).subscribe(
       res => {
         if (res) {

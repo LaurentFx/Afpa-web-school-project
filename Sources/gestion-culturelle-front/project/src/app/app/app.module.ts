@@ -14,7 +14,6 @@ import { SalleModule } from './../modules/salle/salle.module';
 import { LoginModule } from './../modules/login/login.module';
 import { ManifestationModule } from './../modules/manifestation/manifestation.module';
 import { AnimationModule } from './../modules/animation/animation.module';
-import { PanierModule } from './../modules/panier/panier.module';
 import { UserModule } from './../modules/user/user.module';
 import { AuthInterceptor } from './../security/auth.interceptor';
 import { ProfilModule } from './../modules/profil/profil.module';
@@ -44,7 +43,6 @@ import { ReservationModule } from './../modules/reservation/reservation.module';
     LoginModule,
     ManifestationModule, 
     AnimationModule, 
-    PanierModule, 
     UserModule,
     ProfilModule,
     InscriptionModule,

@@ -21,7 +21,6 @@ export class InvitationShowComponent implements OnInit {
   userCourant: User;
   isAnswered:boolean;
 
- // invitation: InvitationDto;
   invitations: InvitationDto[];
 
 
@@ -31,7 +30,6 @@ export class InvitationShowComponent implements OnInit {
 
   ngOnInit() {
     const userCourant = this.authService.getCurrentUser();
-  // this.invitation = new InvitationDto();
 
     this.invitationService.subjectMiseAJour.subscribe(
       res => {
@@ -53,35 +51,6 @@ export class InvitationShowComponent implements OnInit {
 
   }
 
-/*   oui(id: number) {
   
-    this.invitationService.updateReponse(id, 'Oui').subscribe(
-      res => {
-        if (res) {
-          this.toastrService.success('La réponse à l invitation N°'+id + ' a été modifiée.', 'Réponse Ok.')
-        } else {
-          this.toastrService.error('La réponse à l invitation N°'+id +  ' n a pas été modifiée', 'Réponse NOk.')
-        }
-      }
-    );
-    this.ngOnInit();
-  }
-
-  non(id: number) {
-  
-    this.invitationService.updateReponse(id, 'Non').subscribe(
-      res => {
-        if (res) {
-          this.toastrService.success('La réponse à l invitation N°'+id + ' a été modifiée.', 'Réponse Ok.')
-        } else {
-          this.toastrService.error('La réponse à l invitation N°'+id +  ' n a pas été modifiée', 'Réponse NOk.')
-        }
-      }
-    );
-    this.ngOnInit();
-  } */
-
-
-
 }
 

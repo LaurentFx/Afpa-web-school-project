@@ -15,7 +15,7 @@ export class RoleUpdateComponent implements OnInit {
   role: RoleDto;
 
   constructor(private route: ActivatedRoute, private roleService: RoleService,
-     private router: Router,    private toastrService: ToastrService) { }
+    private router: Router, private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.role = new RoleDto();
@@ -31,12 +31,12 @@ export class RoleUpdateComponent implements OnInit {
 
   update(): void {
     let id = this.route.snapshot.params['id'];
-    this.roleService.update(id,this.role).subscribe(
+    this.roleService.update(id, this.role).subscribe(
       res => {
         if (res) {
-          this.toastrService.success(this.role.label+' a été modifiée.','Mise à jour Ok.')
+          this.toastrService.success(this.role.label + ' a été modifiée.', 'Mise à jour Ok.')
         } else {
-          this.toastrService.error(+this.role.label+' n a pas été modifiée','Mise à jour impossible.')
+          this.toastrService.error(+this.role.label + ' n a pas été modifiée', 'Mise à jour impossible.')
         }
         this.goHome();
       }
@@ -44,9 +44,9 @@ export class RoleUpdateComponent implements OnInit {
   }
 
   onSubmit() {
-this.update();
+    this.update();
   }
-  
+
   goHome() {
     this.router.navigate(['/role-list']);
   }

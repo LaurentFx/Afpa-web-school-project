@@ -20,10 +20,7 @@ import { faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 export class ManifestationAddComponent implements OnInit {
 
   manifestation: ManifestationDto;
-  salles: SalleDto[];
   animations: AnimationDto[];
-  users: User[];
-  salle: SalleDto;
   userCourant: User;
   faHome = faHome;
   faPlusSquare = faPlusSquare;
@@ -35,11 +32,8 @@ export class ManifestationAddComponent implements OnInit {
   ngOnInit() {
     this.userCourant = this.authService.getCurrentUser();
     this.manifestation = new ManifestationDto();
-    this.salle = new SalleDto();
-    this.salles = [];
     this.animations = [];
-  //  this.users = [];
-    this.manifestation.salle = new SalleDto();
+   // inutile ?
     this.manifestation.animation = new AnimationDto();
     this.manifestation.validateur = this.userCourant;
 
@@ -58,22 +52,6 @@ export class ManifestationAddComponent implements OnInit {
         this.animations = resultat;
       }
     );
-
-    /* this.userService.subjectMiseAJour.subscribe(
-      res => {
-        this.userService.getAll().subscribe(
-          donnees => {
-            this.users = donnees;
-          }
-        );
-      }
-    );
-
-    this.userService.getAll().subscribe(
-      resultat => {
-        this.users = resultat;
-      }
-    ); */
 
   }
 
@@ -94,7 +72,6 @@ export class ManifestationAddComponent implements OnInit {
     this.manifestation = new ManifestationDto();
     this.manifestation.validateur = new User();
     this.manifestation.animation = new AnimationDto();
-    this.manifestation.salle = new SalleDto();
 
   }
 

@@ -1,7 +1,7 @@
 <div class="container">
   <br>
   <div class="row justify-content-center">
-      <h2>Liste des users</h2>
+    <h2>Liste des users</h2>
   </div>
   <br>
 </div>
@@ -13,7 +13,7 @@
         <th>Nom</th>
         <th>Prenom</th>
         <th>Role</th>
-        <th>Actions</th>
+        <th *ngIf="isResp">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -22,14 +22,20 @@
         <td>{{user.prenom}}</td>
         <td>{{user.role.label}}</td>
 
-        <td>
-          <button *ngIf="isResp" (click)="redirectToShow(user.id)" class="btn btn-sm btn-success" title="Afficher les détails"><fa-icon class="icon p-0" [icon]="faInfoCircle">Show</fa-icon></button>
+        <td *ngIf="isResp">
+          <button *ngIf="isResp" (click)="redirectToShow(user.id)" class="btn btn-sm btn-success"
+            title="Afficher les détails">
+            <fa-icon class="icon p-0" [icon]="faInfoCircle">Show</fa-icon>
+          </button>
           &nbsp;
-          <button *ngIf="isResp" (click)="redirectToUpdate(user.id)" class="btn btn-sm btn-warning" title="Mettre à jour"><fa-icon [icon]="faEdit">Update</fa-icon></button>
+          <button *ngIf="isResp" (click)="redirectToUpdate(user.id)" class="btn btn-sm btn-warning"
+            title="Mettre à jour">
+            <fa-icon [icon]="faEdit">Update</fa-icon>
+          </button>
           &nbsp;
-          <button *ngIf="isResp" (click)="delete(user.id)" class="btn btn-sm btn-danger" title="Effacer"><fa-icon [icon]="faTrashAlt">Delete</fa-icon></button>
-          &nbsp;
-       <!--   <button (click)="redirectToRole(user.role.id)" class="btn btn-sm btn-primary">Role</button> -->
+          <button *ngIf="isResp" (click)="delete(user.id)" class="btn btn-sm btn-danger" title="Effacer">
+            <fa-icon [icon]="faTrashAlt">Delete</fa-icon>
+          </button>
         </td>
 
       </tr>
@@ -39,7 +45,13 @@
   <br>
   <br>
   &nbsp;
-  <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']" title="Retour à l'accueil"><fa-icon class="icon p-2" [icon]="faHome">Retour à l'accueil</fa-icon></a>
+  <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']"
+    title="Retour à l'accueil">
+    <fa-icon class="icon p-2" [icon]="faHome">Retour à l'accueil</fa-icon>
+  </a>
   &nbsp;
-  <a *ngIf="isResp" name="" id="" class="btn btn-primary" href="#" role="button" [routerLink]="['/user-ad']" title="Ajouter un user"><fa-icon class="icon p-2" [icon]="faPlusSquare">Ajouter</fa-icon></a>
+  <a *ngIf="isResp" name="" id="" class="btn btn-primary" href="#" role="button" [routerLink]="['/user-ad']"
+    title="Ajouter un user">
+    <fa-icon class="icon p-2" [icon]="faPlusSquare">Ajouter</fa-icon>
+  </a>
 </div>

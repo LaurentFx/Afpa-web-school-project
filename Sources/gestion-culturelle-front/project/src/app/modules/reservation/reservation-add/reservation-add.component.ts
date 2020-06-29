@@ -23,10 +23,9 @@ export class ReservationAddComponent implements OnInit {
   quantite: number;
   faHome = faHome;
   faCalendarPlus = faCalendarPlus;
-  date:number;
-  today: number = Date.now(); 
- // user: User;
+  today: number = Date.now();
 
+  //inutiles ?
   idUser: number;
   idManif: number;
 
@@ -35,31 +34,28 @@ export class ReservationAddComponent implements OnInit {
     private router: Router, private authService: AuthService,
     private reservationService: ReservationService,
     private userService: UserService, private toastrService: ToastrService) {
-    }
-    
-    ngOnInit() {
-      this.manifestationDto = new ManifestationDto();
-      this.userDto = new User();
-      this.reservationDto = new ReservationDto();
-      this.reservationDto.manifestation = new ManifestationDto();
-      this.reservationDto.client = new User();
+  }
 
-     /*  this.panierDto = new PanierDto();
-      this.article = new ArticleDto(); */
-      this.reload();
+  ngOnInit() {
+    this.manifestationDto = new ManifestationDto();
+    this.userDto = new User();
+    this.reservationDto = new ReservationDto();
+    this.reservationDto.manifestation = new ManifestationDto();
+    this.reservationDto.client = new User();
+
+    this.userDto = this.authService.getCurrentUser();
+    this.manifestationService.getOne(this.route.snapshot.params['id']).subscribe(
+      resu => {
+        this.manifestationDto = resu;
+      }
+    )
+
+   // this.reload();
 
   }
 
-  reload() {
-//this.date=Date.now();
-  //  let idUser = this.authService.getCurrentUser().id;
-  /*   this.userService.getOne(idUser).subscribe(
-    res => {
-      //   this.panierDto = res.panier;
-      this.userDto = res;
-    }
-    );     */
-    
+ /*  reload() {
+
     this.userDto = this.authService.getCurrentUser();
     this.manifestationService.getOne(this.route.snapshot.params['id']).subscribe(
       resu => {
@@ -67,44 +63,27 @@ export class ReservationAddComponent implements OnInit {
       }
     )
   }
+ */
 
   add(): void {
-this.reservationDto.manifestation.id=this.route.snapshot.params['id'];
-this.reservationDto.client.id=this.authService.getCurrentUser().id;
-this.reservationDto.quantite = this.quantite;
+    this.reservationDto.manifestation.id = this.route.snapshot.params['id'];
+    this.reservationDto.client.id = this.authService.getCurrentUser().id;
+    this.reservationDto.quantite = this.quantite;
 
-this.reservationService.add(this.reservationDto).subscribe(
-  res => {
-    if (res===0) {
-      this.toastrService.error('La reservation existe déjà', 'Ajout impossible')
-    } else {
-      this.toastrService.success('Reservation ajoutée.', 'Ajout Ok')
-    }
-    this.reservationService.subjectMiseAJour.next(0);
-    this.goHome(this.userDto.id);
-  }
-);
-
-
-
-    // this.reload();
-   /*  this.article.manifestation = this.manifestationDto;
-    this.article.panier = this.panierDto;
-    this.article.quantite = this.quantite;
-
-    this.panierService.add(this.article).subscribe(
+    this.reservationService.add(this.reservationDto).subscribe(
       res => {
-        this.panierService.subjectMiseAJour.next(0);
-        if (res) {
-          this.toastrService.error('La manifestation ' + this.article.manifestation.label + ' est indisponible.', 'Ajout impossible')
+        if (res === 0) {
+          this.toastrService.error('La reservation existe déjà', 'Ajout impossible')
         } else {
-          this.toastrService.success('La manifestation ' + this.article.manifestation.label + ' a été ajoutée au panier', 'Ajout Ok')
+          this.toastrService.success('Reservation ajoutée.', 'Ajout Ok')
         }
-        this.goHome(this.panierDto.id);
+        this.reservationService.subjectMiseAJour.next(0);
+        this.goHome(this.userDto.id);
       }
-    ); */
+    );
 
   }
+
 
   goHome(id: number) {
     this.router.navigateByUrl('/reservation-show/' + id)

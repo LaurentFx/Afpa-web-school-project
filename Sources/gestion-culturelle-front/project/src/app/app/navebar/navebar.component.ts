@@ -25,15 +25,15 @@ export class NavebarComponent implements OnInit {
   isRespAdmin: boolean;
   isVipAdmin: boolean;
   isRespAdminVip: boolean;
-  isRespAdminClient : boolean;
+  isRespAdminClient: boolean;
   user: String;
   userDto: User;
   role: RoleDto;
   userCourant: User;
 
   constructor(private router: Router, private userService: UserService,
-    private authService: AuthService,    private toastrService: ToastrService,
-  ) {  }
+    private authService: AuthService, private toastrService: ToastrService,
+  ) { }
 
   ngOnInit() {
     this.reload();
@@ -50,6 +50,7 @@ export class NavebarComponent implements OnInit {
           this.isRespAdmin = false;
           this.isVipAdmin = false;
           this.isRespAdminVip = false;
+         this.isRespAdminClient = false;
           this.user = '';
           this.role = null;
         } else {
@@ -73,51 +74,25 @@ export class NavebarComponent implements OnInit {
       this.isVipAdmin = (userCourant.role.label === 'VIP') || (userCourant.role.label === 'ADMIN');
       this.isRespAdminVip = (userCourant.role.label === 'RESP') || (userCourant.role.label === 'VIP') || (userCourant.role.label === 'ADMIN');
       this.isRespAdminClient = (userCourant.role.label === 'RESP') || (userCourant.role.label === 'CLIENT') || (userCourant.role.label === 'ADMIN');
-       this.userDto = userCourant;
-     this.user = userCourant.nom;
+      this.userDto = userCourant;
+      this.user = userCourant.nom;
       this.role = userCourant.role;
 
-     /*  if (this.userDto.role.label === 'CLIENT') {
-        this.userService.getOne(this.userDto.id).subscribe(
-          res => {
-            this.panierDto = res.panier;
-          }
-        );
-      } */
-      
     }
   }
 
   logout(): void {
     this.userCourant = this.authService.getCurrentUser();
-
-    /* if (this.userCourant.role.label === 'CLIENT') {
-      this.panierService.getUser(this.userCourant.id).subscribe(
-        res => {
-          this.panierDto = res;
-        }
-      )
-    }
-    this.panierService.deleteArticles(this.panierDto.id).subscribe(
-      res => {
-
-      }
-    ) */
-
-    this.toastrService.info('A bientôt ...', 'Deconnexion');
+    // this.toastrService.info('A bientôt ...', 'Deconnexion');
     this.authService.logout();
     this.router.navigateByUrl('/public/login');
     this.isConnected = false;
   }
 
- /*  redirectToShowPanier(id: number) {
-    this.router.navigateByUrl('/panier-show/' + id)
-  } */
-  
   redirectToShowInvitation(id: number) {
     this.router.navigateByUrl('/invitation-show/' + id)
   }
-  
+
   redirectToShowReservation(id: number) {
     this.router.navigateByUrl('/reservation-show/' + id)
   }

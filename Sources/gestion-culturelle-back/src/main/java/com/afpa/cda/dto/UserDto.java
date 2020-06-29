@@ -33,15 +33,10 @@ public class UserDto {
 
 	private String numClient;
 	
-//	private PanierDto panier;
-	
 	private RoleDto role;
 	
 	private String entreprise;
 	
-	
-	//private List <ManifestationDto> listManifestations;
-
 	
 
 }

@@ -41,12 +41,7 @@
                 <td>{{invitation.reponse}}</td>
 
                 <td>
-                    <!--
                    
-                    <button *ngIf="isRespAdmin" (click)="redirectToUpdate(invitation.id)" class="btn btn-sm btn-warning" title="Mettre à jour">
-                        <fa-icon [icon]="faEdit">Update</fa-icon></button>
-                    &nbsp;
-                    -->
                     <button *ngIf="isRespAdmin" (click)="delete(invitation.id)" class="btn btn-sm btn-danger"
                         title="Effacer">
                         <fa-icon [icon]="faTrashAlt">Delete</fa-icon>
@@ -65,7 +60,7 @@
     <div class="row justify-content-center">
 
         &nbsp;
-        <a *ngIf="isRespAdmin" name="" id="" class="btn btn-primary" href="#" role="button"
+        <a *ngIf="isAdmin" name="" id="" class="btn btn-primary" href="#" role="button"
             [routerLink]="['/public/manifestation-list']" title="Ajouter une invitation">
             <fa-icon class="icon p-2" [icon]="faPlusSquare">Inviter</fa-icon>
         </a>

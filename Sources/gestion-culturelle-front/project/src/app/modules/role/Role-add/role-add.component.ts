@@ -10,7 +10,6 @@ import { RoleService } from '../../../service/role.service';
   styleUrls: ['./role-add.component.css']
 })
 export class RoleAddComponent implements OnInit {
-_
     role: RoleDto;   
   
     constructor(private roleService: RoleService,

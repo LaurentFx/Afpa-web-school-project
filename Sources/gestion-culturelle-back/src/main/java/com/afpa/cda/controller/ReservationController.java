@@ -21,7 +21,7 @@ public class ReservationController {
 	@Autowired
 	private IReservationService reservationService;
 
-	@PreAuthorize("hasAnyAuthority('RESP','ADMIN','CLIENT')")
+	@PreAuthorize("hasAnyAuthority('RESP','ADMIN')")
 	@GetMapping(path="/reservation/list")
 	public List<ReservationDto> getAll(){
 		return this.reservationService.findAll();

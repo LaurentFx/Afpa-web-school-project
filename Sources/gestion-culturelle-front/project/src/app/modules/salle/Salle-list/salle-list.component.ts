@@ -89,7 +89,6 @@ export class SalleListComponent implements OnInit {
     this.router.navigateByUrl('/salle-update/' + id)
   }
 
-
   redirectToShow(id: number) {
     this.router.navigateByUrl('/salle-show/' + id)
   }

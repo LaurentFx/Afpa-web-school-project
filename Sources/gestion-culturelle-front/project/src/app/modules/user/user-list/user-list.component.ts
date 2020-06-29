@@ -85,7 +85,6 @@ export class UserListComponent implements OnInit {
     this.router.navigateByUrl('/user-update/' + id)
   }
 
-
   redirectToShow(id: number) {
     this.router.navigateByUrl('/user-show/' + id)
   }

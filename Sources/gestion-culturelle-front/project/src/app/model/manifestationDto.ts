@@ -15,7 +15,6 @@ export class ManifestationDto {
     prixBillet: number;
     reservations: number;
     reservationsVip: number;
-  //  listVips : User;
 
     constructor(id?: number,
         label?: string,
@@ -29,7 +28,6 @@ export class ManifestationDto {
         reservationsVip?: number,
         prixBillet?: number,
         salle?: SalleDto,
-    //    listVips?: User,
     ) {
         this.id = id;
         this.label = label;
@@ -43,7 +41,6 @@ export class ManifestationDto {
         this.reservations = reservations;
         this.reservationsVip = reservationsVip;
         this.salle = salle;
-      //  this.listVips = listVips;
 
     }
 }

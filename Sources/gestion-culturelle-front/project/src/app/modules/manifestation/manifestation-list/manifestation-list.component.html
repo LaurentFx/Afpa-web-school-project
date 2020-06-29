@@ -54,8 +54,6 @@
                         <fa-icon [icon]="faTrashAlt">Delete</fa-icon>
                     </button>
                     &nbsp;
-                    <!--    <button *ngIf="isClient" (click)="redirectToAddPanier(manifestation.id)" class="btn btn-sm btn-primary" title="Réserver une manifestation"><fa-icon [icon]="faCalendarPlus">Reserver</fa-icon></button>
-                    &nbsp; -->
                     <button *ngIf="isClient" (click)="redirectToAddReservation(manifestation.id)"
                         class="btn btn-sm btn-primary" title="Réserver une manifestation">
                         <fa-icon [icon]="faCalendarPlus">Reserver</fa-icon>
@@ -81,3 +79,4 @@
         title="Ajouter une manifestation">
         <fa-icon class="icon p-2" [icon]="faPlusSquare">Ajouter</fa-icon>
     </a>
+</div>
