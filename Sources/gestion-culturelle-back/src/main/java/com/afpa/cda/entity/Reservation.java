@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -42,6 +44,7 @@ public class Reservation {
 	String numClient;
 	int quantite;
 	
+	@Temporal(TemporalType.DATE)
 	Date dateReservation;
 	
 }

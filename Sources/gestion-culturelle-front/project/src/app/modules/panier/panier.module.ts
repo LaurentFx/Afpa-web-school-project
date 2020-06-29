@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PanierRoutingModule } from './panier-routing.module';
-import { PanierAddComponent } from './panier-add-component/panier-add.component';
-import { PanierShowComponent } from './panier-show-component/panier-show.component';
+/* import { PanierAddComponent } from './panier-add-component/panier-add.component';
+import { PanierShowComponent } from './panier-show-component/panier-show.component'; */
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
-    PanierAddComponent,
-    PanierShowComponent
+   /*  PanierAddComponent,
+    PanierShowComponent */
   ],
   imports: [
     CommonModule,
@@ -18,8 +18,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FontAwesomeModule
   ],
   exports: [
-    PanierAddComponent,
-    PanierShowComponent
+   /*  PanierAddComponent,
+    PanierShowComponent */
   ]
 })
 export class PanierModule { }

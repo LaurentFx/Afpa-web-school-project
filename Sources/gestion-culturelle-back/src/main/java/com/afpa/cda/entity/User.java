@@ -42,8 +42,8 @@ public class User {
 
 	// A supprimer (Panier->reservation)
 	// Pour un client
-	@OneToOne
-	private Panier panier;
+//	@OneToOne
+//	private Panier panier;
 	
 	private String numClient;
 

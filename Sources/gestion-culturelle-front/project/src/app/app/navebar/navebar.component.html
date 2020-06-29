@@ -49,12 +49,15 @@
         </div>
       </li>
 
-      <li *ngIf="isClient" class="nav-item dropdown">
+      <li *ngIf="isRespAdminClient" class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">Réservations</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <button (click)="redirectToShowPanier(panierDto.id)" class="dropdown-item">Voir</button>
-          <a routerLink='public/manifestation-list' class="dropdown-item" routerLinkActive=active>Réserver</a>
+        <!--   <button (click)="redirectToShowPanier(panierDto.id)" class="dropdown-item">Voir panier</button> -->
+          <button *ngIf="isClient" (click)="redirectToShowReservation(userDto.id)" class="dropdown-item">Voir</button>
+          <a *ngIf="isClient" routerLink='public/manifestation-list' class="dropdown-item" routerLinkActive=active>Réserver</a>
+          <a *ngIf="isRespAdmin" routerLink='reservation-list' class="dropdown-item"
+          routerLinkActive=active>Lister</a>
         </div>
       </li>
 

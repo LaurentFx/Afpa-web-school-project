@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.afpa.cda.dao.InvitationRepository;
 import com.afpa.cda.dao.ManifestationRepository;
 import com.afpa.cda.dao.UserRepository;
+import com.afpa.cda.dto.AnimationDto;
 import com.afpa.cda.dto.InvitationDto;
 import com.afpa.cda.dto.ManifestationDto;
 import com.afpa.cda.dto.SalleDto;
@@ -43,6 +44,12 @@ public class InvitationServiceImpl implements IInvitationService {
 			ManifestationDto manifestationDto = new ManifestationDto();
 			manifestationDto.setId(i.getManifestation().getId());
 			manifestationDto.setLabel(i.getManifestation().getLabel());
+			
+			AnimationDto animationDto = new AnimationDto();
+			animationDto.setId(i.getManifestation().getAnimation().getId());
+			animationDto.setLabel(i.getManifestation().getAnimation().getLabel());
+			manifestationDto.setAnimation(animationDto);
+			
 			manifestationDto.setDateDebut(i.getManifestation().getDateDebut());
 			manifestationDto.setDateFin(i.getManifestation().getDateFin());
 			manifestationDto.setReservationsVip(i.getManifestation().getReservationsVip());
@@ -80,6 +87,12 @@ public class InvitationServiceImpl implements IInvitationService {
 			ManifestationDto manifestationDto = new ManifestationDto();
 			manifestationDto.setId(invitation.getManifestation().getId());
 			manifestationDto.setLabel(invitation.getManifestation().getLabel());
+			
+			AnimationDto animationDto = new AnimationDto();
+			animationDto.setId(invitation.getManifestation().getAnimation().getId());
+			animationDto.setLabel(invitation.getManifestation().getAnimation().getLabel());
+			manifestationDto.setAnimation(animationDto);
+			
 			manifestationDto.setDateDebut(invitation.getManifestation().getDateDebut());
 			manifestationDto.setDateFin(invitation.getManifestation().getDateFin());
 			manifestationDto.setReservationsVip(invitation.getManifestation().getReservationsVip());
@@ -121,6 +134,12 @@ public class InvitationServiceImpl implements IInvitationService {
 					ManifestationDto manifestationDto = new ManifestationDto();
 					manifestationDto.setId(i.getManifestation().getId());
 					manifestationDto.setLabel(i.getManifestation().getLabel());
+					
+					AnimationDto animationDto = new AnimationDto();
+					animationDto.setId(i.getManifestation().getAnimation().getId());
+					animationDto.setLabel(i.getManifestation().getAnimation().getLabel());
+					manifestationDto.setAnimation(animationDto);
+					
 					manifestationDto.setDateDebut(i.getManifestation().getDateDebut());
 					manifestationDto.setDateFin(i.getManifestation().getDateFin());
 					manifestationDto.setReservationsVip(i.getManifestation().getReservationsVip());

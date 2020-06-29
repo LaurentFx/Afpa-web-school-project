@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+/* import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable, Subject } from 'rxjs';
 import { ArticleDto } from '../model/articleDto';
@@ -45,4 +45,4 @@ export class PanierService {
     return this.http.delete(`${this.monUrl}/delete/${id}`);
   }
 
-}
+} */

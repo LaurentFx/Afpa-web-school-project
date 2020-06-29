@@ -1,0 +1,125 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <h2>Detail des réservations</h2>
+    </div>
+</div>
+
+<br>
+<div [hidden]="submitted">
+    <form>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-2">
+
+                    
+                    <div class="form-group">
+                        <label for="nom">Nom du client :</label>
+                        <input type="text" name="nom" class="form-control" id="nom" placeholder="{{userDto.nom}}"
+                        readonly>
+                    </div>
+                    
+                    <!--   <div class="form-group">
+                        <label for="numClient">N° Client :</label>
+                        <input type="text" name="numClient" class="form-control" id="numClient"
+                            placeholder="{{userDto.numClient}}" readonly>
+                    </div> -->
+                  
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+<br>
+
+            <div class="panel-body">
+                <table class="table table-striped table-bordered " style="border:1px solid black;">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>N°</th>
+                            <th>Manifestation</th>
+                            <th>Animation</th>
+                            <th>Date de Debut</th>
+                            <th>Date de Fin</th>
+                            <th>Salle</th>
+                            <th>Date de Reservation</th>
+                            <th>Prix du billet (en €)</th>
+                            <th>Nombre de billets</th>
+                            <th>Sous Total</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let reservation of reservations">
+                            <td>{{reservation.id}}
+                            <td>{{reservation.manifestation.label}}</td>
+                            <td>{{reservation.manifestation.animation.label}}</td>
+                            <td>{{reservation.manifestation.dateDebut | date:'dd/MM/yyyy'}}</td>
+                            <td>{{reservation.manifestation.dateFin | date:'dd/MM/yyyy'}}</td>
+                            <td>{{reservation.manifestation.salle.label}}</td>
+                            <td>{{reservation.dateReservation | date:'dd/MM/yyyy'}}
+                            <td>{{reservation.manifestation.prixBillet|number:'.0-2'}}</td>
+                            <td> {{reservation.quantite}}</td>
+                            <td> {{reservation.manifestation.prixBillet * reservation.quantite|number:'.0-2'}}</td>
+                            <td> <button (click)="delete(reservation.id)" class="btn btn-sm btn-danger" title="Effacer">
+                                    <fa-icon [icon]="faTrashAlt">Delete</fa-icon>
+                                </button>
+                            </td>
+
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div [hidden]="submitted">
+                <form>
+
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <label for="total">Total panier :</label>
+                                    <input type="text" name="total" class="form-control" id="total"
+                                        placeholder="{{total|number:'.0-2'}}" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+      
+
+<br>
+<br>
+
+<div class="container">
+    <div class="row justify-content-center">
+
+        &nbsp;
+        <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']"
+            title="Retour à l'accueil">
+            <fa-icon class="icon p-2" [icon]="faHome">Retour à l'accueil</fa-icon>
+        </a>
+
+        <!--  <button (click)="cancel(userDto.id)" class="btn btn-secondary">
+            <fa-icon class="icon p-2" [icon]="faHome" title="Annuler les réservations">
+                Annuler les réservations</fa-icon>
+        </button> -->
+        &nbsp;
+
+        <a name="" id="" class="btn btn-primary" href="#" role="button" [routerLink]="['/public/manifestation-list']"
+            title="Reserver une manifestation">
+            <fa-icon class="icon p-2" [icon]="faCalendarPlus">
+                Reserver une autre manifestation</fa-icon>
+        </a>
+        <!--  &nbsp;
+        <button (click)="valid(userDto.id)" class="btn btn-success" title="Valider les réservations">
+            <fa-icon class="icon p-2" [icon]="faCalendarCheck">Valider les réservations</fa-icon>
+        </button>
+ -->
+    </div>
+</div>

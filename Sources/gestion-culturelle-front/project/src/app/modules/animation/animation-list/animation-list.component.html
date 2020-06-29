@@ -1,6 +1,10 @@
-<h3>Liste des animations</h3>
-
-<br>
+<div class="container">
+    <br>
+    <div class="row justify-content-center">
+        <h2>Liste des animations</h2>
+    </div>
+    <br>
+</div>
 
 <div class="panel-body">
     <table class="table table-striped table-bordered ">
@@ -12,7 +16,7 @@
                 <th>Animateur</th>
                 <th>Prix</th>
                 <th>Nombre de spectateurs prévus</th>
-                <th>Actions</th>
+                <th *ngIf="isConnected">Actions</th>
 
             </tr>
         </thead>
@@ -27,7 +31,7 @@
                 <td>{{animation.prix}}</td>
                 <td>{{animation.nbreSpectateursPrevus}}</td>
 
-                <td>
+                <td *ngIf="isConnected">
                     <button *ngIf="isConnected" (click)="redirectToShow(animation.id)" class="btn btn-sm btn-success" title="Afficher les détails"><fa-icon class="icon p-0" [icon]="faInfoCircle">Show</fa-icon></button>
                     &nbsp;
                     <button *ngIf="isAnim" (click)="redirectToUpdate(animation.id)" class="btn btn-sm btn-warning" title="Mettre à jour"><fa-icon [icon]="faEdit">Update</fa-icon></button>

@@ -63,7 +63,8 @@ class ManifestationServiceImplTest {
 
 	//Création Objets test
 	static RoleDto roleTest = new RoleDto (10,"ROLETEST");
-	static UserDto userTest = new UserDto (10,"USERTEST","USERTEST","1234",null,"cda@afpa.com", "Lille","10",null, roleTest,"Afpa"); 
+//	static UserDto userTest = new UserDto (10,"USERTEST","USERTEST","1234",null,"cda@afpa.com", "Lille","10",null, roleTest,"Afpa"); 
+	static UserDto userTest = new UserDto (10,"USERTEST","USERTEST","1234",null,"cda@afpa.com", "Lille","10", roleTest,"Afpa"); 
 	static TypeSalleDto typeSalleTest = new TypeSalleDto (10,"TYPESALLETEST");
 	static SalleDto salleTest = new SalleDto (10,"SALLETEST",600,4,200,typeSalleTest);
 	static AnimationDto animationTest = new AnimationDto (10,"ANIMATIONTEST","SPORT",1500,500,userTest);

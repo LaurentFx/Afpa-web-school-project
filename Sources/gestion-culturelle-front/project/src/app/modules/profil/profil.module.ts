@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 import { ProfilRoutingModule } from './profil-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ProfilShowComponent } from './profil-show-component/profil-show.component';
-import { ProfilUpdateComponent } from './profil-update-component/profil-update.component';
+import { ProfilShowComponent } from './profil-show/profil-show.component';
+import { ProfilUpdateComponent } from './profil-update/profil-update.component';
 
 
 @NgModule({

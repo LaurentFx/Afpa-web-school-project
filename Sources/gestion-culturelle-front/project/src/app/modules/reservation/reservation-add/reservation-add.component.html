@@ -9,16 +9,22 @@
                     <div class="col-10">
 
                         <div class="form-group">
-                            <label for="dateValidation">Date de validation :</label>
-                            <input type="date" name="dateValidation" class="form-control" id="dateValidation"
-                                placeholder="Entrer la date de validation" [(ngModel)]="panierDto.dateValidation">
+                            <label for="nom">Nom du client :</label>
+                            <input type="text" name="nom" class="form-control" id="nom" placeholder="{{userDto.nom}}"
+                                readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="numClient">Numero de client :</label>
-                            <input type="text" name="type" class="form-control" id="numClient"
-                                placeholder="{{userDto.numClient}}" readonly>
+                            <label for="dateReservation">Date de reservation :</label>
+                            <input type="date" name="dateReservation" class="form-control" id="dateReservation"
+                                placeholder="{{today | date:'d/MM/yyyy'}}"   [(ngModel)]="reservationDto.dateReservation">
                         </div>
+<!-- 
+                        <div class="form-group">
+                            <label for="dateReservation">Date de reservation :</label>
+                            <input type="text" name="dateReservation" class="form-control" id="dateReservation"
+                                placeholder="{{today | date:'d/MM/yyyy'}}"  [(ngModel)]="reservationDto.dateReservation" readonly>
+                        </div> -->
 
                         <div class="form-group">
                             <label for="manifestation">Manifestation :</label>
@@ -40,15 +46,16 @@
 
                     </div>
                 </div>
-               <!--  <a name="" id="" class="btn btn-secondary" href="#" role="button"
-                [routerLink]="['/public/manifestation-list']">
-                <fa-icon class="icon p-2" [icon]="faHome" title="Annuler">Annuler</fa-icon>
-            </a>
-            &nbsp;
+                <a name="" id="" class="btn btn-secondary" href="#" role="button"
+                    [routerLink]="['/public/manifestation-list']">
+                    <fa-icon class="icon p-2" [icon]="faHome" title="Annuler">Annuler</fa-icon>
+                </a>
+                &nbsp;
                 <button (click)="add()" class="btn btn-primary">
-                    <fa-icon class="icon p-2" [icon]="faCalendarPlus" title="Réserver une place">Réserver une place</fa-icon>
+                    <fa-icon class="icon p-2" [icon]="faCalendarPlus" title="Réserver une place">Réserver une place
+                    </fa-icon>
                 </button>
- -->
+
             </div>
 
         </form>

@@ -53,10 +53,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		String[] respUrls = { "/animation/purpose","/manifestation/add","role/*","/salle/add","/salle/update/*",
 				"/salle/delete/*","/typesalle/show/*","typesalle/add","/typesalle/update/*","/typesalle/delete/*",
-				"/users/list","/users/show/*","/users/add","/users/update/*","/users/delete/*"};
+				"/users/list","/users/add","/users/delete/*"};
 
 		String[] respAdminUrls = { "/animation/delete/*","/invitation/list","/invitation/update/*",
-				"/manifestation/availability","/manifestation/update/","/manifestation/delete/*","/salle/capacity/*"};
+				"/manifestation/availability","/manifestation/update/","/manifestation/delete/*","/reservation/list","/salle/capacity/*"};
 
 		String[] adminUrls = {"/invitation/manifestation/*","/invitation/add","/invitation/delete/",
 				"/invitation/deleteAll/*","/users/invites/*"};
@@ -65,10 +65,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		String[] animUrls = {"/animation/add","/animation/update/*"};
 
-		String[] clientUrls = {"/article/*","/panier/*","/reservation/*","/users/show/*"};
+		String[] clientUrls = {"/article/*","/panier/*","/reservation/show/*","/reservation/user/*","/reservation/manifestation/*",
+				"/reservation/add","/reservation/update/*","/reservation/delete/*"};
 
 		String[] allUrls = {"/animation/show/*","/manifestation/show/*","/salle/show/*",
-				"/typesalle/list","/users/role/*","/users/current"};
+				"/typesalle/list","/users/role/*","/users/current","/users/show/*","/users/update/*"};
 
 		String[] publicUrls =  {"/public/*","/users/new"};
 

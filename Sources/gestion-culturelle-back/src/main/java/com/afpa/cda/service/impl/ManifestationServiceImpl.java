@@ -103,26 +103,29 @@ public class ManifestationServiceImpl implements IManifestationService {
 		List<Manifestation> listManifestations =this.manifestationRepository.findAll();
 		long jourEnMs = 86400000;
 
-		if (listManifestations.size()>1) {
-			System.out.println("listManifestations "+listManifestations);
-			for (Manifestation oldManifestation : listManifestations) {
-				if (newManifestationDto.getId()!=oldManifestation.getId()) {
-					if (newManifestationDto.getSalle().getId()!=0 && newManifestationDto.getSalle().getId()==oldManifestation.getSalle().getId()) {
-						if ((((newManifestationDto.getDateDebut().getTime()/jourEnMs)>=oldManifestation.getDateDebut().getTime()/jourEnMs &&
-								(newManifestationDto.getDateDebut().getTime()/jourEnMs)<=oldManifestation.getDateFin().getTime()/jourEnMs)
-								|| ((newManifestationDto.getDateFin().getTime()/jourEnMs)>=oldManifestation.getDateDebut().getTime()/jourEnMs &&
-								(newManifestationDto.getDateFin().getTime()/jourEnMs)<=oldManifestation.getDateFin().getTime()/jourEnMs)) ||
+		if (listManifestations.size()>1 ) {
+			if (newManifestationDto.getDateFin().getTime()>newManifestationDto.getDateDebut().getTime()) {
+				for (Manifestation oldManifestation : listManifestations) {
+					if (newManifestationDto.getId()!=oldManifestation.getId()) {
+						if (newManifestationDto.getSalle().getId()!=0 && newManifestationDto.getSalle().getId()==oldManifestation.getSalle().getId()) {
+							if ((((newManifestationDto.getDateDebut().getTime()/jourEnMs)>=oldManifestation.getDateDebut().getTime()/jourEnMs &&
+									(newManifestationDto.getDateDebut().getTime()/jourEnMs)<=oldManifestation.getDateFin().getTime()/jourEnMs)
+									|| ((newManifestationDto.getDateFin().getTime()/jourEnMs)>=oldManifestation.getDateDebut().getTime()/jourEnMs &&
+									(newManifestationDto.getDateFin().getTime()/jourEnMs)<=oldManifestation.getDateFin().getTime()/jourEnMs)) ||
 
-								((oldManifestation.getDateDebut().getTime()/jourEnMs)>=newManifestationDto.getDateDebut().getTime()/jourEnMs &&
-								(oldManifestation.getDateDebut().getTime()/jourEnMs)<=newManifestationDto.getDateFin().getTime()/jourEnMs)
-								|| ((oldManifestation.getDateFin().getTime()/jourEnMs)>=newManifestationDto.getDateDebut().getTime()/jourEnMs &&
-								(oldManifestation.getDateFin().getTime()/jourEnMs)<=newManifestationDto.getDateFin().getTime()/jourEnMs))
-						{
-							return false;
+									((oldManifestation.getDateDebut().getTime()/jourEnMs)>=newManifestationDto.getDateDebut().getTime()/jourEnMs &&
+									(oldManifestation.getDateDebut().getTime()/jourEnMs)<=newManifestationDto.getDateFin().getTime()/jourEnMs)
+									|| ((oldManifestation.getDateFin().getTime()/jourEnMs)>=newManifestationDto.getDateDebut().getTime()/jourEnMs &&
+									(oldManifestation.getDateFin().getTime()/jourEnMs)<=newManifestationDto.getDateFin().getTime()/jourEnMs))
+							{
+								return false;
+							}
 						}
-					}
-				} 
+					} 
+				}
+				return true;
 			}
+			return false;
 		}
 		return true;
 	}
@@ -140,7 +143,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 
 		if (manifOp.isPresent()) {
 			Manifestation manif = manifOp.get();
-			
+
 			manifestationDto.setId(manif.getId());
 			manifestationDto.setLabel(manif.getLabel());
 			manifestationDto.setDateValidation(manif.getDateValidation());
@@ -175,7 +178,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 			manifestationDto.setSalle(salleDto);
 
 			manifestationDto.setPrixBillet(manif.getPrixBillet());
-			
+
 			manifestationDto.setReservations(manif.getReservations());
 			manifestationDto.setReservationsVip(manif.getReservationsVip());
 
@@ -204,19 +207,19 @@ public class ManifestationServiceImpl implements IManifestationService {
 				manifestation.setAnimation(animation);
 			}
 
-			manifestation.setDateDebut(manifestationDto.getDateDebut());		
-			manifestation.setDateFin(manifestationDto.getDateFin());
+			//			manifestation.setDateDebut(manifestationDto.getDateDebut());		
+			//			manifestation.setDateFin(manifestationDto.getDateFin());
+			//
+			//			Optional <Salle> salleOp = this.salleRepository.findById(manifestationDto.getSalle().getId());
+			//			if (salleOp.isPresent()) {
+			//				Salle salle = salleOp.get();
+			//				manifestation.setSalle(salle);
+			//			}
 
-			Optional <Salle> salleOp = this.salleRepository.findById(manifestationDto.getSalle().getId());
-			if (salleOp.isPresent()) {
-				Salle salle = salleOp.get();
-				manifestation.setSalle(salle);
-			}
-
-			manifestation.setReservations(manifestationDto.getReservations());
-			manifestation.setReservationsVip(manifestationDto.getReservationsVip());
-			manifestation.setCout(manifestationDto.getCout());
-			manifestation.setPrixBillet(manifestationDto.getPrixBillet());
+			//			manifestation.setReservations(manifestationDto.getReservations());
+			//			manifestation.setReservationsVip(manifestationDto.getReservationsVip());
+			//			manifestation.setCout(manifestationDto.getCout());
+			//			manifestation.setPrixBillet(manifestationDto.getPrixBillet());
 			id=this.manifestationRepository.save(manifestation).getId();
 			System.err.println("Manifestation ajoutée ");
 			return id;
@@ -228,7 +231,7 @@ public class ManifestationServiceImpl implements IManifestationService {
 	public boolean update(ManifestationDto manifestationDto,int id) {
 		Optional<Manifestation> manifOp = this.manifestationRepository.findById(id);
 
-		if (manifOp.isPresent()) {
+		if (manifOp.isPresent()&&(manifestationDto.getDateFin().getTime()>manifestationDto.getDateDebut().getTime())) {
 			Manifestation manifestation = manifOp.get();
 
 			manifestation.setLabel(manifestationDto.getLabel());

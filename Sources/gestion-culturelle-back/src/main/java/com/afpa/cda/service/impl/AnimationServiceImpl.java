@@ -124,13 +124,15 @@ public class AnimationServiceImpl implements IAnimationService {
 			List<Manifestation> listManifestations = this.manifestationRepository.findManifestationByAnimation(id);
 			if (!listManifestations.isEmpty()) {
 				for (Manifestation manifestation : listManifestations) {
-					ManifestationDto manifestationDto = modelMapper.map(manifestation,ManifestationDto.class);
-					manifestationDto=manifestationService.calcul(manifestationDto);
-					Manifestation manif = modelMapper.map(manifestationDto,Manifestation.class);
+					if (manifestation.getSalle()!=null&&manifestation.getDateDebut()!=null&&manifestation.getDateFin()!=null){
+						ManifestationDto manifestationDto = modelMapper.map(manifestation,ManifestationDto.class);
+						manifestationDto=manifestationService.calcul(manifestationDto);
+						Manifestation manif = modelMapper.map(manifestationDto,Manifestation.class);
 
-					Optional<Manifestation> manifOp = this.manifestationRepository.findById(manifestation.getId());
-					if (manifOp.isPresent()) {
-						this.manifestationRepository.save(manif);
+						Optional<Manifestation> manifOp = this.manifestationRepository.findById(manifestation.getId());
+						if (manifOp.isPresent()) {
+							this.manifestationRepository.save(manif);
+						}
 					}
 				}
 			}

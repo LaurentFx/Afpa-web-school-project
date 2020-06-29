@@ -25,7 +25,7 @@ export class ProfilShowComponent implements OnInit {
 
   ngOnInit() {
     this.user = new User();
-
+    
     let id = this.authService.getCurrentUser().id;
 
     this.userService.getOne(id).subscribe(

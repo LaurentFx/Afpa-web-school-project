@@ -27,13 +27,13 @@
             <tr *ngFor="let invitation of invitations">
                 <td>{{invitation.id}}</td>
                 <td>{{invitation.manifestation.label}}</td>
-                <td>{{invitation.manifestation.dateDebut}}</td>
-                <td>{{invitation.manifestation.dateFin}}</td>
+                <td>{{invitation.manifestation.dateDebut| date:'dd/MM/yyyy'}}</td>
+                <td>{{invitation.manifestation.dateFin| date:'dd/MM/yyyy'}}</td>
                 <td>{{invitation.manifestation.salle.label}}</td>
                 <td>{{invitation.manifestation.reservationsVip}}</td>
                 <td>{{invitation.vip.nom}}</td>
                 <td>{{invitation.vip.email}}</td>
-                <td>{{invitation.dateInvitation}}</td>
+                <td>{{invitation.dateInvitation| date:'dd/MM/yyyy'}}</td>
                 <td>{{invitation.reponse}}</td>
 
                 <td>

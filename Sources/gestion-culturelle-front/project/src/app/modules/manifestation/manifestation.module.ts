@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ManifestationRoutingModule } from './manifestation-routing.module';
-import { ManifestationShowComponent } from './manifestation-show-component/manifestation-show.component';
-import { ManifestationAddComponent } from './manifestation-add-component/manifestation-add.component';
-import { ManifestationUpdateComponent } from './manifestation-update-component/manifestation-update.component';
 import { FormsModule } from '@angular/forms';
-import { ManifestationListComponent } from './manifestation-list-component/manifestation-list.component';
+import { ManifestationRoutingModule } from './manifestation-routing.module';
+import { ManifestationShowComponent } from './manifestation-show/manifestation-show.component';
+import { ManifestationAddComponent } from './manifestation-add/manifestation-add.component';
+import { ManifestationUpdateComponent } from './manifestation-update/manifestation-update.component';
+import { ManifestationListComponent } from './manifestation-list/manifestation-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 

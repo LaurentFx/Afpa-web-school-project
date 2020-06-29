@@ -12,17 +12,14 @@ import org.springframework.stereotype.Service;
 
 import com.afpa.cda.dao.AnimationRepository;
 import com.afpa.cda.dao.InvitationRepository;
-import com.afpa.cda.dao.PanierRepository;
 import com.afpa.cda.dao.ReservationRepository;
 import com.afpa.cda.dao.RoleRepository;
 import com.afpa.cda.dao.UserRepository;
 import com.afpa.cda.dto.InvitationDto;
-import com.afpa.cda.dto.PanierDto;
 import com.afpa.cda.dto.RoleDto;
 import com.afpa.cda.dto.UserDto;
 import com.afpa.cda.entity.Animation;
 import com.afpa.cda.entity.Invitation;
-import com.afpa.cda.entity.Panier;
 import com.afpa.cda.entity.Reservation;
 import com.afpa.cda.entity.Role;
 import com.afpa.cda.entity.User;
@@ -53,8 +50,8 @@ public class UserServiceImpl implements IUserService {
 	@Autowired
 	private IInvitationService invitationService;
 
-	@Autowired
-	private PanierRepository panierRepository;
+//	@Autowired
+//	private PanierRepository panierRepository;
 
 	@Override
 	public List<UserDto> findAll() {
@@ -68,7 +65,7 @@ public class UserServiceImpl implements IUserService {
 			userDto.setPassword(null);
 			userDto.setTokenSecret(null);
 			userDto.setNumClient(null);
-			userDto.setPanier(null);
+	//		userDto.setPanier(null);
 			userDto.setAdresse(user.getAdresse());
 			userDto.setEntreprise(user.getEntreprise());
 
@@ -103,13 +100,13 @@ public class UserServiceImpl implements IUserService {
 			userDto.setAdresse(user.getAdresse());
 			userDto.setEntreprise(user.getEntreprise());
 
-			PanierDto panierDto = new PanierDto();
-			if (user.getPanier()!=null) {
-				panierDto.setId(user.getPanier().getId());
-				panierDto.setDateValidation(user.getPanier().getDateValidation());
-				panierDto.setTotal(user.getPanier().getTotal());
-			}
-			userDto.setPanier(panierDto);
+//			PanierDto panierDto = new PanierDto();
+//			if (user.getPanier()!=null) {
+//				panierDto.setId(user.getPanier().getId());
+//				panierDto.setDateValidation(user.getPanier().getDateValidation());
+//				panierDto.setTotal(user.getPanier().getTotal());
+//			}
+//			userDto.setPanier(panierDto);
 
 			RoleDto roleDto = new RoleDto();
 			if (user.getRole()!=null) {
@@ -133,7 +130,7 @@ public class UserServiceImpl implements IUserService {
 			userDto.setPassword(null);
 			userDto.setTokenSecret(null);
 			userDto.setNumClient(null);
-			userDto.setPanier(null);
+	//		userDto.setPanier(null);
 			userDto.setAdresse(user.getAdresse());
 			userDto.setEntreprise(user.getEntreprise());
 
@@ -195,12 +192,12 @@ public class UserServiceImpl implements IUserService {
 			}
 			user.setNumClient(userDto.getNom().substring(0,1)+userDto.getId()+userDto.getPrenom().substring(0,1)+"2020");
 			Date dateDuJour = new Date();
-			user.setPanier(Panier.builder()
-					.dateValidation(dateDuJour)
-					.total(0).build());
-
-			panierRepository.save(user.getPanier());
-			user.setPanier(Panier.builder().id(user.getPanier().getId()).build());
+//			user.setPanier(Panier.builder()
+//					.dateValidation(dateDuJour)
+//					.total(0).build());
+//
+//			panierRepository.save(user.getPanier());
+//			user.setPanier(Panier.builder().id(user.getPanier().getId()).build());
 
 			this.userRepository.save(user);
 			userDto = modelMapper.map(user, UserDto.class);
@@ -226,13 +223,13 @@ public class UserServiceImpl implements IUserService {
 			userDto.setTokenSecret(null);
 			userDto.setNumClient(user.getNumClient());
 
-			PanierDto panierDto = new PanierDto();
-			if (user.getPanier()!=null) {
-				panierDto.setId(user.getPanier().getId());
-				panierDto.setDateValidation(user.getPanier().getDateValidation());
-				panierDto.setTotal(user.getPanier().getTotal());
-			}
-			userDto.setPanier(panierDto);
+//			PanierDto panierDto = new PanierDto();
+//			if (user.getPanier()!=null) {
+//				panierDto.setId(user.getPanier().getId());
+//				panierDto.setDateValidation(user.getPanier().getDateValidation());
+//				panierDto.setTotal(user.getPanier().getTotal());
+//			}
+//			userDto.setPanier(panierDto);
 
 			userDto.setAdresse(user.getAdresse());
 			userDto.setEntreprise(user.getEntreprise());

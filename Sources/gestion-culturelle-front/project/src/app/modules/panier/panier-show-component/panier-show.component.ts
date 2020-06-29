@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+/* import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ArticleDto } from '../../../model/articleDto';
 import { PanierDto } from '../../../model/panierDto';
@@ -107,3 +107,4 @@ export class PanierShowComponent implements OnInit {
   }
 
 }
+ */

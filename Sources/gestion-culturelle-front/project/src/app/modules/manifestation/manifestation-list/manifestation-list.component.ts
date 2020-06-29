@@ -28,6 +28,7 @@ export class ManifestationListComponent implements OnInit {
   isAdmin:boolean;
   isClient: boolean;
   isRespAdmin: boolean;
+  isNotClient:boolean;
 
   constructor(private manifestationService: ManifestationService, private router: Router,
     private authService: AuthService, private toastrService: ToastrService) { }
@@ -41,6 +42,7 @@ export class ManifestationListComponent implements OnInit {
       this.isAdmin = this.authService.getCurrentUser().role.label === 'ADMIN';
       this.isRespAdmin = (this.authService.getCurrentUser().role.label === 'RESP') || (this.authService.getCurrentUser().role.label === 'ADMIN');
       this.isClient = this.authService.getCurrentUser().role.label === 'CLIENT';
+      this.isNotClient = this.authService.getCurrentUser().role.label != 'CLIENT';
     }
 
     this.manifestationService.subjectMiseAJour.subscribe(
@@ -97,8 +99,12 @@ export class ManifestationListComponent implements OnInit {
     this.router.navigateByUrl('/manifestation-show/' + id)
   }
 
-  redirectToAddPanier(id: number) {
+  /* redirectToAddPanier(id: number) {
     this.router.navigateByUrl('/panier-ad/' + id)
+  } */
+  
+  redirectToAddReservation(id: number) {
+    this.router.navigateByUrl('/reservation-ad/' + id)
   }
 
   redirectToInvit(id: number) {

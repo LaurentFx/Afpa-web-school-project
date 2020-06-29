@@ -1,4 +1,4 @@
-import { ArticleDto } from './articleDto';
+/* import { ArticleDto } from './articleDto';
 
 export class PanierDto {
     id: number;
@@ -21,3 +21,4 @@ export class PanierDto {
 }
 
 
+ */

@@ -21,17 +21,17 @@ export class InvitationShowComponent implements OnInit {
   userCourant: User;
   isAnswered:boolean;
 
-  invitation: InvitationDto;
+ // invitation: InvitationDto;
   invitations: InvitationDto[];
 
 
-  constructor(private manifestationService: ManifestationService, private router: Router,
-    private invitationService: InvitationService, private authService: AuthService, private toastrService: ToastrService) { }
+  constructor( private invitationService: InvitationService, private authService: AuthService,
+     private toastrService: ToastrService) { }
 
 
   ngOnInit() {
     const userCourant = this.authService.getCurrentUser();
-   this.invitation = new InvitationDto();
+  // this.invitation = new InvitationDto();
 
     this.invitationService.subjectMiseAJour.subscribe(
       res => {
@@ -53,7 +53,7 @@ export class InvitationShowComponent implements OnInit {
 
   }
 
-  oui(id: number) {
+/*   oui(id: number) {
   
     this.invitationService.updateReponse(id, 'Oui').subscribe(
       res => {
@@ -79,7 +79,7 @@ export class InvitationShowComponent implements OnInit {
       }
     );
     this.ngOnInit();
-  }
+  } */
 
 
 

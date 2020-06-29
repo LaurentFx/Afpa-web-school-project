@@ -2,13 +2,11 @@ import { Component, OnInit, ɵɵsanitizeUrlOrResourceUrl } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../security/auth.service';
 import { RoleDto } from '../../model/roleDto';
-import { PanierDto } from '../../model/panierDto';
 import { UserService } from '../../service/user.service';
 import { User } from '../../model/user';
 import { ToastrService } from 'ngx-toastr';
 import { faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { CompileShallowModuleMetadata } from '@angular/compiler';
-import { PanierService } from '../../service/panier.service';
 
 @Component({
   selector: 'app-navebar',
@@ -27,16 +25,15 @@ export class NavebarComponent implements OnInit {
   isRespAdmin: boolean;
   isVipAdmin: boolean;
   isRespAdminVip: boolean;
+  isRespAdminClient : boolean;
   user: String;
   userDto: User;
   role: RoleDto;
-  panierDto: PanierDto;
   userCourant: User;
 
   constructor(private router: Router, private userService: UserService,
-    private authService: AuthService, private panierService: PanierService,
-    private toastrService: ToastrService,
-  ) { this.panierDto = new PanierDto() }
+    private authService: AuthService,    private toastrService: ToastrService,
+  ) {  }
 
   ngOnInit() {
     this.reload();
@@ -75,17 +72,18 @@ export class NavebarComponent implements OnInit {
       this.isRespAdmin = (userCourant.role.label === 'RESP') || (userCourant.role.label === 'ADMIN');
       this.isVipAdmin = (userCourant.role.label === 'VIP') || (userCourant.role.label === 'ADMIN');
       this.isRespAdminVip = (userCourant.role.label === 'RESP') || (userCourant.role.label === 'VIP') || (userCourant.role.label === 'ADMIN');
-      this.userDto = userCourant;
-      this.user = userCourant.nom;
+      this.isRespAdminClient = (userCourant.role.label === 'RESP') || (userCourant.role.label === 'CLIENT') || (userCourant.role.label === 'ADMIN');
+       this.userDto = userCourant;
+     this.user = userCourant.nom;
       this.role = userCourant.role;
 
-      if (this.userDto.role.label === 'CLIENT') {
+     /*  if (this.userDto.role.label === 'CLIENT') {
         this.userService.getOne(this.userDto.id).subscribe(
           res => {
             this.panierDto = res.panier;
           }
         );
-      }
+      } */
       
     }
   }
@@ -93,7 +91,7 @@ export class NavebarComponent implements OnInit {
   logout(): void {
     this.userCourant = this.authService.getCurrentUser();
 
-    if (this.userCourant.role.label === 'CLIENT') {
+    /* if (this.userCourant.role.label === 'CLIENT') {
       this.panierService.getUser(this.userCourant.id).subscribe(
         res => {
           this.panierDto = res;
@@ -104,19 +102,24 @@ export class NavebarComponent implements OnInit {
       res => {
 
       }
-    )
+    ) */
+
     this.toastrService.info('A bientôt ...', 'Deconnexion');
     this.authService.logout();
     this.router.navigateByUrl('/public/login');
     this.isConnected = false;
   }
 
-  redirectToShowPanier(id: number) {
+ /*  redirectToShowPanier(id: number) {
     this.router.navigateByUrl('/panier-show/' + id)
-  }
+  } */
   
   redirectToShowInvitation(id: number) {
     this.router.navigateByUrl('/invitation-show/' + id)
+  }
+  
+  redirectToShowReservation(id: number) {
+    this.router.navigateByUrl('/reservation-show/' + id)
   }
 
   redirectToAnswerInvitation(id: number) {

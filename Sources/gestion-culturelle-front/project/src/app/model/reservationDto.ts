@@ -8,7 +8,7 @@ export class ReservationDto {
     client:User;
     numClient:String;
     dateReservation:Date;
-    total:number;
+    quantite:number;
 
 
     constructor(id?: number,
@@ -16,13 +16,13 @@ export class ReservationDto {
         client?:User,
         numClient?:String,
         dateReservation?:Date,
-        total?:number) {
+        quantite?:number) {
         this.id = id;
         this.manifestation = manifestation;
         this.client=client;
         this.numClient=numClient;
         this.dateReservation=dateReservation;
-        this.total=total
+        this.quantite=quantite
 
     }
 }

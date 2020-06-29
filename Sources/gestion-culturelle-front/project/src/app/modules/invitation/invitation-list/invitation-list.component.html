@@ -1,12 +1,19 @@
-<h3>Liste des invitations</h3>
-<br>
-<div class="panel-body div-comp">
+<div class="container">
+    <br>
+    <div class="row justify-content-center">
+        <h2>Liste des invitations</h2>
+    </div>
+    <br>
+</div>
+
+<div class="panel-body">
 
     <table class="table table-striped table-bordered ">
         <thead class="thead-dark">
             <tr>
                 <th>N°</th>
-                <th>Label manifestation</th>
+                <th>Manifestation</th>
+                <th>Animation</th>
                 <th>Date de Debut</th>
                 <th>Date de Fin</th>
                 <th>Salle</th>
@@ -15,7 +22,7 @@
                 <th>Email Vip</th>
                 <th>Date d'invitation</th>
                 <th>Reponse</th>
-                <th>Actions</th>
+                <th *ngIf="isRespAdmin">Actions</th>
             </tr>
         </thead>
 
@@ -23,13 +30,14 @@
             <tr *ngFor="let invitation of invitations">
                 <td>{{invitation.id}}</td>
                 <td>{{invitation.manifestation.label}}</td>
-                <td>{{invitation.manifestation.dateDebut}}</td>
-                <td>{{invitation.manifestation.dateFin}}</td>
+                <td>{{invitation.manifestation.animation.label}}</td>
+                <td>{{invitation.manifestation.dateDebut| date:'dd/MM/yyyy'}}</td>
+                <td>{{invitation.manifestation.dateFin| date:'dd/MM/yyyy'}}</td>
                 <td>{{invitation.manifestation.salle.label}}</td>
                 <td>{{invitation.manifestation.reservationsVip}}</td>
                 <td>{{invitation.vip.nom}}</td>
                 <td>{{invitation.vip.email}}</td>
-                <td>{{invitation.dateInvitation}}</td>
+                <td>{{invitation.dateInvitation| date:'dd/MM/yyyy'}}</td>
                 <td>{{invitation.reponse}}</td>
 
                 <td>
@@ -39,19 +47,32 @@
                         <fa-icon [icon]="faEdit">Update</fa-icon></button>
                     &nbsp;
                     -->
-                    <button *ngIf="isRespAdmin" (click)="delete(invitation.id)" class="btn btn-sm btn-danger" title="Effacer">
-                        <fa-icon [icon]="faTrashAlt">Delete</fa-icon></button>
+                    <button *ngIf="isRespAdmin" (click)="delete(invitation.id)" class="btn btn-sm btn-danger"
+                        title="Effacer">
+                        <fa-icon [icon]="faTrashAlt">Delete</fa-icon>
+                    </button>
                     &nbsp;
-                   
+
                 </td>
 
             </tr>
 
         </tbody>
     </table>
-    &nbsp;
-    <a *ngIf="isRespAdmin" name="" id="" class="btn btn-primary" href="#" role="button" [routerLink]="['/public/manifestation-list']" title="Ajouter une invitation">
-        <fa-icon class="icon p-2" [icon]="faPlusSquare">Inviter</fa-icon></a>
-    &nbsp;
-    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']" title="Retour à l'accueil">
-        <fa-icon class="icon p-2" [icon]="faHome">Retour à l'accueil</fa-icon></a>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+
+        &nbsp;
+        <a *ngIf="isRespAdmin" name="" id="" class="btn btn-primary" href="#" role="button"
+            [routerLink]="['/public/manifestation-list']" title="Ajouter une invitation">
+            <fa-icon class="icon p-2" [icon]="faPlusSquare">Inviter</fa-icon>
+        </a>
+        &nbsp;
+        <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']"
+            title="Retour à l'accueil">
+            <fa-icon class="icon p-2" [icon]="faHome">Retour à l'accueil</fa-icon>
+        </a>
+    </div>
+</div>

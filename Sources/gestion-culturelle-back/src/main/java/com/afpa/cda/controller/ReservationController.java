@@ -21,7 +21,7 @@ public class ReservationController {
 	@Autowired
 	private IReservationService reservationService;
 
-//	@PreAuthorize("hasAnyAuthority('CLIENT')")
+	@PreAuthorize("hasAnyAuthority('RESP','ADMIN','CLIENT')")
 	@GetMapping(path="/reservation/list")
 	public List<ReservationDto> getAll(){
 		return this.reservationService.findAll();
@@ -35,7 +35,7 @@ public class ReservationController {
 
 //	@PreAuthorize("hasAnyAuthority('CLIENT')")
 	@GetMapping(path="/reservation/user/{id}")
-	public List<ReservationDto> getAllByVip(@PathVariable int id) {
+	public List<ReservationDto> getAllByClient(@PathVariable int id) {
 		return this.reservationService.findReservationByUserId(id);
 	}
 

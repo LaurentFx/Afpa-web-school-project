@@ -51,7 +51,7 @@ export class ManifestationUpdateComponent implements OnInit {
 
   reload() {
     let id = this.route.snapshot.params['id'];
-    
+
 
     this.manifestationService.getOne(id).subscribe(
       res => {
@@ -80,8 +80,12 @@ export class ManifestationUpdateComponent implements OnInit {
     let id = this.route.snapshot.params['id'];
     this.manifestationService.update(id, this.manifestation).subscribe(
       res => {
-        this.toastrService.success('La manifestation a été mise à jour', 'Modification Ok.');
-        this.goHome();
+        if (res) {
+          this.toastrService.success('La manifestation a été mise à jour', 'Modification Ok.');
+          this.goHome();
+        } else {
+          this.toastrService.error('La date de fin doit être supérieure à la date de début', 'Modification NOk.');
+        }
       }
     );
   }
@@ -94,8 +98,7 @@ export class ManifestationUpdateComponent implements OnInit {
             + ' est libre entre le ' + this.manifestation.dateDebut + ' et ' + this.manifestation.dateFin, 'Disponibilité Ok.')
           this.update();
         } else {
-          this.toastrService.error('La salle '
-            + ' est occupée entre le ' + this.manifestation.dateDebut + ' et ' + this.manifestation.dateFin +'. Changez de dates', 'Disponibilité NOk')
+          this.toastrService.error('Mauvaises dates', 'Disponibilité NOk')
         }
       }
     );

@@ -1,0 +1,83 @@
+<div class="container">
+    <br>
+    <div class="row justify-content-center">
+        <h2>Liste des manifestations</h2>
+    </div>
+    <br>
+</div>
+
+<div class="panel-body">
+
+    <table class="table table-striped table-bordered ">
+        <thead class="thead-dark">
+            <tr>
+
+                <th>Label</th>
+                <th>Animation</th>
+                <th>Date de Debut</th>
+                <th>Date de Fin</th>
+                <th>Coût (en €)</th>
+                <th>Salle</th>
+                <th>Prix du billet (en €)</th>
+                <th>Reservations</th>
+                <th *ngIf="isNotClient">Reservations Vip</th>
+                <th *ngIf="isConnected">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let manifestation of manifestations">
+
+                <td>{{manifestation.label}}</td>
+                <td>{{manifestation.animation.label}}</td>
+                <td>{{manifestation.dateDebut| date:'dd/MM/yyyy'}}</td>
+                <td>{{manifestation.dateFin| date:'dd/MM/yyyy'}}</td>
+                <td>{{manifestation.cout}}</td>
+                <td>{{manifestation.salle.label}}</td>
+                <td>{{manifestation.prixBillet|number:'.0-2'}}</td>
+                <td>{{manifestation.reservations}}</td>
+                <td *ngIf="isNotClient">{{manifestation.reservationsVip}}</td>
+
+                <td *ngIf="isConnected">
+                    <button *ngIf="isConnected" (click)="redirectToShow(manifestation.id)"
+                        class="btn btn-sm btn-success">
+                        <fa-icon class="icon p-0" [icon]="faInfoCircle" title="Afficher le détail">Show</fa-icon>
+                    </button>
+                    &nbsp;
+                    <button *ngIf="isRespAdmin" (click)="redirectToUpdate(manifestation.id)"
+                        class="btn btn-sm btn-warning" title="Planifier / Modifier">
+                        <fa-icon [icon]="faEdit">Planifier / Modifier</fa-icon>
+                    </button>
+                    &nbsp;
+                    <button *ngIf="isRespAdmin" (click)="delete(manifestation.id)" class="btn btn-sm btn-danger"
+                        title="Effacer">
+                        <fa-icon [icon]="faTrashAlt">Delete</fa-icon>
+                    </button>
+                    &nbsp;
+                    <!--    <button *ngIf="isClient" (click)="redirectToAddPanier(manifestation.id)" class="btn btn-sm btn-primary" title="Réserver une manifestation"><fa-icon [icon]="faCalendarPlus">Reserver</fa-icon></button>
+                    &nbsp; -->
+                    <button *ngIf="isClient" (click)="redirectToAddReservation(manifestation.id)"
+                        class="btn btn-sm btn-primary" title="Réserver une manifestation">
+                        <fa-icon [icon]="faCalendarPlus">Reserver</fa-icon>
+                    </button>
+                    &nbsp;
+                    <button *ngIf="isAdmin" (click)="redirectToInvit(manifestation.id)" class="btn btn-sm btn-primary"
+                        title="Inviter un Vip">
+                        <fa-icon [icon]="faUserTie">Inviter Vip</fa-icon>
+                    </button>
+                </td>
+
+            </tr>
+
+        </tbody>
+    </table>
+    &nbsp;
+    <a name="" id="" class="btn btn-secondary" href="#" role="button" [routerLink]="['/public']"
+        title="Retour à l'accueil">
+        <fa-icon class="icon p-2" [icon]="faHome">Retour à l'accueil</fa-icon>
+    </a>
+    &nbsp;
+    <a *ngIf="isResp" name="" id="" class="btn btn-primary" href="#" role="button" [routerLink]="['/manifestation-ad']"
+        title="Ajouter une manifestation">
+        <fa-icon class="icon p-2" [icon]="faPlusSquare">Ajouter</fa-icon>
+    </a>

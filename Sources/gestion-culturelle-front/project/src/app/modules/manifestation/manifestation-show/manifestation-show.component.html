@@ -23,7 +23,7 @@
 
                             <label for="dateValidation">Date de validation :</label>
                             <input type="text" name="dateValidation" class="form-control" id="dateValidation"
-                                placeholder="{{manifestation.dateValidation}}" readonly>
+                                placeholder="{{manifestation.dateValidation| date:'dd/MM/yyyy'}}" readonly>
 
                             <label for="validateur">Nom du validateur </label>
                             <input type="text" name="validateur" class="form-control" id="validateur"
@@ -31,7 +31,7 @@
 
                             <label for="dateDebut">Date de debut :</label>
                             <input type="text" name="dateDebut" class="form-control" id="dateDebut"
-                                placeholder="{{manifestation.dateDebut}}" readonly>
+                                placeholder="{{manifestation.dateDebut| date:'dd/MM/yyyy'}}" readonly>
                         </div>
                     </div>
 
@@ -39,7 +39,7 @@
                         <div class="form-group">
                             <label for="dateFin">Date de fin :</label>
                             <input type="text" name="dateFin" class="form-control" id="dateFin"
-                                placeholder="{{manifestation.dateFin}}" readonly>
+                                placeholder="{{manifestation.dateFin| date:'dd/MM/yyyy'}}" readonly>
 
                             <label for="cout">Cout :</label>
                             <input type="text" name="cout" class="form-control" id="cout"

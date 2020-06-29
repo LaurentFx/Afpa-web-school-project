@@ -4,31 +4,44 @@ import { ManifestationService } from '../../../service/manifestation.service';
 import { AuthService } from '../../../security/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { faEdit, faTrashAlt, faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
-import { InvitationService } from '../../../service/invitation.service';
-import { InvitationDto } from '../../../model/invitationDto';
+import { ReservationService } from '../../../service/reservation.service';
+import { ReservationDto } from '../../../model/reservationDto';
+import { ManifestationDto } from '../../../model/manifestationDto';
+import { User } from '../../../model/user';
+import { AnimationDto } from '../../../model/animationDto';
+
 
 @Component({
-  selector: 'app-invitation-list',
-  templateUrl: './invitation-list.component.html',
-  styleUrls: ['./invitation-list.component.css']
+  selector: 'app-reservation-list-component',
+  templateUrl: './reservation-list.component.html',
+  styleUrls: ['./reservation-list.component.css']
 })
-export class InvitationListComponent implements OnInit {
+export class ReservationListComponent implements OnInit {
+  userDto: User;
+  reservations: ReservationDto[];
+ // reservationDto:ReservationDto;
 
+ // manifestationDto: ManifestationDto;
+ // animationDto:AnimationDto;
   faEdit = faEdit;
   faTrashAlt = faTrashAlt;
   faHome = faHome;
   faPlusSquare = faPlusSquare;
   isConnected: boolean;
-  invitations: InvitationDto[];
+ 
   isResp: boolean;
   isAdmin:boolean;
   isVip: boolean;
   isRespAdmin: boolean;
 
   constructor(private manifestationService: ManifestationService, private router: Router,
-    private invitationService: InvitationService,  private authService: AuthService, private toastrService: ToastrService) { }
+    private reservationService: ReservationService,  private authService: AuthService, private toastrService: ToastrService) { }
 
   ngOnInit() {
+    /* this.userDto = new User();
+    this.reservationDto.manifestation = new ManifestationDto();
+    this.manifestationDto.animation = new AnimationDto(); */
+    this.reservations = [];
     this.isConnected = this.authService.isConnected();
     if (this.authService.getCurrentUser()) {
       this.isResp = this.authService.getCurrentUser().role.label === 'RESP';
@@ -36,20 +49,21 @@ export class InvitationListComponent implements OnInit {
       this.isRespAdmin = (this.authService.getCurrentUser().role.label === 'RESP') || (this.authService.getCurrentUser().role.label === 'ADMIN');
       this.isVip = this.authService.getCurrentUser().role.label === 'VIP';
     }
+    this.userDto = this.authService.getCurrentUser()
 
-    this.invitationService.subjectMiseAJour.subscribe(
+    this.reservationService.subjectMiseAJour.subscribe(
       res => {
-        this.invitationService.getAll().subscribe(
+        this.reservationService.getAll().subscribe(
           donnees => {
-            this.invitations = donnees;
+            this.reservations = donnees;
           }
         );
       }
     );
 
-    this.invitationService.getAll().subscribe(
+    this.reservationService.getAll().subscribe(
       resultat => {
-        this.invitations = resultat;
+        this.reservations = resultat;
       }
     );
 
@@ -60,23 +74,8 @@ export class InvitationListComponent implements OnInit {
     );
 
   }
-
-  delete(id: number) {
-    
-    this.invitationService.delete(id).subscribe(
-      res => {
-        if (res) {
-          this.toastrService.success('Invitation '+id + ' effacée.', 'Suppression Ok.')
-        } else {
-          this.toastrService.error('Invitation '+id+ ' non effacée.', 'Suppression impossible')
-        }
-        this.invitationService.subjectMiseAJour.next(0);
-      }
-    )
-    this.ngOnInit();
-  }
-
  
 
 }
+
 

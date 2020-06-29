@@ -38,7 +38,7 @@ public class UserController {
 		return this.userService.findAll();
 	}
 
-	@PreAuthorize("hasAnyAuthority('RESP','CLIENT')")
+	@PreAuthorize("hasAnyAuthority('RESP','ADMIN','ANIM','VIP','CLIENT')")
 	@GetMapping(path = "/users/show/{id}")
 	public UserDto getOne(@PathVariable int id){
 		return this.userService.findById(id);
@@ -93,7 +93,7 @@ public class UserController {
 		return this.userService.findVipsToInvite(id);
 	}
 	
-	@PreAuthorize("hasAnyAuthority('RESP')")
+	@PreAuthorize("hasAnyAuthority('RESP','ADMIN','ANIM','VIP','CLIENT')")
 	@PutMapping(path = "/users/update/{id}")
 	public boolean update(@RequestBody UserDto user,@PathVariable int id ) {
 		return this.userService.update(user, id);
