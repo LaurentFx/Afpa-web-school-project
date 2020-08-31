@@ -25,8 +25,11 @@
               <input type="text" name="adresse" class="form-control" id="adresse" placeholder="{{user.adresse}}"
                 readonly>
 
+             <!-- <div *ngIf="isClient"> -->
                 <label for="entreprise">Entreprise :</label>
-              <input type="text" name="entreprise" class="form-control" id="entreprise" placeholder="{{user.entreprise}}" readonly>
+                <input type="text" name="entreprise" class="form-control" id="entreprise"
+                  placeholder="{{user.entreprise}}" readonly>
+           <!--   </div> -->
 
               <label for="role">Role :</label>
               <input type="text" name="role" class="form-control" id="role" placeholder="{{user.role.label}}" readonly>

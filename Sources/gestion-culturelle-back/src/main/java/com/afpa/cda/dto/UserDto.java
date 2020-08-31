@@ -30,8 +30,6 @@ public class UserDto {
 	
 	private String email;
 	private String adresse;
-
-	private String numClient;
 	
 	private RoleDto role;
 	

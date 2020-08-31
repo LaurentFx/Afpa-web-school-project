@@ -40,7 +40,7 @@ export class AnimationAddComponent implements OnInit {
         } else {
           this.toastrService.success('Nouvelle animation : ' + nom, 'Ajout Ok')
         }
-        this.animationService.subjectMiseAJour.next(0);
+      //  this.animationService.subjectMiseAJour.next(0);
         this.goHome();
       }
     );

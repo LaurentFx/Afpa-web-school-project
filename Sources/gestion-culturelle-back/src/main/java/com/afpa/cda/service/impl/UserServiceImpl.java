@@ -61,7 +61,6 @@ public class UserServiceImpl implements IUserService {
 			userDto.setEmail(user.getEmail());
 			userDto.setPassword(null);
 			userDto.setTokenSecret(null);
-		//	userDto.setNumClient(null);
 			userDto.setAdresse(user.getAdresse());
 			userDto.setEntreprise(user.getEntreprise());
 
@@ -91,7 +90,6 @@ public class UserServiceImpl implements IUserService {
 			userDto.setEmail(user.getEmail());
 			userDto.setPassword(null);
 			userDto.setTokenSecret(null);
-		//	userDto.setNumClient(user.getNumClient());
 
 			userDto.setAdresse(user.getAdresse());
 			userDto.setEntreprise(user.getEntreprise());
@@ -117,7 +115,6 @@ public class UserServiceImpl implements IUserService {
 			userDto.setEmail(user.getEmail());
 			userDto.setPassword(null);
 			userDto.setTokenSecret(null);
-		//	userDto.setNumClient(null);
 			userDto.setAdresse(user.getAdresse());
 			userDto.setEntreprise(user.getEntreprise());
 
@@ -177,7 +174,6 @@ public class UserServiceImpl implements IUserService {
 			if (roleOp.isPresent()) {
 				user.setRole(roleOp.get());
 			}
-		//	user.setNumClient(userDto.getNom().substring(0,1)+userDto.getId()+userDto.getPrenom().substring(0,1)+"2020");
 
 			this.userRepository.save(user);
 			userDto = modelMapper.map(user, UserDto.class);
@@ -201,7 +197,6 @@ public class UserServiceImpl implements IUserService {
 			userDto.setEmail(user.getEmail());
 			userDto.setPassword(null);
 			userDto.setTokenSecret(null);
-		//	userDto.setNumClient(user.getNumClient());
 
 			userDto.setAdresse(user.getAdresse());
 			userDto.setEntreprise(user.getEntreprise());

@@ -1,5 +1,6 @@
 package com.afpa.cda.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -28,11 +29,11 @@ public class ReservationServiceImpl implements IReservationService {
 
 	@Autowired
 	private ManifestationRepository manifestationRepository;
-	
+
 	@Autowired
 	private ReservationRepository reservationRepository;
 
-	
+
 	@Override
 	public List<ReservationDto> findAll() {
 		return this.reservationRepository.findAll().stream().map(r -> {
@@ -47,17 +48,17 @@ public class ReservationServiceImpl implements IReservationService {
 			manifestationDto.setDateFin(r.getManifestation().getDateFin());
 			manifestationDto.setPrixBillet(r.getManifestation().getPrixBillet());
 			reservationDto.setManifestation(manifestationDto);
-			
+
 			AnimationDto animationDto = new AnimationDto();
 			animationDto.setId(r.getManifestation().getAnimation().getId());
 			animationDto.setLabel(r.getManifestation().getAnimation().getLabel());
 			manifestationDto.setAnimation(animationDto);
-			
+
 			SalleDto salleDto = new SalleDto();
 			salleDto.setId(r.getManifestation().getSalle().getId());
 			salleDto.setLabel(r.getManifestation().getSalle().getLabel());
 			manifestationDto.setSalle(salleDto);
-			
+
 			UserDto clientDto = new UserDto();
 			clientDto.setId(r.getClient().getId());
 			clientDto.setNom(r.getClient().getNom());
@@ -71,22 +72,22 @@ public class ReservationServiceImpl implements IReservationService {
 			return reservationDto;
 		}).collect(Collectors.toList());
 	}
-	
+
 	@Override
 	public ReservationDto findById(int id) {
 		Optional<Reservation> reservationOp = this.reservationRepository.findById(id);
 		ReservationDto reservationDto = new ReservationDto();
 		if (reservationOp.isPresent()) {
-			
+
 			Reservation reservation = reservationOp.get();
-			
+
 			reservationDto.setId(reservation.getId());
 
 			ManifestationDto manifestationDto = new ManifestationDto();
 			manifestationDto.setId(reservation.getManifestation().getId());
 			manifestationDto.setLabel(reservation.getManifestation().getLabel());
 			reservationDto.setManifestation(manifestationDto);
-			
+
 			UserDto clientDto = new UserDto();
 			clientDto.setId(reservation.getClient().getId());
 			clientDto.setNom(reservation.getClient().getNom());
@@ -96,19 +97,19 @@ public class ReservationServiceImpl implements IReservationService {
 			reservationDto.setQuantite(reservation.getQuantite());
 			reservationDto.setDateReservation(reservation.getDateReservation());
 			reservationDto.setTotal(reservation.getQuantite()*reservation.getManifestation().getPrixBillet());
-			
+
 		}
 		return reservationDto;
-		
+
 	}
-	
+
 	@Override
 	public List<ReservationDto> findReservationByUserId(int id) {
 
 		List<ReservationDto> listReservationByClient =this.reservationRepository
 				.findReservationByUser(id)
 				.stream().map(r-> {
-					
+
 					ReservationDto reservationDto = new ReservationDto();
 
 					reservationDto.setId(r.getId());
@@ -116,23 +117,23 @@ public class ReservationServiceImpl implements IReservationService {
 					ManifestationDto manifestationDto = new ManifestationDto();
 					manifestationDto.setId(r.getManifestation().getId());
 					manifestationDto.setLabel(r.getManifestation().getLabel());
-					
+
 					AnimationDto animationDto = new AnimationDto();
 					animationDto.setId(r.getManifestation().getAnimation().getId());
 					animationDto.setLabel(r.getManifestation().getAnimation().getLabel());
 					manifestationDto.setAnimation(animationDto);
-					
+
 					manifestationDto.setPrixBillet(r.getManifestation().getPrixBillet());
 					manifestationDto.setDateDebut(r.getManifestation().getDateDebut());
 					manifestationDto.setDateFin(r.getManifestation().getDateFin());
-					
+
 					SalleDto salleDto = new SalleDto();
 					salleDto.setId(r.getManifestation().getSalle().getId());
 					salleDto.setLabel(r.getManifestation().getSalle().getLabel());
 					manifestationDto.setSalle(salleDto);
-					
+
 					reservationDto.setManifestation(manifestationDto);
-					
+
 					UserDto clientDto = new UserDto();
 					clientDto.setId(r.getClient().getId());
 					clientDto.setNom(r.getClient().getNom());
@@ -145,7 +146,7 @@ public class ReservationServiceImpl implements IReservationService {
 
 					return reservationDto;
 				}).collect(Collectors.toList());
-		
+
 		return listReservationByClient;
 	}
 
@@ -155,7 +156,7 @@ public class ReservationServiceImpl implements IReservationService {
 		List<ReservationDto> listReservationByManifestation =this.reservationRepository
 				.findReservationByManifestation(id)
 				.stream().map(r-> {
-					
+
 					ReservationDto reservationDto = new ReservationDto();
 
 					reservationDto.setId(r.getId());
@@ -163,21 +164,21 @@ public class ReservationServiceImpl implements IReservationService {
 					ManifestationDto manifestationDto = new ManifestationDto();
 					manifestationDto.setId(r.getManifestation().getId());
 					manifestationDto.setLabel(r.getManifestation().getLabel());
-					
+
 					AnimationDto animationDto = new AnimationDto();
 					animationDto.setId(r.getManifestation().getAnimation().getId());
 					animationDto.setLabel(r.getManifestation().getAnimation().getLabel());
 					manifestationDto.setAnimation(animationDto);
-					
+
 					manifestationDto.setPrixBillet(r.getManifestation().getPrixBillet());
 					manifestationDto.setDateDebut(r.getManifestation().getDateDebut());
 					manifestationDto.setDateFin(r.getManifestation().getDateFin());
-					
+
 					SalleDto salleDto = new SalleDto();
 					salleDto.setId(r.getManifestation().getSalle().getId());
 					salleDto.setLabel(r.getManifestation().getSalle().getLabel());
 					manifestationDto.setSalle(salleDto);
-					
+
 					reservationDto.setManifestation(manifestationDto);
 
 					UserDto clientDto = new UserDto();
@@ -195,48 +196,51 @@ public class ReservationServiceImpl implements IReservationService {
 
 		return listReservationByManifestation;
 	}
-	
+
 	@Override
 	public int add(ReservationDto reservationDto) {
 		int id=0;
 		Optional <Reservation> reservationOp = this.reservationRepository
 				.findReservationByUserAndManifestation(reservationDto.getClient().getId(), reservationDto.getManifestation().getId());
 		if (!reservationOp.isPresent()) {
-		
+
 			Reservation reservation = new Reservation();
-			
+
 			Optional <Manifestation> manifestationOp = this.manifestationRepository.findById(reservationDto.getManifestation().getId());
 			if (manifestationOp.isPresent()) {
 				Manifestation manifestation = manifestationOp.get();
-				reservation.setManifestation(manifestation);
-			}
+				if (manifestation.getReservations()>reservationDto.getQuantite()) {
+					manifestation.setReservations(manifestation.getReservations()-reservationDto.getQuantite());
+					this.manifestationRepository.save(manifestation);
+					reservation.setManifestation(manifestation);
 
-			
-			Optional <User> clientOp = this.userRepository.findById(reservationDto.getClient().getId());
-			if (clientOp.isPresent()) {
-				User client = clientOp.get();
-				reservation.setClient(client);
-				reservation.setNumClient(client.getNom().substring(0,1)+client.getPrenom().substring(0,1)+"2020");
-				
+					Optional <User> clientOp = this.userRepository.findById(reservationDto.getClient().getId());
+					if (clientOp.isPresent()) {
+						User client = clientOp.get();
+						reservation.setClient(client);
+						reservation.setNumClient(client.getNom().substring(0,1)+client.getPrenom().substring(0,1)+"2020");
+
+					}
+
+					reservation.setQuantite(reservationDto.getQuantite());
+					reservation.setDateReservation(new Date());
+
+					id=this.reservationRepository.save(reservation).getId();
+
+					return id;
+				}
 			}
-			
-			reservation.setQuantite(reservationDto.getQuantite());
-			reservation.setDateReservation(reservationDto.getDateReservation());
-			
-			id=this.reservationRepository.save(reservation).getId();
-			
-			return id;
 		}
 		return id;
 	}
 
 	@Override
 	public boolean update(ReservationDto reservationDto, int id) {
-		
+
 		Optional<Reservation> reservationOp = this.reservationRepository.findById(id);
 		if (reservationOp.isPresent()) {
 			Reservation reservation = reservationOp.get();
-			
+
 			Optional <Manifestation> manifestationOp = this.manifestationRepository.findById(reservationDto.getManifestation().getId());
 			if (manifestationOp.isPresent()) {
 				Manifestation manifestation = manifestationOp.get();
@@ -248,16 +252,16 @@ public class ReservationServiceImpl implements IReservationService {
 				User client = clientOp.get();
 				reservation.setClient(client);
 			}
-			
+
 			reservation.setNumClient(reservationDto.getClient().getNom().substring(0,1)+reservationDto.getClient().getPrenom().substring(0,1)+"2020");
 			reservation.setQuantite(reservationDto.getQuantite());
 			reservation.setDateReservation(reservationDto.getDateReservation());
-			
+
 			this.reservationRepository.save(reservation);
-			
+
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -287,21 +291,21 @@ public class ReservationServiceImpl implements IReservationService {
 		return false;
 	}
 
-	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

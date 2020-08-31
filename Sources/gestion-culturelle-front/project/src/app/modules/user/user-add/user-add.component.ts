@@ -44,7 +44,7 @@ export class UserAddComponent implements OnInit {
           } else {
             this.toastrService.success('Nouveau user : ' +nom, 'Ajout Ok')
           }
-          this.userService.subjectMiseAJour.next(0);
+        // this.userService.subjectMiseAJour.next(0);
           this.goHome();
       }
     );

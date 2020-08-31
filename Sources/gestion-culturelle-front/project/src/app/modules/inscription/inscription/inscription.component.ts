@@ -38,7 +38,7 @@ export class InscriptionComponent implements OnInit {
         } else {
           this.toastrService.success('Bienvenue ' +this.user.nom, 'Inscription réussie !')
         }
-        this.userService.subjectMiseAJour.next(0);
+     //   this.userService.subjectMiseAJour.next(0);
         this.goHome();
       }
     );

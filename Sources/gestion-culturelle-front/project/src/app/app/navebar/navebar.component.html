@@ -53,7 +53,7 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">Réservations</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <button *ngIf="isClient" (click)="redirectToShowReservation(userDto.id)" class="dropdown-item">Voir</button>
+          <button *ngIf="isClient" (click)="redirectToShowReservation()" class="dropdown-item">Voir</button>
           <a *ngIf="isClient" routerLink='public/manifestation-list' class="dropdown-item" routerLinkActive=active>Réserver</a>
           <a *ngIf="isRespAdmin" routerLink='reservation-list' class="dropdown-item"
           routerLinkActive=active>Lister</a>

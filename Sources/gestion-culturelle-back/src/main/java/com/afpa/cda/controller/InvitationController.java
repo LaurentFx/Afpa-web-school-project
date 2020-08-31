@@ -69,13 +69,13 @@ public class InvitationController {
 		return this.invitationService.updateReponse(reponse, id);
 	}
 
-	@PreAuthorize("hasAnyAuthority('ADMIN')")
+	@PreAuthorize("hasAnyAuthority('RESP','ADMIN')")
 	@DeleteMapping(path="/invitation/delete/{id}")
 	public boolean delete(@PathVariable int id) {
 		return this.invitationService.delete(id);
 	}
 
-	@PreAuthorize("hasAnyAuthority('ADMIN')")
+	@PreAuthorize("hasAnyAuthority('RESP','ADMIN')")
 	@DeleteMapping(path="/invitation/deleteAll/{id}")
 	public boolean deleteAll(@PathVariable int id) {
 		return this.invitationService.deleteAll(id);

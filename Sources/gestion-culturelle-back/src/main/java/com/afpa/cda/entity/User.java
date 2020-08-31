@@ -39,9 +39,6 @@ public class User {
 	private Role role;
 
 	private String adresse;
-	
-	// inutile
-	private String numClient;
 
 	private String entreprise;
 	

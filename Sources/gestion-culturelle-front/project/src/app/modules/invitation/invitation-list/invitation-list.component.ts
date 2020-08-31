@@ -20,11 +20,11 @@ export class InvitationListComponent implements OnInit {
   faPlusSquare = faPlusSquare;
   isConnected: boolean;
   invitations: InvitationDto[];
-  isAdmin:boolean;
+  isAdmin: boolean;
   isRespAdmin: boolean;
 
   constructor(private manifestationService: ManifestationService, private router: Router,
-    private invitationService: InvitationService,  private authService: AuthService, private toastrService: ToastrService) { }
+    private invitationService: InvitationService, private authService: AuthService, private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.isConnected = this.authService.isConnected();
@@ -58,13 +58,13 @@ export class InvitationListComponent implements OnInit {
   }
 
   delete(id: number) {
-    
+
     this.invitationService.delete(id).subscribe(
       res => {
         if (res) {
-          this.toastrService.success('Invitation '+id + ' effacée.', 'Suppression Ok.')
+          this.toastrService.success('Invitation ' + id + ' effacée.', 'Suppression Ok.')
         } else {
-          this.toastrService.error('Invitation '+id+ ' non effacée.', 'Suppression impossible')
+          this.toastrService.error('Invitation ' + id + ' non effacée.', 'Suppression impossible')
         }
         this.invitationService.subjectMiseAJour.next(0);
       }
@@ -72,7 +72,7 @@ export class InvitationListComponent implements OnInit {
     this.ngOnInit();
   }
 
- 
+
 
 }
 

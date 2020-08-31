@@ -29,7 +29,7 @@ export class TypeSalleAddComponent implements OnInit {
         } else {
           this.toastrService.success('Nouveau type de salle : ' +nom, 'Ajout Ok')
         }
-        this.typeSalleService.subjectMiseAJour.next(0);
+    //    this.typeSalleService.subjectMiseAJour.next(0);
         this.goHome();
       }
     );

@@ -20,7 +20,7 @@ export class UserListComponent implements OnInit {
   faHome = faHome;
   faPlusSquare = faPlusSquare;
   isResp:boolean;
-  user: User;
+    user: User;
   users: User[];
 
   constructor(private userService: UserService, private router: Router,
@@ -29,6 +29,7 @@ export class UserListComponent implements OnInit {
   ngOnInit() {
     const userCourant = this.authService.getCurrentUser();
       this.isResp = userCourant.role.label === 'RESP';
+     
     this.users = [];
 
     this.userService.getAll().subscribe(

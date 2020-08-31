@@ -4,6 +4,7 @@ import { User } from '../../../model/user';
 import { UserService } from '../../../service/user.service';
 import { RoleDto } from '../../../model/roleDto';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from '../../../security/auth.service';
 
 @Component({
   selector: 'app-user-show',
@@ -13,13 +14,16 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 export class UserShowComponent implements OnInit {
 
   user: User;
+  isClient:boolean;
   faHome = faHome;
 
-    constructor(private userService: UserService, 
+    constructor(private userService: UserService,  private authService: AuthService,
     private router: Router,private route: ActivatedRoute ) { }
 
   ngOnInit() {
     this.user = new User ();
+    const userCourant = this.authService.getCurrentUser();
+    this.isClient = userCourant.role.label === 'CLIENT';
     this.user.role = new RoleDto();
 
     let id = this.route.snapshot.params['id'];

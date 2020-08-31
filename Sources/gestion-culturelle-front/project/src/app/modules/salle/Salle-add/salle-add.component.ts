@@ -57,7 +57,7 @@ export class SalleAddComponent implements OnInit {
         } else {
           this.toastrService.success('Nouvelle salle : ' +nom, 'Ajout Ok')
         }
-        this.salleService.subjectMiseAJour.next(0);
+     //   this.salleService.subjectMiseAJour.next(0);
         this.goHome();
       }
 

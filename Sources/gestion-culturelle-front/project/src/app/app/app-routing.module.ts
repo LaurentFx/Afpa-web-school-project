@@ -80,7 +80,7 @@ const routes: Routes = [
   { path: 'animation-show/:id', component: AnimationShowComponent, canActivate: [AuthGuard] },
 
   { path: 'reservation-ad/:id', component: ReservationAddComponent, canActivate: [ClientGuard] },
-  { path: 'reservation-show/:id', component: ReservationShowComponent, canActivate: [ClientGuard] },
+  { path: 'reservation-show', component: ReservationShowComponent, canActivate: [ClientGuard] },
   { path: 'reservation-list', component: ReservationListComponent, canActivate: [RespadminGuard] },
 
   { path: 'invitation-ad/:id', component: InvitationAddComponent, canActivate: [AdminGuard] },

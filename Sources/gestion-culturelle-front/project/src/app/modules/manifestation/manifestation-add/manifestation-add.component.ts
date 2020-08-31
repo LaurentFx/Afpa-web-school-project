@@ -33,9 +33,8 @@ export class ManifestationAddComponent implements OnInit {
     this.userCourant = this.authService.getCurrentUser();
     this.manifestation = new ManifestationDto();
     this.animations = [];
-   // inutile ?
-    this.manifestation.animation = new AnimationDto();
-    this.manifestation.validateur = this.userCourant;
+   this.manifestation.animation = new AnimationDto();
+   this.manifestation.validateur = this.userCourant;
 
     this.animationService.subjectMiseAJour.subscribe(
       res => {
@@ -65,7 +64,7 @@ export class ManifestationAddComponent implements OnInit {
         } else {
           this.toastrService.success('Nouvelle manifestation : ' +nom, 'Ajout Ok')
         }
-        this.manifestationService.subjectMiseAJour.next(0);
+       // this.manifestationService.subjectMiseAJour.next(0);
         this.goHome();
       }
     );

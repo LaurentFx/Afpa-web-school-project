@@ -38,7 +38,7 @@ export class InvitationAddComponent implements OnInit {
 
   ngOnInit() {
     this.manifestationDto = new ManifestationDto();
-    this.userDto = new User();
+   // this.userDto = new User();
     this.invitationDto = new InvitationDto();
     this.invitationDto.manifestation = new ManifestationDto();
     this.invitationDto.vip = new User();
@@ -50,6 +50,7 @@ export class InvitationAddComponent implements OnInit {
   reload() {
     this.addInvites = false;
     this.subInvites = true;
+    //let idUser = this.authService.getCurrentUser().id;
     this.manifestationService.getOne(this.route.snapshot.params['id']).subscribe(
       resu => {
         this.manifestationDto = resu;
@@ -118,6 +119,7 @@ export class InvitationAddComponent implements OnInit {
 
 
   valid() {
+    this.toastrService.success('Les invitations sont validées', 'Validation Ok')
     this.router.navigateByUrl('/public')
   }
 
@@ -125,7 +127,7 @@ export class InvitationAddComponent implements OnInit {
     this.invitationService.deleteAll(this.route.snapshot.params['id']).subscribe(
       res => {
         if (res) {
-          this.toastrService.success('Les invitations ont été annulées', 'Annulation Ok')
+          this.toastrService.success('Les invitations sont annulées', 'Annulation Ok')
         } else {
 
         }

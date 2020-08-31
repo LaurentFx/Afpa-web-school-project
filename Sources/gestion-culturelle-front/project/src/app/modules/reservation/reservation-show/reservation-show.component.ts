@@ -26,9 +26,9 @@ export class ReservationShowComponent implements OnInit {
   faCalendarCheck = faCalendarCheck;
   faTrashAlt = faTrashAlt;
 
-  constructor(private toastrService: ToastrService,  private reservationService: ReservationService, private route: ActivatedRoute,
+  constructor(private toastrService: ToastrService, private reservationService: ReservationService, private route: ActivatedRoute,
     private router: Router, private authService: AuthService, private userService: UserService,
-  ) {   this.reservations = [];}
+  ) { this.reservations = []; }
 
 
   ngOnInit() {
@@ -41,19 +41,26 @@ export class ReservationShowComponent implements OnInit {
 
   reload() {
     this.total = 0;
-    this.reservations = [];
-    const userDto = this.authService.getCurrentUser();
-    this.id = this.route.snapshot.params['id'];
+   // this.reservations = [];
+  //  const userDto = this.authService.getCurrentUser();
+  //  this.id = this.route.snapshot.params['id'];
+    let idUser = this.authService.getCurrentUser().id;
+
+    this.userService.getOne(idUser).subscribe(
+      res => {
+        this.userDto = res;
+      }
+    );
 
     this.reservationService.subjectMiseAJour.subscribe(
       res => {
-        this.reservationService.getByUser(this.id).subscribe(
+        this.reservationService.getByUser(idUser).subscribe(
           donnees => {
             this.total = 0;
             this.reservations = donnees;
             for (let r of this.reservations) {
-              this.total = this.total + (r.quantite*r.manifestation.prixBillet);
-    
+              this.total = this.total + (r.quantite * r.manifestation.prixBillet);
+
             }
 
           }
@@ -61,21 +68,14 @@ export class ReservationShowComponent implements OnInit {
       }
     );
 
-    this.reservationService.getByUser(this.id).subscribe(
+    this.reservationService.getByUser(idUser).subscribe(
       donnees => {
         this.total = 0;
         this.reservations = donnees;
         for (let r of this.reservations) {
-          this.total = this.total + (r.quantite*r.manifestation.prixBillet);
+          this.total = this.total + (r.quantite * r.manifestation.prixBillet);
 
         }
-      }
-    );
-
-    let idUser = this.authService.getCurrentUser().id;
-    this.userService.getOne(idUser).subscribe(
-      res => {
-        this.userDto = res;
       }
     );
 
@@ -89,14 +89,11 @@ export class ReservationShowComponent implements OnInit {
         } else {
           this.toastrService.error('La réservation n a pas été annulée', 'Annulation NOk')
         }
-        this.reservationService.subjectMiseAJour.next(0);
+        // a tester
+       // this.reservationService.subjectMiseAJour.next(0);
         this.reload()
       }
     )
   }
-
-  goHome() {
-    this.router.navigateByUrl('/public')
-  }
-
+ 
 }

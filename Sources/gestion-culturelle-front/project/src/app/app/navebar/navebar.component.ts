@@ -41,7 +41,7 @@ export class NavebarComponent implements OnInit {
       res => {
         this.isConnected = this.authService.isConnected();
 
-        if (res == 0) {
+        if (res == 99) {
           this.isResp = false;
           this.isClient = false;
           this.isVip = false;
@@ -50,7 +50,7 @@ export class NavebarComponent implements OnInit {
           this.isRespAdmin = false;
           this.isVipAdmin = false;
           this.isRespAdminVip = false;
-         this.isRespAdminClient = false;
+          this.isRespAdminClient = false;
           this.user = '';
           this.role = null;
         } else {
@@ -83,6 +83,19 @@ export class NavebarComponent implements OnInit {
 
   logout(): void {
     this.userCourant = this.authService.getCurrentUser();
+    
+    // A tester
+    this.isResp = false;
+    this.isClient = false;
+    this.isVip = false;
+    this.isAnim = false;
+    this.isAdmin = false;
+    this.isRespAdmin = false;
+    this.isVipAdmin = false;
+    this.isRespAdminVip = false;
+    this.isRespAdminClient = false;
+    this.user = '';
+    this.role = null;
     // this.toastrService.info('A bientôt ...', 'Deconnexion');
     this.authService.logout();
     this.router.navigateByUrl('/public/login');
@@ -93,8 +106,8 @@ export class NavebarComponent implements OnInit {
     this.router.navigateByUrl('/invitation-show/' + id)
   }
 
-  redirectToShowReservation(id: number) {
-    this.router.navigateByUrl('/reservation-show/' + id)
+  redirectToShowReservation() {
+    this.router.navigateByUrl('/reservation-show')
   }
 
   redirectToAnswerInvitation(id: number) {

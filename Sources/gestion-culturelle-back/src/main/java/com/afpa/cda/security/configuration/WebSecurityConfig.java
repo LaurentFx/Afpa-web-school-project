@@ -55,10 +55,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				"/salle/delete/*","/typesalle/show/*","typesalle/add","/typesalle/update/*","/typesalle/delete/*",
 				"/users/list","/users/add","/users/delete/*"};
 
-		String[] respAdminUrls = { "/animation/delete/*","/invitation/list","/invitation/update/*",
+		String[] respAdminUrls = { "/animation/delete/*","/invitation/list","/invitation/update/*","/invitation/delete/",
 				"/manifestation/availability","/manifestation/update/","/manifestation/delete/*","/reservation/list","/salle/capacity/*"};
 
-		String[] adminUrls = {"/invitation/manifestation/*","/invitation/add","/invitation/delete/",
+		String[] adminUrls = {"/invitation/manifestation/*","/invitation/add",
 				"/invitation/deleteAll/*","/users/invites/*"};
 
 		String[] vipUrls = {"/invitation/show/*","/invitation/user/*","/invitation/new/*","/invitation/answer/*"} ;

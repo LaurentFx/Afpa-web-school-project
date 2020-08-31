@@ -25,15 +25,10 @@ export class ReservationAddComponent implements OnInit {
   faCalendarPlus = faCalendarPlus;
   today: number = Date.now();
 
-  //inutiles ?
-  idUser: number;
-  idManif: number;
-
   constructor(private manifestationService: ManifestationService,
-    private route: ActivatedRoute,
-    private router: Router, private authService: AuthService,
-    private reservationService: ReservationService,
-    private userService: UserService, private toastrService: ToastrService) {
+    private route: ActivatedRoute, private router: Router,
+    private authService: AuthService, private reservationService: ReservationService,
+    private toastrService: ToastrService) {
   }
 
   ngOnInit() {
@@ -50,20 +45,8 @@ export class ReservationAddComponent implements OnInit {
       }
     )
 
-   // this.reload();
 
   }
-
- /*  reload() {
-
-    this.userDto = this.authService.getCurrentUser();
-    this.manifestationService.getOne(this.route.snapshot.params['id']).subscribe(
-      resu => {
-        this.manifestationDto = resu;
-      }
-    )
-  }
- */
 
   add(): void {
     this.reservationDto.manifestation.id = this.route.snapshot.params['id'];
@@ -76,17 +59,17 @@ export class ReservationAddComponent implements OnInit {
           this.toastrService.error('La reservation existe déjà', 'Ajout impossible')
         } else {
           this.toastrService.success('Reservation ajoutée.', 'Ajout Ok')
+          this.goHome();
         }
-        this.reservationService.subjectMiseAJour.next(0);
-        this.goHome(this.userDto.id);
+      //  this.reservationService.subjectMiseAJour.next(0);
       }
     );
 
   }
 
 
-  goHome(id: number) {
-    this.router.navigateByUrl('/reservation-show/' + id)
+  goHome() {
+    this.router.navigateByUrl('/reservation-show')
   }
 
 }

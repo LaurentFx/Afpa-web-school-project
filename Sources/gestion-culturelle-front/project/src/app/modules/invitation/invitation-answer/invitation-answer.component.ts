@@ -69,6 +69,7 @@ export class InvitationAnswerComponent implements OnInit {
         } else {
           this.toastrService.error('La réponse à l invitation N°'+id +  ' n a pas été modifiée', 'Réponse NOk')
         }
+       // this.invitationService.subjectMiseAJour.next(0);
       }
     );
     this.ngOnInit();
@@ -83,6 +84,7 @@ export class InvitationAnswerComponent implements OnInit {
         } else {
           this.toastrService.error('La réponse à l invitation N°'+id +  ' n a pas été modifiée', 'Réponse NOk.')
         }
+      //  this.invitationService.subjectMiseAJour.next(0);
       }
     );
     this.ngOnInit();
